@@ -1,0 +1,38 @@
+name: Daily Macro Data Update
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # Runs every day at 6:00 AM UTC
+  workflow_dispatch: # Lets you trigger it manually anytime
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install fredapi
+
+      - name: Run script to update data.json
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: |
+          python update_data.py
+
+      - name: Commit and push if data changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated macro data update" && git push)
