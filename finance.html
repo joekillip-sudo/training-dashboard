@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Dashboard</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .card .value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .timestamp {
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Macroeconomic Dashboard</h1>
+    
+    <div class="grid">
+        <div class="card">
+            <h3>US 10Y Yield</h3>
+            <div class="value" id="us-10y">--</div>
+        </div>
+        <div class="card">
+            <h3>UK 10Y Yield</h3>
+            <div class="value" id="uk-10y">--</div>
+        </div>
+        <div class="card">
+            <h3>Fed Rate</h3>
+            <div class="value" id="fed-rate">--</div>
+        </div>
+        <div class="card">
+            <h3>ECB Rate</h3>
+            <div class="value" id="ecb-rate">--</div>
+        </div>
+    </div>
+
+    <div class="timestamp" id="last-updated">Loading timestamp...</div>
+
+    <script>
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('us-10y').innerText = data.us_10y + '%';
+                document.getElementById('uk-10y').innerText = data.uk_10y + '%';
+                document.getElementById('fed-rate').innerText = data.fed_rate + '%';
+                document.getElementById('ecb-rate').innerText = data.ecb_rate + '%';
+                document.getElementById('last-updated').innerText = 'Updated: ' + data.last_updated;
+            })
+            .catch(error => {
+                console.error('Error loading data.json:', error);
+                document.getElementById('last-updated').innerText = 'Failed to load data.';
+            });
+    </script>
+
+</body>
+</html>

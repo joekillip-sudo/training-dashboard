@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Training Dashboard </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #0f0f1a;
+            color: white;
+            font-family: Arial;
+            padding: 40px;
+        }
+        .day-card {
+            background-color: #2d3561;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            max-width: 500px;
+        }
+        .week-heading {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #e94560;
+        }
+        .week-total {
+            font-size: 18px;
+            color: #eb94a0;
+            margin-bottom: 8px;
+        }
+        h1 {
+            color: #e94560;
+            font-size: 32px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Training Dashboard</h1>
+    <div id="week-list"></div>
+    <script>
+        let sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-yXqd-d5VCWyTzXeIAIl6xyrypIIUP4MvI2MmP6e1mwM7FtJUwWaX23v6QqHG9-7m-L3YmH6TsVnS/pub?gid=972901168&single=true&output=csv";
+        
+        function parseCSVRow(row) {
+            let result = [];
+            let current = "";
+            let insideQuotes = false;
+            
+            for (let i = 0; i < row.length; i++) {
+                let char = row[i];
+
+                    if (char === '"') {
+                        insideQuotes = !insideQuotes;
+                    } else if (char === "," && !insideQuotes) {
+                        result.push(current);
+                        current = "";
+                    } else {
+                        current = current + char;
+                    }
+                }
+                result.push(current);
+                return result;
+            }
+
+            function formatTime(minutes) {
+                let hours = Math.floor(minutes / 60);
+                let mins = minutes % 60;
+                return hours + "h " + mins + "m";
+            }
+        
+        fetch(sheetUrl)
+            .then(response => response.text())
+            .then(csvText => {
+                let rows = csvText.split("\n");
+  let allRows = [];
+
+  for (let i = 1; i < rows.length; i++) {
+  let cleanRow = rows[i].replace("\r", "");
+  let columns = parseCSVRow(cleanRow);
+
+  let dayObject = {
+    week: columns[0],
+    day: columns[2],
+    session: columns[4],
+    time: Number(columns[5]),
+    actual: columns[7] === "" ? null : Number(columns[7])
+  };
+  allRows.push(dayObject);
+}
+
+  let output = "";
+let currentWeek = "";
+let weeklyTotal = 0;
+
+for (let i = 0; i < allRows.length; i++) {
+    if (allRows[i].week !== currentWeek) {
+        if (currentWeek !== "") {
+            output = output + "<p class='week-total'>Week total: " + formatTime(weeklyTotal) + "</p>";
+        }
+        output = output + "<h2 class='week-heading'>Week " + allRows[i].week + "</h2>";
+        currentWeek = allRows[i].week;
+        weeklyTotal = 0;
+    }
+
+    weeklyTotal = weeklyTotal + allRows[i].time;
+
+    let actualText;
+    if (allRows[i].actual === null) {
+        actualText = "not logged yet";
+    } else {
+        actualText = allRows[i].actual + " min actual";
+    }
+    output = output + "<div class='day-card'><strong>" + allRows[i].day + "</strong>: " + allRows[i].session + " (" + allRows[i].time + " min planned, " + actualText + ")</div>";
+}
+output = output + "<p class='week-total'>Week total: " + formatTime(weeklyTotal) + "</p>";
+document.getElementById("week-list").innerHTML = output;
+            });
+</script>
+</body>
+</html>

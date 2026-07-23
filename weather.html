@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Dashboard</title>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background-color: #0a1930;
+    color: white;
+    font-family: Arial;
+    padding: 40px;
+  }
+  h1 {
+    color: #4fc3f7;
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  .stat-row {
+    display: flex;
+    gap: 16px;
+  }
+  .stat-card {
+    background-color: #16273f;
+    border-radius: 10px;
+    padding: 16px 20px;
+    min-width: 120px;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: #8fa3bf;
+    text-transform: uppercase;
+  }
+  .stat-value {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 4px;
+  }
+  .updated {
+  color: #8fa3bf;
+  font-size: 12px;
+  margin-top: 16px;
+}
+</style>
+</head>
+<body>
+  <h1>Weather Dashboard</h1>
+  <div id="weather"></div>
+
+  <script>
+    let lat = 51.4463;
+    let lon = -0.3237;
+let weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m,wind_gusts_10m,weather_code&timezone=Europe%2FLondon";
+    
+    let weatherCodes = {
+  0: "Clear sky",
+  1: "Mainly clear",
+  2: "Partly cloudy",
+  3: "Overcast",
+  45: "Fog",
+  51: "Light drizzle",
+  61: "Light rain",
+  63: "Moderate rain",
+  65: "Heavy rain",
+  71: "Snow",
+  80: "Rain showers",
+  95: "Thunderstorm"
+};
+    fetch(weatherUrl)
+      .then(response => response.json())
+      .then(data => {
+  let c = data.current;
+  let condition = weatherCodes[c.weather_code];
+
+  let output = "<div class='stat-row'>";
+  output = output + "<div class='stat-card'><div class='stat-label'>Condition</div><div class='stat-value'>" + condition + "</div></div>";
+  output = output + "<div class='stat-card'><div class='stat-label'>Temperature</div><div class='stat-value'>" + c.temperature_2m + "°C</div></div>";
+  output = output + "<div class='stat-card'><div class='stat-label'>Feels Like</div><div class='stat-value'>" + c.apparent_temperature + "°C</div></div>";
+  output = output + "<div class='stat-card'><div class='stat-label'>Humidity</div><div class='stat-value'>" + c.relative_humidity_2m + "%</div></div>";
+  output = output + "<div class='stat-card'><div class='stat-label'>Wind</div><div class='stat-value'>" + c.wind_speed_10m + " km/h</div></div>";
+  output = output + "</div>";
+output = output + "<p class='updated'>Last updated: " + c.time + "</p>";
+document.getElementById("weather").innerHTML = output;
+  output = output + "</div>";
+
+  document.getElementById("weather").innerHTML = output;
+});
+  </script>
+</body>
+</html>
