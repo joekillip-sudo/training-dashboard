@@ -4,6 +4,7 @@ load_dotenv()
 import json
 from datetime import datetime
 from fredapi import Fred
+import feedparser
 
 # Initialize FRED with your API key
 fred = Fred(api_key=os.environ["FRED_API_KEY"])
@@ -21,6 +22,16 @@ us_10y_history = [
     {"date": date.strftime("%Y-%m-%d"), "value": round(float(value), 2)}
     for date, value in us_10y_history_raw.items()
 ]
+# Fetch latest market news headlines from CNBC's Markets RSS feed
+news_feed = feedparser.parse("https://www.cnbc.com/id/10000664/device/rss/rss.html")
+news_items = [
+    {
+        "title": entry.title,
+        "link": entry.link,
+        "published": entry.get("published", "")
+    }
+    for entry in news_feed.entries[:8]  # grab the latest 8 headlines
+]
 data = {
     "us_10y": round(float(fred.get_series("DGS10").dropna().iloc[-1]), 2),
     "uk_10y": round(float(fred.get_series("IRLTLT01GBM156N").dropna().iloc[-1]), 2),
@@ -29,6 +40,7 @@ data = {
     "cpi": round(float(fred.get_series("CPIAUCSL").dropna().iloc[-1]), 2),
     "unemployment": round(float(fred.get_series("UNRATE").dropna().iloc[-1]), 2),
     "us_10y_history": us_10y_history,
+    "news": news_items,
     "last_updated": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 }
 

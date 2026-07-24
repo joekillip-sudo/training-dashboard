@@ -52,6 +52,27 @@
     font-weight: bold;
     margin-left: 6px;
 }
+#news-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+#news-list li:last-child {
+    border-bottom: none;
+}
+#news-list a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-weight: 500;
+}
+#news-list a:hover {
+    text-decoration: underline;
+}
+#news-list .news-date {
+    display: block;
+    font-size: 11px;
+    color: #999;
+    margin-top: 2px;
+}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -89,6 +110,10 @@
     <h3>US 10Y Yield — Last 30 Days</h3>
     <canvas id="us10yChart"></canvas>
 </div>
+<div class="card" style="margin-bottom: 20px;">
+    <h3>Latest Markets News</h3>
+    <ul id="news-list" style="list-style: none; padding: 0; margin: 0;"></ul>
+</div>
 
     <div class="timestamp" id="last-updated">Loading timestamp...</div>
 
@@ -123,6 +148,15 @@ if (data.us_10y_history) {
     if (window.us10yChartInstance) {
         window.us10yChartInstance.destroy();
     }
+    if (data.news) {
+    const newsList = document.getElementById('news-list');
+    newsList.innerHTML = '';
+    data.news.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a><span class="news-date">${item.published}</span>`;
+        newsList.appendChild(li);
+    });
+}
 
     const ctx = document.getElementById('us10yChart').getContext('2d');
     window.us10yChartInstance = new Chart(ctx, {

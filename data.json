@@ -127,7 +127,49 @@
             "value": 4.67
         }
     ],
-    "last_updated": "2026-07-24 10:31 UTC",
+    "news": [
+        {
+            "title": "U.S., other nations back open-source AI with 'strong security' at China summit",
+            "link": "https://www.cnbc.com/2026/07/24/china-ai-open-source-apec.html",
+            "published": "Fri, 24 Jul 2026 02:42:21 GMT"
+        },
+        {
+            "title": "Odds of Federal Reserve rate hike surge as oil prices rip higher",
+            "link": "https://www.cnbc.com/2026/07/23/fed-interest-rate-odds-oil-jobless-claims.html",
+            "published": "Thu, 23 Jul 2026 20:25:28 GMT"
+        },
+        {
+            "title": "JPMorgan report finds dramatic jump in AI-themed ETFs \u2014 despite rough quarter",
+            "link": "https://www.cnbc.com/2026/07/23/jpmorgan-dramatic-jump-in-ai-etfs-despite-rough-quarter.html",
+            "published": "Thu, 23 Jul 2026 17:10:06 GMT"
+        },
+        {
+            "title": "Shortsighted stock market can no longer brush off war: 'It's too hard to ignore $100 oil'",
+            "link": "https://www.cnbc.com/2026/07/23/short-sighted-stock-market-can-no-longer-brush-off-war-investors-say.html",
+            "published": "Thu, 23 Jul 2026 19:19:01 GMT"
+        },
+        {
+            "title": "John Paulson says we are in the early stages of a long-term bull market for gold",
+            "link": "https://www.cnbc.com/2026/07/22/john-paulson-says-we-are-in-early-stages-of-a-long-term-bull-market-for-gold.html",
+            "published": "Wed, 22 Jul 2026 22:06:49 GMT"
+        },
+        {
+            "title": "Kalshi launches election hub for prediction markets ahead of midterms",
+            "link": "https://www.cnbc.com/2026/07/22/kalshi-launches-election-hub-for-prediction-markets-ahead-of-midterms.html",
+            "published": "Wed, 22 Jul 2026 15:23:02 GMT"
+        },
+        {
+            "title": "Goldman Sachs creates private markets platform as rich investors seek the next SpaceX and Stripe",
+            "link": "https://www.cnbc.com/2026/07/21/goldman-sachs-private-markets-platform.html",
+            "published": "Tue, 21 Jul 2026 20:51:34 GMT"
+        },
+        {
+            "title": "Bets against SpaceX grow to 32% of float as Elon Musk warns short sellers won't survive",
+            "link": "https://www.cnbc.com/2026/07/21/bets-against-spacex-grow-to-32percent-of-float-as-elon-musk-warns-short-sellers-wont-survive.html",
+            "published": "Tue, 21 Jul 2026 20:01:39 GMT"
+        }
+    ],
+    "last_updated": "2026-07-24 11:11 UTC",
     "trend": {
         "us_10y": "same",
         "uk_10y": "same",
