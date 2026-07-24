@@ -1,9 +1,12 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
 import json
 from datetime import datetime
 from fredapi import Fred
 
 # Initialize FRED with your API key
-fred = Fred(api_key="ec2a560bd6716142ab3b05d28fc1ba8c")
+fred = Fred(api_key=os.environ["FRED_API_KEY"])
 
 # Fetch official macro data using verified FRED Series IDs
 data = {

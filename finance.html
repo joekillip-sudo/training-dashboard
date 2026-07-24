@@ -70,19 +70,25 @@
     <div class="timestamp" id="last-updated">Loading timestamp...</div>
 
     <script>
+        function loadData() {
+              console.log("Fetching data at", new Date().toLocaleTimeString());
         fetch('data.json')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('us-10y').innerText = data.us_10y + '%';
-                document.getElementById('uk-10y').innerText = data.uk_10y + '%';
-                document.getElementById('fed-rate').innerText = data.fed_rate + '%';
-                document.getElementById('ecb-rate').innerText = data.ecb_rate + '%';
-                document.getElementById('last-updated').innerText = 'Updated: ' + data.last_updated;
-            })
-            .catch(error => {
-                console.error('Error loading data.json:', error);
-                document.getElementById('last-updated').innerText = 'Failed to load data.';
-            });
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('us-10y').innerText = data.us_10y + '%';
+      document.getElementById('uk-10y').innerText = data.uk_10y + '%';
+      document.getElementById('fed-rate').innerText = data.fed_rate + '%';
+      document.getElementById('ecb-rate').innerText = data.ecb_rate + '%';
+      document.getElementById('last-updated').innerText = 'Updated: ' + data.last_updated;
+    })
+    .catch(error => {
+      console.error('Error loading data.json:', error);
+      document.getElementById('last-updated').innerText = 'Failed to load data.';
+    });
+}
+
+loadData();
+setInterval(loadData, 3600000);
     </script>
 
 </body>
