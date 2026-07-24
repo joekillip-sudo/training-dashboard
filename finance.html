@@ -65,6 +65,14 @@
             <h3>ECB Rate</h3>
             <div class="value" id="ecb-rate">--</div>
         </div>
+        <div class="card">
+            <h3>US CPI</h3>
+            <div class="value" id="cpi">--</div>
+        </div>
+        <div class="card">
+            <h3>US Unemployment</h3>
+            <div class="value" id="unemployment">--</div>
+        </div>
     </div>
 
     <div class="timestamp" id="last-updated">Loading timestamp...</div>
@@ -79,6 +87,8 @@
       document.getElementById('uk-10y').innerText = data.uk_10y + '%';
       document.getElementById('fed-rate').innerText = data.fed_rate + '%';
       document.getElementById('ecb-rate').innerText = data.ecb_rate + '%';
+      document.getElementById('cpi').innerText = data.cpi;
+    document.getElementById('unemployment').innerText = data.unemployment + '%';
       document.getElementById('last-updated').innerText = 'Updated: ' + data.last_updated;
     })
     .catch(error => {

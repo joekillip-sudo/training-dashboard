@@ -14,6 +14,8 @@ data = {
     "uk_10y": round(float(fred.get_series("IRLTLT01GBM156N").dropna().iloc[-1]), 2),
     "fed_rate": round(float(fred.get_series("FEDFUNDS").dropna().iloc[-1]), 2),
     "ecb_rate": round(float(fred.get_series("ECBDFR").dropna().iloc[-1]), 2),
+    "cpi": round(float(fred.get_series("CPIAUCSL").dropna().iloc[-1]), 2),
+    "unemployment": round(float(fred.get_series("UNRATE").dropna().iloc[-1]), 2),
     "last_updated": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 }
 
