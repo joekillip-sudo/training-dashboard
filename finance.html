@@ -42,6 +42,16 @@
             font-size: 12px;
             color: #888;
         }
+        .arrow-up {
+    color: #2e7d32;
+    font-weight: bold;
+    margin-left: 6px;
+}
+.arrow-down {
+    color: #c62828;
+    font-weight: bold;
+    margin-left: 6px;
+}
     </style>
 </head>
 <body>
@@ -83,18 +93,29 @@
         fetch('data.json')
     .then(response => response.json())
     .then(data => {
-      document.getElementById('us-10y').innerText = data.us_10y + '%';
-      document.getElementById('uk-10y').innerText = data.uk_10y + '%';
-      document.getElementById('fed-rate').innerText = data.fed_rate + '%';
-      document.getElementById('ecb-rate').innerText = data.ecb_rate + '%';
-      document.getElementById('cpi').innerText = data.cpi;
-    document.getElementById('unemployment').innerText = data.unemployment + '%';
-      document.getElementById('last-updated').innerText = 'Updated: ' + data.last_updated;
-    })
-    .catch(error => {
-      console.error('Error loading data.json:', error);
-      document.getElementById('last-updated').innerText = 'Failed to load data.';
-    });
+  function renderValue(id, value, suffix, trendKey) {
+    let arrowHtml = '';
+    const trend = data.trend ? data.trend[trendKey] : null;
+    if (trend === 'up') {
+      arrowHtml = '<span class="arrow-up">▲</span>';
+    } else if (trend === 'down') {
+      arrowHtml = '<span class="arrow-down">▼</span>';
+    }
+    document.getElementById(id).innerHTML = value + suffix + arrowHtml;
+  }
+
+  renderValue('us-10y', data.us_10y, '%', 'us_10y');
+  renderValue('uk-10y', data.uk_10y, '%', 'uk_10y');
+  renderValue('fed-rate', data.fed_rate, '%', 'fed_rate');
+  renderValue('ecb-rate', data.ecb_rate, '%', 'ecb_rate');
+  renderValue('cpi', data.cpi, '', 'cpi');
+  renderValue('unemployment', data.unemployment, '%', 'unemployment');
+  document.getElementById('last-updated').innerText = 'Updated: ' + data.last_updated;
+})
+.catch(error => {
+  console.error('Error loading data.json:', error);
+  document.getElementById('last-updated').innerText = 'Failed to load data.';
+})
 }
 
 loadData();

@@ -5,5 +5,13 @@
     "ecb_rate": 2.25,
     "cpi": 332.57,
     "unemployment": 4.2,
-    "last_updated": "2026-07-24 09:24 UTC"
+    "last_updated": "2026-07-24 10:15 UTC",
+    "trend": {
+        "us_10y": "same",
+        "uk_10y": "same",
+        "fed_rate": "same",
+        "ecb_rate": "same",
+        "cpi": "same",
+        "unemployment": "same"
+    }
 }
