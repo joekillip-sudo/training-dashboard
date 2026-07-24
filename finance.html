@@ -73,29 +73,53 @@
     color: #999;
     margin-top: 2px;
 }
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.tab-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #e0e0e0;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.tab-button.active {
+    background: #2e7d32;
+    color: #fff;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
     <h1>Macroeconomic Dashboard</h1>
-    
+
+    <div class="tabs">
+    <button class="tab-button active" data-tab="us">US</button>
+    <button class="tab-button" data-tab="uk">UK</button>
+    <button class="tab-button" data-tab="eurozone">Eurozone</button>
+</div>
+
+<div id="tab-us" class="tab-content active">
     <div class="grid">
         <div class="card">
             <h3>US 10Y Yield</h3>
             <div class="value" id="us-10y">--</div>
         </div>
         <div class="card">
-            <h3>UK 10Y Yield</h3>
-            <div class="value" id="uk-10y">--</div>
-        </div>
-        <div class="card">
             <h3>Fed Rate</h3>
             <div class="value" id="fed-rate">--</div>
-        </div>
-        <div class="card">
-            <h3>ECB Rate</h3>
-            <div class="value" id="ecb-rate">--</div>
         </div>
         <div class="card">
             <h3>US CPI</h3>
@@ -106,6 +130,25 @@
             <div class="value" id="unemployment">--</div>
         </div>
     </div>
+</div>
+
+<div id="tab-uk" class="tab-content">
+    <div class="grid">
+        <div class="card">
+            <h3>UK 10Y Yield</h3>
+            <div class="value" id="uk-10y">--</div>
+        </div>
+    </div>
+</div>
+
+<div id="tab-eurozone" class="tab-content">
+    <div class="grid">
+        <div class="card">
+            <h3>ECB Rate</h3>
+            <div class="value" id="ecb-rate">--</div>
+        </div>
+    </div>
+</div>
 <div class="card" style="margin-bottom: 20px;">
     <h3>US 10Y Yield — Last 30 Days</h3>
     <canvas id="us10yChart"></canvas>
@@ -117,81 +160,93 @@
 
     <div class="timestamp" id="last-updated">Loading timestamp...</div>
 
-    <script>
-        function loadData() {
-              console.log("Fetching data at", new Date().toLocaleTimeString());
+<script>
+    function loadData() {
+        console.log("Fetching data at", new Date().toLocaleTimeString());
         fetch('data.json')
-    .then(response => response.json())
-    .then(data => {
-  function renderValue(id, value, suffix, trendKey) {
-    let arrowHtml = '';
-    const trend = data.trend ? data.trend[trendKey] : null;
-    if (trend === 'up') {
-      arrowHtml = '<span class="arrow-up">▲</span>';
-    } else if (trend === 'down') {
-      arrowHtml = '<span class="arrow-down">▼</span>';
+            .then(response => response.json())
+            .then(data => {
+                function renderValue(id, value, suffix, trendKey) {
+                    let arrowHtml = '';
+                    const trend = data.trend ? data.trend[trendKey] : null;
+                    if (trend === 'up') {
+                        arrowHtml = '<span class="arrow-up">▲</span>';
+                    } else if (trend === 'down') {
+                        arrowHtml = '<span class="arrow-down">▼</span>';
+                    }
+                    document.getElementById(id).innerHTML = value + suffix + arrowHtml;
+                }
+
+                renderValue('us-10y', data.us_10y, '%', 'us_10y');
+                renderValue('uk-10y', data.uk_10y, '%', 'uk_10y');
+                renderValue('fed-rate', data.fed_rate, '%', 'fed_rate');
+                renderValue('ecb-rate', data.ecb_rate, '%', 'ecb_rate');
+                renderValue('cpi', data.cpi, '', 'cpi');
+                renderValue('unemployment', data.unemployment, '%', 'unemployment');
+                document.getElementById('last-updated').innerText = 'Updated: ' + data.last_updated;
+
+                if (data.us_10y_history) {
+                    const labels = data.us_10y_history.map(point => point.date);
+                    const values = data.us_10y_history.map(point => point.value);
+
+                    if (window.us10yChartInstance) {
+                        window.us10yChartInstance.destroy();
+                    }
+
+                    const ctx = document.getElementById('us10yChart').getContext('2d');
+                    window.us10yChartInstance = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'US 10Y Yield (%)',
+                                data: values,
+                                borderColor: '#2e7d32',
+                                backgroundColor: 'rgba(46, 125, 50, 0.1)',
+                                fill: true,
+                                tension: 0.2,
+                                pointRadius: 2
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                x: { ticks: { maxTicksLimit: 6 } }
+                            }
+                        }
+                    });
+                }
+
+                if (data.news) {
+                    const newsList = document.getElementById('news-list');
+                    newsList.innerHTML = '';
+                    data.news.forEach(item => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a><span class="news-date">${item.source} — ${item.published}</span>`;
+                        newsList.appendChild(li);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error loading data.json:', error);
+                document.getElementById('last-updated').innerText = 'Failed to load data.';
+            });
     }
-    document.getElementById(id).innerHTML = value + suffix + arrowHtml;
-  }
 
-  renderValue('us-10y', data.us_10y, '%', 'us_10y');
-  renderValue('uk-10y', data.uk_10y, '%', 'uk_10y');
-  renderValue('fed-rate', data.fed_rate, '%', 'fed_rate');
-  renderValue('ecb-rate', data.ecb_rate, '%', 'ecb_rate');
-  renderValue('cpi', data.cpi, '', 'cpi');
-  renderValue('unemployment', data.unemployment, '%', 'unemployment');
-  document.getElementById('last-updated').innerText = 'Updated: ' + data.last_updated;
-if (data.us_10y_history) {
-    const labels = data.us_10y_history.map(point => point.date);
-    const values = data.us_10y_history.map(point => point.value);
+    loadData();
 
-    if (window.us10yChartInstance) {
-        window.us10yChartInstance.destroy();
-    }
-    if (data.news) {
-    const newsList = document.getElementById('news-list');
-    newsList.innerHTML = '';
-    data.news.forEach(item => {
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a><span class="news-date">${item.source} — ${item.published}</span>`;
-        newsList.appendChild(li);
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            button.classList.add('active');
+            document.getElementById('tab-' + button.dataset.tab).classList.add('active');
+        });
     });
-}
 
-    const ctx = document.getElementById('us10yChart').getContext('2d');
-    window.us10yChartInstance = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'US 10Y Yield (%)',
-                data: values,
-                borderColor: '#2e7d32',
-                backgroundColor: 'rgba(46, 125, 50, 0.1)',
-                fill: true,
-                tension: 0.2,
-                pointRadius: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: {
-                x: { ticks: { maxTicksLimit: 6 } }
-            }
-        }
-    });
-}
-})
-.catch(error => {
-  console.error('Error loading data.json:', error);
-  document.getElementById('last-updated').innerText = 'Failed to load data.';
-})
-}
-
-loadData();
-setInterval(loadData, 3600000);
-    </script>
-
+    setInterval(loadData, 3600000);
+</script>
 </body>
 </html>
