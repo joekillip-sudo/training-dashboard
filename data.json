@@ -1,15 +1,11 @@
 {
-    "us_10y": 4.67,
+    "us_10y": 4.71,
     "uk_10y": 4.8,
     "fed_rate": 3.63,
     "ecb_rate": 2.25,
     "cpi": 332.57,
     "unemployment": 4.2,
     "us_10y_history": [
-        {
-            "date": "2026-06-09",
-            "value": 4.53
-        },
         {
             "date": "2026-06-10",
             "value": 4.55
@@ -125,9 +121,19 @@
         {
             "date": "2026-07-22",
             "value": 4.67
+        },
+        {
+            "date": "2026-07-23",
+            "value": 4.71
         }
     ],
     "news": [
+        {
+            "title": "Moody's says 'unprecedented' AI spending threatens credit quality of Amazon, Meta, Alphabet and others",
+            "link": "https://www.cnbc.com/2026/07/24/moodys-ai-spending-credit-quality-amazon-meta-alphabet.html",
+            "published": "Fri, 24 Jul 2026 20:33:21 GMT",
+            "source": "CNBC"
+        },
         {
             "title": "U.S., other nations back open-source AI with 'strong security' at China summit",
             "link": "https://www.cnbc.com/2026/07/24/china-ai-open-source-apec.html",
@@ -169,17 +175,11 @@
             "link": "https://www.cnbc.com/2026/07/21/goldman-sachs-private-markets-platform.html",
             "published": "Tue, 21 Jul 2026 20:51:34 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Bets against SpaceX grow to 32% of float as Elon Musk warns short sellers won't survive",
-            "link": "https://www.cnbc.com/2026/07/21/bets-against-spacex-grow-to-32percent-of-float-as-elon-musk-warns-short-sellers-wont-survive.html",
-            "published": "Tue, 21 Jul 2026 20:01:39 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-24 17:16 UTC",
+    "last_updated": "2026-07-24 21:45 UTC",
     "trend": {
-        "us_10y": "same",
+        "us_10y": "up",
         "uk_10y": "same",
         "fed_rate": "same",
         "ecb_rate": "same",
