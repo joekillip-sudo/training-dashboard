@@ -2,8 +2,8 @@ name: Daily Macro Data Update
 
 on:
   schedule:
-    - cron: '0 6 * * *' # Runs every day at 6:00 AM UTC
-  workflow_dispatch: # Lets you trigger it manually anytime
+    - cron: '0 * * * *' # Runs every hour, on the hour
+  workflow_dispatch:
 
 permissions:
   contents: write
