@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install fredapi feedparser
+          pip install fredapi feedparser python-dotenv
 
       - name: Run script to update data.json
         env:
