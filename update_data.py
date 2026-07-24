@@ -15,6 +15,12 @@ try:
 except FileNotFoundError:
     previous_data = {}
 
+# Fetch last 30 days of US 10Y yield history for the chart
+us_10y_history_raw = fred.get_series("DGS10").dropna().tail(30)
+us_10y_history = [
+    {"date": date.strftime("%Y-%m-%d"), "value": round(float(value), 2)}
+    for date, value in us_10y_history_raw.items()
+]
 data = {
     "us_10y": round(float(fred.get_series("DGS10").dropna().iloc[-1]), 2),
     "uk_10y": round(float(fred.get_series("IRLTLT01GBM156N").dropna().iloc[-1]), 2),
@@ -22,6 +28,7 @@ data = {
     "ecb_rate": round(float(fred.get_series("ECBDFR").dropna().iloc[-1]), 2),
     "cpi": round(float(fred.get_series("CPIAUCSL").dropna().iloc[-1]), 2),
     "unemployment": round(float(fred.get_series("UNRATE").dropna().iloc[-1]), 2),
+    "us_10y_history": us_10y_history,
     "last_updated": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 }
 

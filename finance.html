@@ -53,6 +53,7 @@
     margin-left: 6px;
 }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -84,6 +85,10 @@
             <div class="value" id="unemployment">--</div>
         </div>
     </div>
+<div class="card" style="margin-bottom: 20px;">
+    <h3>US 10Y Yield — Last 30 Days</h3>
+    <canvas id="us10yChart"></canvas>
+</div>
 
     <div class="timestamp" id="last-updated">Loading timestamp...</div>
 
@@ -111,6 +116,38 @@
   renderValue('cpi', data.cpi, '', 'cpi');
   renderValue('unemployment', data.unemployment, '%', 'unemployment');
   document.getElementById('last-updated').innerText = 'Updated: ' + data.last_updated;
+if (data.us_10y_history) {
+    const labels = data.us_10y_history.map(point => point.date);
+    const values = data.us_10y_history.map(point => point.value);
+
+    if (window.us10yChartInstance) {
+        window.us10yChartInstance.destroy();
+    }
+
+    const ctx = document.getElementById('us10yChart').getContext('2d');
+    window.us10yChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'US 10Y Yield (%)',
+                data: values,
+                borderColor: '#2e7d32',
+                backgroundColor: 'rgba(46, 125, 50, 0.1)',
+                fill: true,
+                tension: 0.2,
+                pointRadius: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { ticks: { maxTicksLimit: 6 } }
+            }
+        }
+    });
+}
 })
 .catch(error => {
   console.error('Error loading data.json:', error);
