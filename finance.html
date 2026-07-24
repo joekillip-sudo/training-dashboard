@@ -153,7 +153,7 @@ if (data.us_10y_history) {
     newsList.innerHTML = '';
     data.news.forEach(item => {
         const li = document.createElement('li');
-        li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a><span class="news-date">${item.published}</span>`;
+        li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a><span class="news-date">${item.source} — ${item.published}</span>`;
         newsList.appendChild(li);
     });
 }
