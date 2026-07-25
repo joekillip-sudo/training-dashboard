@@ -281,7 +281,7 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-25 18:11 UTC",
+    "last_updated": "2026-07-25 18:20 UTC",
     "trend": {
         "us_10y": "same",
         "uk_10y": "same",
@@ -293,5 +293,17 @@
         "uk_unemployment": "same",
         "eurozone_cpi": "same",
         "eurozone_unemployment": "same"
+    },
+    "notable": {
+        "us_10y": false,
+        "uk_10y": false,
+        "fed_rate": false,
+        "ecb_rate": false,
+        "cpi": false,
+        "unemployment": false,
+        "uk_cpi": false,
+        "uk_unemployment": false,
+        "eurozone_cpi": false,
+        "eurozone_unemployment": false
     }
 }
