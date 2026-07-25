@@ -131,6 +131,106 @@
             "value": 4.71
         }
     ],
+    "uk_10y_history": [
+        {
+            "date": "2025-07-01",
+            "value": 4.59
+        },
+        {
+            "date": "2025-08-01",
+            "value": 4.64
+        },
+        {
+            "date": "2025-09-01",
+            "value": 4.69
+        },
+        {
+            "date": "2025-10-01",
+            "value": 4.57
+        },
+        {
+            "date": "2025-11-01",
+            "value": 4.5
+        },
+        {
+            "date": "2025-12-01",
+            "value": 4.48
+        },
+        {
+            "date": "2026-01-01",
+            "value": 4.45
+        },
+        {
+            "date": "2026-02-01",
+            "value": 4.43
+        },
+        {
+            "date": "2026-03-01",
+            "value": 4.7
+        },
+        {
+            "date": "2026-04-01",
+            "value": 4.82
+        },
+        {
+            "date": "2026-05-01",
+            "value": 4.94
+        },
+        {
+            "date": "2026-06-01",
+            "value": 4.8
+        }
+    ],
+    "eurozone_10y_history": [
+        {
+            "date": "2025-02-01",
+            "value": 2.99
+        },
+        {
+            "date": "2025-03-01",
+            "value": 3.31
+        },
+        {
+            "date": "2025-04-01",
+            "value": 3.1
+        },
+        {
+            "date": "2025-05-01",
+            "value": 3.07
+        },
+        {
+            "date": "2025-06-01",
+            "value": 3.08
+        },
+        {
+            "date": "2025-07-01",
+            "value": 3.17
+        },
+        {
+            "date": "2025-08-01",
+            "value": 3.21
+        },
+        {
+            "date": "2025-09-01",
+            "value": 3.23
+        },
+        {
+            "date": "2025-10-01",
+            "value": 3.12
+        },
+        {
+            "date": "2025-11-01",
+            "value": 3.14
+        },
+        {
+            "date": "2025-12-01",
+            "value": 3.24
+        },
+        {
+            "date": "2026-01-01",
+            "value": 3.22
+        }
+    ],
     "news": [
         {
             "title": "Moody's says 'unprecedented' AI spending threatens credit quality of Amazon, Meta, Alphabet and others",
@@ -181,7 +281,7 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-25 11:52 UTC",
+    "last_updated": "2026-07-25 14:51 UTC",
     "trend": {
         "us_10y": "same",
         "uk_10y": "same",
