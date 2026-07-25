@@ -151,6 +151,10 @@
             <div class="value" id="uk-unemployment">--</div>
         </div>
     </div>
+    <div class="card" style="margin-bottom: 20px;">
+        <h3>UK 10Y Yield — Last 12 Months</h3>
+        <canvas id="uk10yChart"></canvas>
+    </div>
 </div>
 
 <div id="tab-eurozone" class="tab-content">
@@ -168,6 +172,10 @@
             <div class="value" id="eurozone-unemployment">--</div>
         </div>
     </div>
+    <div class="card" style="margin-bottom: 20px;">
+<h3>Eurozone 10Y Yield — Last 12 Months</h3>
+    <canvas id="ecbRateChart"></canvas>
+</div>
 </div>
 
 <div class="card" style="margin-bottom: 20px;">
@@ -238,6 +246,71 @@
                         }
                     });
                 }
+                if (data.uk_10y_history) {
+    const ukLabels = data.uk_10y_history.map(point => point.date);
+    const ukValues = data.uk_10y_history.map(point => point.value);
+
+    if (window.uk10yChartInstance) {
+        window.uk10yChartInstance.destroy();
+    }
+
+    const ukCtx = document.getElementById('uk10yChart').getContext('2d');
+    window.uk10yChartInstance = new Chart(ukCtx, {
+        type: 'line',
+        data: {
+            labels: ukLabels,
+            datasets: [{
+                label: 'UK 10Y Yield (%)',
+                data: ukValues,
+                borderColor: '#1565c0',
+                backgroundColor: 'rgba(21, 101, 192, 0.1)',
+                fill: true,
+                tension: 0.2,
+                pointRadius: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { ticks: { maxTicksLimit: 6 } }
+            }
+        }
+    });
+}
+
+if (data.eurozone_10y_history) {
+    const ezLabels = data.eurozone_10y_history.map(point => point.date);
+    const ezValues = data.eurozone_10y_history.map(point => point.value);
+
+    if (window.eurozone10yChartInstance) {
+        window.eurozone10yChartInstance.destroy();
+    }
+
+    const ezCtx = document.getElementById('ecbRateChart').getContext('2d');
+    window.eurozone10yChartInstance = new Chart(ezCtx, {
+        type: 'line',
+        data: {
+            labels: ezLabels,
+            datasets: [{
+                label: 'Eurozone 10Y Yield (%)',
+                data: ezValues,
+                borderColor: '#6a1b9a',
+                backgroundColor: 'rgba(106, 27, 154, 0.1)',
+                fill: true,
+                tension: 0.2,
+                pointRadius: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { ticks: { maxTicksLimit: 6 } }
+            }
+        }
+    });
+}
 
                 if (data.news) {
                     const newsList = document.getElementById('news-list');
