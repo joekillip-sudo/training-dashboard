@@ -5,6 +5,10 @@
     "ecb_rate": 2.25,
     "cpi": 332.57,
     "unemployment": 4.2,
+    "uk_cpi": 136.1,
+    "uk_unemployment": 5.0,
+    "eurozone_cpi": 103.0,
+    "eurozone_unemployment": 6.7,
     "us_10y_history": [
         {
             "date": "2026-06-10",
@@ -177,13 +181,17 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-25 11:03 UTC",
+    "last_updated": "2026-07-25 11:52 UTC",
     "trend": {
         "us_10y": "same",
         "uk_10y": "same",
         "fed_rate": "same",
         "ecb_rate": "same",
         "cpi": "same",
-        "unemployment": "same"
+        "unemployment": "same",
+        "uk_cpi": "same",
+        "uk_unemployment": "same",
+        "eurozone_cpi": "same",
+        "eurozone_unemployment": "same"
     }
 }
