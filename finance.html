@@ -98,6 +98,21 @@
 .tab-content.active {
     display: block;
 }
+.card.notable {
+    border: 2px solid #f57c00;
+    box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.15);
+}
+.notable-badge {
+    display: inline-block;
+    background: #f57c00;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -191,17 +206,30 @@
         fetch('data.json', { cache: 'no-store' })
             .then(response => response.json())
             .then(data => {
-                function renderValue(id, value, suffix, trendKey) {
-                    let arrowHtml = '';
-                    const trend = data.trend ? data.trend[trendKey] : null;
-                    if (trend === 'up') {
-                        arrowHtml = '<span class="arrow-up">▲</span>';
-                    } else if (trend === 'down') {
-                        arrowHtml = '<span class="arrow-down">▼</span>';
-                    }
-                    document.getElementById(id).innerHTML = value + suffix + arrowHtml;
-                }
+function renderValue(id, value, suffix, trendKey) {
+    let arrowHtml = '';
+    const trend = data.trend ? data.trend[trendKey] : null;
+    if (trend === 'up') {
+        arrowHtml = '<span class="arrow-up">▲</span>';
+    } else if (trend === 'down') {
+        arrowHtml = '<span class="arrow-down">▼</span>';
+    }
 
+    const isNotable = data.notable ? data.notable[trendKey] : false;
+    let badgeHtml = '';
+    if (isNotable) {
+        badgeHtml = '<span class="notable-badge">NOTABLE</span>';
+    }
+
+    document.getElementById(id).innerHTML = value + suffix + arrowHtml + badgeHtml;
+
+    const cardElement = document.getElementById(id).closest('.card');
+    if (isNotable) {
+        cardElement.classList.add('notable');
+    } else {
+        cardElement.classList.remove('notable');
+    }
+}
                 renderValue('us-10y', data.us_10y, '%', 'us_10y');
                 renderValue('uk-10y', data.uk_10y, '%', 'uk_10y');
                 renderValue('fed-rate', data.fed_rate, '%', 'fed_rate');

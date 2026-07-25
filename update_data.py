@@ -69,20 +69,48 @@ data = {
     }
 
 # Work out trend direction for each field by comparing to the previous value
+# Thresholds for what counts as a "notable" move, per indicator
+notable_thresholds = {
+    "us_10y": 0.05,
+    "uk_10y": 0.05,
+    "eurozone_10y": 0.05,
+    "fed_rate": 0.25,
+    "ecb_rate": 0.25,
+    "unemployment": 0.2,
+    "uk_unemployment": 0.2,
+    "eurozone_unemployment": 0.2,
+}
+percent_based_keys = ["cpi", "uk_cpi", "eurozone_cpi"]
+
 trend = {}
+notable = {}
 for key in ["us_10y", "uk_10y", "fed_rate", "ecb_rate", "cpi", "unemployment", "uk_cpi", "uk_unemployment", "eurozone_cpi", "eurozone_unemployment"]:
     old_value = previous_data.get(key)
     new_value = data[key]
+
     if old_value is None:
-        trend[key] = "same"  # no previous data to compare yet
-    elif new_value > old_value:
+        trend[key] = "same"
+        notable[key] = False
+        continue
+
+    if new_value > old_value:
         trend[key] = "up"
     elif new_value < old_value:
         trend[key] = "down"
     else:
         trend[key] = "same"
 
+    change = abs(new_value - old_value)
+
+    if key in percent_based_keys:
+        percent_change = (change / old_value) * 100
+        notable[key] = percent_change >= 0.3
+    else:
+        threshold = notable_thresholds.get(key, 999)
+        notable[key] = change >= threshold
+
 data["trend"] = trend
+data["notable"] = notable
 
 with open("data.json", "w") as f:
     json.dump(data, f, indent=4)
