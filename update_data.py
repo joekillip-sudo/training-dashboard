@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from fredapi import Fred
 import feedparser
 
@@ -65,8 +65,8 @@ data = {
     "uk_10y_history": uk_10y_history,
     "ecb_rate_history": ecb_rate_history,
     "news": news_items,
-    "last_updated": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
-}
+    "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    }
 
 # Work out trend direction for each field by comparing to the previous value
 trend = {}
