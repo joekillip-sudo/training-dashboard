@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Runway Operations</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0a1930;
+      color: white;
+      font-family: -apple-system, Arial, sans-serif;
+      padding: 24px 20px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 22px;
+      color: #4fc3f7;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      color: #8fa3bf;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .now-card {
+      background-color: #16273f;
+      border-radius: 16px;
+      padding: 28px 20px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .now-label {
+      font-size: 12px;
+      color: #8fa3bf;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .now-value {
+      font-size: 34px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .now-value.overhead {
+      color: #ff8a65;
+    }
+    .now-value.not-overhead {
+      color: #66bb6a;
+    }
+    .now-detail {
+      font-size: 13px;
+      color: #8fa3bf;
+      margin-top: 8px;
+    }
+    h2 {
+      font-size: 15px;
+      color: #8fa3bf;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+.change-card {
+  background-color: #16273f;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  border-left: 4px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.change-icon {
+  font-size: 24px;
+}
+    .change-time {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .change-detail {
+      font-size: 13px;
+      color: #8fa3bf;
+      margin-top: 4px;
+    }
+    .updated {
+      color: #8fa3bf;
+      font-size: 11px;
+      text-align: center;
+      margin-top: 24px;
+    }
+    .change-card {
+  padding: 12px 14px;
+  font-size: 13px;
+}
+.change-card .change-time {
+  font-size: 14px;
+}
+.change-card .change-icon {
+  font-size: 16px;
+}
+  </style>
+</head>
+<body>
+  <h1>Runway Operations</h1>
+  <div class="subtitle">Twickenham — based on live wind direction</div>
+
+<div class="now-card" id="next-change-card">
+  <div class="now-label">Next change</div>
+  <div class="now-value" id="next-change-time">--</div>
+  <div class="now-detail" id="next-change-detail">Loading...</div>
+</div>
+
+<h2>After that</h2>
+<div id="changes">Loading forecast...</div>
+
+  <div class="updated" id="last-updated"></div>
+
+  <script>
+    let lat = 51.4463;
+    let lon = -0.3237;
+let weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_direction_10m&hourly=wind_direction_10m&timezone=Europe%2FLondon&forecast_days=10`;
+
+function getOps(direction) {
+  return (direction > 0 && direction < 180)
+    ? { label: "Easterly", overhead: false, color: "#66bb6a", icon: "⬅️" }
+    : { label: "Westerly", overhead: true, color: "#ff8a65", icon: "➡️" };
+}
+
+    function loadRunwayData() {
+      fetch(weatherUrl, { cache: 'no-store' })
+        .then(response => response.json())
+.then(data => {
+  let hourly = data.hourly;
+  let now = new Date();
+  let currentDirection = data.current.wind_direction_10m;
+  let currentOps = getOps(currentDirection);
+
+  let startIndex = hourly.time.findIndex(t => new Date(t) > now);
+  let previousLabel = currentOps.label;
+  let changes = [];
+
+  for (let i = startIndex; i < hourly.time.length; i++) {
+    let direction = hourly.wind_direction_10m[i];
+    let ops = getOps(direction);
+    let time = new Date(hourly.time[i]);
+
+    if (ops.label !== previousLabel) {
+      changes.push({ time: time, ops: ops });
+      previousLabel = ops.label;
+    }
+  }
+
+  let heroCard = document.getElementById("next-change-card");
+  let heroTime = document.getElementById("next-change-time");
+  let heroDetail = document.getElementById("next-change-detail");
+
+  if (changes.length > 0) {
+    let next = changes[0];
+    let timeLabel = next.time.toLocaleString('en-GB', { weekday: 'long', hour: '2-digit', minute: '2-digit' });
+    heroTime.textContent = timeLabel;
+    heroTime.style.color = next.ops.color;
+    heroDetail.textContent = "Switching to " + next.ops.label + " (" + (next.ops.overhead ? "overhead" : "not overhead") + ")";
+  } else {
+    heroTime.textContent = "No change expected";
+    heroDetail.textContent = "Stable for the full forecast window";
+  }
+
+  let rows = "";
+  for (let i = 1; i < changes.length; i++) {
+    let change = changes[i];
+    let timeLabel = change.time.toLocaleString('en-GB', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+    rows += `<div class="change-card" style="border-left-color: ${change.ops.color}; background-color: #16273f; border-radius: 12px; margin-bottom: 8px; display:flex; align-items:center; gap:14px;">
+      <div class="change-icon">${change.ops.icon}</div>
+      <div>
+        <div class="change-time">${timeLabel}</div>
+        <div class="change-detail" style="color: ${change.ops.color};">Switching to ${change.ops.label} (${change.ops.overhead ? 'overhead' : 'not overhead'})</div>
+      </div>
+    </div>`;
+  }
+
+  if (rows === "") {
+    rows = "<p style='color:#8fa3bf; font-size:14px;'>No further changes in the forecast window.</p>";
+  }
+
+  document.getElementById("changes").innerHTML = rows;
+
+  let updatedTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  document.getElementById("last-updated").textContent = "Last checked: " + updatedTime;
+})
+        .catch(error => {
+          document.getElementById("now-detail").textContent = "Failed to load data.";
+          console.error(error);
+        });
+    }
+
+    loadRunwayData();
+    setInterval(loadRunwayData, 600000);
+  </script>
+</body>
+</html>
