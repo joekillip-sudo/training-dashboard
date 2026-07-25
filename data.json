@@ -131,7 +131,7 @@
         {
             "title": "Moody's says 'unprecedented' AI spending threatens credit quality of Amazon, Meta, Alphabet and others",
             "link": "https://www.cnbc.com/2026/07/24/moodys-ai-spending-credit-quality-amazon-meta-alphabet.html",
-            "published": "Fri, 24 Jul 2026 20:33:21 GMT",
+            "published": "Fri, 24 Jul 2026 22:43:56 GMT",
             "source": "CNBC"
         },
         {
@@ -177,9 +177,9 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-24 21:45 UTC",
+    "last_updated": "2026-07-25 06:37 UTC",
     "trend": {
-        "us_10y": "up",
+        "us_10y": "same",
         "uk_10y": "same",
         "fed_rate": "same",
         "ecb_rate": "same",
