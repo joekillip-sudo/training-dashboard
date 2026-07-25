@@ -18,15 +18,9 @@
     }
 
     /* Dynamic background themes based on weather condition */
-    body.theme-clear {
-      background-color: #0f2027;
-    }
-    body.theme-cloudy {
-      background-color: #1a232a;
-    }
-    body.theme-rain {
-      background-color: #0b1a28;
-    }
+    body.theme-clear { background-color: #0f2027; }
+    body.theme-cloudy { background-color: #1a232a; }
+    body.theme-rain { background-color: #0b1a28; }
 
     h1 {
       color: #4fc3f7;
@@ -55,10 +49,25 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    /* Subtle hover effect for the cards */
     .stat-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Styled variations for hourly cards based on weather theme */
+    .stat-card.theme-clear {
+      background: linear-gradient(135deg, #1b3a4b 0%, #16273f 100%);
+      border-color: rgba(251, 192, 45, 0.2);
+    }
+
+    .stat-card.theme-rain {
+      background: linear-gradient(135deg, #102a43 0%, #0b1a28 100%);
+      border-color: rgba(79, 195, 247, 0.2);
+    }
+
+    .stat-card.theme-cloudy {
+      background: linear-gradient(135deg, #243447 0%, #17232d 100%);
+      border-color: rgba(144, 164, 174, 0.2);
     }
 
     .stat-label {
@@ -85,162 +94,189 @@
       font-size: 12px;
       margin-top: 20px;
     }
+
+    /* Custom scrollbar for the hourly forecast row */
+    .hourly-scroll-container {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 10px 4px 16px 4px;
+      scrollbar-width: thin;
+      scrollbar-color: #2b4c7e #0a1930;
+    }
+
+    .hourly-scroll-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .hourly-scroll-container::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 4px;
+    }
+
+    .hourly-scroll-container::-webkit-scrollbar-thumb {
+      background: #2b4c7e;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
-<h1>Weather Dashboard <span id="location-name" style="font-weight: normal; font-size: 24px; color: #8fa3bf;">— Twickenham</span></h1>  
-    <p id="current-date" style="font-size: 16px; color: #8fa3bf; margin-top: -10px; margin-bottom: 25px;"></p>
+
+<h1>Weather Dashboard <span id="location-name" style="font-weight: normal; font-size: 24px; color: #8fa3bf;">— Twickenham</span></h1>
+<p id="current-date" style="font-size: 16px; color: #8fa3bf; margin-top: -10px; margin-bottom: 25px;"></p>
+
 <div id="weather">Loading weather data...</div>
 
-  <script>
+<script>
     let lat = 51.4463;
     let lon = -0.3237;
 
-let weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&hourly=precipitation_probability,temperature_2m,precipitation,wind_speed_10m&timezone=Europe%2FLondon&daily=sunrise,sunset`;
-let geoUrl = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
-// Weather codes with corresponding icons and theme types
+    let weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,precipitation,wind_speed_10m,weather_code&timezone=Europe%2FLondon&daily=sunrise,sunset`;
+    let geoUrl = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
+
     let weatherCodes = {
-      0:  { name: "Clear sky",      icon: "☀️", theme: "clear" },
+      0:  { name: "Clear sky",     icon: "☀️", theme: "clear" },
       1:  { name: "Mainly clear",   icon: "🌤️", theme: "clear" },
       2:  { name: "Partly cloudy",  icon: "⛅", theme: "cloudy" },
-      3:  { name: "Overcast",       icon: "☁️", theme: "cloudy" },
+      3:  { name: "Overcast",      icon: "☁️", theme: "cloudy" },
       45: { name: "Fog",            icon: "🌫️", theme: "cloudy" },
       51: { name: "Light drizzle",  icon: "🌦️", theme: "rain" },
       61: { name: "Light rain",     icon: "🌧️", theme: "rain" },
       63: { name: "Moderate rain",  icon: "🌧️", theme: "rain" },
       65: { name: "Heavy rain",     icon: "🌧️", theme: "rain" },
-      71: { name: "Snow",           icon: "❄️", theme: "rain" },
+      71: { name: "Snow",          icon: "❄️", theme: "rain" },
       80: { name: "Rain showers",   icon: "🌦️", theme: "rain" },
       95: { name: "Thunderstorm",   icon: "🌩️", theme: "rain" }
     };
 
-   function updateWeather() {
-    fetch(weatherUrl)
-      .then(response => {
-        if (!response.ok) throw new Error("Network response error");
-        return response.json();
-      })
-      .then(data => {
-        let c = data.current;
-        
-        // Look up condition info (default to generic if code missing)
-        let info = weatherCodes[c.weather_code] || { name: "Unknown", icon: "🌡️", theme: "clear" };
+    function updateWeather() {
+      fetch(weatherUrl)
+        .then(response => {
+          if (!response.ok) throw new Error("Network response error");
+          return response.json();
+        })
+        .then(data => {
+          let c = data.current;
+          let info = weatherCodes[c.weather_code] || { name: "Unknown", icon: "🌡️", theme: "clear" };
 
-        // Apply theme class to body tag
-        document.body.className = `theme-${info.theme}`;
+          document.body.className = `theme-${info.theme}`;
 
-        let rainChance = 0;
-        if (data.hourly && data.hourly.precipitation_probability) {
-          rainChance = data.hourly.precipitation_probability[0];
-        }
+          let rainChance = 0;
+          if (data.hourly && data.hourly.precipitation_probability) {
+            rainChance = data.hourly.precipitation_probability[0];
+          }
 
-        let formattedTime = new Date(c.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-// Extract sunrise and sunset strings for today (index 0)
-let sunriseRaw = data.daily.sunrise[0];
-let sunsetRaw = data.daily.sunset[0];
+          let formattedTime = new Date(c.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          let sunriseRaw = data.daily.sunrise[0];
+          let sunsetRaw = data.daily.sunset[0];
 
-// Format them into 24-hour / 12-hour local time strings (e.g. "05:12")
-let sunriseTime = new Date(sunriseRaw).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-let sunsetTime = new Date(sunsetRaw).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-// Get today's date formatted as "Thursday, 23 July"
-let today = new Date();
-let dateOptions = { weekday: 'long', day: 'numeric', month: 'long' };
-let formattedDate = today.toLocaleDateString('en-GB', dateOptions);
+          let sunriseTime = new Date(sunriseRaw).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          let sunsetTime = new Date(sunsetRaw).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          
+          let today = new Date();
+          let dateOptions = { weekday: 'long', day: 'numeric', month: 'long' };
+          let formattedDate = today.toLocaleDateString('en-GB', dateOptions);
 
-// Display it on the page
-document.getElementById("current-date").textContent = formattedDate;
+          document.getElementById("current-date").textContent = formattedDate;
 
-        let output = `
-          <div class="stat-row">
-            <div class="stat-card">
-              <span class="weather-icon">${info.icon}</span>
-              <div class="stat-label">Condition</div>
-              <div class="stat-value" style="font-size: 20px;">${info.name}</div>
+          let output = `
+            <div class="stat-row">
+              <div class="stat-card">
+                <span class="weather-icon">${info.icon}</span>
+                <div class="stat-label">Condition</div>
+                <div class="stat-value" style="font-size: 20px;">${info.name}</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Temperature</div>
+                <div class="stat-value">${c.temperature_2m}°C</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Rain Chance</div>
+                <div class="stat-value">${rainChance}%</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Rainfall</div>
+                <div class="stat-value">${c.precipitation} mm</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Humidity</div>
+                <div class="stat-value">${c.relative_humidity_2m}%</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Wind</div>
+                <div class="stat-value">${c.wind_speed_10m} km/h</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Sunrise</div>
+                <div class="stat-value">🌅 ${sunriseTime}</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Sunset</div>
+                <div class="stat-value">🌇 ${sunsetTime}</div>
+              </div>
             </div>
-            <div class="stat-card">
-              <div class="stat-label">Temperature</div>
-              <div class="stat-value">${c.temperature_2m}°C</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-label">Rain Chance</div>
-              <div class="stat-value">${rainChance}%</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-label">Rainfall</div>
-              <div class="stat-value">${c.precipitation} mm</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-label">Humidity</div>
-              <div class="stat-value">${c.relative_humidity_2m}%</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-label">Wind</div>
-              <div class="stat-value">${c.wind_speed_10m} km/h</div>
-            </div>
-            <div class="stat-card">
-  <div class="stat-label">Sunrise</div>
-  <div class="stat-value">🌅 ${sunriseTime}</div>
-</div>
-<div class="stat-card">
-  <div class="stat-label">Sunset</div>
-  <div class="stat-value">🌇 ${sunsetTime}</div>
-</div>
-          </div>
-          <p class="updated">Last updated: ${formattedTime}</p>
-        `;
-// 1. Start an hourly forecast section
-output += `
-  <h2 style="margin-top: 30px; margin-bottom: 12px; font-size: 18px; color: #8fa3bf;">Next 4 Hours</h2>
-  <div class="stat-row">
-`;
+            <p class="updated">Last updated: ${formattedTime}</p>
+          `;
 
-let currentHour = new Date().getHours();
-let startIndex = currentHour + 1;
+          // Hourly forecast container with custom scroll class
+          output += `
+            <h2 style="margin-top: 35px; margin-bottom: 12px; font-size: 18px; color: #8fa3bf;">Rest of the Day</h2>
+            <div class="hourly-scroll-container">
+          `;
 
-for (let i = startIndex; i < startIndex + 4; i++) {
-  let timeStr = data.hourly.time[i];
-  let hourTime = new Date(timeStr).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  let hourTemp = data.hourly.temperature_2m[i];
-  let hourRainChance = data.hourly.precipitation_probability[i];
-  let hourRainAmount = data.hourly.precipitation[i];
-  let hourWind = Math.round(data.hourly.wind_speed_10m[i]); // Rounded to a whole number
+          let currentHour = new Date().getHours();
+          let startIndex = currentHour + 1;
+          let currentDayEndIndex = Math.min(startIndex + (24 - (currentHour + 1)), data.hourly.time.length);
 
-  output += `
-    <div class="stat-card">
-      <div class="stat-label">${hourTime}</div>
-      <div class="stat-value">${hourTemp}°C</div>
-      <div style="font-size: 13px; color: #8fa3bf; margin-top: 8px;">
-        🌧️ ${hourRainChance}% <span style="font-size: 11px;">(${hourRainAmount} mm)</span>
-      </div>
-      <div style="font-size: 13px; color: #8fa3bf; margin-top: 4px;">
-        💨 ${hourWind} km/h
-      </div>
-    </div>
-  `;
-}
+          for (let i = startIndex; i <= currentDayEndIndex; i++) {
+            if (!data.hourly.time[i]) break;
+            
+            let timeStr = data.hourly.time[i];
+            let hourTime = new Date(timeStr).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            let hourTemp = data.hourly.temperature_2m[i];
+            let hourRainChance = data.hourly.precipitation_probability[i];
+            let hourRainAmount = data.hourly.precipitation[i];
+            let hourWind = Math.round(data.hourly.wind_speed_10m[i]);
+            
+            let hourCode = data.hourly.weather_code[i];
+            let hourInfo = weatherCodes[hourCode] || { name: "Unknown", icon: "🌡️", theme: "clear" };
 
-output += `</div>`;
+            output += `
+              <div class="stat-card theme-${hourInfo.theme}" style="flex: 0 0 auto; min-width: 145px;">
+                <div class="stat-label">${hourTime}</div>
+                <span class="weather-icon" style="font-size: 26px; margin: 8px 0;">${hourInfo.icon}</span>
+                <div style="font-size: 13px; font-weight: bold; color: #fff; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${hourInfo.name}">${hourInfo.name}</div>
+                <div class="stat-value" style="font-size: 22px;">${hourTemp}°C</div>
+                <div style="font-size: 12px; color: #8fa3bf; margin-top: 8px;">
+                  🌧️ ${hourRainChance}% <span style="font-size: 10px;">(${hourRainAmount}mm)</span>
+                </div>
+                <div style="font-size: 12px; color: #8fa3bf; margin-top: 3px;">
+                  💨 ${hourWind} km/h
+                </div>
+              </div>
+            `;
+          }
+          output += `</div>`;
 
-fetch(geoUrl)
-  .then(res => res.json())
-  .then(geoData => {
-    if (geoData.results && geoData.results[0]) {
-      let place = geoData.results[0].name; // e.g. "Twickenham" or "Richmond"
-      document.getElementById("location-name").textContent = `— ${place}`;
+          fetch(geoUrl)
+            .then(res => res.json())
+            .then(geoData => {
+              if (geoData.results && geoData.results[0]) {
+                let place = geoData.results[0].name;
+                document.getElementById("location-name").textContent = `— ${place}`;
+              }
+            });
+
+          document.getElementById("weather").innerHTML = output;
+        })
+        .catch(error => {
+          document.getElementById("weather").innerHTML = "<p>Failed to load weather data.</p>";
+          console.error(error);
+        });
     }
-  });
-  document.getElementById("weather").innerHTML = output;
-      })
-      .catch(error => {
-        document.getElementById("weather").innerHTML = "<p>Failed to load weather data.</p>";
-        console.error(error);
-      });
-    }
-    // Run it right away when the page loads
-updateWeather();
 
-// Automatically re-fetch every 5 minutes (300,000 milliseconds)
-setInterval(updateWeather, 300000);
-  </script>
+    updateWeather();
+    setInterval(updateWeather, 600000);
+</script>
 </body>
 </html>

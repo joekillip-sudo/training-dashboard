@@ -142,6 +142,14 @@
             <h3>UK 10Y Yield</h3>
             <div class="value" id="uk-10y">--</div>
         </div>
+        <div class="card">
+            <h3>UK CPI</h3>
+            <div class="value" id="uk-cpi">--</div>
+        </div>
+        <div class="card">
+            <h3>UK Unemployment</h3>
+            <div class="value" id="uk-unemployment">--</div>
+        </div>
     </div>
 </div>
 
@@ -150,6 +158,14 @@
         <div class="card">
             <h3>ECB Rate</h3>
             <div class="value" id="ecb-rate">--</div>
+        </div>
+        <div class="card">
+            <h3>Eurozone CPI</h3>
+            <div class="value" id="eurozone-cpi">--</div>
+        </div>
+        <div class="card">
+            <h3>Eurozone Unemployment</h3>
+            <div class="value" id="eurozone-unemployment">--</div>
         </div>
     </div>
 </div>
@@ -164,7 +180,7 @@
 <script>
     function loadData() {
         console.log("Fetching data at", new Date().toLocaleTimeString());
-        fetch('data.json')
+        fetch('data.json', { cache: 'no-store' })
             .then(response => response.json())
             .then(data => {
                 function renderValue(id, value, suffix, trendKey) {
@@ -184,6 +200,10 @@
                 renderValue('ecb-rate', data.ecb_rate, '%', 'ecb_rate');
                 renderValue('cpi', data.cpi, '', 'cpi');
                 renderValue('unemployment', data.unemployment, '%', 'unemployment');
+                renderValue('uk-cpi', data.uk_cpi, '', 'uk_cpi');
+                renderValue('uk-unemployment', data.uk_unemployment, '%', 'uk_unemployment');
+                renderValue('eurozone-cpi', data.eurozone_cpi, '', 'eurozone_cpi');
+                renderValue('eurozone-unemployment', data.eurozone_unemployment, '%', 'eurozone_unemployment');
                 document.getElementById('last-updated').innerText = 'Updated: ' + data.last_updated;
 
                 if (data.us_10y_history) {

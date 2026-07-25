@@ -44,6 +44,10 @@ data = {
     "ecb_rate": round(float(fred.get_series("ECBDFR").dropna().iloc[-1]), 2),
     "cpi": round(float(fred.get_series("CPIAUCSL").dropna().iloc[-1]), 2),
     "unemployment": round(float(fred.get_series("UNRATE").dropna().iloc[-1]), 2),
+    "uk_cpi": round(float(fred.get_series("GBRCPIALLMINMEI").dropna().iloc[-1]), 2),
+    "uk_unemployment": round(float(fred.get_series("LRHUTTTTGBM156S").dropna().iloc[-1]), 2),
+    "eurozone_cpi": round(float(fred.get_series("CP0000EZ19M086NEST").dropna().iloc[-1]), 2),
+    "eurozone_unemployment": round(float(fred.get_series("LRHUTTTTEZM156S").dropna().iloc[-1]), 2),
     "us_10y_history": us_10y_history,
     "news": news_items,
     "last_updated": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
@@ -51,7 +55,7 @@ data = {
 
 # Work out trend direction for each field by comparing to the previous value
 trend = {}
-for key in ["us_10y", "uk_10y", "fed_rate", "ecb_rate", "cpi", "unemployment"]:
+for key in ["us_10y", "uk_10y", "fed_rate", "ecb_rate", "cpi", "unemployment", "uk_cpi", "uk_unemployment", "eurozone_cpi", "eurozone_unemployment"]:
     old_value = previous_data.get(key)
     new_value = data[key]
     if old_value is None:
