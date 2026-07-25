@@ -22,6 +22,19 @@ us_10y_history = [
     {"date": date.strftime("%Y-%m-%d"), "value": round(float(value), 2)}
     for date, value in us_10y_history_raw.items()
 ]
+# UK 10Y yield history (monthly data, so 12 = last 12 months)
+uk_10y_history_raw = fred.get_series("IRLTLT01GBM156N").dropna().tail(12)
+uk_10y_history = [
+    {"date": date.strftime("%Y-%m-%d"), "value": round(float(value), 2)}
+    for date, value in uk_10y_history_raw.items()
+]
+
+# ECB deposit rate history (last 30 points)
+ecb_rate_history_raw = fred.get_series("ECBDFR").dropna().tail(30)
+ecb_rate_history = [
+    {"date": date.strftime("%Y-%m-%d"), "value": round(float(value), 2)}
+    for date, value in ecb_rate_history_raw.items()
+]
 # Fetch latest market news headlines from CNBC's Markets RSS feed
 def fetch_headlines(url, source_name, limit):
     feed = feedparser.parse(url)
@@ -49,6 +62,8 @@ data = {
     "eurozone_cpi": round(float(fred.get_series("CP0000EZ19M086NEST").dropna().iloc[-1]), 2),
     "eurozone_unemployment": round(float(fred.get_series("LRHUTTTTEZM156S").dropna().iloc[-1]), 2),
     "us_10y_history": us_10y_history,
+    "uk_10y_history": uk_10y_history,
+    "ecb_rate_history": ecb_rate_history,
     "news": news_items,
     "last_updated": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 }
