@@ -14,189 +14,342 @@
       background-color: #0a1930;
       color: white;
       font-family: -apple-system, Arial, sans-serif;
-      padding: 24px 20px;
-      max-width: 500px;
+      padding: 24px 20px 40px;
+      max-width: 480px;
       margin: 0 auto;
     }
     h1 {
-      font-size: 22px;
+      font-size: 20px;
       color: #4fc3f7;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
+      text-align: center;
     }
     .subtitle {
-      color: #8fa3bf;
-      font-size: 13px;
+      color: #6b7c93;
+      font-size: 12.5px;
       margin-bottom: 24px;
-    }
-    .now-card {
-      background-color: #16273f;
-      border-radius: 16px;
-      padding: 28px 20px;
       text-align: center;
-      margin-bottom: 24px;
-    }
-    .now-label {
-      font-size: 12px;
-      color: #8fa3bf;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-    }
-    .now-value {
-      font-size: 34px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-    .now-value.overhead {
-      color: #ff8a65;
-    }
-    .now-value.not-overhead {
-      color: #66bb6a;
-    }
-    .now-detail {
-      font-size: 13px;
-      color: #8fa3bf;
-      margin-top: 8px;
     }
     h2 {
-      font-size: 15px;
-      color: #8fa3bf;
-      margin-bottom: 12px;
+      font-size: 13px;
+      color: #6b7c93;
+      margin: 28px 0 12px;
       text-transform: uppercase;
       letter-spacing: 0.6px;
     }
-.change-card {
-  background-color: #16273f;
-  border-radius: 12px;
-  padding: 16px 18px;
-  margin-bottom: 10px;
-  border-left: 4px solid transparent;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.change-icon {
-  font-size: 24px;
-}
-    .change-time {
-      font-size: 16px;
-      font-weight: bold;
+
+    /* Compass */
+    .compass-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 8px;
     }
-    .change-detail {
+    .compass-status {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 18px;
+    }
+    .compass-status.overhead { color: #ff8a65; }
+    .compass-status.not-overhead { color: #66bb6a; }
+    .compass-detail {
       font-size: 13px;
       color: #8fa3bf;
       margin-top: 4px;
     }
-    .updated {
+    .compass-detail .deg {
+      color: #4fc3f7;
+      font-weight: bold;
+    }
+
+    /* Next change */
+    .next-card {
+      background-color: #16273f;
+      border-radius: 14px;
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .next-label {
+      font-size: 11px;
+      color: #6b7c93;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .next-time {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 6px;
+    }
+    .next-detail {
+      font-size: 12.5px;
       color: #8fa3bf;
+      margin-top: 4px;
+    }
+
+    /* Upcoming changes */
+    .change-card {
+      background-color: #16273f;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      border-left: 3px solid transparent;
+    }
+    .change-icon { font-size: 15px; }
+    .change-time { font-weight: bold; }
+    .change-label { color: #8fa3bf; margin-left: 4px; }
+
+    /* Daily bars */
+    .day-card {
+      background-color: #16273f;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .day-icon { font-size: 18px; }
+    .day-label { font-size: 13.5px; font-weight: bold; }
+    .hour-bar {
+      display: flex;
+      gap: 1px;
+      height: 20px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .hour-segment { flex: 1; }
+    .hour-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9.5px;
+      color: #6b7c93;
+      margin-top: 4px;
+    }
+    .hour-detail {
+      font-size: 11.5px;
+      color: #8fa3bf;
+      margin-top: 8px;
+    }
+
+    .updated {
+      color: #6b7c93;
       font-size: 11px;
       text-align: center;
       margin-top: 24px;
     }
-    .change-card {
-  padding: 12px 14px;
-  font-size: 13px;
-}
-.change-card .change-time {
-  font-size: 14px;
-}
-.change-card .change-icon {
-  font-size: 16px;
+    .day-wind {
+  margin-left: auto;
+  font-size: 11px;
+  color: #8fa3bf;
 }
   </style>
 </head>
 <body>
   <h1>Runway Operations</h1>
-  <div class="subtitle">Twickenham — based on live wind direction</div>
+  <div class="subtitle">Twickenham — live wind direction</div>
 
-<div class="now-card" id="next-change-card">
-  <div class="now-label">Next change</div>
-  <div class="now-value" id="next-change-time">--</div>
-  <div class="now-detail" id="next-change-detail">Loading...</div>
-</div>
+  <div class="compass-wrap">
+    <svg id="compass-svg" width="220" height="220" viewBox="0 0 220 220">
+      <circle cx="110" cy="110" r="100" fill="#16273f" stroke="#233a5c" stroke-width="2"/>
+      <path id="compass-east-half" fill="rgba(102,187,106,0.12)" />
+      <path id="compass-west-half" fill="rgba(255,138,101,0.12)" />
+      <circle cx="110" cy="110" r="100" fill="none" stroke="#233a5c" stroke-width="2"/>
+      <text x="110" y="24" fill="#6b7c93" font-size="13" text-anchor="middle">N</text>
+      <text x="196" y="115" fill="#6b7c93" font-size="13" text-anchor="middle">E</text>
+      <text x="110" y="202" fill="#6b7c93" font-size="13" text-anchor="middle">S</text>
+      <text x="24" y="115" fill="#6b7c93" font-size="13" text-anchor="middle">W</text>
+      <g id="compass-needle" transform="rotate(0 110 110)">
+        <line x1="110" y1="110" x2="110" y2="34" stroke="#4fc3f7" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="110" cy="110" r="7" fill="#4fc3f7"/>
+      </g>
+    </svg>
+    <div class="compass-status" id="compass-status">--</div>
+    <div class="compass-detail" id="compass-detail">Loading...</div>
+  </div>
 
-<h2>After that</h2>
-<div id="changes">Loading forecast...</div>
+  <h2>Next Change</h2>
+  <div class="next-card">
+    <div class="next-label">Switching to</div>
+    <div class="next-time" id="next-change-time">--</div>
+    <div class="next-detail" id="next-change-detail">Loading...</div>
+  </div>
+
+  <h2>After That</h2>
+  <div id="changes">Loading forecast...</div>
+
+  <h2>7-Day Outlook</h2>
+  <div id="daily-overview">Loading...</div>
 
   <div class="updated" id="last-updated"></div>
 
   <script>
     let lat = 51.4463;
     let lon = -0.3237;
-let weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_direction_10m&hourly=wind_direction_10m&timezone=Europe%2FLondon&forecast_days=10`;
+let weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_direction_10m,wind_speed_10m&hourly=wind_direction_10m,wind_speed_10m&timezone=Europe%2FLondon&forecast_days=7`;
 
-function getOps(direction) {
-  return (direction > 0 && direction < 180)
-    ? { label: "Easterly", overhead: false, color: "#66bb6a", icon: "⬅️" }
-    : { label: "Westerly", overhead: true, color: "#ff8a65", icon: "➡️" };
+    function getOps(direction) {
+      return (direction > 0 && direction < 180)
+        ? { label: "Easterly", overhead: false, color: "#66bb6a", icon: "⬅️" }
+        : { label: "Westerly", overhead: true, color: "#ff8a65", icon: "➡️" };
+    }
+
+    // Draw the two shaded halves of the compass once, on load
+    function initCompassHalves() {
+      let cx = 110, cy = 110, r = 100;
+      // East half: from N (top, -90deg) clockwise to S (bottom, 90deg)
+      let eastPath = `M ${cx} ${cy} L ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx} ${cy + r} Z`;
+      // West half: from S clockwise to N
+      let westPath = `M ${cx} ${cy} L ${cx} ${cy + r} A ${r} ${r} 0 0 1 ${cx} ${cy - r} Z`;
+      document.getElementById("compass-east-half").setAttribute("d", eastPath);
+      document.getElementById("compass-west-half").setAttribute("d", westPath);
+    }
+
+function updateCompass(direction, speed) {
+  let needle = document.getElementById("compass-needle");
+  needle.setAttribute("transform", `rotate(${direction} 110 110)`);
+
+  let ops = getOps(direction);
+  let statusEl = document.getElementById("compass-status");
+  statusEl.textContent = ops.overhead ? "Overhead" : "Not Overhead";
+  statusEl.className = "compass-status " + (ops.overhead ? "overhead" : "not-overhead");
+
+  document.getElementById("compass-detail").innerHTML =
+    ops.label + " — <span class='deg'>" + direction + "°</span> at <span class='deg'>" + speed + " km/h</span>";
 }
+
+    function buildDailyOverview(data) {
+      let hourly = data.hourly;
+      let days = {};
+
+      for (let i = 0; i < hourly.time.length; i++) {
+        let time = new Date(hourly.time[i]);
+        let dateKey = time.toISOString().slice(0, 10);
+        let ops = getOps(hourly.wind_direction_10m[i]);
+        let hour = time.getHours();
+
+        if (!days[dateKey]) {
+          days[dateKey] = { date: time, firstOps: ops, hours: [] };
+        }
+days[dateKey].hours.push({ hour: hour, ops: ops, direction: hourly.wind_direction_10m[i], speed: hourly.wind_speed_10m[i] });
+      }
+
+      let dayKeys = Object.keys(days).sort().slice(0, 7);
+      let output = "";
+
+      for (let i = 0; i < dayKeys.length; i++) {
+        let day = days[dayKeys[i]];
+        let dayLabel = day.date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short' });
+
+        let segments = "";
+        let switchLines = [];
+        let previousOps = null;
+
+        for (let h = 0; h < 24; h++) {
+          let hourData = day.hours.find(entry => entry.hour === h);
+          let segColor = hourData ? hourData.ops.color : "#2a3a52";
+          segments += `<div class="hour-segment" style="background-color: ${segColor};"></div>`;
+
+          if (hourData) {
+            if (previousOps === null || hourData.ops.label !== previousOps) {
+              let hourLabel = h.toString().padStart(2, '0') + ":00";
+              switchLines.push(`${hourData.ops.label} from ${hourLabel}`);
+            }
+            previousOps = hourData.ops.label;
+          }
+        }
+
+let speeds = day.hours.map(entry => entry.speed);
+let avgSpeed = Math.round(speeds.reduce((sum, s) => sum + s, 0) / speeds.length);
+let maxSpeed = Math.round(Math.max(...speeds));
+
+output += `<div class="day-card">
+  <div class="day-header">
+    <div class="day-icon" style="color: ${day.firstOps.color};">${day.firstOps.icon}</div>
+    <div class="day-label">${dayLabel}</div>
+    <div class="day-wind">💨 ${avgSpeed} km/h avg · ${maxSpeed} km/h peak</div>
+  </div>
+  <div class="hour-bar">${segments}</div>
+  <div class="hour-bar-labels">
+    <span>00:00</span><span>12:00</span><span>23:00</span>
+  </div>
+  <div class="hour-detail">${switchLines.join(' · ')}</div>
+</div>`;
+      }
+
+      document.getElementById("daily-overview").innerHTML = output;
+    }
 
     function loadRunwayData() {
       fetch(weatherUrl, { cache: 'no-store' })
         .then(response => response.json())
-.then(data => {
-  let hourly = data.hourly;
-  let now = new Date();
-  let currentDirection = data.current.wind_direction_10m;
-  let currentOps = getOps(currentDirection);
+        .then(data => {
+          let hourly = data.hourly;
+          let now = new Date();
+            let currentDirection = data.current.wind_direction_10m;
+let currentSpeed = data.current.wind_speed_10m;
 
-  let startIndex = hourly.time.findIndex(t => new Date(t) > now);
-  let previousLabel = currentOps.label;
-  let changes = [];
+updateCompass(currentDirection, currentSpeed);
 
-  for (let i = startIndex; i < hourly.time.length; i++) {
-    let direction = hourly.wind_direction_10m[i];
-    let ops = getOps(direction);
-    let time = new Date(hourly.time[i]);
+          let startIndex = hourly.time.findIndex(t => new Date(t) > now);
+          let previousLabel = getOps(currentDirection).label;
+          let changes = [];
 
-    if (ops.label !== previousLabel) {
-      changes.push({ time: time, ops: ops });
-      previousLabel = ops.label;
-    }
-  }
+          for (let i = startIndex; i < hourly.time.length; i++) {
+            let direction = hourly.wind_direction_10m[i];
+            let ops = getOps(direction);
+            let time = new Date(hourly.time[i]);
 
-  let heroCard = document.getElementById("next-change-card");
-  let heroTime = document.getElementById("next-change-time");
-  let heroDetail = document.getElementById("next-change-detail");
+            if (ops.label !== previousLabel) {
+              changes.push({ time: time, ops: ops });
+              previousLabel = ops.label;
+            }
+          }
 
-  if (changes.length > 0) {
-    let next = changes[0];
-    let timeLabel = next.time.toLocaleString('en-GB', { weekday: 'long', hour: '2-digit', minute: '2-digit' });
-    heroTime.textContent = timeLabel;
-    heroTime.style.color = next.ops.color;
-    heroDetail.textContent = "Switching to " + next.ops.label + " (" + (next.ops.overhead ? "overhead" : "not overhead") + ")";
-  } else {
-    heroTime.textContent = "No change expected";
-    heroDetail.textContent = "Stable for the full forecast window";
-  }
+          if (changes.length > 0) {
+            let next = changes[0];
+            let timeLabel = next.time.toLocaleString('en-GB', { weekday: 'long', hour: '2-digit', minute: '2-digit' });
+            document.getElementById("next-change-time").textContent = timeLabel;
+            document.getElementById("next-change-time").style.color = next.ops.color;
+            document.getElementById("next-change-detail").textContent =
+              next.ops.label + " (" + (next.ops.overhead ? "overhead" : "not overhead") + ")";
+          } else {
+            document.getElementById("next-change-time").textContent = "No change expected";
+            document.getElementById("next-change-detail").textContent = "Stable for the full forecast window";
+          }
 
-  let rows = "";
-  for (let i = 1; i < changes.length; i++) {
-    let change = changes[i];
-    let timeLabel = change.time.toLocaleString('en-GB', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
-    rows += `<div class="change-card" style="border-left-color: ${change.ops.color}; background-color: #16273f; border-radius: 12px; margin-bottom: 8px; display:flex; align-items:center; gap:14px;">
-      <div class="change-icon">${change.ops.icon}</div>
-      <div>
-        <div class="change-time">${timeLabel}</div>
-        <div class="change-detail" style="color: ${change.ops.color};">Switching to ${change.ops.label} (${change.ops.overhead ? 'overhead' : 'not overhead'})</div>
-      </div>
-    </div>`;
-  }
+          let rows = "";
+          for (let i = 1; i < changes.length; i++) {
+            let change = changes[i];
+            let timeLabel = change.time.toLocaleString('en-GB', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+            rows += `<div class="change-card" style="border-left-color: ${change.ops.color};">
+              <div class="change-icon">${change.ops.icon}</div>
+              <div><span class="change-time">${timeLabel}</span><span class="change-label">${change.ops.label} (${change.ops.overhead ? 'overhead' : 'not overhead'})</span></div>
+            </div>`;
+          }
+          if (rows === "") {
+            rows = "<p style='color:#8fa3bf; font-size:13px;'>No further changes in the forecast window.</p>";
+          }
+          document.getElementById("changes").innerHTML = rows;
 
-  if (rows === "") {
-    rows = "<p style='color:#8fa3bf; font-size:14px;'>No further changes in the forecast window.</p>";
-  }
+          buildDailyOverview(data);
 
-  document.getElementById("changes").innerHTML = rows;
-
-  let updatedTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  document.getElementById("last-updated").textContent = "Last checked: " + updatedTime;
-})
+          let updatedTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          document.getElementById("last-updated").textContent = "Last checked: " + updatedTime;
+        })
         .catch(error => {
-          document.getElementById("now-detail").textContent = "Failed to load data.";
+          document.getElementById("compass-detail").textContent = "Failed to load data.";
           console.error(error);
         });
     }
 
+    initCompassHalves();
     loadRunwayData();
     setInterval(loadRunwayData, 600000);
   </script>
