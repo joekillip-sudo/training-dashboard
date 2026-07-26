@@ -118,20 +118,36 @@
       background: #2b4c7e;
       border-radius: 4px;
     }
+    .tab-button.active {
+  background: #0a1930;
+  color: #fff;
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
   </style>
 </head>
 <body>
 
 <h1>Weather Dashboard <span id="location-name" style="font-weight: normal; font-size: 24px; color: #8fa3bf;">— Twickenham</span></h1>
-<p id="current-date" style="font-size: 16px; color: #8fa3bf; margin-top: -10px; margin-bottom: 25px;"></p>
+<div class="tabs" style="display:flex; gap:6px; margin: 20px 0; background:#16273f; padding:4px; border-radius:10px; width:fit-content;">
+  <button class="tab-button active" data-tab="today" style="padding:8px 18px; border:none; border-radius:7px; background:transparent; color:#8fa3bf; font-size:13.5px; font-weight:600; cursor:pointer;">Today</button>
+  <button class="tab-button" data-tab="outlook" style="padding:8px 18px; border:none; border-radius:7px; background:transparent; color:#8fa3bf; font-size:13.5px; font-weight:600; cursor:pointer;">Runway Outlook</button>
+</div>
 
-<div id="weather">Loading weather data...</div>
+<div id="tab-today" class="tab-content">
+  <p id="current-date" style="font-size: 16px; color: #8fa3bf; margin-top: -10px; margin-bottom: 25px;"></p>
+  <div id="weather">Loading weather data...</div>
+</div>
+
+<div id="tab-outlook" class="tab-content" style="display:none;">
+  <div id="outlook">Loading forecast...</div>
+</div>
 
 <script>
     let lat = 51.4463;
     let lon = -0.3237;
 
-    let weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,precipitation,wind_speed_10m,weather_code&timezone=Europe%2FLondon&daily=sunrise,sunset`;
+let weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code,wind_direction_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,precipitation,wind_speed_10m,weather_code,wind_direction_10m&timezone=Europe%2FLondon&daily=sunrise,sunset`;
     let geoUrl = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
 
     let weatherCodes = {
@@ -149,6 +165,55 @@
       95: { name: "Thunderstorm",   icon: "🌩️", theme: "rain" }
     };
 
+    document.querySelectorAll('.tab-button').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.tab-button').forEach(b => {
+      b.classList.remove('active');
+      b.style.background = 'transparent';
+      b.style.color = '#8fa3bf';
+    });
+    document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+
+    button.classList.add('active');
+    button.style.background = '#0a1930';
+    button.style.color = '#fff';
+    document.getElementById('tab-' + button.dataset.tab).style.display = 'block';
+  });
+});
+
+function buildOutlook(data) {
+  let hourly = data.hourly;
+  let now = new Date();
+  let startIndex = hourly.time.findIndex(t => new Date(t) > now);
+
+  let rows = "";
+  let previousOps = null;
+
+  for (let i = startIndex; i < hourly.time.length; i++) {
+    let direction = hourly.wind_direction_10m[i];
+    let ops = (direction > 0 && direction < 180) ? "Easterly" : "Westerly";
+    let time = new Date(hourly.time[i]);
+    let timeLabel = time.toLocaleString('en-GB', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+
+    if (previousOps !== null && ops !== previousOps) {
+      rows += `<div class="stat-card" style="border-left: 3px solid #4fc3f7; min-width: 220px;">
+        <div class="stat-label">Change expected</div>
+        <div class="stat-value" style="font-size: 18px;">${timeLabel}</div>
+        <div style="font-size: 13px; color: #8fa3bf; margin-top: 6px;">Switching to ${ops} (${direction}°)</div>
+      </div>`;
+    }
+    previousOps = ops;
+  }
+
+  if (rows === "") {
+    rows = "<p style='color:#8fa3bf;'>No change in runway operations expected in the forecast window.</p>";
+  }
+
+  document.getElementById("outlook").innerHTML = `
+    <h2 style="margin-bottom: 12px; font-size: 18px; color: #8fa3bf;">Upcoming Operations Changes</h2>
+    <div class="stat-row">${rows}</div>
+  `;
+}
     function updateWeather() {
       fetch(weatherUrl)
         .then(response => {
@@ -158,6 +223,8 @@
         .then(data => {
           let c = data.current;
           let info = weatherCodes[c.weather_code] || { name: "Unknown", icon: "🌡️", theme: "clear" };
+          let direction = c.wind_direction_10m;
+let operations = (direction > 0 && direction < 180) ? "Easterly (not overhead)" : "Westerly (overhead)";
 
           document.body.className = `theme-${info.theme}`;
 
@@ -206,6 +273,10 @@
                 <div class="stat-label">Wind</div>
                 <div class="stat-value">${c.wind_speed_10m} km/h</div>
               </div>
+              <div class="stat-card">
+  <div class="stat-label">Runway Ops</div>
+  <div class="stat-value" style="font-size: 18px;">${operations}</div>
+</div>
               <div class="stat-card">
                 <div class="stat-label">Sunrise</div>
                 <div class="stat-value">🌅 ${sunriseTime}</div>
@@ -268,6 +339,7 @@
             });
 
           document.getElementById("weather").innerHTML = output;
+          buildOutlook(data);
         })
         .catch(error => {
           document.getElementById("weather").innerHTML = "<p>Failed to load weather data.</p>";

@@ -52,8 +52,8 @@
   <script>
     let lat = 51.4463;
     let lon = -0.3237;
-let weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m,wind_gusts_10m,weather_code&timezone=Europe%2FLondon";
-    
+let weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m,wind_gusts_10m,weather_code,wind_direction_10m&timezone=Europe%2FLondon";
+
     let weatherCodes = {
   0: "Clear sky",
   1: "Mainly clear",
@@ -70,9 +70,18 @@ let weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&lo
 };
     fetch(weatherUrl)
       .then(response => response.json())
-      .then(data => {
+.then(data => {
   let c = data.current;
+  console.log(c);
   let condition = weatherCodes[c.weather_code];
+
+  let direction = c.wind_direction_10m;
+  let operations;
+  if (direction > 0 && direction < 180) {
+    operations = "Easterly operations (not overhead)";
+  } else {
+    operations = "Westerly operations (overhead)";
+  }
 
   let output = "<div class='stat-row'>";
   output = output + "<div class='stat-card'><div class='stat-label'>Condition</div><div class='stat-value'>" + condition + "</div></div>";
@@ -81,12 +90,11 @@ let weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&lo
   output = output + "<div class='stat-card'><div class='stat-label'>Humidity</div><div class='stat-value'>" + c.relative_humidity_2m + "%</div></div>";
   output = output + "<div class='stat-card'><div class='stat-label'>Wind</div><div class='stat-value'>" + c.wind_speed_10m + " km/h</div></div>";
   output = output + "</div>";
-output = output + "<p class='updated'>Last updated: " + c.time + "</p>";
-document.getElementById("weather").innerHTML = output;
-  output = output + "</div>";
+  output = output + "<p class='updated'>Last updated: " + c.time + "</p>";
+  output = output + "<p>Runway direction: " + operations + " (wind from " + direction + "°)</p>";
 
   document.getElementById("weather").innerHTML = output;
 });
-  </script>
+</script>
 </body>
 </html>
