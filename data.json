@@ -233,6 +233,12 @@
     ],
     "news": [
         {
+            "title": "CME launches single stock futures enabling investors to trade SpaceX, Micron and others 23 hours a day",
+            "link": "https://www.cnbc.com/2026/07/27/cme-launches-single-stock-futures-enabling-investors-to-trade-spacex-micron-23-hours-a-day.html",
+            "published": "Mon, 27 Jul 2026 15:50:20 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Moody's says 'unprecedented' AI spending threatens credit quality of Amazon, Meta, Alphabet and others",
             "link": "https://www.cnbc.com/2026/07/24/moodys-ai-spending-credit-quality-amazon-meta-alphabet.html",
             "published": "Fri, 24 Jul 2026 22:43:56 GMT",
@@ -273,15 +279,9 @@
             "link": "https://www.cnbc.com/2026/07/22/kalshi-launches-election-hub-for-prediction-markets-ahead-of-midterms.html",
             "published": "Wed, 22 Jul 2026 15:23:02 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Goldman Sachs creates private markets platform as rich investors seek the next SpaceX and Stripe",
-            "link": "https://www.cnbc.com/2026/07/21/goldman-sachs-private-markets-platform.html",
-            "published": "Tue, 21 Jul 2026 20:51:34 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-27 10:52 UTC",
+    "last_updated": "2026-07-27 17:21 UTC",
     "trend": {
         "us_10y": "same",
         "uk_10y": "same",
