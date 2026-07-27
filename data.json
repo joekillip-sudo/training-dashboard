@@ -1,5 +1,5 @@
 {
-    "us_10y": 4.71,
+    "us_10y": 4.69,
     "uk_10y": 4.8,
     "fed_rate": 3.63,
     "ecb_rate": 2.25,
@@ -10,10 +10,6 @@
     "eurozone_cpi": 103.0,
     "eurozone_unemployment": 6.7,
     "us_10y_history": [
-        {
-            "date": "2026-06-10",
-            "value": 4.55
-        },
         {
             "date": "2026-06-11",
             "value": 4.45
@@ -129,6 +125,10 @@
         {
             "date": "2026-07-23",
             "value": 4.71
+        },
+        {
+            "date": "2026-07-24",
+            "value": 4.69
         }
     ],
     "uk_10y_history": [
@@ -235,7 +235,7 @@
         {
             "title": "CME launches single stock futures enabling investors to trade SpaceX, Micron and others 23 hours a day",
             "link": "https://www.cnbc.com/2026/07/27/cme-launches-single-stock-futures-enabling-investors-to-trade-spacex-micron-23-hours-a-day.html",
-            "published": "Mon, 27 Jul 2026 15:50:20 GMT",
+            "published": "Mon, 27 Jul 2026 18:06:35 GMT",
             "source": "CNBC"
         },
         {
@@ -281,9 +281,9 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-27 17:21 UTC",
+    "last_updated": "2026-07-27 21:50 UTC",
     "trend": {
-        "us_10y": "same",
+        "us_10y": "down",
         "uk_10y": "same",
         "fed_rate": "same",
         "ecb_rate": "same",
