@@ -175,10 +175,12 @@
           let daily = data.daily;
           let now = new Date();
 
-          // Next Rain hero
+// Next Rain hero - only check the next 7 days (forecast reliability drops off after that)
+          let reliableHours = 7 * 24;
           let startIndex = hourly.time.findIndex(t => new Date(t) > now);
+          let searchEndIndex = Math.min(startIndex + reliableHours, hourly.time.length);
           let nextRainIndex = -1;
-          for (let i = startIndex; i < hourly.time.length; i++) {
+          for (let i = startIndex; i < searchEndIndex; i++) {
             if (hourly.precipitation_probability[i] >= 40) {
               nextRainIndex = i;
               break;
@@ -197,7 +199,7 @@
           } else {
             document.getElementById("next-rain-icon").textContent = "☀️";
             document.getElementById("next-rain-time").textContent = "No rain expected soon";
-            document.getElementById("next-rain-detail").textContent = "Within the next couple of days";
+document.getElementById("next-rain-detail").textContent = "None forecast in the next 7 days";
           }
 
           // Group hourly data by date
