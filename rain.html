@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rain Outlook</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0a1930;
+      color: white;
+      font-family: -apple-system, Arial, sans-serif;
+      padding: 24px 20px 40px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 20px;
+      color: #4fc3f7;
+      margin-bottom: 2px;
+      text-align: center;
+    }
+    .subtitle {
+      color: #6b7c93;
+      font-size: 12.5px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    h2 {
+      font-size: 13px;
+      color: #6b7c93;
+      margin: 28px 0 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .next-card {
+      background: linear-gradient(135deg, #16273f 0%, #0d3a5c 100%);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .next-label {
+      font-size: 11px;
+      color: #8fa3bf;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .next-icon {
+      font-size: 40px;
+      margin: 10px 0;
+    }
+    .next-time {
+      font-size: 22px;
+      font-weight: bold;
+      color: #4fc3f7;
+    }
+    .next-detail {
+      font-size: 13px;
+      color: #8fa3bf;
+      margin-top: 6px;
+    }
+
+.day-card {
+  background-color: #16273f;
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 10px;
+}
+.day-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+.day-name {
+  font-size: 14px;
+  font-weight: bold;
+}
+.day-numbers {
+  font-size: 12px;
+  color: #8fa3bf;
+}
+.day-numbers .pct {
+  font-weight: bold;
+  color: white;
+}
+.hour-chip-row {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+}
+.hour-chip {
+  background-color: #0a1930;
+  border-radius: 6px;
+  padding: 6px 2px;
+  text-align: center;
+}
+.hour-chip-time {
+  font-size: 10px;
+  color: #6b7c93;
+}
+.hour-chip-icon {
+  font-size: 18px;
+  margin: 4px 0;
+}
+.hour-chip-pct {
+  font-size: 11px;
+  font-weight: bold;
+  color: #4fc3f7;
+}
+.day-window {
+  font-size: 12px;
+  color: #6b7c93;
+}
+
+    .updated {
+      color: #6b7c93;
+      font-size: 11px;
+      text-align: center;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rain Outlook</h1>
+  <div class="subtitle">Twickenham — 15-day precipitation forecast</div>
+
+  <h2>Next Rain</h2>
+  <div class="next-card">
+    <div class="next-label">Expected</div>
+    <div class="next-icon" id="next-rain-icon">🌦️</div>
+    <div class="next-time" id="next-rain-time">--</div>
+    <div class="next-detail" id="next-rain-detail">Loading...</div>
+  </div>
+
+  <h2>Daily Breakdown</h2>
+  <div id="daily-overview">Loading...</div>
+
+  <div class="updated" id="last-updated"></div>
+
+  <script>
+    let lat = 51.4463;
+    let lon = -0.3237;
+    let weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=precipitation_probability,precipitation&daily=precipitation_probability_max,precipitation_sum&timezone=Europe%2FLondon&forecast_days=15`;
+
+    // Returns a colour + icon based on rain probability, used for both the gauge and the icon
+    function rainStyle(chance) {
+      if (chance === null) return { color: "#3a4a63", icon: "❔" };
+      if (chance >= 70) return { color: "#1976d2", icon: "🌧️" };
+      if (chance >= 40) return { color: "#4fc3f7", icon: "🌦️" };
+      if (chance >= 15) return { color: "#6b7c93", icon: "⛅" };
+      return { color: "#3a4a63", icon: "☀️" };
+    }
+
+    function describeRainWindow(hours) {
+      let rainyHours = hours.filter(h => h.probability >= 40).map(h => h.hour);
+      if (rainyHours.length === 0) return null;
+      let startHour = rainyHours[0].toString().padStart(2, '0');
+      let endHour = rainyHours[rainyHours.length - 1].toString().padStart(2, '0');
+      return `Rain likely ${startHour}:00–${endHour}:00`;
+    }
+
+    function loadRainData() {
+      fetch(weatherUrl, { cache: 'no-store' })
+        .then(response => response.json())
+        .then(data => {
+          let hourly = data.hourly;
+          let daily = data.daily;
+          let now = new Date();
+
+          // Next Rain hero
+          let startIndex = hourly.time.findIndex(t => new Date(t) > now);
+          let nextRainIndex = -1;
+          for (let i = startIndex; i < hourly.time.length; i++) {
+            if (hourly.precipitation_probability[i] >= 40) {
+              nextRainIndex = i;
+              break;
+            }
+          }
+
+          if (nextRainIndex !== -1) {
+            let time = new Date(hourly.time[nextRainIndex]);
+            let timeLabel = time.toLocaleString('en-GB', { weekday: 'long', hour: '2-digit', minute: '2-digit' });
+            let chance = hourly.precipitation_probability[nextRainIndex];
+            let amount = hourly.precipitation[nextRainIndex];
+            document.getElementById("next-rain-icon").textContent = rainStyle(chance).icon;
+            document.getElementById("next-rain-time").textContent = timeLabel;
+            document.getElementById("next-rain-detail").textContent =
+              chance + "% chance, " + amount + " mm expected";
+          } else {
+            document.getElementById("next-rain-icon").textContent = "☀️";
+            document.getElementById("next-rain-time").textContent = "No rain expected soon";
+            document.getElementById("next-rain-detail").textContent = "Within the next couple of days";
+          }
+
+          // Group hourly data by date
+          let hourlyByDate = {};
+          for (let i = 0; i < hourly.time.length; i++) {
+            let time = new Date(hourly.time[i]);
+            let dateKey = time.toISOString().slice(0, 10);
+            if (!hourlyByDate[dateKey]) hourlyByDate[dateKey] = [];
+            hourlyByDate[dateKey].push({ hour: time.getHours(), probability: hourly.precipitation_probability[i] });
+          }
+
+let output = "";
+for (let i = 0; i < daily.time.length; i++) {
+  let date = new Date(daily.time[i]);
+  let dateKey = daily.time[i];
+  let dayLabel = date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short' });
+  let chance = daily.precipitation_probability_max[i];
+  let total = daily.precipitation_sum[i];
+  let style = rainStyle(chance);
+
+  let chanceText = (chance === null) ? "--" : chance + "%";
+  let totalText = (total === null) ? "--" : total.toFixed(1) + "mm";
+
+  // Build hour-by-hour chips, every 3 hours, only where hourly data exists
+  let hourChips = "";
+  if (hourlyByDate[dateKey]) {
+    let hoursForDay = hourlyByDate[dateKey];
+    for (let h = 0; h < 24; h += 3) {
+      let hourData = hoursForDay.find(entry => entry.hour === h);
+      if (!hourData) continue;
+      let hourLabel = h.toString().padStart(2, '0') + ":00";
+      let hourStyle = rainStyle(hourData.probability);
+      hourChips += `<div class="hour-chip">
+        <div class="hour-chip-time">${hourLabel}</div>
+        <div class="hour-chip-icon">${hourStyle.icon}</div>
+        <div class="hour-chip-pct">${hourData.probability}%</div>
+      </div>`;
+    }
+  }
+
+  output += `<div class="day-card">
+    <div class="day-top-row">
+      <div class="day-name">${style.icon} ${dayLabel}</div>
+      <div class="day-numbers"><span class="pct">${chanceText}</span> · ${totalText}</div>
+    </div>
+    ${hourChips ? `<div class="hour-chip-row">${hourChips}</div>` : `<div class="day-window">No hourly detail available yet</div>`}
+  </div>`;
+}
+
+          document.getElementById("daily-overview").innerHTML = output;
+
+          let updatedTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          document.getElementById("last-updated").textContent = "Last checked: " + updatedTime;
+        })
+        .catch(error => {
+          document.getElementById("next-rain-detail").textContent = "Failed to load data.";
+          console.error(error);
+        });
+    }
+
+    loadRainData();
+    setInterval(loadRainData, 600000);
+  </script>
+</body>
+</html>
