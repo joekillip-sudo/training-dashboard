@@ -233,6 +233,24 @@
     ],
     "news": [
         {
+            "title": "Meta likely to highlight smart glasses, avoid social media policy on upcoming earnings call, Kalshi traders say",
+            "link": "https://www.cnbc.com/2026/07/28/meta-q2-earnings-call-mentions-kalshi-market-odds-.html",
+            "published": "Tue, 28 Jul 2026 15:47:59 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "The future of Wall Street is here as startups and brokers build AI agents to trade 24/7",
+            "link": "https://www.cnbc.com/2026/07/28/ai-agents-build-to-trade-24/7-the-future-of-wall-street.html",
+            "published": "Tue, 28 Jul 2026 15:00:21 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Visa is cutting 7% of employees in efficiency push as AI reshapes work",
+            "link": "https://www.cnbc.com/2026/07/28/visa-is-cutting-7percent-of-employees-in-efficiency-push-as-ai-reshapes-work.html",
+            "published": "Tue, 28 Jul 2026 15:35:48 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "CME launches single stock futures enabling investors to trade SpaceX, Micron and others 23 hours a day",
             "link": "https://www.cnbc.com/2026/07/27/cme-launches-single-stock-futures-enabling-investors-to-trade-spacex-micron-23-hours-a-day.html",
             "published": "Mon, 27 Jul 2026 18:06:35 GMT",
@@ -261,27 +279,9 @@
             "link": "https://www.cnbc.com/2026/07/23/jpmorgan-dramatic-jump-in-ai-etfs-despite-rough-quarter.html",
             "published": "Thu, 23 Jul 2026 17:10:06 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Shortsighted stock market can no longer brush off war: 'It's too hard to ignore $100 oil'",
-            "link": "https://www.cnbc.com/2026/07/23/short-sighted-stock-market-can-no-longer-brush-off-war-investors-say.html",
-            "published": "Fri, 24 Jul 2026 14:10:40 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "John Paulson says we are in the early stages of a long-term bull market for gold",
-            "link": "https://www.cnbc.com/2026/07/22/john-paulson-says-we-are-in-early-stages-of-a-long-term-bull-market-for-gold.html",
-            "published": "Wed, 22 Jul 2026 22:06:49 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Kalshi launches election hub for prediction markets ahead of midterms",
-            "link": "https://www.cnbc.com/2026/07/22/kalshi-launches-election-hub-for-prediction-markets-ahead-of-midterms.html",
-            "published": "Wed, 22 Jul 2026 15:23:02 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-28 07:48 UTC",
+    "last_updated": "2026-07-28 15:55 UTC",
     "trend": {
         "us_10y": "same",
         "uk_10y": "same",
