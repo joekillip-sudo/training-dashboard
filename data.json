@@ -281,9 +281,9 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-27 21:50 UTC",
+    "last_updated": "2026-07-28 07:48 UTC",
     "trend": {
-        "us_10y": "down",
+        "us_10y": "same",
         "uk_10y": "same",
         "fed_rate": "same",
         "ecb_rate": "same",
