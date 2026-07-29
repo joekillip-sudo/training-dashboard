@@ -1,5 +1,5 @@
 {
-    "us_10y": 4.65,
+    "us_10y": 4.61,
     "uk_10y": 4.8,
     "fed_rate": 3.63,
     "ecb_rate": 2.25,
@@ -10,10 +10,6 @@
     "eurozone_cpi": 103.0,
     "eurozone_unemployment": 6.7,
     "us_10y_history": [
-        {
-            "date": "2026-06-12",
-            "value": 4.48
-        },
         {
             "date": "2026-06-15",
             "value": 4.47
@@ -129,6 +125,10 @@
         {
             "date": "2026-07-27",
             "value": 4.65
+        },
+        {
+            "date": "2026-07-28",
+            "value": 4.61
         }
     ],
     "uk_10y_history": [
@@ -233,6 +233,24 @@
     ],
     "news": [
         {
+            "title": "Jeffrey Gundlach says the bond market is telling Warsh the Fed has to start acting on inflation",
+            "link": "https://www.cnbc.com/2026/07/29/gundlach-says-the-bond-market-is-signaling-the-fed-has-to-act-on-inflation.html",
+            "published": "Wed, 29 Jul 2026 20:22:27 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Here's what changed in the second Fed statement under Warsh",
+            "link": "https://www.cnbc.com/2026/07/29/fed-decision-redline-heres-what-changed-in-the-second-statement-under-warsh.html",
+            "published": "Wed, 29 Jul 2026 18:48:02 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Divided Fed holds interest rates steady, but three members voted to hike",
+            "link": "https://www.cnbc.com/2026/07/29/fed-rate-decision-july-2026.html",
+            "published": "Wed, 29 Jul 2026 18:58:16 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "44 states are aligned on one thing in their fight against prediction markets. It's about sports wagering",
             "link": "https://www.cnbc.com/2026/07/28/44-states-say-cftc-has-no-authority-over-sports-prediction-markets.html",
             "published": "Tue, 28 Jul 2026 18:27:43 GMT",
@@ -261,29 +279,11 @@
             "link": "https://www.cnbc.com/2026/07/27/cme-launches-single-stock-futures-enabling-investors-to-trade-spacex-micron-23-hours-a-day.html",
             "published": "Mon, 27 Jul 2026 18:06:35 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Moody's says 'unprecedented' AI spending threatens credit quality of Amazon, Meta, Alphabet and others",
-            "link": "https://www.cnbc.com/2026/07/24/moodys-ai-spending-credit-quality-amazon-meta-alphabet.html",
-            "published": "Fri, 24 Jul 2026 22:43:56 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "U.S., other nations back open-source AI with 'strong security' at China summit",
-            "link": "https://www.cnbc.com/2026/07/24/china-ai-open-source-apec.html",
-            "published": "Fri, 24 Jul 2026 02:42:21 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Odds of Federal Reserve rate hike surge as oil prices rip higher",
-            "link": "https://www.cnbc.com/2026/07/23/fed-interest-rate-odds-oil-jobless-claims.html",
-            "published": "Thu, 23 Jul 2026 20:25:28 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-29 16:13 UTC",
+    "last_updated": "2026-07-29 20:32 UTC",
     "trend": {
-        "us_10y": "same",
+        "us_10y": "down",
         "uk_10y": "same",
         "fed_rate": "same",
         "ecb_rate": "same",
