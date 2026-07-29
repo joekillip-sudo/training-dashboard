@@ -1,122 +1,498 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title> Training Dashboard </title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            background-color: #0f0f1a;
-            color: white;
-            font-family: Arial;
-            padding: 40px;
-        }
-        .day-card {
-            background-color: #2d3561;
-            border-radius: 8px;
-            padding: 12px 16px;
-            margin-bottom: 10px;
-            max-width: 500px;
-        }
-        .week-heading {
-            margin-top: 30px;
-            margin-bottom: 10px;
-            font-size: 24px;
-            color: #e94560;
-        }
-        .week-total {
-            font-size: 18px;
-            color: #eb94a0;
-            margin-bottom: 8px;
-        }
-        h1 {
-            color: #e94560;
-            font-size: 32px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training Dashboard</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background-color: #0f0f1a;
+        color: #f0f0f5;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        padding: 28px 16px 60px;
+        max-width: 640px;
+        margin: 0 auto;
+    }
+    h1 {
+        color: #f0f0f5;
+        font-size: 26px;
+        letter-spacing: -0.5px;
+        margin-bottom: 4px;
+    }
+    .subhead {
+        color: #6b6f94;
+        font-size: 14px;
+        margin-bottom: 28px;
+    }
+    .section-label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #6b6f94;
+        margin: 28px 0 12px;
+    }
+
+    #current-week {
+        background: linear-gradient(160deg, #2a1830 0%, #1a1d33 60%);
+        border: 1px solid #e94560;
+        border-radius: 14px;
+        padding: 20px;
+        box-shadow: 0 0 0 1px rgba(233, 69, 96, 0.08), 0 8px 24px rgba(233, 69, 96, 0.12);
+    }
+    #current-week .week-title {
+        color: #e94560;
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 2px;
+    }
+    #current-week .week-total {
+        color: #eb94a0;
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+    .day-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8px;
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .day-row:first-of-type {
+        border-top: none;
+    }
+    .day-name {
+        font-weight: 700;
+        font-size: 14px;
+        white-space: nowrap;
+        min-width: 46px;
+    }
+    .day-session {
+        color: #d7d9ea;
+        font-size: 14px;
+        flex: 1;
+    }
+    .day-time {
+        color: #9a9ec2;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .breakdown {
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .breakdown-bar {
+        display: flex;
+        height: 10px;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        background-color: #14162a;
+    }
+    .breakdown-segment {
+        height: 100%;
+    }
+    .breakdown-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 16px;
+    }
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12.5px;
+        color: #c7c9dd;
+    }
+    .legend-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+    .legend-item .legend-pct {
+        color: #6b6f94;
+    }
+
+    .upcoming-week {
+        background-color: #14162a;
+        border: 1px solid #23264a;
+        border-radius: 10px;
+        margin-bottom: 8px;
+        overflow: hidden;
+    }
+    .upcoming-summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 16px;
+        cursor: pointer;
+        color: #9a9ec2;
+        font-size: 14px;
+    }
+    .upcoming-summary .week-title {
+        color: #c7c9dd;
+        font-weight: 700;
+    }
+    .upcoming-summary .chevron {
+        transition: transform 0.15s ease;
+        color: #6b6f94;
+    }
+    .upcoming-week.open .chevron {
+        transform: rotate(90deg);
+    }
+    .upcoming-detail {
+        display: none;
+        padding: 0 16px 14px;
+    }
+    .upcoming-week.open .upcoming-detail {
+        display: block;
+    }
+    .upcoming-detail .day-row {
+        border-top-color: rgba(255, 255, 255, 0.04);
+    }
+    .upcoming-detail .day-name {
+        color: #c7c9dd;
+    }
+
+    #overall-breakdown {
+        background-color: #14162a;
+        border: 1px solid #23264a;
+        border-radius: 10px;
+        padding: 16px;
+    }
+
+    .status {
+        margin-top: 20px;
+        color: #9a9ec2;
+    }
+    .error {
+        color: #ff6b6b;
+    }
+
+    @media (max-width: 480px) {
+        body { padding: 20px 12px 50px; }
+        h1 { font-size: 22px; }
+        .day-session { font-size: 13px; }
+    }
+</style>
 </head>
 <body>
     <h1>Training Dashboard</h1>
-    <div id="week-list"></div>
+    <p class="subhead">Rolling six-week plan</p>
+    <div id="app"><p class="status">Loading...</p></div>
+
     <script>
         let sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-yXqd-d5VCWyTzXeIAIl6xyrypIIUP4MvI2MmP6e1mwM7FtJUwWaX23v6QqHG9-7m-L3YmH6TsVnS/pub?gid=972901168&single=true&output=csv";
-        
+
+        const CATEGORY_COLORS = {
+            Running: "#e94560",
+            Cycling: "#3ec9c0",
+            Strength: "#9a9ec2",
+            Rest: "#4b4f6b"
+        };
+        const FALLBACK_COLORS = ["#f4a261", "#eb94a0", "#7c9eff", "#c98bf0"];
+
+        // Keyword groups used both to classify a Session Type token
+        // (e.g. "Bike", "Gym") and to scan free text for that same activity.
+        const CATEGORY_KEYWORDS = {
+            Running: ["run", "jog", "race"],
+            Cycling: ["ride", "spin", "bike", "cycle"],
+            Strength: ["gym", "strength"],
+            Rest: ["rest"]
+        };
+
+        // Only these categories are shown/counted in the run/cycle breakdown,
+        // even though splitRowTime tracks Strength/Rest internally too (it
+        // needs to, so their time doesn't get wrongly folded into run/cycle).
+        const BREAKDOWN_CATEGORIES = ["Running", "Cycling"];
+
         function parseCSVRow(row) {
             let result = [];
             let current = "";
             let insideQuotes = false;
-            
+
             for (let i = 0; i < row.length; i++) {
                 let char = row[i];
+                if (char === '"') {
+                    insideQuotes = !insideQuotes;
+                } else if (char === "," && !insideQuotes) {
+                    result.push(current);
+                    current = "";
+                } else {
+                    current = current + char;
+                }
+            }
+            result.push(current);
+            return result;
+        }
 
-                    if (char === '"') {
-                        insideQuotes = !insideQuotes;
-                    } else if (char === "," && !insideQuotes) {
-                        result.push(current);
-                        current = "";
-                    } else {
-                        current = current + char;
+        function formatTime(minutes) {
+            if (!Number.isFinite(minutes)) return "0h 0m";
+            let hours = Math.floor(minutes / 60);
+            let mins = Math.round(minutes % 60);
+            return hours + "h " + mins + "m";
+        }
+
+        function escapeHtml(text) {
+            let div = document.createElement("div");
+            div.textContent = text == null ? "" : text;
+            return div.innerHTML;
+        }
+
+        function renderError(message) {
+            document.getElementById("app").innerHTML =
+                "<p class='status error'>Couldn't load your training plan: " + escapeHtml(message) + "</p>";
+        }
+
+        // Classifies one Session Type token (e.g. "Run", "Spin", "Gym")
+        // into a top-level category. Unknown tokens become their own
+        // category rather than getting silently dropped.
+        function classifyToken(token) {
+            let t = token.trim().toLowerCase();
+            if (t === "") return null;
+            for (let category in CATEGORY_KEYWORDS) {
+                if (CATEGORY_KEYWORDS[category].some(k => t.includes(k))) return category;
+            }
+            return token.trim().replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+        }
+
+        function stripParens(text) {
+            return text.replace(/\([^)]*\)/g, " ");
+        }
+
+        // Which known category (if any) does this clause of free text
+        // describe? Only matches categories actually present in this
+        // row's Session Type, so stray words can't invent a category.
+        function detectClauseCategory(clauseLower, rowCategorySet) {
+            for (let category of rowCategorySet) {
+                let keywords = CATEGORY_KEYWORDS[category];
+                if (keywords && keywords.some(k => clauseLower.includes(k))) return category;
+            }
+            return null;
+        }
+
+        // Splits a row's planned time across the categories in its Session
+        // Type. Prefers explicit "N min <activity>" mentions parsed from
+        // the Planned Session text; only falls back to an even split
+        // across categories for the portion of time with no explicit
+        // sub-time stated in the text.
+        function splitRowTime(row, totals) {
+            let tokens = row.sessionType.split("+").map(t => t.trim()).filter(t => t !== "");
+            if (tokens.length === 0) return;
+
+            let rowCategorySet = new Set(tokens.map(classifyToken).filter(Boolean));
+            if (rowCategorySet.size === 0) return;
+
+            let matched = {};
+            let clauses = row.session.split(/[,+]/);
+
+            clauses.forEach(clause => {
+                let stripped = stripParens(clause).toLowerCase();
+                let category = detectClauseCategory(stripped, rowCategorySet);
+                if (!category) return;
+                let numberMatch = stripped.match(/\d+/);
+                if (!numberMatch) return;
+                matched[category] = (matched[category] || 0) + Number(numberMatch[0]);
+            });
+
+            let matchedSum = Object.values(matched).reduce((a, b) => a + b, 0);
+            let unmatched = [...rowCategorySet].filter(c => !(c in matched));
+            let remainder = row.time - matchedSum;
+
+            if (unmatched.length > 0) {
+                let share = remainder / unmatched.length;
+                unmatched.forEach(c => { matched[c] = share; });
+            } else if (matchedSum > 0 && remainder !== 0) {
+                // No unmatched categories but numbers didn't add up exactly
+                // to the row's stated total minutes - scale proportionally
+                // so totals still sum to the real planned time.
+                let scale = row.time / matchedSum;
+                Object.keys(matched).forEach(c => { matched[c] *= scale; });
+            }
+
+            Object.keys(matched).forEach(c => {
+                totals[c] = (totals[c] || 0) + matched[c];
+            });
+        }
+
+        // Strips a totals object down to just Running/Cycling, right before
+        // percentages get calculated - so the split is "of run+cycle time",
+        // not diluted by gym/strength/rest sitting alongside it.
+        function filterToRunCycleOnly(totals) {
+            let filtered = {};
+            BREAKDOWN_CATEGORIES.forEach(category => {
+                if (totals[category] > 0) filtered[category] = totals[category];
+            });
+            return filtered;
+        }
+
+        function colorFor(category, usedColors) {
+            if (CATEGORY_COLORS[category]) return CATEGORY_COLORS[category];
+            if (!usedColors[category]) {
+                let idx = Object.keys(usedColors).length % FALLBACK_COLORS.length;
+                usedColors[category] = FALLBACK_COLORS[idx];
+            }
+            return usedColors[category];
+        }
+
+        function buildBreakdownHtml(totals) {
+            let categories = Object.keys(totals).filter(c => totals[c] > 0);
+            let grandTotal = categories.reduce((sum, c) => sum + totals[c], 0);
+            if (grandTotal <= 0) return "";
+
+            let usedColors = {};
+            let barHtml = "";
+            let legendHtml = "";
+
+            categories
+                .sort((a, b) => totals[b] - totals[a])
+                .forEach(category => {
+                    let minutes = totals[category];
+                    let pct = (minutes / grandTotal) * 100;
+                    let color = colorFor(category, usedColors);
+
+                    barHtml += "<div class='breakdown-segment' style='width:" + pct + "%;background-color:" + color + "'></div>";
+                    legendHtml += "<div class='legend-item'>" +
+                        "<span class='legend-dot' style='background-color:" + color + "'></span>" +
+                        escapeHtml(category) + " <span class='legend-pct'>" + Math.round(pct) + "% &middot; " + formatTime(minutes) + "</span>" +
+                    "</div>";
+                });
+
+            return "<div class='breakdown'>" +
+                "<div class='breakdown-bar'>" + barHtml + "</div>" +
+                "<div class='breakdown-legend'>" + legendHtml + "</div>" +
+            "</div>";
+        }
+
+        function buildDayRow(day) {
+            return "<div class='day-row'>" +
+                "<span class='day-name'>" + escapeHtml(day.day) + "</span>" +
+                "<span class='day-session'>" + escapeHtml(day.session) + "</span>" +
+                "<span class='day-time'>" + formatTime(day.time) + "</span>" +
+            "</div>";
+        }
+
+        fetch(sheetUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Sheet request failed (status " + response.status + ")");
+                }
+                return response.text();
+            })
+            .then(csvText => {
+                let rows = csvText.split("\n").filter(row => row.trim() !== "");
+                if (rows.length < 2) {
+                    renderError("no rows found in the sheet.");
+                    return;
+                }
+
+                let headerCells = parseCSVRow(rows[0].replace("\r", ""));
+                let colIndex = {};
+                headerCells.forEach((name, i) => { colIndex[name.trim()] = i; });
+
+                let required = ["Week", "Day", "Session Type", "Planned Session", "Time (mins)"];
+                let missing = required.filter(name => !(name in colIndex));
+                if (missing.length > 0) {
+                    renderError("sheet is missing expected column(s): " + missing.join(", "));
+                    return;
+                }
+
+                let allRows = [];
+                for (let i = 1; i < rows.length; i++) {
+                    let cleanRow = rows[i].replace("\r", "");
+                    let columns = parseCSVRow(cleanRow);
+                    let plannedTime = Number(columns[colIndex["Time (mins)"]]);
+
+                    allRows.push({
+                        week: columns[colIndex["Week"]],
+                        day: columns[colIndex["Day"]],
+                        sessionType: columns[colIndex["Session Type"]] || "",
+                        session: columns[colIndex["Planned Session"]] || "",
+                        time: Number.isFinite(plannedTime) ? plannedTime : 0
+                    });
+                }
+
+                if (allRows.length === 0) {
+                    renderError("no rows found in the sheet.");
+                    return;
+                }
+
+                let weekOrder = [];
+                let weekMap = {};
+                for (let i = 0; i < allRows.length; i++) {
+                    let w = allRows[i].week;
+                    if (!weekMap[w]) {
+                        weekMap[w] = [];
+                        weekOrder.push(w);
+                    }
+                    weekMap[w].push(allRows[i]);
+                }
+
+                let html = "";
+
+                let currentWeekKey = weekOrder[0];
+                let currentDays = weekMap[currentWeekKey];
+                let currentTotal = currentDays.reduce((sum, d) => sum + d.time, 0);
+                let currentTotals = {};
+                currentDays.forEach(d => splitRowTime(d, currentTotals));
+                let currentRunCycle = filterToRunCycleOnly(currentTotals);
+
+                html += "<div id='current-week'>" +
+                    "<div class='week-title'>This Week &middot; Week " + escapeHtml(currentWeekKey) + "</div>" +
+                    "<div class='week-total'>" + formatTime(currentTotal) + " planned across " + currentDays.length + " sessions</div>" +
+                    currentDays.map(buildDayRow).join("") +
+                    buildBreakdownHtml(currentRunCycle) +
+                "</div>";
+
+                if (weekOrder.length > 1) {
+                    html += "<div class='section-label'>Coming Up</div>";
+
+                    for (let w = 1; w < weekOrder.length; w++) {
+                        let weekKey = weekOrder[w];
+                        let days = weekMap[weekKey];
+                        let total = days.reduce((sum, d) => sum + d.time, 0);
+
+                        html += "<div class='upcoming-week' data-week='" + w + "'>" +
+                            "<div class='upcoming-summary'>" +
+                                "<span><span class='week-title'>Week " + escapeHtml(weekKey) + "</span> &middot; " +
+                                    days.length + " sessions &middot; " + formatTime(total) + "</span>" +
+                                "<span class='chevron'>&#8250;</span>" +
+                            "</div>" +
+                            "<div class='upcoming-detail'>" + days.map(buildDayRow).join("") + "</div>" +
+                        "</div>";
                     }
                 }
-                result.push(current);
-                return result;
-            }
 
-            function formatTime(minutes) {
-                let hours = Math.floor(minutes / 60);
-                let mins = minutes % 60;
-                return hours + "h " + mins + "m";
-            }
-        
-        fetch(sheetUrl)
-            .then(response => response.text())
-            .then(csvText => {
-                let rows = csvText.split("\n");
-  let allRows = [];
+                let overallTotals = {};
+                allRows.forEach(d => splitRowTime(d, overallTotals));
+                let overallRunCycle = filterToRunCycleOnly(overallTotals);
+                let overallBreakdownHtml = buildBreakdownHtml(overallRunCycle);
+                if (overallBreakdownHtml) {
+                    html += "<div class='section-label'>Overall &middot; " + weekOrder.length + " Weeks</div>" +
+                        "<div id='overall-breakdown'>" + overallBreakdownHtml + "</div>";
+                }
 
-  for (let i = 1; i < rows.length; i++) {
-  let cleanRow = rows[i].replace("\r", "");
-  let columns = parseCSVRow(cleanRow);
+                let app = document.getElementById("app");
+                app.innerHTML = html;
 
-  let dayObject = {
-    week: columns[0],
-    day: columns[2],
-    session: columns[4],
-    time: Number(columns[5]),
-    actual: columns[7] === "" ? null : Number(columns[7])
-  };
-  allRows.push(dayObject);
-}
-
-  let output = "";
-let currentWeek = "";
-let weeklyTotal = 0;
-
-for (let i = 0; i < allRows.length; i++) {
-    if (allRows[i].week !== currentWeek) {
-        if (currentWeek !== "") {
-            output = output + "<p class='week-total'>Week total: " + formatTime(weeklyTotal) + "</p>";
-        }
-        output = output + "<h2 class='week-heading'>Week " + allRows[i].week + "</h2>";
-        currentWeek = allRows[i].week;
-        weeklyTotal = 0;
-    }
-
-    weeklyTotal = weeklyTotal + allRows[i].time;
-
-    let actualText;
-    if (allRows[i].actual === null) {
-        actualText = "not logged yet";
-    } else {
-        actualText = allRows[i].actual + " min actual";
-    }
-    output = output + "<div class='day-card'><strong>" + allRows[i].day + "</strong>: " + allRows[i].session + " (" + allRows[i].time + " min planned, " + actualText + ")</div>";
-}
-output = output + "<p class='week-total'>Week total: " + formatTime(weeklyTotal) + "</p>";
-document.getElementById("week-list").innerHTML = output;
+                app.querySelectorAll(".upcoming-summary").forEach(summary => {
+                    summary.addEventListener("click", () => {
+                        summary.closest(".upcoming-week").classList.toggle("open");
+                    });
+                });
+            })
+            .catch(error => {
+                renderError(error.message);
             });
-</script>
+    </script>
 </body>
 </html>
