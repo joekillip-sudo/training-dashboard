@@ -3,408 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Dashboard</title>
-    <style>
-
-* {
-        box-sizing: border-box;
-    }
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        background-color: #f7f8fa;
-        color: #1a1a1a;
-        max-width: 900px;
-        margin: 48px auto;
-        padding: 24px;
-        line-height: 1.5;
-    }
-    h1 {
-        font-size: 26px;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        margin-bottom: 24px;
-        color: #111;
-    }
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 14px;
-        margin-bottom: 24px;
-    }
-    .card {
-        background: #fff;
-        padding: 18px 20px;
-        border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-        border: 1px solid #eef0f2;
-        transition: box-shadow 0.15s ease, transform 0.15s ease;
-    }
-    .card:hover {
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        transform: translateY(-1px);
-    }
-    .card h3 {
-        margin: 0 0 8px 0;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: #8a8f98;
-    }
-    .card .value {
-        font-size: 26px;
-        font-weight: 700;
-        font-variant-numeric: tabular-nums;
-        color: #111;
-    }
-    .timestamp {
-        font-size: 12px;
-        color: #9aa0a8;
-        margin-top: 8px;
-    }
-    .arrow-up {
-        color: #1a8a4a;
-        font-weight: bold;
-        margin-left: 6px;
-        font-size: 16px;
-    }
-    .arrow-down {
-        color: #d13c3c;
-        font-weight: bold;
-        margin-left: 6px;
-        font-size: 16px;
-    }
-    .card.notable {
-        border: 1px solid #f57c00;
-        box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.12);
-    }
-    .notable-badge {
-        display: inline-block;
-        background: #fff3e0;
-        color: #b25900;
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        padding: 3px 7px;
-        border-radius: 5px;
-        margin-left: 8px;
-        vertical-align: middle;
-    }
-    #news-list li {
-        padding: 12px 0;
-        border-bottom: 1px solid #f0f1f3;
-    }
-    #news-list li:last-child {
-        border-bottom: none;
-    }
-    #news-list a {
-        color: #1a1a1a;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 14px;
-    }
-    #news-list a:hover {
-        color: #1a8a4a;
-    }
-    #news-list .news-date {
-        display: block;
-        font-size: 11.5px;
-        color: #9aa0a8;
-        margin-top: 4px;
-    }
-    .tabs {
-        display: flex;
-        gap: 6px;
-        margin-bottom: 24px;
-        background: #eef0f2;
-        padding: 4px;
-        border-radius: 10px;
-        width: fit-content;
-    }
-.tab-button {
-        padding: 8px 18px;
-        border: none;
-        border-radius: 7px;
-        background: transparent;
-        color: #666;
-        font-size: 13.5px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.15s ease, color 0.15s ease;
-    }
-    .tab-button:hover {
-        color: #111;
-    }
-    .tab-button.active {
-        background: #fff;
-        color: #111;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.08);
-    }
-    .tab-content {
-        display: none;
-    }
-    .tab-content.active {
-        display: block;
-    }
-    .card canvas {
-        margin-top: 4px;
-    }
-</style>    
+    <title>Macro Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f7f8fa;
+    color: #1a1a1a;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+    line-height: 1.5;
+}
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #111;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: #8a8f98;
+            margin-bottom: 28px;
+        }
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+        .card {
+            background: #fff;
+            padding: 18px 20px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border: 1px solid #eef0f2;
+        }
+        .card-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #8a8f98;
+        }
+        .card-value-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-top: 6px;
+        }
+.card-value {
+    font-size: 32px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+        .arrow-up { color: #1a8a4a; font-size: 16px; }
+        .arrow-down { color: #d13c3c; font-size: 16px; }
+        .arrow-same { color: #aaa; font-size: 16px; }
+        .card-change {
+            font-size: 12px;
+            color: #8a8f98;
+            margin-top: 4px;
+        }
+        .card-asof {
+            font-size: 10.5px;
+            color: #bbb;
+            margin-top: 6px;
+        }
+.sparkline-wrap {
+    margin-top: 14px;
+    height: 180px;
+}
+        h2 {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #8a8f98;
+            margin-bottom: 12px;
+        }
+        #news-list { list-style: none; padding: 0; margin: 0; }
+        #news-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f1f3;
+        }
+        #news-list li:last-child { border-bottom: none; }
+        #news-list a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        #news-list a:hover { color: #1a8a4a; }
+        .news-date {
+            display: block;
+            font-size: 11.5px;
+            color: #9aa0a8;
+            margin-top: 4px;
+        }
+        .timestamp {
+            font-size: 12px;
+            color: #9aa0a8;
+            margin-top: 8px;
+        }
+    </style>
 </head>
 <body>
+    <h1>Macro Dashboard</h1>
+    <div class="subtitle">Key US macroeconomic indicators — live from FRED</div>
 
-    <h1>Macroeconomic Dashboard</h1>
+    <div class="grid" id="indicator-grid">Loading...</div>
 
-    <div class="tabs">
-    <button class="tab-button active" data-tab="us">US</button>
-    <button class="tab-button" data-tab="uk">UK</button>
-    <button class="tab-button" data-tab="eurozone">Eurozone</button>
-</div>
+    <h2>Latest Markets News</h2>
+    <ul id="news-list"></ul>
 
-<div id="tab-us" class="tab-content active">
-    <div class="grid">
-        <div class="card">
-            <h3>US 10Y Yield</h3>
-            <div class="value" id="us-10y">--</div>
-        </div>
-        <div class="card">
-            <h3>Fed Rate</h3>
-            <div class="value" id="fed-rate">--</div>
-        </div>
-        <div class="card">
-            <h3>US CPI</h3>
-            <div class="value" id="cpi">--</div>
-        </div>
-        <div class="card">
-            <h3>US Unemployment</h3>
-            <div class="value" id="unemployment">--</div>
-        </div>
-    </div>
-    <div class="card" style="margin-bottom: 20px;">
-    <h3>US 10Y Yield — Last 30 Days</h3>
-    <canvas id="us10yChart"></canvas>
-</div>
-</div>
+    <div class="timestamp" id="last-updated"></div>
 
-<div id="tab-uk" class="tab-content">
-    <div class="grid">
-        <div class="card">
-            <h3>UK 10Y Yield</h3>
-            <div class="value" id="uk-10y">--</div>
-        </div>
-        <div class="card">
-            <h3>UK CPI</h3>
-            <div class="value" id="uk-cpi">--</div>
-        </div>
-        <div class="card">
-            <h3>UK Unemployment</h3>
-            <div class="value" id="uk-unemployment">--</div>
-        </div>
-    </div>
-    <div class="card" style="margin-bottom: 20px;">
-        <h3>UK 10Y Yield — Last 12 Months</h3>
-        <canvas id="uk10yChart"></canvas>
-    </div>
-</div>
+    <script>
+        let chartInstances = {};
 
-<div id="tab-eurozone" class="tab-content">
-    <div class="grid">
-        <div class="card">
-            <h3>ECB Rate</h3>
-            <div class="value" id="ecb-rate">--</div>
-        </div>
-        <div class="card">
-            <h3>Eurozone CPI</h3>
-            <div class="value" id="eurozone-cpi">--</div>
-        </div>
-        <div class="card">
-            <h3>Eurozone Unemployment</h3>
-            <div class="value" id="eurozone-unemployment">--</div>
-        </div>
-    </div>
-    <div class="card" style="margin-bottom: 20px;">
-<h3>Eurozone 10Y Yield — Last 12 Months</h3>
-    <canvas id="ecbRateChart"></canvas>
-</div>
-</div>
+        function loadData() {
+            fetch('data.json', { cache: 'no-store' })
+                .then(response => response.json())
+                .then(data => {
+                    renderIndicators(data.indicators);
+                    renderNews(data.news);
+                    document.getElementById('last-updated').textContent = 'Updated: ' + data.last_updated;
+                })
+                .catch(error => {
+                    document.getElementById('indicator-grid').innerHTML = '<p>Failed to load data.</p>';
+                    console.error(error);
+                });
+        }
 
-<div class="card" style="margin-bottom: 20px;">
-    <h3>Latest Markets News</h3>
-    <ul id="news-list" style="list-style: none; padding: 0; margin: 0;"></ul>
-</div>
+        function renderIndicators(indicators) {
+            let grid = document.getElementById('indicator-grid');
+            grid.innerHTML = '';
 
-    <div class="timestamp" id="last-updated">Loading timestamp...</div>
+            for (let key in indicators) {
+                let ind = indicators[key];
 
-<script>
-    function loadData() {
-        console.log("Fetching data at", new Date().toLocaleTimeString());
-        fetch('data.json', { cache: 'no-store' })
-            .then(response => response.json())
-            .then(data => {
-function renderValue(id, value, suffix, trendKey) {
-    let arrowHtml = '';
-    const trend = data.trend ? data.trend[trendKey] : null;
-    if (trend === 'up') {
-        arrowHtml = '<span class="arrow-up">▲</span>';
-    } else if (trend === 'down') {
-        arrowHtml = '<span class="arrow-down">▼</span>';
-    }
+                let arrowHtml = '<span class="arrow-same">–</span>';
+                if (ind.trend === 'up') arrowHtml = '<span class="arrow-up">▲</span>';
+                if (ind.trend === 'down') arrowHtml = '<span class="arrow-down">▼</span>';
 
-    const isNotable = data.notable ? data.notable[trendKey] : false;
-    let badgeHtml = '';
-    if (isNotable) {
-        badgeHtml = '<span class="notable-badge">NOTABLE</span>';
-    }
-
-    document.getElementById(id).innerHTML = value + suffix + arrowHtml + badgeHtml;
-
-    const cardElement = document.getElementById(id).closest('.card');
-    if (isNotable) {
-        cardElement.classList.add('notable');
-    } else {
-        cardElement.classList.remove('notable');
-    }
-}
-                renderValue('us-10y', data.us_10y, '%', 'us_10y');
-                renderValue('uk-10y', data.uk_10y, '%', 'uk_10y');
-                renderValue('fed-rate', data.fed_rate, '%', 'fed_rate');
-                renderValue('ecb-rate', data.ecb_rate, '%', 'ecb_rate');
-                renderValue('cpi', data.cpi, '', 'cpi');
-                renderValue('unemployment', data.unemployment, '%', 'unemployment');
-                renderValue('uk-cpi', data.uk_cpi, '', 'uk_cpi');
-                renderValue('uk-unemployment', data.uk_unemployment, '%', 'uk_unemployment');
-                renderValue('eurozone-cpi', data.eurozone_cpi, '', 'eurozone_cpi');
-                renderValue('eurozone-unemployment', data.eurozone_unemployment, '%', 'eurozone_unemployment');
-                document.getElementById('last-updated').innerText = 'Updated: ' + data.last_updated;
-
-                if (data.us_10y_history) {
-                    const labels = data.us_10y_history.map(point => point.date);
-                    const values = data.us_10y_history.map(point => point.value);
-
-                    if (window.us10yChartInstance) {
-                        window.us10yChartInstance.destroy();
-                    }
-
-                    const ctx = document.getElementById('us10yChart').getContext('2d');
-                    window.us10yChartInstance = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'US 10Y Yield (%)',
-                                data: values,
-                                borderColor: '#2e7d32',
-                                backgroundColor: 'rgba(46, 125, 50, 0.1)',
-                                fill: true,
-                                tension: 0.2,
-                                pointRadius: 2
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: { legend: { display: false } },
-                            scales: {
-                                x: { ticks: { maxTicksLimit: 6 } }
-                            }
-                        }
-                    });
+                let changeHtml = '';
+                if (ind.change !== null && ind.compared_date) {
+                    let sign = ind.change > 0 ? '+' : '';
+                    changeHtml = sign + ind.change + ind.unit + ' since ' + ind.compared_date;
                 }
-                if (data.uk_10y_history) {
-    const ukLabels = data.uk_10y_history.map(point => point.date);
-    const ukValues = data.uk_10y_history.map(point => point.value);
 
-    if (window.uk10yChartInstance) {
-        window.uk10yChartInstance.destroy();
-    }
+                let latestDate = ind.history.length > 0 ? ind.history[ind.history.length - 1].date : '--';
 
-    const ukCtx = document.getElementById('uk10yChart').getContext('2d');
-    window.uk10yChartInstance = new Chart(ukCtx, {
-        type: 'line',
-        data: {
-            labels: ukLabels,
-            datasets: [{
-                label: 'UK 10Y Yield (%)',
-                data: ukValues,
-                borderColor: '#1565c0',
-                backgroundColor: 'rgba(21, 101, 192, 0.1)',
-                fill: true,
-                tension: 0.2,
-                pointRadius: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: {
-                x: { ticks: { maxTicksLimit: 6 } }
+                let card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-label">${ind.label}</div>
+                    <div class="card-value-row">
+                        <div class="card-value">${ind.value}${ind.unit}</div>
+                        ${arrowHtml}
+                    </div>
+                    <div class="card-change">${changeHtml}</div>
+                    <div class="sparkline-wrap"><canvas id="chart-${key}"></canvas></div>
+                    <div class="card-asof">As of ${latestDate}</div>
+                `;
+                grid.appendChild(card);
+
+                drawSparkline(key, ind.history, ind.trend);
             }
         }
-    });
-}
 
-if (data.eurozone_10y_history) {
-    const ezLabels = data.eurozone_10y_history.map(point => point.date);
-    const ezValues = data.eurozone_10y_history.map(point => point.value);
-
-    if (window.eurozone10yChartInstance) {
-        window.eurozone10yChartInstance.destroy();
-    }
-
-    const ezCtx = document.getElementById('ecbRateChart').getContext('2d');
-    window.eurozone10yChartInstance = new Chart(ezCtx, {
-        type: 'line',
-        data: {
-            labels: ezLabels,
-            datasets: [{
-                label: 'Eurozone 10Y Yield (%)',
-                data: ezValues,
-                borderColor: '#6a1b9a',
-                backgroundColor: 'rgba(106, 27, 154, 0.1)',
-                fill: true,
-                tension: 0.2,
-                pointRadius: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: {
-                x: { ticks: { maxTicksLimit: 6 } }
+        function drawSparkline(key, history, trend) {
+            let canvasId = 'chart-' + key;
+            if (chartInstances[canvasId]) {
+                chartInstances[canvasId].destroy();
             }
-        }
-    });
-}
 
-                if (data.news) {
-                    const newsList = document.getElementById('news-list');
-                    newsList.innerHTML = '';
-                    data.news.forEach(item => {
-                        const li = document.createElement('li');
-                        li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a><span class="news-date">${item.source} — ${item.published}</span>`;
-                        newsList.appendChild(li);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error loading data.json:', error);
-                document.getElementById('last-updated').innerText = 'Failed to load data.';
+            let labels = history.map(point => point.date);
+            let values = history.map(point => point.value);
+            let color = trend === 'up' ? '#1a8a4a' : (trend === 'down' ? '#d13c3c' : '#888');
+
+            let ctx = document.getElementById(canvasId).getContext('2d');
+            chartInstances[canvasId] = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: values,
+                        borderColor: color,
+                        backgroundColor: 'transparent',
+                        borderWidth: 1.5,
+                        pointRadius: 0,
+                        tension: 0.25
+                    }]
+                },
+options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true }
+    },
+    scales: {
+        x: {
+            display: true,
+            ticks: { maxTicksLimit: 5, font: { size: 9 }, color: '#999' },
+            grid: { display: false }
+        },
+y: {
+    display: true,
+    ticks: { font: { size: 9 }, color: '#999' },
+    grid: { color: '#f0f1f3' },
+    grace: '100%'
+}
+    }
+}
             });
-    }
+        }
 
-    loadData();
+        function renderNews(news) {
+            let newsList = document.getElementById('news-list');
+            newsList.innerHTML = '';
+            news.forEach(item => {
+                let li = document.createElement('li');
+                li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a><span class="news-date">${item.source} — ${item.published}</span>`;
+                newsList.appendChild(li);
+            });
+        }
 
-    document.querySelectorAll('.tab-button').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-
-            button.classList.add('active');
-            document.getElementById('tab-' + button.dataset.tab).classList.add('active');
-        });
-    });
-
-    setInterval(loadData, 3600000);
-</script>
+        loadData();
+        setInterval(loadData, 3600000);
+    </script>
 </body>
 </html>

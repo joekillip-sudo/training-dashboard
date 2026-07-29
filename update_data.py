@@ -6,111 +6,69 @@ from datetime import datetime, timezone
 from fredapi import Fred
 import feedparser
 
-# Initialize FRED with your API key
 fred = Fred(api_key=os.environ["FRED_API_KEY"])
 
-# Try to load yesterday's data (if it exists) so we can compare
-try:
-    with open("data.json", "r") as f:
-        previous_data = json.load(f)
-except FileNotFoundError:
-    previous_data = {}
+def series_history(series_id, points):
+    s = fred.get_series(series_id).dropna().tail(points)
+    return [{"date": d.strftime("%Y-%m-%d"), "value": round(float(v), 2)} for d, v in s.items()]
 
-# Fetch last 30 days of US 10Y yield history for the chart
-us_10y_history_raw = fred.get_series("DGS10").dropna().tail(30)
-us_10y_history = [
-    {"date": date.strftime("%Y-%m-%d"), "value": round(float(value), 2)}
-    for date, value in us_10y_history_raw.items()
-]
-# UK 10Y yield history (monthly data, so 12 = last 12 months)
-uk_10y_history_raw = fred.get_series("IRLTLT01GBM156N").dropna().tail(12)
-uk_10y_history = [
-    {"date": date.strftime("%Y-%m-%d"), "value": round(float(value), 2)}
-    for date, value in uk_10y_history_raw.items()
-]
+import pandas as pd
 
-# Eurozone 10Y government bond yield history (monthly data, so 12 = last 12 months)
-eurozone_10y_history_raw = fred.get_series("IRLTLT01EZM156N").dropna().tail(12)
-eurozone_10y_history = [
-    {"date": date.strftime("%Y-%m-%d"), "value": round(float(value), 2)}
-    for date, value in eurozone_10y_history_raw.items()
-]
-# Fetch latest market news headlines from CNBC's Markets RSS feed
+def yoy_history(series_id, points):
+    s = fred.get_series(series_id)
+    s.index = s.index.to_period("M")
+    full_range = pd.period_range(s.index.min(), s.index.max(), freq="M")
+    s = s.reindex(full_range)  # fills any missing months with NaN, preserving true calendar spacing
+    yoy = ((s / s.shift(12)) - 1) * 100
+    yoy = yoy.dropna().tail(points)
+    return [{"date": d.strftime("%Y-%m-01"), "value": round(float(v), 2)} for d, v in yoy.items()]
+
+indicators = {}
+
+indicators["us_10y"] = {"label": "US 10Y Treasury Yield", "unit": "%", "history": series_history("DGS10", 30)}
+indicators["fed_rate"] = {"label": "Fed Funds Rate", "unit": "%", "history": series_history("FEDFUNDS", 12)}
+indicators["us_cpi_yoy"] = {"label": "US Inflation (YoY)", "unit": "%", "history": yoy_history("CPIAUCSL", 12)}
+indicators["us_debt_gdp"] = {"label": "US Federal Debt (% of GDP)", "unit": "%", "history": series_history("GFDEGDQ188S", 12)}
+
+# For every indicator, derive current value, trend, and change from its OWN history —
+# this is the fix for the earlier bug: comparisons are always against the last real
+# published data point, never just "whatever the last hourly run happened to see."
+for key, info in indicators.items():
+    hist = info["history"]
+    if len(hist) == 0:
+        info["value"] = None
+        info["trend"] = "same"
+        info["change"] = None
+        info["compared_date"] = None
+        continue
+
+    info["value"] = hist[-1]["value"]
+
+    if len(hist) >= 2:
+        previous = hist[-2]["value"]
+        change = round(info["value"] - previous, 2)
+        info["change"] = change
+        info["compared_date"] = hist[-2]["date"]
+        info["trend"] = "up" if change > 0 else ("down" if change < 0 else "same")
+    else:
+        info["change"] = None
+        info["compared_date"] = None
+        info["trend"] = "same"
+
 def fetch_headlines(url, source_name, limit):
     feed = feedparser.parse(url)
     return [
-        {
-            "title": entry.title,
-            "link": entry.link,
-            "published": entry.get("published", ""),
-            "source": source_name
-        }
+        {"title": entry.title, "link": entry.link, "published": entry.get("published", ""), "source": source_name}
         for entry in feed.entries[:limit]
     ]
 
 news_items = fetch_headlines("https://www.cnbc.com/id/10000664/device/rss/rss.html", "CNBC", 8)
 
 data = {
-    "us_10y": round(float(fred.get_series("DGS10").dropna().iloc[-1]), 2),
-    "uk_10y": round(float(fred.get_series("IRLTLT01GBM156N").dropna().iloc[-1]), 2),
-    "fed_rate": round(float(fred.get_series("FEDFUNDS").dropna().iloc[-1]), 2),
-    "ecb_rate": round(float(fred.get_series("ECBDFR").dropna().iloc[-1]), 2),
-    "cpi": round(float(fred.get_series("CPIAUCSL").dropna().iloc[-1]), 2),
-    "unemployment": round(float(fred.get_series("UNRATE").dropna().iloc[-1]), 2),
-    "uk_cpi": round(float(fred.get_series("GBRCPIALLMINMEI").dropna().iloc[-1]), 2),
-    "uk_unemployment": round(float(fred.get_series("LRHUTTTTGBM156S").dropna().iloc[-1]), 2),
-    "eurozone_cpi": round(float(fred.get_series("CP0000EZ19M086NEST").dropna().iloc[-1]), 2),
-    "eurozone_unemployment": round(float(fred.get_series("LRHUTTTTEZM156S").dropna().iloc[-1]), 2),
-    "us_10y_history": us_10y_history,
-    "uk_10y_history": uk_10y_history,
-    "eurozone_10y_history": eurozone_10y_history,
+    "indicators": indicators,
     "news": news_items,
     "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    }
-
-# Work out trend direction for each field by comparing to the previous value
-# Thresholds for what counts as a "notable" move, per indicator
-notable_thresholds = {
-    "us_10y": 0.05,
-    "uk_10y": 0.05,
-    "eurozone_10y": 0.05,
-    "fed_rate": 0.25,
-    "ecb_rate": 0.25,
-    "unemployment": 0.2,
-    "uk_unemployment": 0.2,
-    "eurozone_unemployment": 0.2,
 }
-percent_based_keys = ["cpi", "uk_cpi", "eurozone_cpi"]
-
-trend = {}
-notable = {}
-for key in ["us_10y", "uk_10y", "fed_rate", "ecb_rate", "cpi", "unemployment", "uk_cpi", "uk_unemployment", "eurozone_cpi", "eurozone_unemployment"]:
-    old_value = previous_data.get(key)
-    new_value = data[key]
-
-    if old_value is None:
-        trend[key] = "same"
-        notable[key] = False
-        continue
-
-    if new_value > old_value:
-        trend[key] = "up"
-    elif new_value < old_value:
-        trend[key] = "down"
-    else:
-        trend[key] = "same"
-
-    change = abs(new_value - old_value)
-
-    if key in percent_based_keys:
-        percent_change = (change / old_value) * 100
-        notable[key] = percent_change >= 0.3
-    else:
-        threshold = notable_thresholds.get(key, 999)
-        notable[key] = change >= threshold
-
-data["trend"] = trend
-data["notable"] = notable
 
 with open("data.json", "w") as f:
     json.dump(data, f, indent=4)
