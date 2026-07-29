@@ -1,236 +1,310 @@
 {
-    "us_10y": 4.61,
-    "uk_10y": 4.8,
-    "fed_rate": 3.63,
-    "ecb_rate": 2.25,
-    "cpi": 332.57,
-    "unemployment": 4.2,
-    "uk_cpi": 136.1,
-    "uk_unemployment": 5.0,
-    "eurozone_cpi": 103.0,
-    "eurozone_unemployment": 6.7,
-    "us_10y_history": [
-        {
-            "date": "2026-06-15",
-            "value": 4.47
+    "indicators": {
+        "us_10y": {
+            "label": "US 10Y Treasury Yield",
+            "unit": "%",
+            "history": [
+                {
+                    "date": "2026-06-15",
+                    "value": 4.47
+                },
+                {
+                    "date": "2026-06-16",
+                    "value": 4.43
+                },
+                {
+                    "date": "2026-06-17",
+                    "value": 4.49
+                },
+                {
+                    "date": "2026-06-18",
+                    "value": 4.46
+                },
+                {
+                    "date": "2026-06-22",
+                    "value": 4.51
+                },
+                {
+                    "date": "2026-06-23",
+                    "value": 4.5
+                },
+                {
+                    "date": "2026-06-24",
+                    "value": 4.41
+                },
+                {
+                    "date": "2026-06-25",
+                    "value": 4.4
+                },
+                {
+                    "date": "2026-06-26",
+                    "value": 4.38
+                },
+                {
+                    "date": "2026-06-29",
+                    "value": 4.38
+                },
+                {
+                    "date": "2026-06-30",
+                    "value": 4.44
+                },
+                {
+                    "date": "2026-07-01",
+                    "value": 4.48
+                },
+                {
+                    "date": "2026-07-02",
+                    "value": 4.49
+                },
+                {
+                    "date": "2026-07-06",
+                    "value": 4.48
+                },
+                {
+                    "date": "2026-07-07",
+                    "value": 4.55
+                },
+                {
+                    "date": "2026-07-08",
+                    "value": 4.56
+                },
+                {
+                    "date": "2026-07-09",
+                    "value": 4.54
+                },
+                {
+                    "date": "2026-07-10",
+                    "value": 4.56
+                },
+                {
+                    "date": "2026-07-13",
+                    "value": 4.62
+                },
+                {
+                    "date": "2026-07-14",
+                    "value": 4.58
+                },
+                {
+                    "date": "2026-07-15",
+                    "value": 4.55
+                },
+                {
+                    "date": "2026-07-16",
+                    "value": 4.57
+                },
+                {
+                    "date": "2026-07-17",
+                    "value": 4.55
+                },
+                {
+                    "date": "2026-07-20",
+                    "value": 4.6
+                },
+                {
+                    "date": "2026-07-21",
+                    "value": 4.63
+                },
+                {
+                    "date": "2026-07-22",
+                    "value": 4.67
+                },
+                {
+                    "date": "2026-07-23",
+                    "value": 4.71
+                },
+                {
+                    "date": "2026-07-24",
+                    "value": 4.69
+                },
+                {
+                    "date": "2026-07-27",
+                    "value": 4.65
+                },
+                {
+                    "date": "2026-07-28",
+                    "value": 4.61
+                }
+            ],
+            "value": 4.61,
+            "change": -0.04,
+            "compared_date": "2026-07-27",
+            "trend": "down"
         },
-        {
-            "date": "2026-06-16",
-            "value": 4.43
+        "fed_rate": {
+            "label": "Fed Funds Rate",
+            "unit": "%",
+            "history": [
+                {
+                    "date": "2025-07-01",
+                    "value": 4.33
+                },
+                {
+                    "date": "2025-08-01",
+                    "value": 4.33
+                },
+                {
+                    "date": "2025-09-01",
+                    "value": 4.22
+                },
+                {
+                    "date": "2025-10-01",
+                    "value": 4.09
+                },
+                {
+                    "date": "2025-11-01",
+                    "value": 3.88
+                },
+                {
+                    "date": "2025-12-01",
+                    "value": 3.72
+                },
+                {
+                    "date": "2026-01-01",
+                    "value": 3.64
+                },
+                {
+                    "date": "2026-02-01",
+                    "value": 3.64
+                },
+                {
+                    "date": "2026-03-01",
+                    "value": 3.64
+                },
+                {
+                    "date": "2026-04-01",
+                    "value": 3.64
+                },
+                {
+                    "date": "2026-05-01",
+                    "value": 3.63
+                },
+                {
+                    "date": "2026-06-01",
+                    "value": 3.63
+                }
+            ],
+            "value": 3.63,
+            "change": 0.0,
+            "compared_date": "2026-05-01",
+            "trend": "same"
         },
-        {
-            "date": "2026-06-17",
-            "value": 4.49
+        "us_cpi_yoy": {
+            "label": "US Inflation (YoY)",
+            "unit": "%",
+            "history": [
+                {
+                    "date": "2025-06-01",
+                    "value": 2.68
+                },
+                {
+                    "date": "2025-07-01",
+                    "value": 2.74
+                },
+                {
+                    "date": "2025-08-01",
+                    "value": 2.94
+                },
+                {
+                    "date": "2025-09-01",
+                    "value": 3.02
+                },
+                {
+                    "date": "2025-11-01",
+                    "value": 2.7
+                },
+                {
+                    "date": "2025-12-01",
+                    "value": 2.65
+                },
+                {
+                    "date": "2026-01-01",
+                    "value": 2.39
+                },
+                {
+                    "date": "2026-02-01",
+                    "value": 2.43
+                },
+                {
+                    "date": "2026-03-01",
+                    "value": 3.29
+                },
+                {
+                    "date": "2026-04-01",
+                    "value": 3.78
+                },
+                {
+                    "date": "2026-05-01",
+                    "value": 4.17
+                },
+                {
+                    "date": "2026-06-01",
+                    "value": 3.46
+                }
+            ],
+            "value": 3.46,
+            "change": -0.71,
+            "compared_date": "2026-05-01",
+            "trend": "down"
         },
-        {
-            "date": "2026-06-18",
-            "value": 4.46
-        },
-        {
-            "date": "2026-06-22",
-            "value": 4.51
-        },
-        {
-            "date": "2026-06-23",
-            "value": 4.5
-        },
-        {
-            "date": "2026-06-24",
-            "value": 4.41
-        },
-        {
-            "date": "2026-06-25",
-            "value": 4.4
-        },
-        {
-            "date": "2026-06-26",
-            "value": 4.38
-        },
-        {
-            "date": "2026-06-29",
-            "value": 4.38
-        },
-        {
-            "date": "2026-06-30",
-            "value": 4.44
-        },
-        {
-            "date": "2026-07-01",
-            "value": 4.48
-        },
-        {
-            "date": "2026-07-02",
-            "value": 4.49
-        },
-        {
-            "date": "2026-07-06",
-            "value": 4.48
-        },
-        {
-            "date": "2026-07-07",
-            "value": 4.55
-        },
-        {
-            "date": "2026-07-08",
-            "value": 4.56
-        },
-        {
-            "date": "2026-07-09",
-            "value": 4.54
-        },
-        {
-            "date": "2026-07-10",
-            "value": 4.56
-        },
-        {
-            "date": "2026-07-13",
-            "value": 4.62
-        },
-        {
-            "date": "2026-07-14",
-            "value": 4.58
-        },
-        {
-            "date": "2026-07-15",
-            "value": 4.55
-        },
-        {
-            "date": "2026-07-16",
-            "value": 4.57
-        },
-        {
-            "date": "2026-07-17",
-            "value": 4.55
-        },
-        {
-            "date": "2026-07-20",
-            "value": 4.6
-        },
-        {
-            "date": "2026-07-21",
-            "value": 4.63
-        },
-        {
-            "date": "2026-07-22",
-            "value": 4.67
-        },
-        {
-            "date": "2026-07-23",
-            "value": 4.71
-        },
-        {
-            "date": "2026-07-24",
-            "value": 4.69
-        },
-        {
-            "date": "2026-07-27",
-            "value": 4.65
-        },
-        {
-            "date": "2026-07-28",
-            "value": 4.61
+        "us_debt_gdp": {
+            "label": "US Federal Debt (% of GDP)",
+            "unit": "%",
+            "history": [
+                {
+                    "date": "2023-04-01",
+                    "value": 117.44
+                },
+                {
+                    "date": "2023-07-01",
+                    "value": 118.14
+                },
+                {
+                    "date": "2023-10-01",
+                    "value": 119.62
+                },
+                {
+                    "date": "2024-01-01",
+                    "value": 120.48
+                },
+                {
+                    "date": "2024-04-01",
+                    "value": 119.5
+                },
+                {
+                    "date": "2024-07-01",
+                    "value": 120.17
+                },
+                {
+                    "date": "2024-10-01",
+                    "value": 121.44
+                },
+                {
+                    "date": "2025-01-01",
+                    "value": 120.55
+                },
+                {
+                    "date": "2025-04-01",
+                    "value": 118.78
+                },
+                {
+                    "date": "2025-07-01",
+                    "value": 121.03
+                },
+                {
+                    "date": "2025-10-01",
+                    "value": 122.57
+                },
+                {
+                    "date": "2026-01-01",
+                    "value": 122.59
+                }
+            ],
+            "value": 122.59,
+            "change": 0.02,
+            "compared_date": "2025-10-01",
+            "trend": "up"
         }
-    ],
-    "uk_10y_history": [
-        {
-            "date": "2025-07-01",
-            "value": 4.59
-        },
-        {
-            "date": "2025-08-01",
-            "value": 4.64
-        },
-        {
-            "date": "2025-09-01",
-            "value": 4.69
-        },
-        {
-            "date": "2025-10-01",
-            "value": 4.57
-        },
-        {
-            "date": "2025-11-01",
-            "value": 4.5
-        },
-        {
-            "date": "2025-12-01",
-            "value": 4.48
-        },
-        {
-            "date": "2026-01-01",
-            "value": 4.45
-        },
-        {
-            "date": "2026-02-01",
-            "value": 4.43
-        },
-        {
-            "date": "2026-03-01",
-            "value": 4.7
-        },
-        {
-            "date": "2026-04-01",
-            "value": 4.82
-        },
-        {
-            "date": "2026-05-01",
-            "value": 4.94
-        },
-        {
-            "date": "2026-06-01",
-            "value": 4.8
-        }
-    ],
-    "eurozone_10y_history": [
-        {
-            "date": "2025-02-01",
-            "value": 2.99
-        },
-        {
-            "date": "2025-03-01",
-            "value": 3.31
-        },
-        {
-            "date": "2025-04-01",
-            "value": 3.1
-        },
-        {
-            "date": "2025-05-01",
-            "value": 3.07
-        },
-        {
-            "date": "2025-06-01",
-            "value": 3.08
-        },
-        {
-            "date": "2025-07-01",
-            "value": 3.17
-        },
-        {
-            "date": "2025-08-01",
-            "value": 3.21
-        },
-        {
-            "date": "2025-09-01",
-            "value": 3.23
-        },
-        {
-            "date": "2025-10-01",
-            "value": 3.12
-        },
-        {
-            "date": "2025-11-01",
-            "value": 3.14
-        },
-        {
-            "date": "2025-12-01",
-            "value": 3.24
-        },
-        {
-            "date": "2026-01-01",
-            "value": 3.22
-        }
-    ],
+    },
     "news": [
         {
             "title": "Jeffrey Gundlach says the bond market is telling Warsh the Fed has to start acting on inflation",
@@ -281,29 +355,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-29 20:32 UTC",
-    "trend": {
-        "us_10y": "down",
-        "uk_10y": "same",
-        "fed_rate": "same",
-        "ecb_rate": "same",
-        "cpi": "same",
-        "unemployment": "same",
-        "uk_cpi": "same",
-        "uk_unemployment": "same",
-        "eurozone_cpi": "same",
-        "eurozone_unemployment": "same"
-    },
-    "notable": {
-        "us_10y": false,
-        "uk_10y": false,
-        "fed_rate": false,
-        "ecb_rate": false,
-        "cpi": false,
-        "unemployment": false,
-        "uk_cpi": false,
-        "uk_unemployment": false,
-        "eurozone_cpi": false,
-        "eurozone_unemployment": false
-    }
+    "last_updated": "2026-07-29 20:37 UTC"
 }
