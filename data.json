@@ -351,10 +351,6 @@
             "unit": "",
             "history": [
                 {
-                    "date": "2026-06-15",
-                    "value": 7554.29
-                },
-                {
                     "date": "2026-06-16",
                     "value": 7511.35
                 },
@@ -469,12 +465,16 @@
                 {
                     "date": "2026-07-28",
                     "value": 7428.78
+                },
+                {
+                    "date": "2026-07-29",
+                    "value": 7316.15
                 }
             ],
-            "value": 7428.78,
-            "change": 15.6,
-            "compared_date": "2026-07-27",
-            "trend": "up"
+            "value": 7316.15,
+            "change": -112.63,
+            "compared_date": "2026-07-28",
+            "trend": "down"
         },
         "dollar_index": {
             "label": "US Dollar Index",
@@ -609,9 +609,27 @@
     },
     "news": [
         {
+            "title": "The U.S. wants Asia to use its AI \u2014 but China dominates cheaper models",
+            "link": "https://www.cnbc.com/2026/07/30/us-wants-asia-to-use-its-ai-but-china-dominates-cheaper-models.html",
+            "published": "Wed, 29 Jul 2026 23:10:46 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Here are the last times the Dow dropped by 1,000 points and what happened next",
+            "link": "https://www.cnbc.com/2026/07/29/the-last-times-the-dow-fell-1000-points-and-what-happened-next.html",
+            "published": "Wed, 29 Jul 2026 21:43:50 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Here are the five big takeaways from this week's Fed meeting",
+            "link": "https://www.cnbc.com/2026/07/29/here-are-the-five-big-takeaways-from-this-weeks-fed-meeting.html",
+            "published": "Wed, 29 Jul 2026 22:54:09 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Jeffrey Gundlach says the bond market is telling Warsh the Fed has to start acting on inflation",
             "link": "https://www.cnbc.com/2026/07/29/gundlach-says-the-bond-market-is-signaling-the-fed-has-to-act-on-inflation.html",
-            "published": "Wed, 29 Jul 2026 20:22:27 GMT",
+            "published": "Wed, 29 Jul 2026 22:20:18 GMT",
             "source": "CNBC"
         },
         {
@@ -637,25 +655,7 @@
             "link": "https://www.cnbc.com/2026/07/28/meta-q2-earnings-call-mentions-kalshi-market-odds-.html",
             "published": "Tue, 28 Jul 2026 17:40:03 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "The future of Wall Street is here as startups and brokers build AI agents to trade 24/7",
-            "link": "https://www.cnbc.com/2026/07/28/ai-agents-build-to-trade-24/7-the-future-of-wall-street.html",
-            "published": "Tue, 28 Jul 2026 16:16:25 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Visa is cutting 7% of employees in efficiency push as AI reshapes work",
-            "link": "https://www.cnbc.com/2026/07/28/visa-is-cutting-7percent-of-employees-in-efficiency-push-as-ai-reshapes-work.html",
-            "published": "Tue, 28 Jul 2026 15:35:48 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "CME launches single stock futures enabling investors to trade SpaceX, Micron and others 23 hours a day",
-            "link": "https://www.cnbc.com/2026/07/27/cme-launches-single-stock-futures-enabling-investors-to-trade-spacex-micron-23-hours-a-day.html",
-            "published": "Mon, 27 Jul 2026 18:06:35 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-29 20:45 UTC"
+    "last_updated": "2026-07-30 00:15 UTC"
 }
