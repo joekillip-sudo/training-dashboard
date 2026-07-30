@@ -309,10 +309,6 @@
             "unit": "%",
             "history": [
                 {
-                    "date": "2024-04-01",
-                    "value": 3.6
-                },
-                {
                     "date": "2024-07-01",
                     "value": 3.3
                 },
@@ -339,12 +335,16 @@
                 {
                     "date": "2026-01-01",
                     "value": 2.1
+                },
+                {
+                    "date": "2026-04-01",
+                    "value": 1.5
                 }
             ],
-            "value": 2.1,
-            "change": 1.6,
-            "compared_date": "2025-10-01",
-            "trend": "up"
+            "value": 1.5,
+            "change": -0.6,
+            "compared_date": "2026-01-01",
+            "trend": "down"
         },
         "sp500": {
             "label": "S&P 500",
@@ -623,7 +623,7 @@
         {
             "title": "Here are the last times the Dow dropped by 1,000 points and what happened next",
             "link": "https://www.cnbc.com/2026/07/29/the-last-times-the-dow-fell-1000-points-and-what-happened-next.html",
-            "published": "Wed, 29 Jul 2026 21:43:50 GMT",
+            "published": "Thu, 30 Jul 2026 13:39:36 GMT",
             "source": "CNBC"
         },
         {
@@ -641,7 +641,7 @@
         {
             "title": "Here's what changed in the second Fed statement under Warsh",
             "link": "https://www.cnbc.com/2026/07/29/fed-decision-redline-heres-what-changed-in-the-second-statement-under-warsh.html",
-            "published": "Wed, 29 Jul 2026 18:48:02 GMT",
+            "published": "Thu, 30 Jul 2026 13:42:07 GMT",
             "source": "CNBC"
         },
         {
@@ -657,5 +657,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-30 10:04 UTC"
+    "last_updated": "2026-07-30 16:18 UTC"
 }
