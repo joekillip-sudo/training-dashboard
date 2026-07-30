@@ -5,10 +5,6 @@
             "unit": "%",
             "history": [
                 {
-                    "date": "2026-06-15",
-                    "value": 4.47
-                },
-                {
                     "date": "2026-06-16",
                     "value": 4.43
                 },
@@ -123,12 +119,16 @@
                 {
                     "date": "2026-07-28",
                     "value": 4.61
+                },
+                {
+                    "date": "2026-07-29",
+                    "value": 4.67
                 }
             ],
-            "value": 4.61,
-            "change": -0.04,
-            "compared_date": "2026-07-27",
-            "trend": "down"
+            "value": 4.67,
+            "change": 0.06,
+            "compared_date": "2026-07-28",
+            "trend": "up"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -657,5 +657,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-30 16:18 UTC"
+    "last_updated": "2026-07-30 20:47 UTC"
 }
