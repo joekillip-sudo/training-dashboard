@@ -3,6 +3,7 @@
         "us_10y": {
             "label": "US 10Y Treasury Yield",
             "unit": "%",
+            "group": "Rates & Bonds",
             "history": [
                 {
                     "date": "2026-06-16",
@@ -133,6 +134,7 @@
         "fed_rate": {
             "label": "Fed Funds Rate",
             "unit": "%",
+            "group": "Rates & Bonds",
             "history": [
                 {
                     "date": "2025-07-01",
@@ -191,6 +193,7 @@
         "us_cpi_yoy": {
             "label": "US Inflation (YoY)",
             "unit": "%",
+            "group": "Growth & Prices",
             "history": [
                 {
                     "date": "2025-06-01",
@@ -246,9 +249,112 @@
             "compared_date": "2026-05-01",
             "trend": "down"
         },
+        "us_unemployment": {
+            "label": "US Unemployment",
+            "unit": "%",
+            "group": "Growth & Prices",
+            "history": [
+                {
+                    "date": "2025-06-01",
+                    "value": 4.1
+                },
+                {
+                    "date": "2025-07-01",
+                    "value": 4.3
+                },
+                {
+                    "date": "2025-08-01",
+                    "value": 4.3
+                },
+                {
+                    "date": "2025-09-01",
+                    "value": 4.4
+                },
+                {
+                    "date": "2025-11-01",
+                    "value": 4.5
+                },
+                {
+                    "date": "2025-12-01",
+                    "value": 4.4
+                },
+                {
+                    "date": "2026-01-01",
+                    "value": 4.3
+                },
+                {
+                    "date": "2026-02-01",
+                    "value": 4.4
+                },
+                {
+                    "date": "2026-03-01",
+                    "value": 4.3
+                },
+                {
+                    "date": "2026-04-01",
+                    "value": 4.3
+                },
+                {
+                    "date": "2026-05-01",
+                    "value": 4.3
+                },
+                {
+                    "date": "2026-06-01",
+                    "value": 4.2
+                }
+            ],
+            "value": 4.2,
+            "change": -0.1,
+            "compared_date": "2026-05-01",
+            "trend": "down"
+        },
+        "gdp_growth": {
+            "label": "US GDP Growth (QoQ annualized)",
+            "unit": "%",
+            "group": "Growth & Prices",
+            "history": [
+                {
+                    "date": "2024-07-01",
+                    "value": 3.3
+                },
+                {
+                    "date": "2024-10-01",
+                    "value": 1.9
+                },
+                {
+                    "date": "2025-01-01",
+                    "value": -0.6
+                },
+                {
+                    "date": "2025-04-01",
+                    "value": 3.8
+                },
+                {
+                    "date": "2025-07-01",
+                    "value": 4.4
+                },
+                {
+                    "date": "2025-10-01",
+                    "value": 0.5
+                },
+                {
+                    "date": "2026-01-01",
+                    "value": 2.1
+                },
+                {
+                    "date": "2026-04-01",
+                    "value": 1.5
+                }
+            ],
+            "value": 1.5,
+            "change": -0.6,
+            "compared_date": "2026-01-01",
+            "trend": "down"
+        },
         "us_debt_gdp": {
             "label": "US Federal Debt (% of GDP)",
             "unit": "%",
+            "group": "Growth & Prices",
             "history": [
                 {
                     "date": "2023-04-01",
@@ -304,51 +410,10 @@
             "compared_date": "2025-10-01",
             "trend": "up"
         },
-        "gdp_growth": {
-            "label": "US GDP Growth (QoQ annualized)",
-            "unit": "%",
-            "history": [
-                {
-                    "date": "2024-07-01",
-                    "value": 3.3
-                },
-                {
-                    "date": "2024-10-01",
-                    "value": 1.9
-                },
-                {
-                    "date": "2025-01-01",
-                    "value": -0.6
-                },
-                {
-                    "date": "2025-04-01",
-                    "value": 3.8
-                },
-                {
-                    "date": "2025-07-01",
-                    "value": 4.4
-                },
-                {
-                    "date": "2025-10-01",
-                    "value": 0.5
-                },
-                {
-                    "date": "2026-01-01",
-                    "value": 2.1
-                },
-                {
-                    "date": "2026-04-01",
-                    "value": 1.5
-                }
-            ],
-            "value": 1.5,
-            "change": -0.6,
-            "compared_date": "2026-01-01",
-            "trend": "down"
-        },
         "sp500": {
             "label": "S&P 500",
             "unit": "",
+            "group": "Markets",
             "history": [
                 {
                     "date": "2026-06-16",
@@ -479,6 +544,7 @@
         "dollar_index": {
             "label": "US Dollar Index",
             "unit": "",
+            "group": "Markets",
             "history": [
                 {
                     "date": "2026-06-11",
@@ -609,6 +675,7 @@
         "oil_wti": {
             "label": "Crude Oil (WTI)",
             "unit": " $/bbl",
+            "group": "Markets",
             "history": [
                 {
                     "date": "2026-06-12",
@@ -787,5 +854,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-31 08:44 UTC"
+    "last_updated": "2026-07-31 08:58 UTC"
 }
