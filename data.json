@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-02-12",
-                    "value": 4.62
-                },
-                {
                     "date": "2025-02-13",
                     "value": 4.52
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-07-29",
                     "value": 4.67
+                },
+                {
+                    "date": "2026-07-30",
+                    "value": 4.68
                 }
             ],
-            "value": 4.67,
-            "change": 0.06,
-            "compared_date": "2026-07-28",
+            "value": 4.68,
+            "change": 0.01,
+            "compared_date": "2026-07-29",
             "trend": "up"
         },
         "fed_rate": {
@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "Investors may want to focus on front end of yield curve \u2014 as Street anticipates next Fed meetings",
+            "link": "https://www.cnbc.com/2026/07/31/top-investment-ideas-as-interest-rate-uncertainty-grips-market-.html",
+            "published": "Fri, 31 Jul 2026 18:46:45 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Fintech broker Clear Street offers investors pre-IPO access to $188 billion AI giant Databricks",
+            "link": "https://www.cnbc.com/2026/07/31/clear-street-pre-ipo-platform-databricks.html",
+            "published": "Fri, 31 Jul 2026 18:20:01 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Why Situational Awareness hedge fund imploded, even in a tame stock market",
             "link": "https://www.cnbc.com/2026/07/31/why-leopold-aschenbrenner-situational-awareness-hedge-fund-imploded.html",
             "published": "Fri, 31 Jul 2026 16:14:54 GMT",
@@ -6830,7 +6842,7 @@
         {
             "title": "How Leopold Aschenbrenner built a $45 billion AI hedge fund \u2014 and lost most of it in days",
             "link": "https://www.cnbc.com/2026/07/31/leopold-aschenbrenner-situational-awareness-fund-fire-sale.html",
-            "published": "Fri, 31 Jul 2026 14:44:44 GMT",
+            "published": "Fri, 31 Jul 2026 20:19:03 GMT",
             "source": "CNBC"
         },
         {
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/07/30/china-us-exports-drop.html",
             "published": "Thu, 30 Jul 2026 22:01:01 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "China threatens retaliation against U.S. humanoid robot ban, says it 'severely damages' relations",
-            "link": "https://www.cnbc.com/2026/07/30/china-us-robot-humanoid-ban-trump-visit.html",
-            "published": "Thu, 30 Jul 2026 02:52:30 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "The U.S. wants Asia to use its AI \u2014 but China dominates cheaper models",
-            "link": "https://www.cnbc.com/2026/07/30/us-wants-asia-to-use-its-ai-but-china-dominates-cheaper-models.html",
-            "published": "Wed, 29 Jul 2026 23:10:46 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-31 16:16 UTC"
+    "last_updated": "2026-07-31 20:51 UTC"
 }
