@@ -32,6 +32,7 @@ indicators["us_debt_gdp"] = {"label": "US Federal Debt (% of GDP)", "unit": "%",
 indicators["gdp_growth"] = {"label": "US GDP Growth (QoQ annualized)", "unit": "%", "history": series_history("A191RL1Q225SBEA", 8)}
 indicators["sp500"] = {"label": "S&P 500", "unit": "", "history": series_history("SP500", 30)}
 indicators["dollar_index"] = {"label": "US Dollar Index", "unit": "", "history": series_history("DTWEXBGS", 30)}
+indicators["oil_wti"] = {"label": "Crude Oil (WTI)", "unit": " $/bbl", "history": series_history("DCOILWTICO", 30)}
 
 # For every indicator, derive current value, trend, and change from its OWN history —
 # this is the fix for the earlier bug: comparisons are always against the last real
