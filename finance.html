@@ -137,42 +137,57 @@ body {
                 });
         }
 
-        function renderIndicators(indicators) {
-            let grid = document.getElementById('indicator-grid');
-            grid.innerHTML = '';
+function renderIndicators(indicators) {
+    let container = document.getElementById('indicator-grid');
+    container.innerHTML = '';
 
-            for (let key in indicators) {
-                let ind = indicators[key];
+    let groupOrder = ["Rates & Bonds", "Markets", "Growth & Prices"];
 
-                let arrowHtml = '<span class="arrow-same">–</span>';
-                if (ind.trend === 'up') arrowHtml = '<span class="arrow-up">▲</span>';
-                if (ind.trend === 'down') arrowHtml = '<span class="arrow-down">▼</span>';
+    groupOrder.forEach(groupName => {
+        let keysInGroup = Object.keys(indicators).filter(key => indicators[key].group === groupName);
+        if (keysInGroup.length === 0) return;
 
-                let changeHtml = '';
-                if (ind.change !== null && ind.compared_date) {
-                    let sign = ind.change > 0 ? '+' : '';
-                    changeHtml = sign + ind.change + ind.unit + ' since ' + ind.compared_date;
-                }
+        let sectionHeader = document.createElement('h2');
+        sectionHeader.textContent = groupName;
+        container.appendChild(sectionHeader);
 
-                let latestDate = ind.history.length > 0 ? ind.history[ind.history.length - 1].date : '--';
+        let grid = document.createElement('div');
+        grid.className = 'grid';
+        container.appendChild(grid);
 
-                let card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="card-label">${ind.label}</div>
-                    <div class="card-value-row">
-                        <div class="card-value">${ind.value}${ind.unit}</div>
-                        ${arrowHtml}
-                    </div>
-                    <div class="card-change">${changeHtml}</div>
-                    <div class="sparkline-wrap"><canvas id="chart-${key}"></canvas></div>
-                    <div class="card-asof">As of ${latestDate}</div>
-                `;
-                grid.appendChild(card);
+        keysInGroup.forEach(key => {
+            let ind = indicators[key];
 
-                drawSparkline(key, ind.history, ind.trend);
+            let arrowHtml = '<span class="arrow-same">–</span>';
+            if (ind.trend === 'up') arrowHtml = '<span class="arrow-up">▲</span>';
+            if (ind.trend === 'down') arrowHtml = '<span class="arrow-down">▼</span>';
+
+            let changeHtml = '';
+            if (ind.change !== null && ind.compared_date) {
+                let sign = ind.change > 0 ? '+' : '';
+                changeHtml = sign + ind.change + ind.unit + ' since ' + ind.compared_date;
             }
-        }
+
+            let latestDate = ind.history.length > 0 ? ind.history[ind.history.length - 1].date : '--';
+
+            let card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-label">${ind.label}</div>
+                <div class="card-value-row">
+                    <div class="card-value">${ind.value}${ind.unit}</div>
+                    ${arrowHtml}
+                </div>
+                <div class="card-change">${changeHtml}</div>
+                <div class="sparkline-wrap"><canvas id="chart-${key}"></canvas></div>
+                <div class="card-asof">As of ${latestDate}</div>
+            `;
+            grid.appendChild(card);
+
+            drawSparkline(key, ind.history, ind.trend);
+        });
+    });
+}
 
         function drawSparkline(key, history, trend) {
             let canvasId = 'chart-' + key;

@@ -25,14 +25,17 @@ def yoy_history(series_id, points):
 
 indicators = {}
 
-indicators["us_10y"] = {"label": "US 10Y Treasury Yield", "unit": "%", "history": series_history("DGS10", 30)}
-indicators["fed_rate"] = {"label": "Fed Funds Rate", "unit": "%", "history": series_history("FEDFUNDS", 12)}
-indicators["us_cpi_yoy"] = {"label": "US Inflation (YoY)", "unit": "%", "history": yoy_history("CPIAUCSL", 12)}
-indicators["us_debt_gdp"] = {"label": "US Federal Debt (% of GDP)", "unit": "%", "history": series_history("GFDEGDQ188S", 12)}
-indicators["gdp_growth"] = {"label": "US GDP Growth (QoQ annualized)", "unit": "%", "history": series_history("A191RL1Q225SBEA", 8)}
-indicators["sp500"] = {"label": "S&P 500", "unit": "", "history": series_history("SP500", 30)}
-indicators["dollar_index"] = {"label": "US Dollar Index", "unit": "", "history": series_history("DTWEXBGS", 30)}
-indicators["oil_wti"] = {"label": "Crude Oil (WTI)", "unit": " $/bbl", "history": series_history("DCOILWTICO", 30)}
+indicators["us_10y"] = {"label": "US 10Y Treasury Yield", "unit": "%", "group": "Rates & Bonds", "history": series_history("DGS10", 30)}
+indicators["fed_rate"] = {"label": "Fed Funds Rate", "unit": "%", "group": "Rates & Bonds", "history": series_history("FEDFUNDS", 12)}
+
+indicators["us_cpi_yoy"] = {"label": "US Inflation (YoY)", "unit": "%", "group": "Growth & Prices", "history": yoy_history("CPIAUCSL", 12)}
+indicators["us_unemployment"] = {"label": "US Unemployment", "unit": "%", "group": "Growth & Prices", "history": series_history("UNRATE", 12)}
+indicators["gdp_growth"] = {"label": "US GDP Growth (QoQ annualized)", "unit": "%", "group": "Growth & Prices", "history": series_history("A191RL1Q225SBEA", 8)}
+indicators["us_debt_gdp"] = {"label": "US Federal Debt (% of GDP)", "unit": "%", "group": "Growth & Prices", "history": series_history("GFDEGDQ188S", 12)}
+
+indicators["sp500"] = {"label": "S&P 500", "unit": "", "group": "Markets", "history": series_history("SP500", 30)}
+indicators["dollar_index"] = {"label": "US Dollar Index", "unit": "", "group": "Markets", "history": series_history("DTWEXBGS", 30)}
+indicators["oil_wti"] = {"label": "Crude Oil (WTI)", "unit": " $/bbl", "group": "Markets", "history": series_history("DCOILWTICO", 30)}
 
 # For every indicator, derive current value, trend, and change from its OWN history —
 # this is the fix for the earlier bug: comparisons are always against the last real
