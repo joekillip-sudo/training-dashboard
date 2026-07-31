@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joe's Dashboards</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0a1930;
+      color: white;
+      font-family: -apple-system, Arial, sans-serif;
+      padding: 40px 20px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 24px;
+      color: #4fc3f7;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      color: #6b7c93;
+      font-size: 13px;
+      margin-bottom: 32px;
+    }
+    .link-card {
+      display: block;
+      background-color: #16273f;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .link-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+    .link-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .link-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .link-desc {
+      font-size: 12.5px;
+      color: #8fa3bf;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dashboards</h1>
+  <div class="subtitle">Twickenham, UK — live personal dashboards</div>
+
+  <a class="link-card" href="dashboard.html">
+    <div class="link-icon">🏃</div>
+    <div>
+      <div class="link-title">Training Log</div>
+      <div class="link-desc">Weekly sessions, planned vs. actual</div>
+    </div>
+  </a>
+
+  <a class="link-card" href="weather.html">
+    <div class="link-icon">🌤️</div>
+    <div>
+      <div class="link-title">Weather</div>
+      <div class="link-desc">Current conditions and today's forecast</div>
+    </div>
+  </a>
+
+  <a class="link-card" href="runway.html">
+    <div class="link-icon">🧭</div>
+    <div>
+      <div class="link-title">Runway Operations</div>
+      <div class="link-desc">Live wind direction and flight path outlook</div>
+    </div>
+  </a>
+
+  <a class="link-card" href="rain.html">
+    <div class="link-icon">🌧️</div>
+    <div>
+      <div class="link-title">Rain Outlook</div>
+      <div class="link-desc">15-day precipitation forecast</div>
+    </div>
+  </a>
+
+  <a class="link-card" href="finance.html">
+    <div class="link-icon">📈</div>
+    <div>
+      <div class="link-title">Macro Dashboard</div>
+      <div class="link-desc">US rates, markets, and economic indicators</div>
+    </div>
+  </a>
+
+</body>
+</html>
