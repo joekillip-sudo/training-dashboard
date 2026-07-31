@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-02-13",
-                    "value": 6115.07
-                },
-                {
                     "date": "2025-02-14",
                     "value": 6114.63
                 },
@@ -3870,12 +3866,16 @@
                 {
                     "date": "2026-07-29",
                     "value": 7316.15
+                },
+                {
+                    "date": "2026-07-30",
+                    "value": 7437.63
                 }
             ],
-            "value": 7316.15,
-            "change": -112.63,
-            "compared_date": "2026-07-28",
-            "trend": "down"
+            "value": 7437.63,
+            "change": 121.48,
+            "compared_date": "2026-07-29",
+            "trend": "up"
         },
         "dollar_index": {
             "label": "US Dollar Index",
@@ -6822,6 +6822,36 @@
     },
     "news": [
         {
+            "title": "Why Situational Awareness hedge fund imploded, even in a tame stock market",
+            "link": "https://www.cnbc.com/2026/07/31/why-leopold-aschenbrenner-situational-awareness-hedge-fund-imploded.html",
+            "published": "Fri, 31 Jul 2026 16:14:54 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "How Leopold Aschenbrenner built a $45 billion AI hedge fund \u2014 and lost most of it in days",
+            "link": "https://www.cnbc.com/2026/07/31/leopold-aschenbrenner-situational-awareness-fund-fire-sale.html",
+            "published": "Fri, 31 Jul 2026 14:44:44 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "New York sues Kalshi, says prediction market is running 'illegal gambling operation'",
+            "link": "https://www.cnbc.com/2026/07/31/new-york-sues-kalshi-claims-it-is-illegal-gambling-operation.html",
+            "published": "Fri, 31 Jul 2026 15:31:24 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Fed officials who voted to hike rates say action is needed now against inflation",
+            "link": "https://www.cnbc.com/2026/07/31/fed-officials-who-voted-to-hike-rates-say-action-is-needed-now-against-inflation.html",
+            "published": "Fri, 31 Jul 2026 14:35:52 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "More consumer companies are staying private for longer, avoiding the IPO road",
+            "link": "https://www.cnbc.com/2026/07/31/private-consumer-companies-ipo.html",
+            "published": "Fri, 31 Jul 2026 11:30:01 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "China\u2019s U.S.-bound shipments fall in July after brief recovery, survey shows",
             "link": "https://www.cnbc.com/2026/07/30/china-us-exports-drop.html",
             "published": "Thu, 30 Jul 2026 22:01:01 GMT",
@@ -6838,37 +6868,7 @@
             "link": "https://www.cnbc.com/2026/07/30/us-wants-asia-to-use-its-ai-but-china-dominates-cheaper-models.html",
             "published": "Wed, 29 Jul 2026 23:10:46 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Here are the last times the Dow dropped by 1,000 points and what happened next",
-            "link": "https://www.cnbc.com/2026/07/29/the-last-times-the-dow-fell-1000-points-and-what-happened-next.html",
-            "published": "Thu, 30 Jul 2026 13:39:36 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Here are the five big takeaways from this week's Fed meeting",
-            "link": "https://www.cnbc.com/2026/07/29/here-are-the-five-big-takeaways-from-this-weeks-fed-meeting.html",
-            "published": "Wed, 29 Jul 2026 22:54:09 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Jeffrey Gundlach says the bond market is telling Warsh the Fed has to start acting on inflation",
-            "link": "https://www.cnbc.com/2026/07/29/gundlach-says-the-bond-market-is-signaling-the-fed-has-to-act-on-inflation.html",
-            "published": "Wed, 29 Jul 2026 22:20:18 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Here's what changed in the second Fed statement under Warsh",
-            "link": "https://www.cnbc.com/2026/07/29/fed-decision-redline-heres-what-changed-in-the-second-statement-under-warsh.html",
-            "published": "Thu, 30 Jul 2026 13:42:07 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Divided Fed holds interest rates steady, but three members voted to hike",
-            "link": "https://www.cnbc.com/2026/07/29/fed-rate-decision-july-2026.html",
-            "published": "Wed, 29 Jul 2026 18:58:16 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-31 09:08 UTC"
+    "last_updated": "2026-07-31 16:16 UTC"
 }
