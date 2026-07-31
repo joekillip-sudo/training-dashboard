@@ -39,7 +39,14 @@ body {
             border-radius: 12px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.06);
             border: 1px solid #eef0f2;
+            
         }
+        .card {
+    cursor: pointer;
+}
+.card.expanded .sparkline-wrap {
+    height: 320px;
+}
         .card-label {
             font-size: 12px;
             font-weight: 600;
@@ -182,9 +189,16 @@ function renderIndicators(indicators) {
                 <div class="sparkline-wrap"><canvas id="chart-${key}"></canvas></div>
                 <div class="card-asof">As of ${latestDate}</div>
             `;
-            grid.appendChild(card);
+grid.appendChild(card);
+drawSparkline(key, ind.history, ind.trend);
 
-            drawSparkline(key, ind.history, ind.trend);
+card.addEventListener('click', () => {
+    card.classList.toggle('expanded');
+    let canvasId = 'chart-' + key;
+    if (chartInstances[canvasId]) {
+        chartInstances[canvasId].resize();
+    }
+});        
         });
     });
 }
