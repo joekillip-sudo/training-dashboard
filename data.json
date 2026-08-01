@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-02-14",
-                    "value": 6114.63
-                },
-                {
                     "date": "2025-02-18",
                     "value": 6129.58
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-07-30",
                     "value": 7437.63
+                },
+                {
+                    "date": "2026-07-31",
+                    "value": 7489.72
                 }
             ],
-            "value": 7437.63,
-            "change": 121.48,
-            "compared_date": "2026-07-29",
+            "value": 7489.72,
+            "change": 52.09,
+            "compared_date": "2026-07-30",
             "trend": "up"
         },
         "dollar_index": {
@@ -6830,7 +6830,7 @@
         {
             "title": "Fintech broker Clear Street offers investors pre-IPO access to $188 billion AI giant Databricks",
             "link": "https://www.cnbc.com/2026/07/31/clear-street-pre-ipo-platform-databricks.html",
-            "published": "Fri, 31 Jul 2026 18:20:01 GMT",
+            "published": "Fri, 31 Jul 2026 21:49:40 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-07-31 20:51 UTC"
+    "last_updated": "2026-08-01 00:15 UTC"
 }
