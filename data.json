@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Goldman traders are on pace for a record year. A close-up look at how they're doing it",
+            "link": "https://www.cnbc.com/2026/08/01/goldman-traders-are-on-pace-for-a-record-year-a-close-up-look-at-how-theyre-doing-it.html",
+            "published": "Sat, 01 Aug 2026 20:22:15 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Investors may want to focus on front end of yield curve \u2014 as Street anticipates next Fed meetings",
             "link": "https://www.cnbc.com/2026/07/31/top-investment-ideas-as-interest-rate-uncertainty-grips-market-.html",
             "published": "Fri, 31 Jul 2026 18:46:45 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/07/31/private-consumer-companies-ipo.html",
             "published": "Fri, 31 Jul 2026 11:30:01 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "China\u2019s U.S.-bound shipments fall in July after brief recovery, survey shows",
-            "link": "https://www.cnbc.com/2026/07/30/china-us-exports-drop.html",
-            "published": "Thu, 30 Jul 2026 22:01:01 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-01 20:16 UTC"
+    "last_updated": "2026-08-02 06:47 UTC"
 }
