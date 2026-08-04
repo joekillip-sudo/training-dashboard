@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-02-14",
-                    "value": 4.47
-                },
-                {
                     "date": "2025-02-18",
                     "value": 4.55
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-07-31",
                     "value": 4.75
+                },
+                {
+                    "date": "2026-08-03",
+                    "value": 4.7
                 }
             ],
-            "value": 4.75,
-            "change": 0.07,
-            "compared_date": "2026-07-30",
-            "trend": "up"
+            "value": 4.7,
+            "change": -0.05,
+            "compared_date": "2026-07-31",
+            "trend": "down"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Michael Burry bets against rally: 'We are near a major top, and possible a 1987-type fall'",
+            "link": "https://www.cnbc.com/2026/08/04/michael-burry-bets-against-rally-we-are-near-a-major-top.html",
+            "published": "Tue, 04 Aug 2026 20:43:15 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Polymarket in talks for fundraising round at more than $20 billion valuation",
             "link": "https://www.cnbc.com/2026/08/04/polymarket-seeks-fundraising-round-at-more-than-20-billion-valuation.html",
             "published": "Tue, 04 Aug 2026 13:31:19 GMT",
@@ -6830,7 +6836,7 @@
         {
             "title": "Philadelphia Fed President Paulson content with rates at current level, but keeping an open mind",
             "link": "https://www.cnbc.com/2026/08/04/philadelphia-fed-president-paulson-content-with-current-rates-but-keeping-an-open-mind.html",
-            "published": "Tue, 04 Aug 2026 13:18:15 GMT",
+            "published": "Tue, 04 Aug 2026 17:49:24 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/03/visa-buys-biocatch-fraud-detection.html",
             "published": "Mon, 03 Aug 2026 16:44:25 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Tourism price wars threaten to dim a rare bright spot in China's consumer spending",
-            "link": "https://www.cnbc.com/2026/08/03/china-price-demand-tourism-hotel.html",
-            "published": "Mon, 03 Aug 2026 10:32:09 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-04 16:21 UTC"
+    "last_updated": "2026-08-04 21:04 UTC"
 }
