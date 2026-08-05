@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-02-18",
-                    "value": 4.55
-                },
-                {
                     "date": "2025-02-19",
                     "value": 4.53
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-08-03",
                     "value": 4.7
+                },
+                {
+                    "date": "2026-08-04",
+                    "value": 4.63
                 }
             ],
-            "value": 4.7,
-            "change": -0.05,
-            "compared_date": "2026-07-31",
+            "value": 4.63,
+            "change": -0.07,
+            "compared_date": "2026-08-03",
             "trend": "down"
         },
         "fed_rate": {
@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "Fed Governor Cook says she's 'prepared to act' on rate hike to address inflation",
+            "link": "https://www.cnbc.com/2026/08/05/fed-governor-cook-says-shes-prepared-to-act-on-rate-hike-to-address-inflation.html",
+            "published": "Wed, 05 Aug 2026 20:36:16 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "As Warsh and the Fed contemplate fewer meetings, markets brace for potential volatility ahead",
+            "link": "https://www.cnbc.com/2026/08/05/as-warsh-and-the-fed-contemplate-fewer-meetings-markets-brace-for-potential-volatility-ahead.html",
+            "published": "Wed, 05 Aug 2026 22:35:26 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Bank of America spends $250 million a year on GLP-1 drugs for its employees, CEO says",
             "link": "https://www.cnbc.com/2026/08/05/bank-of-america-ceo-glp-1-drugs-cost.html",
             "published": "Wed, 05 Aug 2026 16:18:29 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/04/philadelphia-fed-president-paulson-content-with-current-rates-but-keeping-an-open-mind.html",
             "published": "Tue, 04 Aug 2026 17:49:24 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Jeff Bezos just filed to sell $4 billion in Amazon. The shares are falling",
-            "link": "https://www.cnbc.com/2026/08/04/jeff-bezos-just-filed-to-sell-4-billion-in-amazon-the-shares-are-falling.html",
-            "published": "Tue, 04 Aug 2026 16:14:49 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Kalshi strikes partnership with compliance tech firm to help companies police insider trading",
-            "link": "https://www.cnbc.com/2026/08/04/kalshi-makes-partnership-with-comply-compliance-tech-company.html",
-            "published": "Tue, 04 Aug 2026 12:05:41 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-05 19:05 UTC"
+    "last_updated": "2026-08-05 23:31 UTC"
 }
