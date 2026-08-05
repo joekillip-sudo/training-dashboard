@@ -5354,26 +5354,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-02-07",
-                    "value": 71.32
-                },
-                {
-                    "date": "2025-02-10",
-                    "value": 72.73
-                },
-                {
-                    "date": "2025-02-11",
-                    "value": 73.67
-                },
-                {
-                    "date": "2025-02-12",
-                    "value": 71.72
-                },
-                {
-                    "date": "2025-02-13",
-                    "value": 71.66
-                },
-                {
                     "date": "2025-02-14",
                     "value": 71.05
                 },
@@ -6812,19 +6792,51 @@
                 {
                     "date": "2026-07-27",
                     "value": 84.25
+                },
+                {
+                    "date": "2026-07-28",
+                    "value": 80.91
+                },
+                {
+                    "date": "2026-07-29",
+                    "value": 86.08
+                },
+                {
+                    "date": "2026-07-30",
+                    "value": 85.15
+                },
+                {
+                    "date": "2026-07-31",
+                    "value": 86.16
+                },
+                {
+                    "date": "2026-08-03",
+                    "value": 81.96
                 }
             ],
-            "value": 84.25,
-            "change": -7.49,
-            "compared_date": "2026-07-24",
+            "value": 81.96,
+            "change": -4.2,
+            "compared_date": "2026-07-31",
             "trend": "down"
         }
     },
     "news": [
         {
+            "title": "Bank of America spends $250 million a year on GLP-1 drugs for its employees, CEO says",
+            "link": "https://www.cnbc.com/2026/08/05/bank-of-america-ceo-glp-1-drugs-cost.html",
+            "published": "Wed, 05 Aug 2026 16:18:29 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Situational Awareness hedge fund meltdown was a warning shot for leveraged markets, BofA CEO says",
+            "link": "https://www.cnbc.com/2026/08/05/bofa-brian-moynihan-situational-awareness-meltdown-was-a-warning-shot.html",
+            "published": "Wed, 05 Aug 2026 15:55:01 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Ken Griffin's Citadel posts best month in years after scooping up Situational Awareness stocks",
             "link": "https://www.cnbc.com/2026/08/05/ken-griffins-citadel-posts-best-month-in-years-after-scooping-up-situational-awareness-stocks.html",
-            "published": "Wed, 05 Aug 2026 11:13:46 GMT",
+            "published": "Wed, 05 Aug 2026 16:17:55 GMT",
             "source": "CNBC"
         },
         {
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/04/kalshi-makes-partnership-with-comply-compliance-tech-company.html",
             "published": "Tue, 04 Aug 2026 12:05:41 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Kalshi traders think July jobs report will come in slightly cooler than economists\u2019 predictions",
-            "link": "https://www.cnbc.com/2026/08/03/kalshi-traders-think-july-jobs-will-come-in-cooler-than-estimates.html",
-            "published": "Mon, 03 Aug 2026 15:59:04 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "California's diesel prices have jumped since the Iran war started, with ripple effects across the country",
-            "link": "https://www.cnbc.com/2026/08/03/californias-diesel-prices-have-jumped-since-the-iran-war-started-with-ripple-effects-across-the-country.html",
-            "published": "Mon, 03 Aug 2026 19:20:25 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-05 13:20 UTC"
+    "last_updated": "2026-08-05 19:05 UTC"
 }
