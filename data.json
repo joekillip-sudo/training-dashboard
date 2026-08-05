@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-02-19",
-                    "value": 6144.15
-                },
-                {
                     "date": "2025-02-20",
                     "value": 6117.52
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-08-03",
                     "value": 7600.5
+                },
+                {
+                    "date": "2026-08-04",
+                    "value": 7736.52
                 }
             ],
-            "value": 7600.5,
-            "change": 110.78,
-            "compared_date": "2026-07-31",
+            "value": 7736.52,
+            "change": 136.02,
+            "compared_date": "2026-08-03",
             "trend": "up"
         },
         "dollar_index": {
@@ -6824,7 +6824,7 @@
         {
             "title": "Michael Burry bets against rally: 'We are near a major top, and possible a 1987-type fall'",
             "link": "https://www.cnbc.com/2026/08/04/michael-burry-bets-against-rally-we-are-near-a-major-top.html",
-            "published": "Tue, 04 Aug 2026 20:43:15 GMT",
+            "published": "Tue, 04 Aug 2026 21:39:30 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-04 21:04 UTC"
+    "last_updated": "2026-08-05 06:15 UTC"
 }
