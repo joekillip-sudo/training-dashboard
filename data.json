@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-02-19",
-                    "value": 4.53
-                },
-                {
                     "date": "2025-02-20",
                     "value": 4.5
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-08-04",
                     "value": 4.63
+                },
+                {
+                    "date": "2026-08-05",
+                    "value": 4.63
                 }
             ],
             "value": 4.63,
-            "change": -0.07,
-            "compared_date": "2026-08-03",
-            "trend": "down"
+            "change": 0.0,
+            "compared_date": "2026-08-04",
+            "trend": "same"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -2411,10 +2411,6 @@
             "unit": "",
             "group": "Markets",
             "history": [
-                {
-                    "date": "2025-02-21",
-                    "value": 6013.13
-                },
                 {
                     "date": "2025-02-24",
                     "value": 5983.25
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-08-05",
                     "value": 7723.55
+                },
+                {
+                    "date": "2026-08-06",
+                    "value": 7709.96
                 }
             ],
-            "value": 7723.55,
-            "change": -12.97,
-            "compared_date": "2026-08-04",
+            "value": 7709.96,
+            "change": -13.59,
+            "compared_date": "2026-08-05",
             "trend": "down"
         },
         "dollar_index": {
@@ -6822,6 +6822,24 @@
     },
     "news": [
         {
+            "title": "Copper jumps to its highest level ever. What the metal is telling us",
+            "link": "https://www.cnbc.com/2026/08/06/copper-jumps-to-its-highest-level-ever-what-the-metal-is-telling-us-.html",
+            "published": "Thu, 06 Aug 2026 20:07:51 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "United Wholesale Mortgage plunges 35% after suspending dividend and raising capital",
+            "link": "https://www.cnbc.com/2026/08/06/united-wholesale-mortgage-plunges-40percent-suspends-dividend-raises-capital-.html",
+            "published": "Thu, 06 Aug 2026 20:37:51 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Traders on Kalshi now think it's likely that the S&P 500 will hit 8,000 in 2026",
+            "link": "https://www.cnbc.com/2026/08/06/traders-on-kalshi-say-its-likely-sp-500-will-hit-8000-in-2026.html",
+            "published": "Thu, 06 Aug 2026 14:48:42 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Fed Governor Cook says she's 'prepared to act' on rate hike to address inflation",
             "link": "https://www.cnbc.com/2026/08/05/fed-governor-cook-says-shes-prepared-to-act-on-rate-hike-to-address-inflation.html",
             "published": "Wed, 05 Aug 2026 20:36:16 GMT",
@@ -6836,7 +6854,7 @@
         {
             "title": "Bank of America spends $250 million a year on GLP-1 drugs for its employees, CEO says",
             "link": "https://www.cnbc.com/2026/08/05/bank-of-america-ceo-glp-1-drugs-cost.html",
-            "published": "Wed, 05 Aug 2026 16:18:29 GMT",
+            "published": "Thu, 06 Aug 2026 13:25:12 GMT",
             "source": "CNBC"
         },
         {
@@ -6850,25 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/05/ken-griffins-citadel-posts-best-month-in-years-after-scooping-up-situational-awareness-stocks.html",
             "published": "Wed, 05 Aug 2026 16:17:55 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Michael Burry bets against rally: 'We are near a major top, and possible a 1987-type fall'",
-            "link": "https://www.cnbc.com/2026/08/04/michael-burry-bets-against-rally-we-are-near-a-major-top.html",
-            "published": "Tue, 04 Aug 2026 21:39:30 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Polymarket in talks for fundraising round at more than $20 billion valuation",
-            "link": "https://www.cnbc.com/2026/08/04/polymarket-seeks-fundraising-round-at-more-than-20-billion-valuation.html",
-            "published": "Tue, 04 Aug 2026 13:31:19 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Philadelphia Fed President Paulson content with rates at current level, but keeping an open mind",
-            "link": "https://www.cnbc.com/2026/08/04/philadelphia-fed-president-paulson-content-with-current-rates-but-keeping-an-open-mind.html",
-            "published": "Tue, 04 Aug 2026 17:49:24 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-06 10:15 UTC"
+    "last_updated": "2026-08-07 01:53 UTC"
 }
