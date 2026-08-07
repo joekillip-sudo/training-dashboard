@@ -1979,10 +1979,6 @@
             "group": "Growth & Prices",
             "history": [
                 {
-                    "date": "2021-06-01",
-                    "value": 5.9
-                },
-                {
                     "date": "2021-07-01",
                     "value": 5.4
                 },
@@ -2217,11 +2213,15 @@
                 {
                     "date": "2026-06-01",
                     "value": 4.2
+                },
+                {
+                    "date": "2026-07-01",
+                    "value": 4.1
                 }
             ],
-            "value": 4.2,
+            "value": 4.1,
             "change": -0.1,
-            "compared_date": "2026-05-01",
+            "compared_date": "2026-06-01",
             "trend": "down"
         },
         "gdp_growth": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Odds the Fed will hike in September tumble following big July jobs miss",
+            "link": "https://www.cnbc.com/2026/08/07/odds-the-fed-hikes-in-september-tumble-following-big-july-jobs-miss.html",
+            "published": "Fri, 07 Aug 2026 13:34:44 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Copper jumps to its highest level ever. What the metal is telling us",
             "link": "https://www.cnbc.com/2026/08/06/copper-jumps-to-its-highest-level-ever-what-the-metal-is-telling-us-.html",
             "published": "Thu, 06 Aug 2026 20:07:51 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/05/bofa-brian-moynihan-situational-awareness-meltdown-was-a-warning-shot.html",
             "published": "Wed, 05 Aug 2026 15:55:01 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Ken Griffin's Citadel posts best month in years after scooping up Situational Awareness stocks",
-            "link": "https://www.cnbc.com/2026/08/05/ken-griffins-citadel-posts-best-month-in-years-after-scooping-up-situational-awareness-stocks.html",
-            "published": "Wed, 05 Aug 2026 16:17:55 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-07 10:15 UTC"
+    "last_updated": "2026-08-07 14:35 UTC"
 }
