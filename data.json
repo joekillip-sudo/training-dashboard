@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-02-20",
-                    "value": 4.5
-                },
-                {
                     "date": "2025-02-21",
                     "value": 4.42
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-08-05",
                     "value": 4.63
+                },
+                {
+                    "date": "2026-08-06",
+                    "value": 4.69
                 }
             ],
-            "value": 4.63,
-            "change": 0.0,
-            "compared_date": "2026-08-04",
-            "trend": "same"
+            "value": 4.69,
+            "change": 0.06,
+            "compared_date": "2026-08-05",
+            "trend": "up"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-07 20:05 UTC"
+    "last_updated": "2026-08-07 23:07 UTC"
 }
