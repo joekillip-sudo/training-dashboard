@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Berkshire earnings rose last quarter and CEO Greg Abel is starting to deploy Buffett's massive cash hoard",
+            "link": "https://www.cnbc.com/2026/08/08/berkshire-hathaway-earnings-q2-2026.html",
+            "published": "Sat, 08 Aug 2026 13:28:00 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Odds the Fed will hike in September tumble following big July jobs miss",
             "link": "https://www.cnbc.com/2026/08/07/odds-the-fed-hikes-in-september-tumble-following-big-july-jobs-miss.html",
             "published": "Fri, 07 Aug 2026 13:34:44 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/05/bank-of-america-ceo-glp-1-drugs-cost.html",
             "published": "Thu, 06 Aug 2026 13:25:12 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Situational Awareness hedge fund meltdown was a warning shot for leveraged markets, BofA CEO says",
-            "link": "https://www.cnbc.com/2026/08/05/bofa-brian-moynihan-situational-awareness-meltdown-was-a-warning-shot.html",
-            "published": "Wed, 05 Aug 2026 15:55:01 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-08 11:59 UTC"
+    "last_updated": "2026-08-08 14:08 UTC"
 }
