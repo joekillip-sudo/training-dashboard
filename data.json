@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-02-21",
-                    "value": 4.42
-                },
-                {
                     "date": "2025-02-24",
                     "value": 4.4
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-08-06",
                     "value": 4.69
+                },
+                {
+                    "date": "2026-08-07",
+                    "value": 4.65
                 }
             ],
-            "value": 4.69,
-            "change": 0.06,
-            "compared_date": "2026-08-05",
-            "trend": "up"
+            "value": 4.65,
+            "change": -0.04,
+            "compared_date": "2026-08-06",
+            "trend": "down"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -3883,26 +3883,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-02-18",
-                    "value": 127.29
-                },
-                {
-                    "date": "2025-02-19",
-                    "value": 127.73
-                },
-                {
-                    "date": "2025-02-20",
-                    "value": 127.11
-                },
-                {
-                    "date": "2025-02-21",
-                    "value": 127.14
-                },
-                {
-                    "date": "2025-02-24",
-                    "value": 127.19
-                },
-                {
                     "date": "2025-02-25",
                     "value": 127.38
                 },
@@ -5341,12 +5321,32 @@
                 {
                     "date": "2026-07-31",
                     "value": 119.7
+                },
+                {
+                    "date": "2026-08-03",
+                    "value": 120.77
+                },
+                {
+                    "date": "2026-08-04",
+                    "value": 119.6
+                },
+                {
+                    "date": "2026-08-05",
+                    "value": 119.39
+                },
+                {
+                    "date": "2026-08-06",
+                    "value": 119.51
+                },
+                {
+                    "date": "2026-08-07",
+                    "value": 119.06
                 }
             ],
-            "value": 119.7,
-            "change": 0.02,
-            "compared_date": "2026-07-30",
-            "trend": "up"
+            "value": 119.06,
+            "change": -0.45,
+            "compared_date": "2026-08-06",
+            "trend": "down"
         },
         "oil_wti": {
             "label": "Crude Oil (WTI)",
@@ -6822,9 +6822,15 @@
     },
     "news": [
         {
+            "title": "Nvidia lines up $500 billion in financing as CEO Jensen Huang tells CNBC his chips are \u2018investable asset\u2019",
+            "link": "https://www.cnbc.com/2026/08/10/nvidia-wall-street-asset-managers-500-billion-ai-push.html",
+            "published": "Mon, 10 Aug 2026 21:21:37 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Three reasons Goldman's co-head of global banking and markets says to stay invested",
             "link": "https://www.cnbc.com/2026/08/10/three-reasons-goldmans-co-head-of-global-banking-and-markets-says-to-stay-invested.html",
-            "published": "Mon, 10 Aug 2026 16:36:44 GMT",
+            "published": "Mon, 10 Aug 2026 18:36:26 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/06/traders-on-kalshi-say-its-likely-sp-500-will-hit-8000-in-2026.html",
             "published": "Thu, 06 Aug 2026 14:48:42 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Fed Governor Cook says she's 'prepared to act' on rate hike to address inflation",
-            "link": "https://www.cnbc.com/2026/08/05/fed-governor-cook-says-shes-prepared-to-act-on-rate-hike-to-address-inflation.html",
-            "published": "Wed, 05 Aug 2026 20:36:16 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-10 18:02 UTC"
+    "last_updated": "2026-08-10 21:26 UTC"
 }
