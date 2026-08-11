@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Wall Street just endorsed Jensen Huang's 'big concept' for AI. What now?",
+            "link": "https://www.cnbc.com/2026/08/11/wall-street-endorsed-jensen-huangs-big-concept-for-ai-what-now.html",
+            "published": "Tue, 11 Aug 2026 11:15:16 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Nvidia lines up $500 billion in financing as CEO Jensen Huang tells CNBC his chips are \u2018investable asset\u2019",
             "link": "https://www.cnbc.com/2026/08/10/nvidia-wall-street-asset-managers-500-billion-ai-push.html",
             "published": "Mon, 10 Aug 2026 22:09:00 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/06/united-wholesale-mortgage-plunges-40percent-suspends-dividend-raises-capital-.html",
             "published": "Thu, 06 Aug 2026 20:37:51 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Traders on Kalshi now think it's likely that the S&P 500 will hit 8,000 in 2026",
-            "link": "https://www.cnbc.com/2026/08/06/traders-on-kalshi-say-its-likely-sp-500-will-hit-8000-in-2026.html",
-            "published": "Thu, 06 Aug 2026 14:48:42 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-11 08:32 UTC"
+    "last_updated": "2026-08-11 11:33 UTC"
 }
