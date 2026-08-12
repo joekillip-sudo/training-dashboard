@@ -5354,30 +5354,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-02-14",
-                    "value": 71.05
-                },
-                {
-                    "date": "2025-02-18",
-                    "value": 72.21
-                },
-                {
-                    "date": "2025-02-19",
-                    "value": 72.58
-                },
-                {
-                    "date": "2025-02-20",
-                    "value": 72.88
-                },
-                {
-                    "date": "2025-02-21",
-                    "value": 70.72
-                },
-                {
-                    "date": "2025-02-24",
-                    "value": 71.06
-                },
-                {
                     "date": "2025-02-25",
                     "value": 69.15
                 },
@@ -6812,15 +6788,45 @@
                 {
                     "date": "2026-08-03",
                     "value": 81.96
+                },
+                {
+                    "date": "2026-08-04",
+                    "value": 77.33
+                },
+                {
+                    "date": "2026-08-05",
+                    "value": 76.78
+                },
+                {
+                    "date": "2026-08-06",
+                    "value": 78.88
+                },
+                {
+                    "date": "2026-08-07",
+                    "value": 79.77
+                },
+                {
+                    "date": "2026-08-10",
+                    "value": 83.76
+                },
+                {
+                    "date": "2026-08-11",
+                    "value": 84.77
                 }
             ],
-            "value": 81.96,
-            "change": -4.2,
-            "compared_date": "2026-07-31",
-            "trend": "down"
+            "value": 84.77,
+            "change": 1.01,
+            "compared_date": "2026-08-10",
+            "trend": "up"
         }
     },
     "news": [
+        {
+            "title": "SpaceX short sellers are running out of bullets as stock rebounds more than 40% off low",
+            "link": "https://www.cnbc.com/2026/08/12/spacex-short-sellers-are-running-out-of-bullets-as-stock-rebounds-38percent-off-low.html",
+            "published": "Wed, 12 Aug 2026 19:15:54 GMT",
+            "source": "CNBC"
+        },
         {
             "title": "New York City Council announces probe into prediction market platforms\u2019 marketing strategies",
             "link": "https://www.cnbc.com/2026/08/12/new-york-city-council-probes-prediction-markets-marketing-strategies.html",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/11/polymarket-revamps-marketing-expands-us-hiring-ahead-of-fall-events.html",
             "published": "Tue, 11 Aug 2026 20:26:22 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Wall Street just endorsed Jensen Huang's 'big concept' for AI. What now?",
-            "link": "https://www.cnbc.com/2026/08/11/wall-street-endorsed-jensen-huangs-big-concept-for-ai-what-now.html",
-            "published": "Tue, 11 Aug 2026 14:11:05 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-12 16:12 UTC"
+    "last_updated": "2026-08-12 20:04 UTC"
 }
