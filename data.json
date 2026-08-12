@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-02-26",
-                    "value": 5956.06
-                },
-                {
                     "date": "2025-02-27",
                     "value": 5861.57
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-08-10",
                     "value": 7753.11
+                },
+                {
+                    "date": "2026-08-11",
+                    "value": 7728.2
                 }
             ],
-            "value": 7753.11,
-            "change": -4.53,
-            "compared_date": "2026-08-07",
+            "value": 7728.2,
+            "change": -24.91,
+            "compared_date": "2026-08-10",
             "trend": "down"
         },
         "dollar_index": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "EVs dominate China\u2019s car market: 5 takeaways from the country's latest auto sales data",
+            "link": "https://www.cnbc.com/2026/08/12/china-car-sales-data-byd-tesla-geely-vw.html",
+            "published": "Wed, 12 Aug 2026 01:20:13 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Why Jensen Huang\u2019s $500 billion AI financing plan faces a big risk from China",
             "link": "https://www.cnbc.com/2026/08/11/nvidia-ai-funding-jensen-huang-china-risk.html",
             "published": "Tue, 11 Aug 2026 21:01:13 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/10/nvidia-wall-street-asset-managers-500-billion-ai-push.html",
             "published": "Mon, 10 Aug 2026 22:09:00 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Three reasons Goldman's co-head of global banking and markets says to stay invested",
-            "link": "https://www.cnbc.com/2026/08/10/three-reasons-goldmans-co-head-of-global-banking-and-markets-says-to-stay-invested.html",
-            "published": "Mon, 10 Aug 2026 18:36:26 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-11 22:24 UTC"
+    "last_updated": "2026-08-12 05:17 UTC"
 }
