@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "New York City Council announces probe into prediction market platforms\u2019 marketing strategies",
+            "link": "https://www.cnbc.com/2026/08/12/new-york-city-council-probes-prediction-markets-marketing-strategies.html",
+            "published": "Wed, 12 Aug 2026 12:08:39 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "EVs dominate China\u2019s car market: 5 takeaways from the country's latest auto sales data",
             "link": "https://www.cnbc.com/2026/08/12/china-car-sales-data-byd-tesla-geely-vw.html",
             "published": "Wed, 12 Aug 2026 01:20:13 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/11/wall-street-endorsed-jensen-huangs-big-concept-for-ai-what-now.html",
             "published": "Tue, 11 Aug 2026 14:11:05 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Nvidia lines up $500 billion in financing as CEO Jensen Huang tells CNBC his chips are \u2018investable asset\u2019",
-            "link": "https://www.cnbc.com/2026/08/10/nvidia-wall-street-asset-managers-500-billion-ai-push.html",
-            "published": "Mon, 10 Aug 2026 22:09:00 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-12 09:47 UTC"
+    "last_updated": "2026-08-12 12:35 UTC"
 }
