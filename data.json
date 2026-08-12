@@ -1728,10 +1728,6 @@
             "group": "Growth & Prices",
             "history": [
                 {
-                    "date": "2021-06-01",
-                    "value": 5.3
-                },
-                {
                     "date": "2021-07-01",
                     "value": 5.25
                 },
@@ -1966,11 +1962,15 @@
                 {
                     "date": "2026-06-01",
                     "value": 3.46
+                },
+                {
+                    "date": "2026-07-01",
+                    "value": 3.3
                 }
             ],
-            "value": 3.46,
-            "change": -0.71,
-            "compared_date": "2026-05-01",
+            "value": 3.3,
+            "change": -0.16,
+            "compared_date": "2026-06-01",
             "trend": "down"
         },
         "us_unemployment": {
@@ -6848,7 +6848,7 @@
         {
             "title": "AI computing power is becoming a tradable asset class as CME launches futures contracts",
             "link": "https://www.cnbc.com/2026/08/11/ai-computing-power-becomes-a-tradable-asset-class-as-cme-starts-futures.html",
-            "published": "Tue, 11 Aug 2026 18:09:08 GMT",
+            "published": "Wed, 12 Aug 2026 14:14:10 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-12 12:35 UTC"
+    "last_updated": "2026-08-12 16:12 UTC"
 }
