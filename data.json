@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-02-27",
-                    "value": 5861.57
-                },
-                {
                     "date": "2025-02-28",
                     "value": 5954.5
                 },
@@ -3870,12 +3866,16 @@
                 {
                     "date": "2026-08-11",
                     "value": 7728.2
+                },
+                {
+                    "date": "2026-08-12",
+                    "value": 7748.5
                 }
             ],
-            "value": 7728.2,
-            "change": -24.91,
-            "compared_date": "2026-08-10",
-            "trend": "down"
+            "value": 7748.5,
+            "change": 20.3,
+            "compared_date": "2026-08-11",
+            "trend": "up"
         },
         "dollar_index": {
             "label": "US Dollar Index",
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "This Chinese firm has topped Micron and Kioxia in shipments of crucial NAND memory chips",
+            "link": "https://www.cnbc.com/2026/08/13/chinese-firm-tops-micron-kioxia-shipments-nand-memory-chips.html",
+            "published": "Thu, 13 Aug 2026 02:59:50 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "SpaceX short sellers are running out of bullets as stock rebounds more than 40% off low",
             "link": "https://www.cnbc.com/2026/08/12/spacex-short-sellers-are-running-out-of-bullets-as-stock-rebounds-38percent-off-low.html",
             "published": "Wed, 12 Aug 2026 19:15:54 GMT",
@@ -6836,7 +6842,7 @@
         {
             "title": "EVs dominate China\u2019s car market: 5 takeaways from the country's latest auto sales data",
             "link": "https://www.cnbc.com/2026/08/12/china-car-sales-data-byd-tesla-geely-vw.html",
-            "published": "Wed, 12 Aug 2026 01:20:13 GMT",
+            "published": "Thu, 13 Aug 2026 01:31:12 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/11/why-jpmorgan-is-investing-big-in-the-2028-la-olympics.html",
             "published": "Tue, 11 Aug 2026 18:50:37 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Polymarket makes moves to get house in order before expected boom times for prediction markets this fall",
-            "link": "https://www.cnbc.com/2026/08/11/polymarket-revamps-marketing-expands-us-hiring-ahead-of-fall-events.html",
-            "published": "Tue, 11 Aug 2026 20:26:22 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-12 23:21 UTC"
+    "last_updated": "2026-08-13 05:51 UTC"
 }
