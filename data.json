@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "'Big Short' investor Steve Eisman sees an Achilles' heel in the AI boom",
+            "link": "https://www.cnbc.com/2026/08/13/big-short-investor-steve-eisman-sees-an-achilles-heel-in-the-ai-boom.html",
+            "published": "Thu, 13 Aug 2026 15:16:00 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Iran looks to ramp up economic alliance with BRICS nations as war with U.S. drags on",
+            "link": "https://www.cnbc.com/2026/08/13/iran-war-brics-bank.html",
+            "published": "Thu, 13 Aug 2026 13:01:37 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "This Chinese firm has topped Micron and Kioxia in shipments of crucial NAND memory chips",
             "link": "https://www.cnbc.com/2026/08/13/chinese-firm-tops-micron-kioxia-shipments-nand-memory-chips.html",
             "published": "Thu, 13 Aug 2026 02:59:50 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/11/do-state-election-betting-bans-apply-to-prediction-markets.html",
             "published": "Tue, 11 Aug 2026 18:44:16 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "AI computing power is becoming a tradable asset class as CME launches futures contracts",
-            "link": "https://www.cnbc.com/2026/08/11/ai-computing-power-becomes-a-tradable-asset-class-as-cme-starts-futures.html",
-            "published": "Wed, 12 Aug 2026 14:14:10 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Why JPMorgan is investing big in the 2028 LA Olympics",
-            "link": "https://www.cnbc.com/2026/08/11/why-jpmorgan-is-investing-big-in-the-2028-la-olympics.html",
-            "published": "Tue, 11 Aug 2026 18:50:37 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-13 12:36 UTC"
+    "last_updated": "2026-08-13 16:13 UTC"
 }
