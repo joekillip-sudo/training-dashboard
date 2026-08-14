@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-02-27",
-                    "value": 4.29
-                },
-                {
                     "date": "2025-02-28",
                     "value": 4.24
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-08-12",
                     "value": 4.68
+                },
+                {
+                    "date": "2026-08-13",
+                    "value": 4.63
                 }
             ],
-            "value": 4.68,
-            "change": -0.02,
-            "compared_date": "2026-08-11",
+            "value": 4.63,
+            "change": -0.05,
+            "compared_date": "2026-08-12",
             "trend": "down"
         },
         "fed_rate": {
@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "Goldman\u2019s latest cash cow is all about funding the AI infrastructure boom",
+            "link": "https://www.cnbc.com/2026/08/14/goldmans-latest-cash-cow-is-all-about-funding-the-ai-infrastructure-boom.html",
+            "published": "Fri, 14 Aug 2026 20:05:57 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Regulators and banks step up scrutiny of prediction markets",
+            "link": "https://www.cnbc.com/2026/08/14/prediction-markets-scrutiny-mounts-from-regulators-and-banks.html",
+            "published": "Fri, 14 Aug 2026 19:21:49 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Uber partners with China's Pony.ai for 2,000 robotaxis in Europe",
             "link": "https://www.cnbc.com/2026/08/14/uber-partners-with-chinas-ponyai-for-2000-robotaxis-in-europe.html",
             "published": "Fri, 14 Aug 2026 01:02:39 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/12/spacex-short-sellers-are-running-out-of-bullets-as-stock-rebounds-38percent-off-low.html",
             "published": "Wed, 12 Aug 2026 19:15:54 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "New York City Council announces probe into prediction market platforms\u2019 marketing strategies",
-            "link": "https://www.cnbc.com/2026/08/12/new-york-city-council-probes-prediction-markets-marketing-strategies.html",
-            "published": "Wed, 12 Aug 2026 12:08:39 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "EVs dominate China\u2019s car market: 5 takeaways from the country's latest auto sales data",
-            "link": "https://www.cnbc.com/2026/08/12/china-car-sales-data-byd-tesla-geely-vw.html",
-            "published": "Thu, 13 Aug 2026 01:31:12 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-14 18:35 UTC"
+    "last_updated": "2026-08-14 20:18 UTC"
 }
