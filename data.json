@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-02-28",
-                    "value": 5954.5
-                },
-                {
                     "date": "2025-03-03",
                     "value": 5849.72
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-08-12",
                     "value": 7748.5
+                },
+                {
+                    "date": "2026-08-13",
+                    "value": 7798.99
                 }
             ],
-            "value": 7748.5,
-            "change": 20.3,
-            "compared_date": "2026-08-11",
+            "value": 7798.99,
+            "change": 50.49,
+            "compared_date": "2026-08-12",
             "trend": "up"
         },
         "dollar_index": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Uber partners with China's Pony.ai for 2,000 robotaxis in Europe",
+            "link": "https://www.cnbc.com/2026/08/14/uber-partners-with-chinas-ponyai-for-2000-robotaxis-in-europe.html",
+            "published": "Fri, 14 Aug 2026 01:02:39 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "These charts show why stocks keep rallying. Profit margins are the highest on record",
             "link": "https://www.cnbc.com/2026/08/13/these-charts-show-why-stocks-keep-rallying-profit-margins-are-highest-on-record.html",
             "published": "Thu, 13 Aug 2026 20:21:51 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/12/china-car-sales-data-byd-tesla-geely-vw.html",
             "published": "Thu, 13 Aug 2026 01:31:12 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Why Jensen Huang\u2019s $500 billion AI financing plan faces a big risk from China",
-            "link": "https://www.cnbc.com/2026/08/11/nvidia-ai-funding-jensen-huang-china-risk.html",
-            "published": "Tue, 11 Aug 2026 21:01:13 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-13 22:24 UTC"
+    "last_updated": "2026-08-14 05:17 UTC"
 }
