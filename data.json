@@ -3883,26 +3883,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-02-25",
-                    "value": 127.38
-                },
-                {
-                    "date": "2025-02-26",
-                    "value": 127.28
-                },
-                {
-                    "date": "2025-02-27",
-                    "value": 127.97
-                },
-                {
-                    "date": "2025-02-28",
-                    "value": 128.28
-                },
-                {
-                    "date": "2025-03-03",
-                    "value": 127.75
-                },
-                {
                     "date": "2025-03-04",
                     "value": 128.0
                 },
@@ -5324,7 +5304,7 @@
                 },
                 {
                     "date": "2026-08-03",
-                    "value": 120.77
+                    "value": 119.7
                 },
                 {
                     "date": "2026-08-04",
@@ -5341,11 +5321,31 @@
                 {
                     "date": "2026-08-07",
                     "value": 119.06
+                },
+                {
+                    "date": "2026-08-10",
+                    "value": 119.12
+                },
+                {
+                    "date": "2026-08-11",
+                    "value": 119.18
+                },
+                {
+                    "date": "2026-08-12",
+                    "value": 119.12
+                },
+                {
+                    "date": "2026-08-13",
+                    "value": 119.18
+                },
+                {
+                    "date": "2026-08-14",
+                    "value": 118.9
                 }
             ],
-            "value": 119.06,
-            "change": -0.45,
-            "compared_date": "2026-08-06",
+            "value": 118.9,
+            "change": -0.28,
+            "compared_date": "2026-08-13",
             "trend": "down"
         },
         "oil_wti": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Lakers governor Jeanie Buss says siblings cannot sell family\u2019s stake to Bob Iger, Joshua Kushner",
+            "link": "https://www.cnbc.com/2026/08/17/jeanie-buss-opposes-sale-family-stake.html",
+            "published": "Mon, 17 Aug 2026 22:31:32 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Prediction market traders see roughly 1-in-4 odds Paramount\u2019s bid to buy Warner Bros. Discovery fails",
             "link": "https://www.cnbc.com/2026/08/17/pskys-wbd-bid-has-1-in-4-odds-of-falling-through-kalshi-traders-say.html",
             "published": "Mon, 17 Aug 2026 17:43:40 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/13/these-charts-show-why-stocks-keep-rallying-profit-margins-are-highest-on-record.html",
             "published": "Thu, 13 Aug 2026 20:21:51 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "'Big Short' investor Steve Eisman sees an Achilles' heel in the AI boom",
-            "link": "https://www.cnbc.com/2026/08/13/big-short-investor-steve-eisman-sees-an-achilles-heel-in-the-ai-boom.html",
-            "published": "Thu, 13 Aug 2026 15:16:00 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-17 21:02 UTC"
+    "last_updated": "2026-08-17 22:55 UTC"
 }
