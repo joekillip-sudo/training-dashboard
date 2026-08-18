@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "What Chinese liquor maker Moutai's slump says about the country's economy",
+            "link": "https://www.cnbc.com/2026/08/19/china-economy-moutai-ai-property.html",
+            "published": "Tue, 18 Aug 2026 23:18:47 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Analysis: Bond market pressure is squeezing Main Street as Wall Street waits on Warsh",
             "link": "https://www.cnbc.com/2026/08/18/bond-market-treasury-yields-warsh-main-street.html",
             "published": "Tue, 18 Aug 2026 16:48:00 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/14/goldmans-latest-cash-cow-is-all-about-funding-the-ai-infrastructure-boom.html",
             "published": "Fri, 14 Aug 2026 20:05:57 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Regulators and banks step up scrutiny of prediction markets",
-            "link": "https://www.cnbc.com/2026/08/14/prediction-markets-scrutiny-mounts-from-regulators-and-banks.html",
-            "published": "Fri, 14 Aug 2026 19:21:49 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-18 22:56 UTC"
+    "last_updated": "2026-08-18 23:50 UTC"
 }
