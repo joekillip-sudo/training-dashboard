@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-03-04",
-                    "value": 5778.15
-                },
-                {
                     "date": "2025-03-05",
                     "value": 5842.63
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-08-14",
                     "value": 7785.76
+                },
+                {
+                    "date": "2026-08-17",
+                    "value": 7745.06
                 }
             ],
-            "value": 7785.76,
-            "change": -13.23,
-            "compared_date": "2026-08-13",
+            "value": 7745.06,
+            "change": -40.7,
+            "compared_date": "2026-08-14",
             "trend": "down"
         },
         "dollar_index": {
@@ -6834,9 +6834,9 @@
             "source": "CNBC"
         },
         {
-            "title": "Synchrony, credit card issuer to Amazon and Walmart, partners with OpenAI for ChatGPT shopping",
-            "link": "https://www.cnbc.com/2026/08/17/synchrony-openai-chatgpt-shopping.html",
-            "published": "Mon, 17 Aug 2026 18:32:54 GMT",
+            "title": "Credit card issuer Synchrony announces partnership with OpenAI",
+            "link": "https://www.cnbc.com/2026/08/17/synchrony-openai.html",
+            "published": "Tue, 18 Aug 2026 02:48:33 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-17 23:50 UTC"
+    "last_updated": "2026-08-18 03:11 UTC"
 }
