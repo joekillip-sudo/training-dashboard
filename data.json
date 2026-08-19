@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Retail investors aren't entirely giving up on AI trade, but they appear more cautious",
+            "link": "https://www.cnbc.com/2026/08/19/retail-investors-stick-with-ai-trade-but-appear-more-cautious.html",
+            "published": "Wed, 19 Aug 2026 11:09:33 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Goldman studied where AI is squeezing labor markets. Here's what it found",
             "link": "https://www.cnbc.com/2026/08/19/goldman-ai-impact-employment-jobs.html",
             "published": "Wed, 19 Aug 2026 06:55:57 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/17/synchrony-openai.html",
             "published": "Tue, 18 Aug 2026 02:48:33 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Berkshire Hathaway boosts Alphabet to a top three holding, ups Delta and housing bets",
-            "link": "https://www.cnbc.com/2026/08/14/berkshire-hathaway-boosts-alphabet-to-a-top-three-holding-ups-delta-and-housing-bets.html",
-            "published": "Fri, 14 Aug 2026 21:06:48 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-19 10:59 UTC"
+    "last_updated": "2026-08-19 11:57 UTC"
 }
