@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Goldman studied where AI is squeezing labor markets. Here's what it found",
+            "link": "https://www.cnbc.com/2026/08/19/goldman-ai-impact-employment-jobs.html",
+            "published": "Wed, 19 Aug 2026 06:55:57 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "What Chinese liquor maker Moutai's slump says about the country's economy",
             "link": "https://www.cnbc.com/2026/08/19/china-economy-moutai-ai-property.html",
             "published": "Tue, 18 Aug 2026 23:58:09 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/14/berkshire-hathaway-boosts-alphabet-to-a-top-three-holding-ups-delta-and-housing-bets.html",
             "published": "Fri, 14 Aug 2026 21:06:48 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Goldman\u2019s latest cash cow is all about funding the AI infrastructure boom",
-            "link": "https://www.cnbc.com/2026/08/14/goldmans-latest-cash-cow-is-all-about-funding-the-ai-infrastructure-boom.html",
-            "published": "Fri, 14 Aug 2026 20:05:57 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-19 05:17 UTC"
+    "last_updated": "2026-08-19 07:58 UTC"
 }
