@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-03-05",
-                    "value": 5842.63
-                },
-                {
                     "date": "2025-03-06",
                     "value": 5738.52
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-08-17",
                     "value": 7745.06
+                },
+                {
+                    "date": "2026-08-18",
+                    "value": 7691.76
                 }
             ],
-            "value": 7745.06,
-            "change": -40.7,
-            "compared_date": "2026-08-14",
+            "value": 7691.76,
+            "change": -53.3,
+            "compared_date": "2026-08-17",
             "trend": "down"
         },
         "dollar_index": {
@@ -6824,7 +6824,7 @@
         {
             "title": "What Chinese liquor maker Moutai's slump says about the country's economy",
             "link": "https://www.cnbc.com/2026/08/19/china-economy-moutai-ai-property.html",
-            "published": "Tue, 18 Aug 2026 23:18:47 GMT",
+            "published": "Tue, 18 Aug 2026 23:58:09 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-18 23:50 UTC"
+    "last_updated": "2026-08-19 03:13 UTC"
 }
