@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Carvana shares are under pressure this week as Mark Walter probe fuels investor jitters",
+            "link": "https://www.cnbc.com/2026/08/19/carvana-shares-on-pace-for-10percent-weekly-loss-as-mark-walter-probe-fuels-investor-jitters.html",
+            "published": "Wed, 19 Aug 2026 14:33:10 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Retail investors aren't entirely giving up on AI trade, but they appear more cautious",
             "link": "https://www.cnbc.com/2026/08/19/retail-investors-stick-with-ai-trade-but-appear-more-cautious.html",
             "published": "Wed, 19 Aug 2026 11:09:33 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/17/pskys-wbd-bid-has-1-in-4-odds-of-falling-through-kalshi-traders-say.html",
             "published": "Mon, 17 Aug 2026 17:43:40 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Credit card issuer Synchrony announces partnership with OpenAI",
-            "link": "https://www.cnbc.com/2026/08/17/synchrony-openai.html",
-            "published": "Tue, 18 Aug 2026 02:48:33 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-19 11:57 UTC"
+    "last_updated": "2026-08-19 16:03 UTC"
 }
