@@ -6822,15 +6822,21 @@
     },
     "news": [
         {
+            "title": "Samsung plans up to $80 billion in shareholder returns after SK Hynix buyback",
+            "link": "https://www.cnbc.com/2026/08/21/samsung-shareholder-return-package-sk-hynix-buyback-ai-chip-boom.html",
+            "published": "Fri, 21 Aug 2026 09:08:18 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Labubu maker Pop Mart shares fall as key ex-China sales data drop, Citi cuts price target",
             "link": "https://www.cnbc.com/2026/08/21/labubu-maker-pop-mart-shares-fall-after-sales-drop-in-asia-americas-.html",
             "published": "Fri, 21 Aug 2026 07:18:33 GMT",
             "source": "CNBC"
         },
         {
-            "title": "Chinese humanoid robots' biggest obstacle: humans are still (mostly) better",
+            "title": "Chinese humanoid robots' biggest obstacle: Humans are still (mostly) better",
             "link": "https://www.cnbc.com/2026/08/21/chinese-humanoid-robots-face-challenge-of-their-own-capabilities.html",
-            "published": "Fri, 21 Aug 2026 08:01:46 GMT",
+            "published": "Fri, 21 Aug 2026 09:30:55 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/19/goldman-ai-impact-employment-jobs.html",
             "published": "Wed, 19 Aug 2026 06:55:57 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "What Chinese liquor maker Moutai's slump says about the country's economy",
-            "link": "https://www.cnbc.com/2026/08/19/china-economy-moutai-ai-property.html",
-            "published": "Tue, 18 Aug 2026 23:58:09 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-21 08:46 UTC"
+    "last_updated": "2026-08-21 09:41 UTC"
 }
