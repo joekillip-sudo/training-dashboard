@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Crypto extends gains after biggest 3-day rally since 2023",
+            "link": "https://www.cnbc.com/2026/08/24/crypto-extends-gains-after-biggest-3-day-rally-since-2023.html",
+            "published": "Mon, 24 Aug 2026 14:02:54 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Alibaba plunges after announcing $10.2 billion share placement to fund AI push",
             "link": "https://www.cnbc.com/2026/08/24/alibaba-share-placement-drop-ai-hong-kong.html",
             "published": "Mon, 24 Aug 2026 08:21:17 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/21/chinese-humanoid-robots-face-challenge-of-their-own-capabilities.html",
             "published": "Fri, 21 Aug 2026 09:30:55 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "China is defying the global bond yield surge, boosting its diversification appeal",
-            "link": "https://www.cnbc.com/2026/08/20/china-defies-global-bond-yield-surge-safe-haven.html",
-            "published": "Thu, 20 Aug 2026 02:39:14 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-24 13:57 UTC"
+    "last_updated": "2026-08-24 14:51 UTC"
 }
