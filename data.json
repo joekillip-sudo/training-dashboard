@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "HP partners with U.S.-blacklisted Huawei for licensing the Chinese company's WiFi tech",
+            "link": "https://www.cnbc.com/2026/08/25/hp-partners-huawei-wifi-tech-us-entity-list.html",
+            "published": "Wed, 26 Aug 2026 02:01:01 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "China needs U.S. dollars but is building a hedge against Washington\u2019s sanctions",
             "link": "https://www.cnbc.com/2026/08/25/china-iran-us-sanctions-banks-cips.html",
             "published": "Tue, 25 Aug 2026 16:00:40 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/21/kalshi-traders-say-bitcoin-rally-wont-go-much-higher-by-end-of-2026.html",
             "published": "Fri, 21 Aug 2026 17:43:25 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Trump admin taps former JPMorgan Chase exec Matt Zames to advise Social Security agency",
-            "link": "https://www.cnbc.com/2026/08/21/jpmorgan-matt-zames-social-security-administration.html",
-            "published": "Fri, 21 Aug 2026 15:10:31 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-26 01:39 UTC"
+    "last_updated": "2026-08-26 03:10 UTC"
 }
