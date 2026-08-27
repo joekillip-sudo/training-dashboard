@@ -6822,9 +6822,15 @@
     },
     "news": [
         {
+            "title": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
+            "link": "https://www.cnbc.com/2026/08/27/kansas-city-feds-schmid-says-inflation-stubborn-and-sticky-policy-rate-not-restrictive.html",
+            "published": "Thu, 27 Aug 2026 14:11:29 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Z.ai shares surge 8% after releasing new AI model running only on Chinese chips",
             "link": "https://www.cnbc.com/2026/08/27/zai-shares-surge-new-ai-model-using-chinese-chips.html",
-            "published": "Thu, 27 Aug 2026 03:20:14 GMT",
+            "published": "Thu, 27 Aug 2026 05:34:13 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/24/crypto-extends-gains-after-biggest-3-day-rally-since-2023.html",
             "published": "Tue, 25 Aug 2026 13:53:13 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Alibaba plunges after announcing $10.2 billion share placement to fund AI push",
-            "link": "https://www.cnbc.com/2026/08/24/alibaba-share-placement-drop-ai-hong-kong.html",
-            "published": "Mon, 24 Aug 2026 08:21:17 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-27 04:28 UTC"
+    "last_updated": "2026-08-27 16:17 UTC"
 }
