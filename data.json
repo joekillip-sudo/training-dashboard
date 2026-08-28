@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-03-13",
-                    "value": 4.27
-                },
-                {
                     "date": "2025-03-14",
                     "value": 4.31
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-08-26",
                     "value": 4.66
+                },
+                {
+                    "date": "2026-08-27",
+                    "value": 4.67
                 }
             ],
-            "value": 4.66,
-            "change": 0.02,
-            "compared_date": "2026-08-25",
+            "value": 4.67,
+            "change": 0.01,
+            "compared_date": "2026-08-26",
             "trend": "up"
         },
         "fed_rate": {
@@ -6822,6 +6822,24 @@
     },
     "news": [
         {
+            "title": "Corn and wheat prices jump to highest prices in more than three years",
+            "link": "https://www.cnbc.com/2026/08/28/corn-and-wheat-prices-jump-to-highest-prices-in-more-than-three-years.html",
+            "published": "Fri, 28 Aug 2026 20:00:56 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "U.S. appeals court rules against prediction markets, sets up likely fight at Supreme Court",
+            "link": "https://www.cnbc.com/2026/08/28/appeals-court-rules-against-prediction-markets-tees-up-scotus-fight.html",
+            "published": "Fri, 28 Aug 2026 21:57:47 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "September Fed decision is now a coin flip as rate hike odds increase post Warsh",
+            "link": "https://www.cnbc.com/2026/08/28/-september-fed-decision-now-a-coin-flip-as-rate-hike-odds-increase.html",
+            "published": "Fri, 28 Aug 2026 15:22:10 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Trump ratchets up rhetoric against Beijing as U.S.-China officials meet for Xi's Washington visit",
             "link": "https://www.cnbc.com/2026/08/28/trump-x-meeting-us-china-iran-sanctions.html",
             "published": "Fri, 28 Aug 2026 01:35:13 GMT",
@@ -6850,25 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/26/short-drama-china-production-ai-entertainment-economics.html",
             "published": "Wed, 26 Aug 2026 13:20:34 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "HP inks deal with U.S.-blacklisted Huawei for licensing the Chinese company's WiFi tech",
-            "link": "https://www.cnbc.com/2026/08/25/hp-partners-huawei-wifi-tech-us-entity-list.html",
-            "published": "Thu, 27 Aug 2026 03:42:17 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "China needs U.S. dollars but is building a hedge against Washington\u2019s sanctions",
-            "link": "https://www.cnbc.com/2026/08/25/china-iran-us-sanctions-banks-cips.html",
-            "published": "Tue, 25 Aug 2026 16:00:40 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Prediction market traders doubtful Bessent\u2019s bond interventions will push yields lower",
-            "link": "https://www.cnbc.com/2026/08/24/prediction-market-traders-skeptical-bessent-will-send-yields-lower.html",
-            "published": "Mon, 24 Aug 2026 18:40:41 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-28 14:11 UTC"
+    "last_updated": "2026-08-28 23:57 UTC"
 }
