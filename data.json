@@ -6822,9 +6822,15 @@
     },
     "news": [
         {
+            "title": "Trump ratchets up rhetoric against Beijing as U.S.-China officials meet for Xi's Washington visit",
+            "link": "https://www.cnbc.com/2026/08/28/trump-x-meeting-us-china-iran-sanctions.html",
+            "published": "Fri, 28 Aug 2026 01:35:13 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Fed Chairman Kevin Warsh delivers his key Jackson Hole speech Friday. Here's what to expect",
             "link": "https://www.cnbc.com/2026/08/27/fed-chairman-kevin-warsh-delivers-his-key-jackson-hole-speech-friday.html",
-            "published": "Thu, 27 Aug 2026 22:58:01 GMT",
+            "published": "Fri, 28 Aug 2026 11:39:47 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/24/prediction-market-traders-skeptical-bessent-will-send-yields-lower.html",
             "published": "Mon, 24 Aug 2026 18:40:41 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Goldman Sachs partner warns of 'huge danger' in letting AI replace bankers' reasoning skills",
-            "link": "https://www.cnbc.com/2026/08/24/goldman-sachs-ai-partner-danger-skills.html",
-            "published": "Mon, 24 Aug 2026 15:50:50 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-28 01:23 UTC"
+    "last_updated": "2026-08-28 14:11 UTC"
 }
