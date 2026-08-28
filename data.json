@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-03-12",
-                    "value": 4.32
-                },
-                {
                     "date": "2025-03-13",
                     "value": 4.27
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-08-25",
                     "value": 4.64
+                },
+                {
+                    "date": "2026-08-26",
+                    "value": 4.66
                 }
             ],
-            "value": 4.64,
-            "change": -0.06,
-            "compared_date": "2026-08-24",
-            "trend": "down"
+            "value": 4.66,
+            "change": 0.02,
+            "compared_date": "2026-08-25",
+            "trend": "up"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -2411,10 +2411,6 @@
             "unit": "",
             "group": "Markets",
             "history": [
-                {
-                    "date": "2025-03-14",
-                    "value": 5638.94
-                },
                 {
                     "date": "2025-03-17",
                     "value": 5675.12
@@ -3870,12 +3866,16 @@
                 {
                     "date": "2026-08-26",
                     "value": 7675.7
+                },
+                {
+                    "date": "2026-08-27",
+                    "value": 7730.99
                 }
             ],
-            "value": 7675.7,
-            "change": -1.58,
-            "compared_date": "2026-08-25",
-            "trend": "down"
+            "value": 7730.99,
+            "change": 55.29,
+            "compared_date": "2026-08-26",
+            "trend": "up"
         },
         "dollar_index": {
             "label": "US Dollar Index",
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Fed Chairman Kevin Warsh delivers his key Jackson Hole speech Friday. Here's what to expect",
+            "link": "https://www.cnbc.com/2026/08/27/fed-chairman-kevin-warsh-delivers-his-key-jackson-hole-speech-friday.html",
+            "published": "Thu, 27 Aug 2026 22:58:01 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Kansas City Fed's Schmid says inflation 'stubborn' and 'sticky,' policy rate not restrictive",
             "link": "https://www.cnbc.com/2026/08/27/kansas-city-feds-schmid-says-inflation-stubborn-and-sticky-policy-rate-not-restrictive.html",
             "published": "Thu, 27 Aug 2026 14:11:29 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/24/goldman-sachs-ai-partner-danger-skills.html",
             "published": "Mon, 24 Aug 2026 15:50:50 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Crypto extends gains after biggest 3-day rally since 2023",
-            "link": "https://www.cnbc.com/2026/08/24/crypto-extends-gains-after-biggest-3-day-rally-since-2023.html",
-            "published": "Tue, 25 Aug 2026 13:53:13 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-27 16:17 UTC"
+    "last_updated": "2026-08-28 01:23 UTC"
 }
