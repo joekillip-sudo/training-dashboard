@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-03-17",
-                    "value": 5675.12
-                },
-                {
                     "date": "2025-03-18",
                     "value": 5614.66
                 },
@@ -3870,12 +3866,16 @@
                 {
                     "date": "2026-08-27",
                     "value": 7730.99
+                },
+                {
+                    "date": "2026-08-28",
+                    "value": 7711.76
                 }
             ],
-            "value": 7730.99,
-            "change": 55.29,
-            "compared_date": "2026-08-26",
-            "trend": "up"
+            "value": 7711.76,
+            "change": -19.23,
+            "compared_date": "2026-08-27",
+            "trend": "down"
         },
         "dollar_index": {
             "label": "US Dollar Index",
@@ -6830,7 +6830,7 @@
         {
             "title": "U.S. appeals court rules against prediction markets, sets up likely fight at Supreme Court",
             "link": "https://www.cnbc.com/2026/08/28/appeals-court-rules-against-prediction-markets-tees-up-scotus-fight.html",
-            "published": "Fri, 28 Aug 2026 21:57:47 GMT",
+            "published": "Sat, 29 Aug 2026 02:23:52 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-08-28 23:57 UTC"
+    "last_updated": "2026-08-29 06:56 UTC"
 }
