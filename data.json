@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Hugging Face's new duck robot is selling fast. A Chinese chip powers it",
+            "link": "https://www.cnbc.com/2026/09/01/hugging-faces-new-duck-robot-is-selling-fast-a-chinese-chip-powers-it.html",
+            "published": "Tue, 01 Sep 2026 07:30:49 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Markets see Warsh endorsing a rate hike in September. Not everyone is convinced",
             "link": "https://www.cnbc.com/2026/08/31/markets-see-warsh-endorsing-a-rate-hike-in-september-not-everyone-is-convinced.html",
             "published": "Mon, 31 Aug 2026 19:38:38 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/28/corn-and-wheat-prices-jump-to-highest-prices-in-more-than-three-years.html",
             "published": "Fri, 28 Aug 2026 20:00:56 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "U.S. appeals court rules against prediction markets, sets up likely fight at Supreme Court",
-            "link": "https://www.cnbc.com/2026/08/28/appeals-court-rules-against-prediction-markets-tees-up-scotus-fight.html",
-            "published": "Sat, 29 Aug 2026 02:23:52 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-01 01:08 UTC"
+    "last_updated": "2026-09-01 07:33 UTC"
 }
