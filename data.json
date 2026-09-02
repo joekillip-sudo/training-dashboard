@@ -5354,26 +5354,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-03-11",
-                    "value": 66.52
-                },
-                {
-                    "date": "2025-03-12",
-                    "value": 67.65
-                },
-                {
-                    "date": "2025-03-13",
-                    "value": 66.82
-                },
-                {
-                    "date": "2025-03-14",
-                    "value": 67.43
-                },
-                {
-                    "date": "2025-03-17",
-                    "value": 67.84
-                },
-                {
                     "date": "2025-03-18",
                     "value": 67.49
                 },
@@ -6812,15 +6792,41 @@
                 {
                     "date": "2026-08-25",
                     "value": 83.9
+                },
+                {
+                    "date": "2026-08-26",
+                    "value": 83.46
+                },
+                {
+                    "date": "2026-08-27",
+                    "value": 84.81
+                },
+                {
+                    "date": "2026-08-28",
+                    "value": 84.57
+                },
+                {
+                    "date": "2026-08-31",
+                    "value": 87.03
+                },
+                {
+                    "date": "2026-09-01",
+                    "value": 91.48
                 }
             ],
-            "value": 83.9,
-            "change": -2.44,
-            "compared_date": "2026-08-24",
-            "trend": "down"
+            "value": 91.48,
+            "change": 4.45,
+            "compared_date": "2026-08-31",
+            "trend": "up"
         }
     },
     "news": [
+        {
+            "title": "New York Fed's Williams says yield surge due to strong economic prospects",
+            "link": "https://www.cnbc.com/2026/09/02/new-york-feds-williams-says-yield-surge-due-to-strong-economic-prospects.html",
+            "published": "Wed, 02 Sep 2026 17:21:59 GMT",
+            "source": "CNBC"
+        },
         {
             "title": "Berkshire CEO Greg Abel says Japanese bond yields not a challenge for trading houses right now",
             "link": "https://www.cnbc.com/2026/09/02/berkshire-ceo-says-japanese-bond-yields-not-a-challenge-for-trading-houses.html",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/08/31/aon-ceo-says-usi-deal-seeks-to-build-premiere-middle-market-insurance-platform.html",
             "published": "Mon, 31 Aug 2026 15:15:22 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Kalshi partners with brokerage Alpaca as it tries to build its international audience",
-            "link": "https://www.cnbc.com/2026/08/31/kalshi-looks-international-partners-with-brokerage-alpaca.html",
-            "published": "Mon, 31 Aug 2026 18:22:51 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-02 13:27 UTC"
+    "last_updated": "2026-09-02 17:46 UTC"
 }
