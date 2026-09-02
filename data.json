@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-03-19",
-                    "value": 5675.29
-                },
-                {
                     "date": "2025-03-20",
                     "value": 5662.89
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-08-31",
                     "value": 7686.14
+                },
+                {
+                    "date": "2026-09-01",
+                    "value": 7631.47
                 }
             ],
-            "value": 7686.14,
-            "change": -25.62,
-            "compared_date": "2026-08-28",
+            "value": 7631.47,
+            "change": -54.67,
+            "compared_date": "2026-08-31",
             "trend": "down"
         },
         "dollar_index": {
@@ -6836,7 +6836,7 @@
         {
             "title": "Hugging Face's new duck robot is selling fast. A Chinese chip powers it",
             "link": "https://www.cnbc.com/2026/09/01/hugging-faces-new-duck-robot-is-selling-fast-a-chinese-chip-powers-it.html",
-            "published": "Tue, 01 Sep 2026 07:30:49 GMT",
+            "published": "Wed, 02 Sep 2026 00:11:14 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-01 23:10 UTC"
+    "last_updated": "2026-09-02 03:50 UTC"
 }
