@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-03-20",
-                    "value": 4.24
-                },
-                {
                     "date": "2025-03-21",
                     "value": 4.25
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-09-02",
                     "value": 4.79
+                },
+                {
+                    "date": "2026-09-03",
+                    "value": 4.77
                 }
             ],
-            "value": 4.79,
-            "change": 0.0,
-            "compared_date": "2026-09-01",
-            "trend": "same"
+            "value": 4.77,
+            "change": -0.02,
+            "compared_date": "2026-09-02",
+            "trend": "down"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -6824,7 +6824,7 @@
         {
             "title": "White House has vetted candidates for key CFTC vacancies, sources tell CNBC. It's unclear if they will be filled",
             "link": "https://www.cnbc.com/2026/09/04/white-house-has-vetted-candidates-for-key-cftc-vacancies-sources-tell-cnbc.html",
-            "published": "Fri, 04 Sep 2026 16:43:26 GMT",
+            "published": "Fri, 04 Sep 2026 17:53:07 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-04 17:29 UTC"
+    "last_updated": "2026-09-04 20:34 UTC"
 }
