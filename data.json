@@ -1979,10 +1979,6 @@
             "group": "Growth & Prices",
             "history": [
                 {
-                    "date": "2021-07-01",
-                    "value": 5.4
-                },
-                {
                     "date": "2021-08-01",
                     "value": 5.1
                 },
@@ -2217,12 +2213,16 @@
                 {
                     "date": "2026-07-01",
                     "value": 4.1
+                },
+                {
+                    "date": "2026-08-01",
+                    "value": 4.1
                 }
             ],
             "value": 4.1,
-            "change": -0.1,
-            "compared_date": "2026-06-01",
-            "trend": "down"
+            "change": 0.0,
+            "compared_date": "2026-07-01",
+            "trend": "same"
         },
         "gdp_growth": {
             "label": "US GDP Growth (QoQ annualized)",
@@ -6822,9 +6822,15 @@
     },
     "news": [
         {
+            "title": "White House has vetted candidates for key CFTC vacancies, sources tell CNBC. It's unclear if they will be filled",
+            "link": "https://www.cnbc.com/2026/09/04/white-house-has-vetted-candidates-for-key-cftc-vacancies-sources-tell-cnbc.html",
+            "published": "Fri, 04 Sep 2026 16:43:26 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Bitcoin heads for third winning week in a row as macro pressures mount",
             "link": "https://www.cnbc.com/2026/09/04/bitcoin-heads-for-third-winning-week-in-a-row-as-macro-pressures-mount.html",
-            "published": "Fri, 04 Sep 2026 12:17:20 GMT",
+            "published": "Fri, 04 Sep 2026 14:36:48 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/01/fed-governor-barr-says-hell-support-rate-hike-if-inflation-doesnt-ease.html",
             "published": "Tue, 01 Sep 2026 14:01:27 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Hugging Face's new duck robot is selling fast. A Chinese chip powers it",
-            "link": "https://www.cnbc.com/2026/09/01/hugging-faces-new-duck-robot-is-selling-fast-a-chinese-chip-powers-it.html",
-            "published": "Wed, 02 Sep 2026 00:11:14 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-04 13:20 UTC"
+    "last_updated": "2026-09-04 17:29 UTC"
 }
