@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-03-21",
-                    "value": 4.25
-                },
-                {
                     "date": "2025-03-24",
                     "value": 4.34
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-09-03",
                     "value": 4.77
+                },
+                {
+                    "date": "2026-09-04",
+                    "value": 4.78
                 }
             ],
-            "value": 4.77,
-            "change": -0.02,
-            "compared_date": "2026-09-02",
-            "trend": "down"
+            "value": 4.78,
+            "change": 0.01,
+            "compared_date": "2026-09-03",
+            "trend": "up"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -3883,26 +3883,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-03-18",
-                    "value": 125.49
-                },
-                {
-                    "date": "2025-03-19",
-                    "value": 125.8
-                },
-                {
-                    "date": "2025-03-20",
-                    "value": 125.98
-                },
-                {
-                    "date": "2025-03-21",
-                    "value": 126.27
-                },
-                {
-                    "date": "2025-03-24",
-                    "value": 126.2
-                },
-                {
                     "date": "2025-03-25",
                     "value": 126.05
                 },
@@ -5341,12 +5321,32 @@
                 {
                     "date": "2026-08-28",
                     "value": 118.75
+                },
+                {
+                    "date": "2026-08-31",
+                    "value": 118.57
+                },
+                {
+                    "date": "2026-09-01",
+                    "value": 118.66
+                },
+                {
+                    "date": "2026-09-02",
+                    "value": 118.53
+                },
+                {
+                    "date": "2026-09-03",
+                    "value": 118.13
+                },
+                {
+                    "date": "2026-09-04",
+                    "value": 118.07
                 }
             ],
-            "value": 118.75,
-            "change": 0.39,
-            "compared_date": "2026-08-27",
-            "trend": "up"
+            "value": 118.07,
+            "change": -0.06,
+            "compared_date": "2026-09-03",
+            "trend": "down"
         },
         "oil_wti": {
             "label": "Crude Oil (WTI)",
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-08 17:09 UTC"
+    "last_updated": "2026-09-08 20:56 UTC"
 }
