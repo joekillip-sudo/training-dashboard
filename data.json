@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-03-25",
-                    "value": 5776.65
-                },
-                {
                     "date": "2025-03-26",
                     "value": 5712.2
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-09-04",
                     "value": 7718.6
+                },
+                {
+                    "date": "2026-09-08",
+                    "value": 7673.52
                 }
             ],
-            "value": 7718.6,
-            "change": -29.11,
-            "compared_date": "2026-09-03",
+            "value": 7673.52,
+            "change": -45.08,
+            "compared_date": "2026-09-04",
             "trend": "down"
         },
         "dollar_index": {
@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "Adani Enterprises shares jump as airport unit enters into $1 billion fundraising deal",
+            "link": "https://www.cnbc.com/2026/09/09/adani-enterprises-airport-fundraise-shares.html",
+            "published": "Wed, 09 Sep 2026 06:26:59 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "China's EV makers shift gears to focus on humanoids as car market slows",
+            "link": "https://www.cnbc.com/2026/09/09/chinas-ev-makers-shift-gears-to-focus-on-humanoids-as-car-market-slows.html",
+            "published": "Wed, 09 Sep 2026 04:12:51 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "How one hedge-fund manager built his firm to be powered entirely by AI agents",
             "link": "https://www.cnbc.com/2026/09/08/brian-kelly-bracket22-ai-agents.html",
             "published": "Tue, 08 Sep 2026 21:59:13 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/04/white-house-has-vetted-candidates-for-key-cftc-vacancies-sources-tell-cnbc.html",
             "published": "Tue, 08 Sep 2026 12:32:19 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Bitcoin heads for third winning week in a row as macro pressures mount",
-            "link": "https://www.cnbc.com/2026/09/04/bitcoin-heads-for-third-winning-week-in-a-row-as-macro-pressures-mount.html",
-            "published": "Fri, 04 Sep 2026 14:36:48 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'",
-            "link": "https://www.cnbc.com/2026/09/03/china-g20-exports-trade.html",
-            "published": "Thu, 03 Sep 2026 11:12:54 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-08 23:18 UTC"
+    "last_updated": "2026-09-09 09:29 UTC"
 }
