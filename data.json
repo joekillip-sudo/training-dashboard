@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-03-26",
-                    "value": 5712.2
-                },
-                {
                     "date": "2025-03-27",
                     "value": 5693.31
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-09-08",
                     "value": 7673.52
+                },
+                {
+                    "date": "2026-09-09",
+                    "value": 7636.36
                 }
             ],
-            "value": 7673.52,
-            "change": -45.08,
-            "compared_date": "2026-09-04",
+            "value": 7636.36,
+            "change": -37.16,
+            "compared_date": "2026-09-08",
             "trend": "down"
         },
         "dollar_index": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Ant International partners with Visa, Mastercard on developing AI payments",
+            "link": "https://www.cnbc.com/2026/09/10/ant-international-visa-mastercard-ai-agent-payment-standard.html",
+            "published": "Thu, 10 Sep 2026 01:53:50 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Adani Enterprises shares jump as airport unit enters into $1 billion fundraising deal",
             "link": "https://www.cnbc.com/2026/09/09/adani-enterprises-airport-fundraise-shares.html",
             "published": "Wed, 09 Sep 2026 06:26:59 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/06/sugar-is-outperforming-the-stock-market-this-year-whats-driving-it.html",
             "published": "Sun, 06 Sep 2026 13:19:01 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "White House has vetted candidates for key CFTC vacancies, sources tell CNBC. It's unclear if they will be filled",
-            "link": "https://www.cnbc.com/2026/09/04/white-house-has-vetted-candidates-for-key-cftc-vacancies-sources-tell-cnbc.html",
-            "published": "Tue, 08 Sep 2026 12:32:19 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-09 23:56 UTC"
+    "last_updated": "2026-09-10 04:16 UTC"
 }
