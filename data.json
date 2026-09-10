@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "OpenAI targets work of Wall Street junior bankers with new ChatGPT for Financial Services",
+            "link": "https://www.cnbc.com/2026/09/10/openai-chatgpt-for-financial-services-targets-work-of-junior-bankers.html",
+            "published": "Thu, 10 Sep 2026 18:01:08 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Kalshi launches \u2018perps\u2019 for gold and silver following CFTC approval, expanding futures offerings",
+            "link": "https://www.cnbc.com/2026/09/10/kalshi-launches-perps-for-gold-and-silver-following-cftc-approval-expanding-futures-offerings.html",
+            "published": "Thu, 10 Sep 2026 14:00:11 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Ant International partners with Visa, Mastercard on developing AI payments",
             "link": "https://www.cnbc.com/2026/09/10/ant-international-visa-mastercard-ai-agent-payment-standard.html",
             "published": "Thu, 10 Sep 2026 01:53:50 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/08/crypto-platforms-lost-billions-to-cyberattacks-many-even-after-audits.html",
             "published": "Tue, 08 Sep 2026 08:16:11 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "China says it will pump $54 billion into banks and insurers \u2014 but their stocks still fell",
-            "link": "https://www.cnbc.com/2026/09/07/china-state-banks-lenders-insurers-capital-solvency-bankrupt-nim-.html",
-            "published": "Mon, 07 Sep 2026 23:23:10 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Sugar is outperforming the stock market this year. Here's what's driving it, and where it can go from here",
-            "link": "https://www.cnbc.com/2026/09/06/sugar-is-outperforming-the-stock-market-this-year-whats-driving-it.html",
-            "published": "Sun, 06 Sep 2026 13:19:01 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-10 14:10 UTC"
+    "last_updated": "2026-09-10 18:13 UTC"
 }
