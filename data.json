@@ -1728,10 +1728,6 @@
             "group": "Growth & Prices",
             "history": [
                 {
-                    "date": "2021-07-01",
-                    "value": 5.25
-                },
-                {
                     "date": "2021-08-01",
                     "value": 5.15
                 },
@@ -1966,12 +1962,16 @@
                 {
                     "date": "2026-07-01",
                     "value": 3.3
+                },
+                {
+                    "date": "2026-08-01",
+                    "value": 3.35
                 }
             ],
-            "value": 3.3,
-            "change": -0.16,
-            "compared_date": "2026-06-01",
-            "trend": "down"
+            "value": 3.35,
+            "change": 0.05,
+            "compared_date": "2026-07-01",
+            "trend": "up"
         },
         "us_unemployment": {
             "label": "US Unemployment",
@@ -6830,13 +6830,13 @@
         {
             "title": "The iPhone Duo enters China\u2019s crowded foldable market \u2014 and faces a price test",
             "link": "https://www.cnbc.com/2026/09/11/the-iphone-duo-enters-chinas-crowded-foldable-market.html",
-            "published": "Fri, 11 Sep 2026 02:05:24 GMT",
+            "published": "Fri, 11 Sep 2026 14:30:29 GMT",
             "source": "CNBC"
         },
         {
             "title": "OpenAI targets work of Wall Street junior bankers with new ChatGPT for Financial Services",
             "link": "https://www.cnbc.com/2026/09/10/openai-chatgpt-for-financial-services-targets-work-of-junior-bankers.html",
-            "published": "Thu, 10 Sep 2026 19:02:58 GMT",
+            "published": "Fri, 11 Sep 2026 16:06:31 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-11 13:25 UTC"
+    "last_updated": "2026-09-11 17:39 UTC"
 }
