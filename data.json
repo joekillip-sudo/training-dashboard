@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-03-27",
-                    "value": 4.38
-                },
-                {
                     "date": "2025-03-28",
                     "value": 4.27
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-09-10",
                     "value": 4.95
+                },
+                {
+                    "date": "2026-09-11",
+                    "value": 4.96
                 }
             ],
-            "value": 4.95,
-            "change": 0.12,
-            "compared_date": "2026-09-09",
+            "value": 4.96,
+            "change": 0.01,
+            "compared_date": "2026-09-10",
             "trend": "up"
         },
         "fed_rate": {
@@ -3883,22 +3883,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-03-25",
-                    "value": 126.05
-                },
-                {
-                    "date": "2025-03-26",
-                    "value": 126.24
-                },
-                {
-                    "date": "2025-03-27",
-                    "value": 126.36
-                },
-                {
-                    "date": "2025-03-28",
-                    "value": 126.42
-                },
-                {
                     "date": "2025-03-31",
                     "value": 126.71
                 },
@@ -5341,12 +5325,28 @@
                 {
                     "date": "2026-09-04",
                     "value": 118.07
+                },
+                {
+                    "date": "2026-09-08",
+                    "value": 117.91
+                },
+                {
+                    "date": "2026-09-09",
+                    "value": 117.88
+                },
+                {
+                    "date": "2026-09-10",
+                    "value": 118.08
+                },
+                {
+                    "date": "2026-09-11",
+                    "value": 118.21
                 }
             ],
-            "value": 118.07,
-            "change": -0.06,
-            "compared_date": "2026-09-03",
-            "trend": "down"
+            "value": 118.21,
+            "change": 0.13,
+            "compared_date": "2026-09-10",
+            "trend": "up"
         },
         "oil_wti": {
             "label": "Crude Oil (WTI)",
@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "Bank of America expects third-quarter investment banking fees to fall more than 10%; shares slide",
+            "link": "https://www.cnbc.com/2026/09/14/bank-of-america-bac-q3-investment-banking-fees.html",
+            "published": "Mon, 14 Sep 2026 20:34:23 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Warsh's credibility is on the line this week as Trump policies put pressure on Fed to hike",
+            "link": "https://www.cnbc.com/2026/09/14/warshs-credibility-is-on-the-line-this-week-as-trump-policies-put-pressure-on-fed-to-hike.html",
+            "published": "Mon, 14 Sep 2026 20:48:32 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Prediction market traders think gas prices will hit new highs for the year",
             "link": "https://www.cnbc.com/2026/09/14/prediction-markets-traders-think-gas-prices-will-hit-new-highs-in-2026.html",
             "published": "Mon, 14 Sep 2026 15:49:39 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/11/chinese-humanoid-robot-startup-distillation-claim-openai.html",
             "published": "Fri, 11 Sep 2026 06:02:40 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "The iPhone Duo enters China\u2019s crowded foldable market \u2014 and faces a price test",
-            "link": "https://www.cnbc.com/2026/09/11/the-iphone-duo-enters-chinas-crowded-foldable-market.html",
-            "published": "Fri, 11 Sep 2026 14:30:29 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "OpenAI targets work of Wall Street junior bankers with new ChatGPT for Financial Services",
-            "link": "https://www.cnbc.com/2026/09/10/openai-chatgpt-for-financial-services-targets-work-of-junior-bankers.html",
-            "published": "Fri, 11 Sep 2026 16:06:31 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-14 16:53 UTC"
+    "last_updated": "2026-09-14 20:49 UTC"
 }
