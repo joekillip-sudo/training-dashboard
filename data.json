@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "China says AI CEOs' call for a slowdown is 'fear mongering'",
+            "link": "https://www.cnbc.com/2026/09/14/china-ai-slowdown-us-tech-ceos.html",
+            "published": "Mon, 14 Sep 2026 09:36:27 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Prediction markets are becoming more professionalized, but also harder to beat",
             "link": "https://www.cnbc.com/2026/09/14/prediction-markets-efficient-win-lose-beat.html",
             "published": "Mon, 14 Sep 2026 01:37:44 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/10/kalshi-launches-perps-for-gold-and-silver-following-cftc-approval-expanding-futures-offerings.html",
             "published": "Thu, 10 Sep 2026 14:00:11 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Ant International partners with Visa, Mastercard on developing AI payments",
-            "link": "https://www.cnbc.com/2026/09/10/ant-international-visa-mastercard-ai-agent-payment-standard.html",
-            "published": "Thu, 10 Sep 2026 01:53:50 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-14 04:45 UTC"
+    "last_updated": "2026-09-14 10:27 UTC"
 }
