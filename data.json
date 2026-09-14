@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Prediction markets are becoming more professionalized, but also harder to beat",
+            "link": "https://www.cnbc.com/2026/09/14/prediction-markets-efficient-win-lose-beat.html",
+            "published": "Mon, 14 Sep 2026 01:37:44 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "NFL and midterm elections set up prediction markets for a critical fall season",
             "link": "https://www.cnbc.com/2026/09/13/nfl-and-midterms-mark-key-fall-season-for-prediction-markets.html",
             "published": "Sun, 13 Sep 2026 11:52:33 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/10/ant-international-visa-mastercard-ai-agent-payment-standard.html",
             "published": "Thu, 10 Sep 2026 01:53:50 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Adani Enterprises shares jump as airport unit enters into $1 billion fundraising deal",
-            "link": "https://www.cnbc.com/2026/09/09/adani-enterprises-airport-fundraise-shares.html",
-            "published": "Wed, 09 Sep 2026 06:26:59 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-13 23:58 UTC"
+    "last_updated": "2026-09-14 04:45 UTC"
 }
