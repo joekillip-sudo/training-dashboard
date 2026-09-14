@@ -6822,9 +6822,15 @@
     },
     "news": [
         {
+            "title": "Prediction market traders think gas prices will hit new highs for the year",
+            "link": "https://www.cnbc.com/2026/09/14/prediction-markets-traders-think-gas-prices-will-hit-new-highs-in-2026.html",
+            "published": "Mon, 14 Sep 2026 15:49:39 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "China says AI CEOs' call for a slowdown is 'fear mongering'",
             "link": "https://www.cnbc.com/2026/09/14/china-ai-slowdown-us-tech-ceos.html",
-            "published": "Mon, 14 Sep 2026 09:36:27 GMT",
+            "published": "Mon, 14 Sep 2026 13:18:23 GMT",
             "source": "CNBC"
         },
         {
@@ -6836,7 +6842,7 @@
         {
             "title": "NFL and midterm elections set up prediction markets for a critical fall season",
             "link": "https://www.cnbc.com/2026/09/13/nfl-and-midterms-mark-key-fall-season-for-prediction-markets.html",
-            "published": "Sun, 13 Sep 2026 11:52:33 GMT",
+            "published": "Mon, 14 Sep 2026 12:16:52 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/10/openai-chatgpt-for-financial-services-targets-work-of-junior-bankers.html",
             "published": "Fri, 11 Sep 2026 16:06:31 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Kalshi launches \u2018perps\u2019 for gold and silver following CFTC approval, expanding futures offerings",
-            "link": "https://www.cnbc.com/2026/09/10/kalshi-launches-perps-for-gold-and-silver-following-cftc-approval-expanding-futures-offerings.html",
-            "published": "Thu, 10 Sep 2026 14:00:11 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-14 10:27 UTC"
+    "last_updated": "2026-09-14 16:53 UTC"
 }
