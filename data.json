@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-03-28",
-                    "value": 4.27
-                },
-                {
                     "date": "2025-03-31",
                     "value": 4.23
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-09-11",
                     "value": 4.96
+                },
+                {
+                    "date": "2026-09-14",
+                    "value": 4.97
                 }
             ],
-            "value": 4.96,
+            "value": 4.97,
             "change": 0.01,
-            "compared_date": "2026-09-10",
+            "compared_date": "2026-09-11",
             "trend": "up"
         },
         "fed_rate": {
@@ -2411,10 +2411,6 @@
             "unit": "",
             "group": "Markets",
             "history": [
-                {
-                    "date": "2025-04-01",
-                    "value": 5633.07
-                },
                 {
                     "date": "2025-04-02",
                     "value": 5670.97
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-09-14",
                     "value": 7619.98
+                },
+                {
+                    "date": "2026-09-15",
+                    "value": 7585.73
                 }
             ],
-            "value": 7619.98,
-            "change": -37.0,
-            "compared_date": "2026-09-11",
+            "value": 7585.73,
+            "change": -34.25,
+            "compared_date": "2026-09-14",
             "trend": "down"
         },
         "dollar_index": {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-15 18:48 UTC"
+    "last_updated": "2026-09-16 00:12 UTC"
 }
