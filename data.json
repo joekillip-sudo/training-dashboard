@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Senate is still a toss-up, but Democrats now have slight edge, prediction market traders think",
+            "link": "https://www.cnbc.com/2026/09/16/prediction-markets-say-democrats-are-slightly-favored-to-win-senate.html",
+            "published": "Wed, 16 Sep 2026 16:26:41 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "China's AI leaders keep quiet despite U.S. 'publicity' on tech risks",
             "link": "https://www.cnbc.com/2026/09/16/chinas-ai-leaders-keep-quiet-despite-us-publicity-on-tech-risks.html",
             "published": "Wed, 16 Sep 2026 04:01:59 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/14/prediction-markets-efficient-win-lose-beat.html",
             "published": "Mon, 14 Sep 2026 01:37:44 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "NFL and midterm elections set up prediction markets for a critical fall season",
-            "link": "https://www.cnbc.com/2026/09/13/nfl-and-midterms-mark-key-fall-season-for-prediction-markets.html",
-            "published": "Mon, 14 Sep 2026 12:16:52 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-16 11:12 UTC"
+    "last_updated": "2026-09-16 16:32 UTC"
 }
