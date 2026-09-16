@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-03-31",
-                    "value": 4.23
-                },
-                {
                     "date": "2025-04-01",
                     "value": 4.17
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-09-14",
                     "value": 4.97
+                },
+                {
+                    "date": "2026-09-15",
+                    "value": 5.0
                 }
             ],
-            "value": 4.97,
-            "change": 0.01,
-            "compared_date": "2026-09-11",
+            "value": 5.0,
+            "change": 0.03,
+            "compared_date": "2026-09-14",
             "trend": "up"
         },
         "fed_rate": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Here are five key takeaways from Wednesday's Fed rate hike",
+            "link": "https://www.cnbc.com/2026/09/16/here-are-five-key-takeaways-from-wednesdays-fed-rate-hike.html",
+            "published": "Wed, 16 Sep 2026 21:23:51 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Here is what changed in the new Fed statement under Warsh",
             "link": "https://www.cnbc.com/2026/09/16/september-fed-statement-redline.html",
             "published": "Wed, 16 Sep 2026 18:18:54 GMT",
@@ -6830,7 +6836,7 @@
         {
             "title": "Fed approves interest rate hike, signals one more to come this year",
             "link": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html",
-            "published": "Wed, 16 Sep 2026 19:02:17 GMT",
+            "published": "Wed, 16 Sep 2026 21:07:51 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/14/warshs-credibility-is-on-the-line-this-week-as-trump-policies-put-pressure-on-fed-to-hike.html",
             "published": "Mon, 14 Sep 2026 20:49:03 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Prediction market traders think gas prices will hit new highs for the year",
-            "link": "https://www.cnbc.com/2026/09/14/prediction-markets-traders-think-gas-prices-will-hit-new-highs-in-2026.html",
-            "published": "Mon, 14 Sep 2026 15:49:39 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-16 19:55 UTC"
+    "last_updated": "2026-09-16 22:47 UTC"
 }
