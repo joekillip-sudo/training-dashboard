@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-01",
-                    "value": 4.17
-                },
-                {
                     "date": "2025-04-02",
                     "value": 4.2
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-09-15",
                     "value": 5.0
+                },
+                {
+                    "date": "2026-09-16",
+                    "value": 5.01
                 }
             ],
-            "value": 5.0,
-            "change": 0.03,
-            "compared_date": "2026-09-14",
+            "value": 5.01,
+            "change": 0.01,
+            "compared_date": "2026-09-15",
             "trend": "up"
         },
         "fed_rate": {
@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "Securitize jumps after regulators greenlight some tokenized U.S. stock trading",
+            "link": "https://www.cnbc.com/2026/09/17/securitize-jumps-after-regulators-greenlight-tokenized-us-stocks.html",
+            "published": "Thu, 17 Sep 2026 17:59:51 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "A Chinese AI company just connected its model to Wall Street's leading data providers",
+            "link": "https://www.cnbc.com/2026/09/17/china-moonshot-kimi-financial-services.html",
+            "published": "Thu, 17 Sep 2026 14:30:25 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "OpenAI and Anthropic are making 10 times more revenue than all Chinese AI models combined, research group Rhodium says",
             "link": "https://www.cnbc.com/2026/09/17/chinas-ai-models-make-only-10percent-of-us-leaders-revenue-rhodium.html",
             "published": "Thu, 17 Sep 2026 09:00:01 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/16/chinas-ai-leaders-keep-quiet-despite-us-publicity-on-tech-risks.html",
             "published": "Wed, 16 Sep 2026 04:01:59 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
-            "link": "https://www.cnbc.com/2026/09/15/china-august-retail-sales-industrial-output-investment-exports-.html",
-            "published": "Tue, 15 Sep 2026 09:46:14 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Bank of America expects third-quarter investment banking fees to fall more than 10%; shares slide",
-            "link": "https://www.cnbc.com/2026/09/14/bank-of-america-bac-q3-investment-banking-fees.html",
-            "published": "Mon, 14 Sep 2026 20:34:23 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-17 13:14 UTC"
+    "last_updated": "2026-09-17 21:59 UTC"
 }
