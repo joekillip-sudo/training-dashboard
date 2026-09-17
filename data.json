@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "OpenAI and Anthropic are making 10 times more revenue than all Chinese AI models combined, research group Rhodium says",
+            "link": "https://www.cnbc.com/2026/09/17/chinas-ai-models-make-only-10percent-of-us-leaders-revenue-rhodium.html",
+            "published": "Thu, 17 Sep 2026 09:00:01 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Here are five key takeaways from Wednesday's Fed rate hike",
             "link": "https://www.cnbc.com/2026/09/16/here-are-five-key-takeaways-from-wednesdays-fed-rate-hike.html",
             "published": "Wed, 16 Sep 2026 21:23:51 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/14/bank-of-america-bac-q3-investment-banking-fees.html",
             "published": "Mon, 14 Sep 2026 20:34:23 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Warsh's credibility is on the line this week as Trump policies put pressure on Fed to hike",
-            "link": "https://www.cnbc.com/2026/09/14/warshs-credibility-is-on-the-line-this-week-as-trump-policies-put-pressure-on-fed-to-hike.html",
-            "published": "Mon, 14 Sep 2026 20:49:03 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-17 07:25 UTC"
+    "last_updated": "2026-09-17 13:14 UTC"
 }
