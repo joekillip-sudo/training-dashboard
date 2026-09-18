@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Warren Buffett stepping down as chairman of Berkshire Hathaway: 'Father Time always wins'",
+            "link": "https://www.cnbc.com/2026/09/18/buffett-stepping-down-as-berkshire-chairman.html",
+            "published": "Fri, 18 Sep 2026 10:36:14 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Securitize jumps after regulators greenlight some tokenized U.S. stock trading",
             "link": "https://www.cnbc.com/2026/09/17/securitize-jumps-after-regulators-greenlight-tokenized-us-stocks.html",
             "published": "Thu, 17 Sep 2026 17:59:51 GMT",
@@ -6830,7 +6836,7 @@
         {
             "title": "A Chinese AI company just connected its model to Wall Street's leading data providers",
             "link": "https://www.cnbc.com/2026/09/17/china-moonshot-kimi-financial-services.html",
-            "published": "Thu, 17 Sep 2026 14:30:25 GMT",
+            "published": "Fri, 18 Sep 2026 08:41:11 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/16/prediction-markets-say-democrats-are-slightly-favored-to-win-senate.html",
             "published": "Wed, 16 Sep 2026 16:26:41 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "China's AI leaders keep quiet despite U.S. 'publicity' on tech risks",
-            "link": "https://www.cnbc.com/2026/09/16/chinas-ai-leaders-keep-quiet-despite-us-publicity-on-tech-risks.html",
-            "published": "Wed, 16 Sep 2026 04:01:59 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-18 05:41 UTC"
+    "last_updated": "2026-09-18 10:54 UTC"
 }
