@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-04",
-                    "value": 5074.08
-                },
-                {
                     "date": "2025-04-07",
                     "value": 5062.25
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-09-17",
                     "value": 7637.76
+                },
+                {
+                    "date": "2026-09-18",
+                    "value": 7650.5
                 }
             ],
-            "value": 7637.76,
-            "change": 85.95,
-            "compared_date": "2026-09-16",
+            "value": 7650.5,
+            "change": 12.74,
+            "compared_date": "2026-09-17",
             "trend": "up"
         },
         "dollar_index": {
@@ -6824,7 +6824,7 @@
         {
             "title": "\u2018It's awful\u2019: How tariffs, soaring fuel costs and higher interest rates are squeezing American companies",
             "link": "https://www.cnbc.com/2026/09/20/tariffs-fuel-prices-and-interest-rates-squeeze-us-companies.html",
-            "published": "Sun, 20 Sep 2026 12:47:23 GMT",
+            "published": "Mon, 21 Sep 2026 15:04:04 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-21 10:32 UTC"
+    "last_updated": "2026-09-21 16:54 UTC"
 }
