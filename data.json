@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-04",
-                    "value": 4.01
-                },
-                {
                     "date": "2025-04-07",
                     "value": 4.15
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-09-18",
                     "value": 5.01
+                },
+                {
+                    "date": "2026-09-21",
+                    "value": 4.96
                 }
             ],
-            "value": 5.01,
-            "change": 0.07,
-            "compared_date": "2026-09-17",
-            "trend": "up"
+            "value": 4.96,
+            "change": -0.05,
+            "compared_date": "2026-09-18",
+            "trend": "down"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -6830,7 +6830,7 @@
         {
             "title": "Here's who we know is going to the Trump-Xi dinner so far",
             "link": "https://www.cnbc.com/2026/09/22/heres-who-we-know-is-going-to-the-trump-xi-dinner-so-far.html",
-            "published": "Tue, 22 Sep 2026 16:13:06 GMT",
+            "published": "Tue, 22 Sep 2026 20:07:24 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-22 18:39 UTC"
+    "last_updated": "2026-09-22 21:54 UTC"
 }
