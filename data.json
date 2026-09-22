@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-07",
-                    "value": 5062.25
-                },
-                {
                     "date": "2025-04-08",
                     "value": 4982.77
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-09-18",
                     "value": 7650.5
+                },
+                {
+                    "date": "2026-09-21",
+                    "value": 7764.7
                 }
             ],
-            "value": 7650.5,
-            "change": 12.74,
-            "compared_date": "2026-09-17",
+            "value": 7764.7,
+            "change": 114.2,
+            "compared_date": "2026-09-18",
             "trend": "up"
         },
         "dollar_index": {
@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "Here's who we know is going to the Trump-Xi dinner so far",
+            "link": "https://www.cnbc.com/2026/09/22/heres-who-we-know-is-going-to-the-trump-xi-dinner-so-far.html",
+            "published": "Tue, 22 Sep 2026 02:41:10 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Jamie Dimon says hyperscaler AI spending could hit $1 trillion next year",
+            "link": "https://www.cnbc.com/2026/09/21/jamie-dimon-jpm-jpmorgan-indiaconference.html",
+            "published": "Tue, 22 Sep 2026 01:30:01 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "\u2018It's awful\u2019: How tariffs, soaring fuel costs and higher interest rates are squeezing American companies",
             "link": "https://www.cnbc.com/2026/09/20/tariffs-fuel-prices-and-interest-rates-squeeze-us-companies.html",
             "published": "Mon, 21 Sep 2026 15:04:04 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/17/chinas-ai-models-make-only-10percent-of-us-leaders-revenue-rhodium.html",
             "published": "Thu, 17 Sep 2026 09:00:01 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Here are five key takeaways from Wednesday's Fed rate hike",
-            "link": "https://www.cnbc.com/2026/09/16/here-are-five-key-takeaways-from-wednesdays-fed-rate-hike.html",
-            "published": "Wed, 16 Sep 2026 21:23:51 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Here is what changed in the new Fed statement under Warsh",
-            "link": "https://www.cnbc.com/2026/09/16/september-fed-statement-redline.html",
-            "published": "Wed, 16 Sep 2026 18:18:54 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-21 23:57 UTC"
+    "last_updated": "2026-09-22 04:39 UTC"
 }
