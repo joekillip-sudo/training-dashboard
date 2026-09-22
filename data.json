@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Kalshi asks CFTC to allow margin trading on its platform, letting users buy with borrowed funds",
+            "link": "https://www.cnbc.com/2026/09/22/kalshi-asks-cftc-to-allow-margin-trading-on-its-platform-letting-users-buy-with-borrowed-funds.html",
+            "published": "Tue, 22 Sep 2026 12:28:51 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Here's who we know is going to the Trump-Xi dinner so far",
             "link": "https://www.cnbc.com/2026/09/22/heres-who-we-know-is-going-to-the-trump-xi-dinner-so-far.html",
             "published": "Tue, 22 Sep 2026 02:41:10 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/17/china-moonshot-kimi-financial-services.html",
             "published": "Fri, 18 Sep 2026 08:41:11 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "OpenAI and Anthropic are making 10 times more revenue than all Chinese AI models combined, research group Rhodium says",
-            "link": "https://www.cnbc.com/2026/09/17/chinas-ai-models-make-only-10percent-of-us-leaders-revenue-rhodium.html",
-            "published": "Thu, 17 Sep 2026 09:00:01 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-22 09:44 UTC"
+    "last_updated": "2026-09-22 14:31 UTC"
 }
