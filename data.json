@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-07",
-                    "value": 4.15
-                },
-                {
                     "date": "2025-04-08",
                     "value": 4.26
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-09-21",
                     "value": 4.96
+                },
+                {
+                    "date": "2026-09-22",
+                    "value": 4.96
                 }
             ],
             "value": 4.96,
-            "change": -0.05,
-            "compared_date": "2026-09-18",
-            "trend": "down"
+            "change": 0.0,
+            "compared_date": "2026-09-21",
+            "trend": "same"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -6824,7 +6824,7 @@
         {
             "title": "Trump-Xi meeting: Why China's self-sufficiency changes the calculus",
             "link": "https://www.cnbc.com/2026/09/23/trump-xi-meeting-why-chinas-self-sufficiency-changes-the-calculus.html",
-            "published": "Wed, 23 Sep 2026 13:29:08 GMT",
+            "published": "Wed, 23 Sep 2026 21:26:36 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-23 20:03 UTC"
+    "last_updated": "2026-09-23 23:29 UTC"
 }
