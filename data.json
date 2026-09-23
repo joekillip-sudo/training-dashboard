@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Trump-Xi meeting: Why China's self-sufficiency changes the calculus",
+            "link": "https://www.cnbc.com/2026/09/23/trump-xi-meeting-why-chinas-self-sufficiency-changes-the-calculus.html",
+            "published": "Wed, 23 Sep 2026 09:13:39 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "CFTC says prediction markets' 'mentions' contracts present a higher risk of manipulation",
             "link": "https://www.cnbc.com/2026/09/22/cftc-prediction-markets-mentions-contracts-have-manipulation-risk.html",
             "published": "Wed, 23 Sep 2026 00:58:16 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/18/buffett-stepping-down-as-berkshire-chairman.html",
             "published": "Fri, 18 Sep 2026 12:04:02 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Securitize jumps after regulators greenlight some tokenized U.S. stock trading",
-            "link": "https://www.cnbc.com/2026/09/17/securitize-jumps-after-regulators-greenlight-tokenized-us-stocks.html",
-            "published": "Thu, 17 Sep 2026 17:59:51 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-23 05:41 UTC"
+    "last_updated": "2026-09-23 11:09 UTC"
 }
