@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-08",
-                    "value": 4982.77
-                },
-                {
                     "date": "2025-04-09",
                     "value": 5456.9
                 },
@@ -3870,12 +3866,16 @@
                 {
                     "date": "2026-09-21",
                     "value": 7764.7
+                },
+                {
+                    "date": "2026-09-22",
+                    "value": 7764.64
                 }
             ],
-            "value": 7764.7,
-            "change": 114.2,
-            "compared_date": "2026-09-18",
-            "trend": "up"
+            "value": 7764.64,
+            "change": -0.06,
+            "compared_date": "2026-09-21",
+            "trend": "down"
         },
         "dollar_index": {
             "label": "US Dollar Index",
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "CFTC says prediction markets' 'mentions' contracts present a higher risk of manipulation",
+            "link": "https://www.cnbc.com/2026/09/22/cftc-prediction-markets-mentions-contracts-have-manipulation-risk.html",
+            "published": "Tue, 22 Sep 2026 22:13:27 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Kalshi asks CFTC to allow margin trading on its platform, letting users buy with borrowed funds",
             "link": "https://www.cnbc.com/2026/09/22/kalshi-asks-cftc-to-allow-margin-trading-on-its-platform-letting-users-buy-with-borrowed-funds.html",
             "published": "Tue, 22 Sep 2026 12:28:51 GMT",
@@ -6830,7 +6836,7 @@
         {
             "title": "Here's who we know is going to the Trump-Xi dinner so far",
             "link": "https://www.cnbc.com/2026/09/22/heres-who-we-know-is-going-to-the-trump-xi-dinner-so-far.html",
-            "published": "Tue, 22 Sep 2026 20:07:24 GMT",
+            "published": "Tue, 22 Sep 2026 23:43:43 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/17/securitize-jumps-after-regulators-greenlight-tokenized-us-stocks.html",
             "published": "Thu, 17 Sep 2026 17:59:51 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "A Chinese AI company just connected its model to Wall Street's leading data providers",
-            "link": "https://www.cnbc.com/2026/09/17/china-moonshot-kimi-financial-services.html",
-            "published": "Fri, 18 Sep 2026 08:41:11 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-22 21:54 UTC"
+    "last_updated": "2026-09-23 00:11 UTC"
 }
