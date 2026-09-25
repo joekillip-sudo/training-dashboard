@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-10",
-                    "value": 5268.05
-                },
-                {
                     "date": "2025-04-11",
                     "value": 5363.36
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-09-23",
                     "value": 7706.03
+                },
+                {
+                    "date": "2026-09-24",
+                    "value": 7704.13
                 }
             ],
-            "value": 7706.03,
-            "change": -58.61,
-            "compared_date": "2026-09-22",
+            "value": 7704.13,
+            "change": -1.9,
+            "compared_date": "2026-09-23",
             "trend": "down"
         },
         "dollar_index": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Here's who is attending the Trump-Xi state dinner",
+            "link": "https://www.cnbc.com/2026/09/25/heres-who-is-attending-the-trump-xi-state-dinner.html",
+            "published": "Fri, 25 Sep 2026 01:02:40 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Philadelphia Fed's Anna Paulson says 'modest' rate moves likely ahead to tame inflation",
             "link": "https://www.cnbc.com/2026/09/24/philadelphia-feds-anna-paulson-says-modest-rate-moves-likely-ahead-to-tame-inflation.html",
             "published": "Thu, 24 Sep 2026 17:12:04 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/22/heres-who-we-know-is-going-to-the-trump-xi-dinner-so-far.html",
             "published": "Thu, 24 Sep 2026 01:54:35 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Jamie Dimon says hyperscaler AI spending could hit $1 trillion next year",
-            "link": "https://www.cnbc.com/2026/09/21/jamie-dimon-jpm-jpmorgan-indiaconference.html",
-            "published": "Tue, 22 Sep 2026 01:30:01 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-24 22:09 UTC"
+    "last_updated": "2026-09-25 01:17 UTC"
 }
