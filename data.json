@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-09",
-                    "value": 4.34
-                },
-                {
                     "date": "2025-04-10",
                     "value": 4.4
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-09-23",
                     "value": 5.11
+                },
+                {
+                    "date": "2026-09-24",
+                    "value": 5.18
                 }
             ],
-            "value": 5.11,
-            "change": 0.15,
-            "compared_date": "2026-09-22",
+            "value": 5.18,
+            "change": 0.07,
+            "compared_date": "2026-09-23",
             "trend": "up"
         },
         "fed_rate": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Appeals court rules that states can regulate Kalshi\u2019s sports prediction markets, dealing another legal blow to platforms",
+            "link": "https://www.cnbc.com/2026/09/25/appeals-court-rules-states-can-regulate-sports-prediction-markets.html",
+            "published": "Fri, 25 Sep 2026 21:41:18 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Crypto platform Bitget suspects North Korea is responsible for $352 million hack",
             "link": "https://www.cnbc.com/2026/09/25/crypto-platform-bitget-suspects-north-korea-in-352-million-hack.html",
             "published": "Fri, 25 Sep 2026 06:13:35 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/23/trump-xi-meeting-why-chinas-self-sufficiency-changes-the-calculus.html",
             "published": "Thu, 24 Sep 2026 01:44:14 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "CFTC says prediction markets' 'mentions' contracts present a higher risk of manipulation",
-            "link": "https://www.cnbc.com/2026/09/22/cftc-prediction-markets-mentions-contracts-have-manipulation-risk.html",
-            "published": "Wed, 23 Sep 2026 00:58:16 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-25 18:22 UTC"
+    "last_updated": "2026-09-25 22:07 UTC"
 }
