@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "This may be the \u2018missing piece\u2019 for investors looking to boost AI exposure",
+            "link": "https://www.cnbc.com/2026/09/26/ai-portfolios-may-need-china-to-grab-the-biggest-gains.html",
+            "published": "Sat, 26 Sep 2026 15:00:01 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "The 10-year Treasury yield is at its highest in nearly two decades. How we got here",
+            "link": "https://www.cnbc.com/2026/09/26/10-year-treasury-yield-is-at-its-highest-in-19-years-how-we-got-here.html",
+            "published": "Sat, 26 Sep 2026 13:30:06 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Why Xi believes the U.S. and China can overcome the 'Thucydides Trap'",
             "link": "https://www.cnbc.com/2026/09/26/xi-trump-thucydides-trap-us-china.html",
             "published": "Sat, 26 Sep 2026 05:00:01 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/24/philadelphia-feds-anna-paulson-says-modest-rate-moves-likely-ahead-to-tame-inflation.html",
             "published": "Thu, 24 Sep 2026 17:12:04 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "China confirms first AI talks with U.S. have taken place, hints at trade truce extension",
-            "link": "https://www.cnbc.com/2026/09/24/china-confirms-first-ai-talks-with-us-have-taken-place-hints-at-trade-truce-extension.html",
-            "published": "Thu, 24 Sep 2026 14:16:27 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "U.S.-China trade truce extended for two months, Bessent says, as Xi begins state visit",
-            "link": "https://www.cnbc.com/2026/09/24/us-china-trade-truce-bessent-trump-xi.html",
-            "published": "Thu, 24 Sep 2026 04:55:59 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-26 12:50 UTC"
+    "last_updated": "2026-09-26 16:59 UTC"
 }
