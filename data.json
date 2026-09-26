@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Why Xi believes the U.S. and China can overcome the 'Thucydides Trap'",
+            "link": "https://www.cnbc.com/2026/09/26/xi-trump-thucydides-trap-us-china.html",
+            "published": "Sat, 26 Sep 2026 05:00:01 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Appeals court rules that states can regulate Kalshi\u2019s sports prediction markets, dealing another legal blow to platforms",
             "link": "https://www.cnbc.com/2026/09/25/appeals-court-rules-states-can-regulate-sports-prediction-markets.html",
             "published": "Fri, 25 Sep 2026 23:28:42 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/24/us-china-trade-truce-bessent-trump-xi.html",
             "published": "Thu, 24 Sep 2026 04:55:59 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Trump-Xi meeting: Why China's self-sufficiency changes the calculus",
-            "link": "https://www.cnbc.com/2026/09/23/trump-xi-meeting-why-chinas-self-sufficiency-changes-the-calculus.html",
-            "published": "Thu, 24 Sep 2026 01:44:14 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-26 01:19 UTC"
+    "last_updated": "2026-09-26 07:20 UTC"
 }
