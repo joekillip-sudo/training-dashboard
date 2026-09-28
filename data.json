@@ -6822,9 +6822,15 @@
     },
     "news": [
         {
+            "title": "U.S., China to lower tariffs on $60 billion of goods. Here's what qualifies",
+            "link": "https://www.cnbc.com/2026/09/28/us-china-lower-tariffs-trump-xi-meeting.html",
+            "published": "Mon, 28 Sep 2026 08:31:33 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Trump-Xi summit analysis: 'Tangible outcomes' needed for U.S.-China truce to hold",
             "link": "https://www.cnbc.com/2026/09/28/trump-xi-summit-tangible-outcomes-us-china-truce.html",
-            "published": "Mon, 28 Sep 2026 02:49:10 GMT",
+            "published": "Mon, 28 Sep 2026 07:22:06 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/25/crypto-platform-bitget-suspects-north-korea-in-352-million-hack.html",
             "published": "Fri, 25 Sep 2026 06:13:35 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "China's Xi urges U.S. to cooperate on AI",
-            "link": "https://www.cnbc.com/2026/09/25/chinas-xi-urges-us-to-cooperate-on-ai.html",
-            "published": "Fri, 25 Sep 2026 01:22:17 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-28 06:31 UTC"
+    "last_updated": "2026-09-28 15:10 UTC"
 }
