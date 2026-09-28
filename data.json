@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-10",
-                    "value": 4.4
-                },
-                {
                     "date": "2025-04-11",
                     "value": 4.48
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-09-24",
                     "value": 5.18
+                },
+                {
+                    "date": "2026-09-25",
+                    "value": 5.17
                 }
             ],
-            "value": 5.18,
-            "change": 0.07,
-            "compared_date": "2026-09-23",
-            "trend": "up"
+            "value": 5.17,
+            "change": -0.01,
+            "compared_date": "2026-09-24",
+            "trend": "down"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -3883,26 +3883,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-07",
-                    "value": 126.83
-                },
-                {
-                    "date": "2025-04-08",
-                    "value": 126.87
-                },
-                {
-                    "date": "2025-04-09",
-                    "value": 126.63
-                },
-                {
-                    "date": "2025-04-10",
-                    "value": 125.09
-                },
-                {
-                    "date": "2025-04-11",
-                    "value": 124.02
-                },
-                {
                     "date": "2025-04-14",
                     "value": 123.66
                 },
@@ -5341,12 +5321,32 @@
                 {
                     "date": "2026-09-18",
                     "value": 119.51
+                },
+                {
+                    "date": "2026-09-21",
+                    "value": 119.4
+                },
+                {
+                    "date": "2026-09-22",
+                    "value": 119.59
+                },
+                {
+                    "date": "2026-09-23",
+                    "value": 120.12
+                },
+                {
+                    "date": "2026-09-24",
+                    "value": 120.55
+                },
+                {
+                    "date": "2026-09-25",
+                    "value": 120.33
                 }
             ],
-            "value": 119.51,
-            "change": 0.16,
-            "compared_date": "2026-09-17",
-            "trend": "up"
+            "value": 120.33,
+            "change": -0.22,
+            "compared_date": "2026-09-24",
+            "trend": "down"
         },
         "oil_wti": {
             "label": "Crude Oil (WTI)",
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Nearly half the stocks in the S&P 500 are at cross purposes with the rest of the market",
+            "link": "https://www.cnbc.com/2026/09/28/nearly-half-of-the-stocks-in-the-sp-500-are-working-against-it.html",
+            "published": "Mon, 28 Sep 2026 17:53:31 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "U.S., China to lower tariffs on $60 billion of goods. Here's what qualifies",
             "link": "https://www.cnbc.com/2026/09/28/us-china-lower-tariffs-trump-xi-meeting.html",
             "published": "Mon, 28 Sep 2026 08:31:33 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/25/appeals-court-rules-states-can-regulate-sports-prediction-markets.html",
             "published": "Fri, 25 Sep 2026 23:28:42 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Crypto platform Bitget suspects North Korea is responsible for $352 million hack",
-            "link": "https://www.cnbc.com/2026/09/25/crypto-platform-bitget-suspects-north-korea-in-352-million-hack.html",
-            "published": "Fri, 25 Sep 2026 06:13:35 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-28 15:10 UTC"
+    "last_updated": "2026-09-28 21:43 UTC"
 }
