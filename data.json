@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "China has three new criteria for humanoid robot IPOs. Few, if any, meet them",
+            "link": "https://www.cnbc.com/2026/09/29/china-criteria-humanoid-robot-ipos.html",
+            "published": "Tue, 29 Sep 2026 07:19:38 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Nearly half the stocks in the S&P 500 are at cross purposes with the rest of the market",
             "link": "https://www.cnbc.com/2026/09/28/nearly-half-of-the-stocks-in-the-sp-500-are-working-against-it.html",
             "published": "Mon, 28 Sep 2026 17:53:31 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/26/xi-trump-thucydides-trap-us-china.html",
             "published": "Sat, 26 Sep 2026 05:00:01 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Appeals court rules that states can regulate Kalshi\u2019s sports prediction markets, dealing another legal blow to platforms",
-            "link": "https://www.cnbc.com/2026/09/25/appeals-court-rules-states-can-regulate-sports-prediction-markets.html",
-            "published": "Fri, 25 Sep 2026 23:28:42 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-29 01:39 UTC"
+    "last_updated": "2026-09-29 08:10 UTC"
 }
