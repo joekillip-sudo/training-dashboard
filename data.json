@@ -2231,11 +2231,11 @@
             "history": [
                 {
                     "date": "2021-07-01",
-                    "value": 3.3
+                    "value": 3.2
                 },
                 {
                     "date": "2021-10-01",
-                    "value": 7.0
+                    "value": 6.8
                 },
                 {
                     "date": "2022-01-01",
@@ -2247,31 +2247,31 @@
                 },
                 {
                     "date": "2022-07-01",
-                    "value": 2.9
+                    "value": 2.7
                 },
                 {
                     "date": "2022-10-01",
-                    "value": 2.8
+                    "value": 2.7
                 },
                 {
                     "date": "2023-01-01",
-                    "value": 2.9
-                },
-                {
-                    "date": "2023-04-01",
-                    "value": 2.5
-                },
-                {
-                    "date": "2023-07-01",
-                    "value": 4.7
-                },
-                {
-                    "date": "2023-10-01",
                     "value": 3.4
                 },
                 {
+                    "date": "2023-04-01",
+                    "value": 2.2
+                },
+                {
+                    "date": "2023-07-01",
+                    "value": 4.5
+                },
+                {
+                    "date": "2023-10-01",
+                    "value": 3.6
+                },
+                {
                     "date": "2024-01-01",
-                    "value": 0.8
+                    "value": 1.4
                 },
                 {
                     "date": "2024-04-01",
@@ -2279,39 +2279,39 @@
                 },
                 {
                     "date": "2024-07-01",
-                    "value": 3.3
+                    "value": 3.2
                 },
                 {
                     "date": "2024-10-01",
-                    "value": 1.9
+                    "value": 2.4
                 },
                 {
                     "date": "2025-01-01",
-                    "value": -0.6
+                    "value": 0.1
                 },
                 {
                     "date": "2025-04-01",
-                    "value": 3.8
+                    "value": 4.0
                 },
                 {
                     "date": "2025-07-01",
-                    "value": 4.4
+                    "value": 3.9
                 },
                 {
                     "date": "2025-10-01",
-                    "value": 0.5
+                    "value": 0.2
                 },
                 {
                     "date": "2026-01-01",
-                    "value": 2.1
+                    "value": 2.5
                 },
                 {
                     "date": "2026-04-01",
-                    "value": 1.5
+                    "value": 2.2
                 }
             ],
-            "value": 1.5,
-            "change": -0.6,
+            "value": 2.2,
+            "change": -0.3,
             "compared_date": "2026-01-01",
             "trend": "down"
         },
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Singapore's Temasek to expand Middle East presence, open Abu Dhabi, Riyadh offices",
+            "link": "https://www.cnbc.com/2026/09/30/singapores-temasek-expands-in-mideast-with-abu-dhabi-riyadh-offices-.html",
+            "published": "Wed, 30 Sep 2026 08:45:42 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Beijing warns of retaliation if Europe imposes curbs on Chinese businesses",
             "link": "https://www.cnbc.com/2026/09/30/china-warns-europe-increases-trade-pressure.html",
             "published": "Wed, 30 Sep 2026 03:39:08 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/28/nearly-half-of-the-stocks-in-the-sp-500-are-working-against-it.html",
             "published": "Mon, 28 Sep 2026 17:53:31 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "U.S., China to lower tariffs on $60 billion of goods. Here's what qualifies",
-            "link": "https://www.cnbc.com/2026/09/28/us-china-lower-tariffs-trump-xi-meeting.html",
-            "published": "Mon, 28 Sep 2026 08:31:33 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-30 06:28 UTC"
+    "last_updated": "2026-09-30 13:28 UTC"
 }
