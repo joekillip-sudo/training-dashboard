@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-15",
-                    "value": 5396.63
-                },
-                {
                     "date": "2025-04-16",
                     "value": 5275.7
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-09-28",
                     "value": 7683.69
+                },
+                {
+                    "date": "2026-09-29",
+                    "value": 7670.84
                 }
             ],
-            "value": 7683.69,
-            "change": -59.72,
-            "compared_date": "2026-09-25",
+            "value": 7670.84,
+            "change": -12.85,
+            "compared_date": "2026-09-28",
             "trend": "down"
         },
         "dollar_index": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Goldman Sachs CEO succession planning faces one big problem",
+            "link": "https://www.cnbc.com/2026/09/29/goldman-sachs-ceo-succession-planning.html",
+            "published": "Tue, 29 Sep 2026 20:50:10 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Prediction market traders think the U.S. added more jobs in September than economists estimate",
             "link": "https://www.cnbc.com/2026/09/29/prediction-market-traders-september-jobs-report-will-beat-estimates.html",
             "published": "Tue, 29 Sep 2026 20:33:08 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/28/trump-xi-summit-tangible-outcomes-us-china-truce.html",
             "published": "Mon, 28 Sep 2026 07:22:06 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Debt-hungry AI companies face increased risk as bond yields spike",
-            "link": "https://www.cnbc.com/2026/09/27/debt-hungry-data-center-companies-increased-risk-bond-yields-spike.html",
-            "published": "Sun, 27 Sep 2026 15:35:34 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-29 20:34 UTC"
+    "last_updated": "2026-09-30 00:12 UTC"
 }
