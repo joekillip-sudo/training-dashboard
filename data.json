@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-14",
-                    "value": 4.38
-                },
-                {
                     "date": "2025-04-15",
                     "value": 4.35
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-09-28",
                     "value": 5.24
+                },
+                {
+                    "date": "2026-09-29",
+                    "value": 5.26
                 }
             ],
-            "value": 5.24,
-            "change": 0.07,
-            "compared_date": "2026-09-25",
+            "value": 5.26,
+            "change": 0.02,
+            "compared_date": "2026-09-28",
             "trend": "up"
         },
         "fed_rate": {
@@ -6822,9 +6822,15 @@
     },
     "news": [
         {
-            "title": "Kalshi, Polymarket trading volumes on some products raises questions amid massive growth",
+            "title": "Fed's Kashkari says inflation is 'still too high' even after softer-than-expected PCE data",
+            "link": "https://www.cnbc.com/2026/09/30/watch-minneapolis-fed-president-neel-kashkari.html",
+            "published": "Wed, 30 Sep 2026 22:21:27 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Kalshi, Polymarket trading volumes on some products raise questions amid massive growth",
             "link": "https://www.cnbc.com/2026/09/30/kalshi-polymarket-trading-volume-scrutiny.html",
-            "published": "Wed, 30 Sep 2026 14:31:26 GMT",
+            "published": "Wed, 30 Sep 2026 21:09:42 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/29/trump-municipal-bond-portfolio.html",
             "published": "Tue, 29 Sep 2026 14:37:07 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "China has three new criteria for humanoid robot IPOs. Few, if any, meet them",
-            "link": "https://www.cnbc.com/2026/09/29/china-criteria-humanoid-robot-ipos.html",
-            "published": "Wed, 30 Sep 2026 02:50:35 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-30 18:58 UTC"
+    "last_updated": "2026-09-30 22:56 UTC"
 }
