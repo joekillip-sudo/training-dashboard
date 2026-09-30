@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Beijing warns of retaliation if Europe imposes curbs on Chinese businesses",
+            "link": "https://www.cnbc.com/2026/09/30/china-warns-europe-increases-trade-pressure.html",
+            "published": "Wed, 30 Sep 2026 03:39:08 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Goldman Sachs CEO succession planning faces one big problem",
             "link": "https://www.cnbc.com/2026/09/29/goldman-sachs-ceo-succession-planning.html",
             "published": "Tue, 29 Sep 2026 20:50:10 GMT",
@@ -6848,7 +6854,7 @@
         {
             "title": "China has three new criteria for humanoid robot IPOs. Few, if any, meet them",
             "link": "https://www.cnbc.com/2026/09/29/china-criteria-humanoid-robot-ipos.html",
-            "published": "Tue, 29 Sep 2026 07:19:38 GMT",
+            "published": "Wed, 30 Sep 2026 02:50:35 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/28/us-china-lower-tariffs-trump-xi-meeting.html",
             "published": "Mon, 28 Sep 2026 08:31:33 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Trump-Xi summit analysis: 'Tangible outcomes' needed for U.S.-China truce to hold",
-            "link": "https://www.cnbc.com/2026/09/28/trump-xi-summit-tangible-outcomes-us-china-truce.html",
-            "published": "Mon, 28 Sep 2026 07:22:06 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-30 00:12 UTC"
+    "last_updated": "2026-09-30 06:28 UTC"
 }
