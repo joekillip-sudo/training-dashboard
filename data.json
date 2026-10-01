@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-16",
-                    "value": 5275.7
-                },
-                {
                     "date": "2025-04-17",
                     "value": 5282.7
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-09-29",
                     "value": 7670.84
+                },
+                {
+                    "date": "2026-09-30",
+                    "value": 7651.54
                 }
             ],
-            "value": 7670.84,
-            "change": -12.85,
-            "compared_date": "2026-09-28",
+            "value": 7651.54,
+            "change": -19.3,
+            "compared_date": "2026-09-29",
             "trend": "down"
         },
         "dollar_index": {
@@ -6822,9 +6822,9 @@
     },
     "news": [
         {
-            "title": "Fed's Kashkari says inflation is 'still too high' even after softer-than-expected PCE data",
+            "title": "Fed's Kashkari says inflation is 'still too high' even after softer-than-expected PCE data, labor market is 'pretty good'",
             "link": "https://www.cnbc.com/2026/09/30/watch-minneapolis-fed-president-neel-kashkari.html",
-            "published": "Wed, 30 Sep 2026 22:21:27 GMT",
+            "published": "Wed, 30 Sep 2026 23:44:28 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-09-30 22:56 UTC"
+    "last_updated": "2026-10-01 02:00 UTC"
 }
