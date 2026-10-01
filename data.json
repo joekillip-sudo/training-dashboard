@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-15",
-                    "value": 4.35
-                },
-                {
                     "date": "2025-04-16",
                     "value": 4.29
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-09-29",
                     "value": 5.26
+                },
+                {
+                    "date": "2026-09-30",
+                    "value": 5.29
                 }
             ],
-            "value": 5.26,
-            "change": 0.02,
-            "compared_date": "2026-09-28",
+            "value": 5.29,
+            "change": 0.03,
+            "compared_date": "2026-09-29",
             "trend": "up"
         },
         "fed_rate": {
@@ -1476,10 +1476,6 @@
             "unit": "%",
             "group": "Rates & Bonds",
             "history": [
-                {
-                    "date": "2021-09-01",
-                    "value": 0.08
-                },
                 {
                     "date": "2021-10-01",
                     "value": 0.08
@@ -1715,12 +1711,16 @@
                 {
                     "date": "2026-08-01",
                     "value": 3.63
+                },
+                {
+                    "date": "2026-09-01",
+                    "value": 3.75
                 }
             ],
-            "value": 3.63,
-            "change": 0.0,
-            "compared_date": "2026-07-01",
-            "trend": "same"
+            "value": 3.75,
+            "change": 0.12,
+            "compared_date": "2026-08-01",
+            "trend": "up"
         },
         "us_cpi_yoy": {
             "label": "US Inflation (YoY)",
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-01 16:11 UTC"
+    "last_updated": "2026-10-01 21:41 UTC"
 }
