@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Bitget 'not expecting to recover a lot' from $388 million hack, CEO tells CNBC",
+            "link": "https://www.cnbc.com/2026/10/02/bitget-crypto-stolen-hack-recovery.html",
+            "published": "Fri, 02 Oct 2026 06:03:23 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Fed's Kashkari says inflation is 'still too high' even after softer-than-expected PCE data, labor market is 'pretty good'",
             "link": "https://www.cnbc.com/2026/09/30/watch-minneapolis-fed-president-neel-kashkari.html",
             "published": "Wed, 30 Sep 2026 23:44:28 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/29/polymarket-lisa-mantil-institutional-growth.html",
             "published": "Tue, 29 Sep 2026 12:00:33 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Trump\u2019s municipal bond portfolio reaches as much as $1 billion as policy overlaps mount",
-            "link": "https://www.cnbc.com/2026/09/29/trump-municipal-bond-portfolio.html",
-            "published": "Tue, 29 Sep 2026 14:37:07 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-02 01:27 UTC"
+    "last_updated": "2026-10-02 08:13 UTC"
 }
