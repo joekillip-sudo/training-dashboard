@@ -1979,10 +1979,6 @@
             "group": "Growth & Prices",
             "history": [
                 {
-                    "date": "2021-08-01",
-                    "value": 5.1
-                },
-                {
                     "date": "2021-09-01",
                     "value": 4.7
                 },
@@ -2217,12 +2213,16 @@
                 {
                     "date": "2026-08-01",
                     "value": 4.1
+                },
+                {
+                    "date": "2026-09-01",
+                    "value": 4.2
                 }
             ],
-            "value": 4.1,
-            "change": 0.0,
-            "compared_date": "2026-07-01",
-            "trend": "same"
+            "value": 4.2,
+            "change": 0.1,
+            "compared_date": "2026-08-01",
+            "trend": "up"
         },
         "gdp_growth": {
             "label": "US GDP Growth (QoQ annualized)",
@@ -6822,6 +6822,24 @@
     },
     "news": [
         {
+            "title": "Traders now see little chance of a Fed rate hike in October after weak jobs report",
+            "link": "https://www.cnbc.com/2026/10/02/fed-rate-hike-odds-decline-after-september-jobs-report.html",
+            "published": "Fri, 02 Oct 2026 13:29:27 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "'The hottest skill on Wall Street\u2019: Demand for this AI ability jumped 1,721% as banks embrace agents",
+            "link": "https://www.cnbc.com/2026/10/02/ai-skills-most-in-demand-at-jpmorgan-chase-citigroup-capital-one.html",
+            "published": "Fri, 02 Oct 2026 11:03:31 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "How AI is redefining Wall Street jobs \u2014 and boosting demand for this new 'hottest skill' by 1,721%",
+            "link": "https://www.cnbc.com/2026/10/02/ai-redefining-wall-street-jobs.html",
+            "published": "Fri, 02 Oct 2026 12:24:27 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Bitget 'not expecting to recover a lot' from $388 million hack, CEO tells CNBC",
             "link": "https://www.cnbc.com/2026/10/02/bitget-crypto-stolen-hack-recovery.html",
             "published": "Fri, 02 Oct 2026 06:03:23 GMT",
@@ -6850,25 +6868,7 @@
             "link": "https://www.cnbc.com/2026/09/30/china-warns-europe-increases-trade-pressure.html",
             "published": "Wed, 30 Sep 2026 03:39:08 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Goldman Sachs CEO succession planning faces one big problem",
-            "link": "https://www.cnbc.com/2026/09/29/goldman-sachs-ceo-succession-planning.html",
-            "published": "Tue, 29 Sep 2026 20:50:10 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Prediction market traders think the U.S. added more jobs in September than economists estimate",
-            "link": "https://www.cnbc.com/2026/09/29/prediction-market-traders-september-jobs-report-will-beat-estimates.html",
-            "published": "Tue, 29 Sep 2026 20:33:08 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Polymarket taps Goldman Sachs veteran Lisa Mantil to attract Wall Street liquidity",
-            "link": "https://www.cnbc.com/2026/09/29/polymarket-lisa-mantil-institutional-growth.html",
-            "published": "Tue, 29 Sep 2026 12:00:33 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-02 08:13 UTC"
+    "last_updated": "2026-10-02 15:35 UTC"
 }
