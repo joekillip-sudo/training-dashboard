@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-16",
-                    "value": 4.29
-                },
-                {
                     "date": "2025-04-17",
                     "value": 4.34
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-09-30",
                     "value": 5.29
+                },
+                {
+                    "date": "2026-10-01",
+                    "value": 5.24
                 }
             ],
-            "value": 5.29,
-            "change": 0.03,
-            "compared_date": "2026-09-29",
-            "trend": "up"
+            "value": 5.24,
+            "change": -0.05,
+            "compared_date": "2026-09-30",
+            "trend": "down"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -6836,7 +6836,7 @@
         {
             "title": "How AI is redefining Wall Street jobs \u2014 and boosting demand for this new 'hottest skill' by 1,721%",
             "link": "https://www.cnbc.com/2026/10/02/ai-redefining-wall-street-jobs.html",
-            "published": "Fri, 02 Oct 2026 12:24:27 GMT",
+            "published": "Fri, 02 Oct 2026 18:49:03 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-02 15:35 UTC"
+    "last_updated": "2026-10-02 20:32 UTC"
 }
