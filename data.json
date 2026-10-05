@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-17",
-                    "value": 4.34
-                },
-                {
                     "date": "2025-04-21",
                     "value": 4.42
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-10-01",
                     "value": 5.24
+                },
+                {
+                    "date": "2026-10-02",
+                    "value": 5.28
                 }
             ],
-            "value": 5.24,
-            "change": -0.05,
-            "compared_date": "2026-09-30",
-            "trend": "down"
+            "value": 5.28,
+            "change": 0.04,
+            "compared_date": "2026-10-01",
+            "trend": "up"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -3883,26 +3883,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-14",
-                    "value": 123.66
-                },
-                {
-                    "date": "2025-04-15",
-                    "value": 123.78
-                },
-                {
-                    "date": "2025-04-16",
-                    "value": 123.27
-                },
-                {
-                    "date": "2025-04-17",
-                    "value": 123.13
-                },
-                {
-                    "date": "2025-04-18",
-                    "value": 122.99
-                },
-                {
                     "date": "2025-04-21",
                     "value": 122.31
                 },
@@ -5341,11 +5321,31 @@
                 {
                     "date": "2026-09-25",
                     "value": 120.33
+                },
+                {
+                    "date": "2026-09-28",
+                    "value": 120.7
+                },
+                {
+                    "date": "2026-09-29",
+                    "value": 121.03
+                },
+                {
+                    "date": "2026-09-30",
+                    "value": 120.97
+                },
+                {
+                    "date": "2026-10-01",
+                    "value": 121.79
+                },
+                {
+                    "date": "2026-10-02",
+                    "value": 121.38
                 }
             ],
-            "value": 120.33,
-            "change": -0.22,
-            "compared_date": "2026-09-24",
+            "value": 121.38,
+            "change": -0.41,
+            "compared_date": "2026-10-01",
             "trend": "down"
         },
         "oil_wti": {
@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "House Democrat targets candidate prediction market trades after opponent\u2019s Kalshi penalty",
+            "link": "https://www.cnbc.com/2026/10/05/don-davis-prediction-market-candidate-trading.html",
+            "published": "Mon, 05 Oct 2026 21:24:25 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Brazilian stocks jump as Bolsonaro now seen as heavy favorite to win presidency",
+            "link": "https://www.cnbc.com/2026/10/05/brazilian-stocks-jump-bolsonaro-now-heavy-favorite-to-win-presidency.html",
+            "published": "Mon, 05 Oct 2026 20:41:23 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Sports betting is increasingly the norm for Gen Z.  Here\u2019s why some financial and mental health experts are worried",
             "link": "https://www.cnbc.com/2026/10/04/gen-z-sports-betting-financial-and-mental-health-risks.html",
             "published": "Sun, 04 Oct 2026 12:57:45 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/02/bitget-crypto-stolen-hack-recovery.html",
             "published": "Fri, 02 Oct 2026 06:03:23 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Fed's Kashkari says inflation is 'still too high' even after softer-than-expected PCE data, labor market is 'pretty good'",
-            "link": "https://www.cnbc.com/2026/09/30/watch-minneapolis-fed-president-neel-kashkari.html",
-            "published": "Wed, 30 Sep 2026 23:44:28 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Kalshi, Polymarket trading volumes on some products raise questions amid massive growth",
-            "link": "https://www.cnbc.com/2026/09/30/kalshi-polymarket-trading-volume-scrutiny.html",
-            "published": "Thu, 01 Oct 2026 14:24:36 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-05 15:44 UTC"
+    "last_updated": "2026-10-05 22:24 UTC"
 }
