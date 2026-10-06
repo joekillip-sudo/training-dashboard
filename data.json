@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Goldman: Diesel prices set to stay high through 2027 as refineries struggle to meet demand",
+            "link": "https://www.cnbc.com/2026/10/06/diesel-oil-refinery-price-capacity-demand.html",
+            "published": "Tue, 06 Oct 2026 08:47:30 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "House Democrat targets candidate prediction market trades after opponent\u2019s Kalshi penalty",
             "link": "https://www.cnbc.com/2026/10/05/don-davis-prediction-market-candidate-trading.html",
             "published": "Mon, 05 Oct 2026 21:24:25 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/02/ai-redefining-wall-street-jobs.html",
             "published": "Fri, 02 Oct 2026 18:49:03 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Bitget 'not expecting to recover a lot' from $388 million hack, CEO tells CNBC",
-            "link": "https://www.cnbc.com/2026/10/02/bitget-crypto-stolen-hack-recovery.html",
-            "published": "Fri, 02 Oct 2026 06:03:23 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-06 02:47 UTC"
+    "last_updated": "2026-10-06 09:56 UTC"
 }
