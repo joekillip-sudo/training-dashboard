@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-21",
-                    "value": 4.42
-                },
-                {
                     "date": "2025-04-22",
                     "value": 4.41
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-10-02",
                     "value": 5.28
+                },
+                {
+                    "date": "2026-10-05",
+                    "value": 5.31
                 }
             ],
-            "value": 5.28,
-            "change": 0.04,
-            "compared_date": "2026-10-01",
+            "value": 5.31,
+            "change": 0.03,
+            "compared_date": "2026-10-02",
             "trend": "up"
         },
         "fed_rate": {
@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "Chart: A look at the S&P 500's remarkable and defiant trip to a new record",
+            "link": "https://www.cnbc.com/2026/10/06/chart-a-look-at-the-sp-500s-remarkable-and-defiant-trip-a-new-record.html",
+            "published": "Tue, 06 Oct 2026 20:50:54 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "How event contract bundles are boosting volume on prediction markets",
+            "link": "https://www.cnbc.com/2026/10/06/prediction-market-combo-contract-volume.html",
+            "published": "Tue, 06 Oct 2026 18:46:16 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Goldman: Diesel prices set to stay high through 2027 as refineries struggle to meet demand",
             "link": "https://www.cnbc.com/2026/10/06/diesel-oil-refinery-price-capacity-demand.html",
             "published": "Tue, 06 Oct 2026 08:47:30 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/02/fed-rate-hike-odds-decline-after-september-jobs-report.html",
             "published": "Fri, 02 Oct 2026 13:29:27 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "'The hottest skill on Wall Street\u2019: Demand for this AI ability jumped 1,721% as banks embrace agents",
-            "link": "https://www.cnbc.com/2026/10/02/ai-skills-most-in-demand-at-jpmorgan-chase-citigroup-capital-one.html",
-            "published": "Fri, 02 Oct 2026 11:03:31 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "How AI is redefining Wall Street jobs \u2014 and boosting demand for this new 'hottest skill' by 1,721%",
-            "link": "https://www.cnbc.com/2026/10/02/ai-redefining-wall-street-jobs.html",
-            "published": "Fri, 02 Oct 2026 18:49:03 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-06 16:39 UTC"
+    "last_updated": "2026-10-06 21:30 UTC"
 }
