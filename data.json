@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-22",
-                    "value": 4.41
-                },
-                {
                     "date": "2025-04-23",
                     "value": 4.4
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-10-05",
                     "value": 5.31
+                },
+                {
+                    "date": "2026-10-06",
+                    "value": 5.27
                 }
             ],
-            "value": 5.31,
-            "change": 0.03,
-            "compared_date": "2026-10-02",
-            "trend": "up"
+            "value": 5.27,
+            "change": -0.04,
+            "compared_date": "2026-10-05",
+            "trend": "down"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -5354,26 +5354,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-14",
-                    "value": 61.99
-                },
-                {
-                    "date": "2025-04-15",
-                    "value": 61.74
-                },
-                {
-                    "date": "2025-04-16",
-                    "value": 62.88
-                },
-                {
-                    "date": "2025-04-17",
-                    "value": 65.07
-                },
-                {
-                    "date": "2025-04-21",
-                    "value": 63.48
-                },
-                {
                     "date": "2025-04-22",
                     "value": 64.6
                 },
@@ -6812,15 +6792,41 @@
                 {
                     "date": "2026-09-29",
                     "value": 96.16
+                },
+                {
+                    "date": "2026-09-30",
+                    "value": 97.18
+                },
+                {
+                    "date": "2026-10-01",
+                    "value": 99.77
+                },
+                {
+                    "date": "2026-10-02",
+                    "value": 97.89
+                },
+                {
+                    "date": "2026-10-05",
+                    "value": 96.13
+                },
+                {
+                    "date": "2026-10-06",
+                    "value": 96.24
                 }
             ],
-            "value": 96.16,
-            "change": -3.21,
-            "compared_date": "2026-09-28",
-            "trend": "down"
+            "value": 96.24,
+            "change": 0.11,
+            "compared_date": "2026-10-05",
+            "trend": "up"
         }
     },
     "news": [
+        {
+            "title": "Fed officials see another hike coming, but no sign as to when, minutes show",
+            "link": "https://www.cnbc.com/2026/10/07/fed-officials-see-another-hike-coming-but-no-sign-as-to-when-minutes-show.html",
+            "published": "Wed, 07 Oct 2026 18:42:36 GMT",
+            "source": "CNBC"
+        },
         {
             "title": "Why AI is both the hope and the hazard for world leaders, according to IMF chief Georgieva",
             "link": "https://www.cnbc.com/2026/10/07/economy-inflation-ai-trade-imf-iran-hormuz-trump-.html",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/04/gen-z-sports-betting-financial-and-mental-health-risks.html",
             "published": "Sun, 04 Oct 2026 12:57:45 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Lula or Bolsonaro: Wall Street braces for two wildly different results in Brazil election",
-            "link": "https://www.cnbc.com/2026/10/03/lula-or-bolsonaro-wall-street-braces-for-two-wildly-different-results-in-brazil-election.html",
-            "published": "Sat, 03 Oct 2026 13:12:27 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-07 16:13 UTC"
+    "last_updated": "2026-10-07 21:50 UTC"
 }
