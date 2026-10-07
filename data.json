@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-23",
-                    "value": 5375.86
-                },
-                {
                     "date": "2025-04-24",
                     "value": 5484.77
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-10-05",
                     "value": 7773.95
+                },
+                {
+                    "date": "2026-10-06",
+                    "value": 7818.93
                 }
             ],
-            "value": 7773.95,
-            "change": 51.23,
-            "compared_date": "2026-10-02",
+            "value": 7818.93,
+            "change": 44.98,
+            "compared_date": "2026-10-05",
             "trend": "up"
         },
         "dollar_index": {
@@ -6824,7 +6824,7 @@
         {
             "title": "Chart: A look at the S&P 500's remarkable and defiant trip to a new record",
             "link": "https://www.cnbc.com/2026/10/06/chart-a-look-at-the-sp-500s-remarkable-and-defiant-trip-a-new-record.html",
-            "published": "Tue, 06 Oct 2026 20:50:54 GMT",
+            "published": "Tue, 06 Oct 2026 22:23:01 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-06 21:30 UTC"
+    "last_updated": "2026-10-07 01:18 UTC"
 }
