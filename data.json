@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-25",
-                    "value": 5525.21
-                },
-                {
                     "date": "2025-04-28",
                     "value": 5528.75
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-10-07",
                     "value": 7801.77
+                },
+                {
+                    "date": "2026-10-08",
+                    "value": 7765.36
                 }
             ],
-            "value": 7801.77,
-            "change": -17.16,
-            "compared_date": "2026-10-06",
+            "value": 7765.36,
+            "change": -36.41,
+            "compared_date": "2026-10-07",
             "trend": "down"
         },
         "dollar_index": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Tokenization could unleash tens of billions of dollars in trapped capital, Nasdaq CEO says",
+            "link": "https://www.cnbc.com/2026/10/09/nasdaq-ceo-tokenization-could-unleash-billions-in-trapped-capital-.html",
+            "published": "Thu, 08 Oct 2026 23:57:23 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Little relief expected for gas prices ahead of Election Day, according to prediction markets",
             "link": "https://www.cnbc.com/2026/10/08/little-relief-expected-for-gas-prices-ahead-of-election-day.html",
             "published": "Thu, 08 Oct 2026 17:51:51 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/06/prediction-market-combo-contract-volume.html",
             "published": "Tue, 06 Oct 2026 18:46:16 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Goldman: Diesel prices set to stay high through 2027 as refineries struggle to meet demand",
-            "link": "https://www.cnbc.com/2026/10/06/diesel-oil-refinery-price-capacity-demand.html",
-            "published": "Tue, 06 Oct 2026 08:47:30 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-08 21:54 UTC"
+    "last_updated": "2026-10-09 01:52 UTC"
 }
