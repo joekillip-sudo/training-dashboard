@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-25",
-                    "value": 4.29
-                },
-                {
                     "date": "2025-04-28",
                     "value": 4.23
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-10-08",
                     "value": 5.22
+                },
+                {
+                    "date": "2026-10-09",
+                    "value": 5.24
                 }
             ],
-            "value": 5.22,
-            "change": -0.06,
-            "compared_date": "2026-10-07",
-            "trend": "down"
+            "value": 5.24,
+            "change": 0.02,
+            "compared_date": "2026-10-08",
+            "trend": "up"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -3883,26 +3883,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-21",
-                    "value": 122.31
-                },
-                {
-                    "date": "2025-04-22",
-                    "value": 122.42
-                },
-                {
-                    "date": "2025-04-23",
-                    "value": 123.03
-                },
-                {
-                    "date": "2025-04-24",
-                    "value": 122.93
-                },
-                {
-                    "date": "2025-04-25",
-                    "value": 122.89
-                },
-                {
                     "date": "2025-04-28",
                     "value": 122.72
                 },
@@ -5341,12 +5321,32 @@
                 {
                     "date": "2026-10-02",
                     "value": 121.38
+                },
+                {
+                    "date": "2026-10-05",
+                    "value": 121.27
+                },
+                {
+                    "date": "2026-10-06",
+                    "value": 120.9
+                },
+                {
+                    "date": "2026-10-07",
+                    "value": 121.26
+                },
+                {
+                    "date": "2026-10-08",
+                    "value": 121.45
+                },
+                {
+                    "date": "2026-10-09",
+                    "value": 121.6
                 }
             ],
-            "value": 121.38,
-            "change": -0.41,
-            "compared_date": "2026-10-01",
-            "trend": "down"
+            "value": 121.6,
+            "change": 0.15,
+            "compared_date": "2026-10-08",
+            "trend": "up"
         },
         "oil_wti": {
             "label": "Crude Oil (WTI)",
@@ -6822,6 +6822,18 @@
     },
     "news": [
         {
+            "title": "Williams says Fed may not have to hike rates in 2027, at odds with traders",
+            "link": "https://www.cnbc.com/2026/10/13/john-williams-fed-rate-hikes-2027.html",
+            "published": "Tue, 13 Oct 2026 19:46:12 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "JPMorgan Chase blocks outside AI agents like Muse, Instinct from directly accessing accounts",
+            "link": "https://www.cnbc.com/2026/10/13/jpmorgan-ai-agents-account-access.html",
+            "published": "Tue, 13 Oct 2026 20:48:37 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Visa gets Beijing's green light for bank card business after 40 years of working with China",
             "link": "https://www.cnbc.com/2026/10/13/visa-china-green-light-bank-card-business-.html",
             "published": "Tue, 13 Oct 2026 06:20:55 GMT",
@@ -6856,19 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/10/jpmorgan-sees-once-in-a-generation-opportunity-in-fixed-income-space.html",
             "published": "Sat, 10 Oct 2026 15:00:01 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Blockchain.com seeks U.S. approval for prediction markets, crypto derivatives trading",
-            "link": "https://www.cnbc.com/2026/10/09/blockchain-com-cftc-prediction-markets.html",
-            "published": "Fri, 09 Oct 2026 12:01:26 GMT",
-            "source": "CNBC"
-        },
-        {
-            "title": "Tokenization could unleash tens of billions of dollars in trapped capital, Nasdaq CEO says",
-            "link": "https://www.cnbc.com/2026/10/09/nasdaq-ceo-tokenization-could-unleash-billions-in-trapped-capital-.html",
-            "published": "Fri, 09 Oct 2026 06:30:01 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-13 15:45 UTC"
+    "last_updated": "2026-10-13 21:05 UTC"
 }
