@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-29",
-                    "value": 5560.83
-                },
-                {
                     "date": "2025-04-30",
                     "value": 5569.06
                 },
@@ -3870,12 +3866,16 @@
                 {
                     "date": "2026-10-09",
                     "value": 7811.54
+                },
+                {
+                    "date": "2026-10-12",
+                    "value": 7807.24
                 }
             ],
-            "value": 7811.54,
-            "change": 46.18,
-            "compared_date": "2026-10-08",
-            "trend": "up"
+            "value": 7807.24,
+            "change": -4.3,
+            "compared_date": "2026-10-09",
+            "trend": "down"
         },
         "dollar_index": {
             "label": "US Dollar Index",
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "The bull market turned 4 years old on Monday. Investors say reaching a fifth birthday could be challenging",
+            "link": "https://www.cnbc.com/2026/10/12/the-bull-market-just-turned-four-after-climbing-a-wall-of-worry.html",
+            "published": "Mon, 12 Oct 2026 18:18:39 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Higher rates could be needed to avoid 'inflationary mindset' taking hold, says Fed's Hammack",
             "link": "https://www.cnbc.com/2026/10/12/beth-hammack-fed-inflation-policy.html",
             "published": "Mon, 12 Oct 2026 17:15:21 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/08/chinas-real-estate-market-may-be-set-for-a-turnaround-sp-says.html",
             "published": "Thu, 08 Oct 2026 09:27:31 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Huawei doubles down on smartphones as EV sales slow",
-            "link": "https://www.cnbc.com/2026/10/08/huawei-china-smartphone-ev-slow.html",
-            "published": "Thu, 08 Oct 2026 08:04:11 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-12 17:36 UTC"
+    "last_updated": "2026-10-13 00:24 UTC"
 }
