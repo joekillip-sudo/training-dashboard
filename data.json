@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-30",
-                    "value": 5569.06
-                },
-                {
                     "date": "2025-05-01",
                     "value": 5604.14
                 },
@@ -3870,11 +3866,15 @@
                 {
                     "date": "2026-10-12",
                     "value": 7807.24
+                },
+                {
+                    "date": "2026-10-13",
+                    "value": 7805.45
                 }
             ],
-            "value": 7807.24,
-            "change": -4.3,
-            "compared_date": "2026-10-09",
+            "value": 7805.45,
+            "change": -1.79,
+            "compared_date": "2026-10-12",
             "trend": "down"
         },
         "dollar_index": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Goldman says investors are looking for 'profitable' Chinese business growth overseas",
+            "link": "https://www.cnbc.com/2026/10/14/goldman-says-investors-seek-profitable-chinese-business-growth-abroad.html",
+            "published": "Tue, 13 Oct 2026 23:05:12 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Williams says Fed may not have to hike rates in 2027, at odds with traders",
             "link": "https://www.cnbc.com/2026/10/13/john-williams-fed-rate-hikes-2027.html",
             "published": "Tue, 13 Oct 2026 19:46:12 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/12/inflation-will-remain-sticky-in-2026-according-to-prediction-markets.html",
             "published": "Mon, 12 Oct 2026 15:37:26 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "JPMorgan makes bullish call in fixed income space, suggests it's a once in a generation opportunity",
-            "link": "https://www.cnbc.com/2026/10/10/jpmorgan-sees-once-in-a-generation-opportunity-in-fixed-income-space.html",
-            "published": "Sat, 10 Oct 2026 15:00:01 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-13 21:05 UTC"
+    "last_updated": "2026-10-14 01:00 UTC"
 }
