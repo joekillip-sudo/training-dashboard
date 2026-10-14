@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "China's exports and imports surge past expectations in September",
+            "link": "https://www.cnbc.com/2026/10/14/chinas-exports-likely-grew-by-double-digits-in-september.html",
+            "published": "Wed, 14 Oct 2026 03:41:36 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Goldman says investors are looking for 'profitable' Chinese business growth overseas",
             "link": "https://www.cnbc.com/2026/10/14/goldman-says-investors-seek-profitable-chinese-business-growth-abroad.html",
             "published": "Tue, 13 Oct 2026 23:05:12 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/12/beth-hammack-fed-inflation-policy.html",
             "published": "Tue, 13 Oct 2026 02:58:11 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Inflation likely peaked for 2026 but will remain sticky, according to prediction markets",
-            "link": "https://www.cnbc.com/2026/10/12/inflation-will-remain-sticky-in-2026-according-to-prediction-markets.html",
-            "published": "Mon, 12 Oct 2026 15:37:26 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-14 01:00 UTC"
+    "last_updated": "2026-10-14 06:03 UTC"
 }
