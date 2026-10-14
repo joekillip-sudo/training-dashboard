@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-28",
-                    "value": 4.23
-                },
-                {
                     "date": "2025-04-29",
                     "value": 4.19
                 },
@@ -1464,12 +1460,16 @@
                 {
                     "date": "2026-10-09",
                     "value": 5.24
+                },
+                {
+                    "date": "2026-10-13",
+                    "value": 5.21
                 }
             ],
-            "value": 5.24,
-            "change": 0.02,
-            "compared_date": "2026-10-08",
-            "trend": "up"
+            "value": 5.21,
+            "change": -0.03,
+            "compared_date": "2026-10-09",
+            "trend": "down"
         },
         "fed_rate": {
             "label": "Fed Funds Rate",
@@ -6822,15 +6822,21 @@
     },
     "news": [
         {
-            "title": "Morgan Stanley tops estimates as equities trading revenue beats expectations by $909 million",
-            "link": "https://www.cnbc.com/2026/10/14/morgan-stanley-ms-q3-2026-earnings.html",
-            "published": "Wed, 14 Oct 2026 17:08:23 GMT",
+            "title": "Bank of America hired 1,000 contractors to patch software flaws exposed by Anthropic's Mythos",
+            "link": "https://www.cnbc.com/2026/10/14/anthropic-mythos-bank-of-america-hiring-cost.html",
+            "published": "Wed, 14 Oct 2026 20:06:28 GMT",
             "source": "CNBC"
         },
         {
-            "title": "Bank of America shares drop 8% after third-quarter revenue miss and regulatory penalty",
+            "title": "Morgan Stanley tops estimates as equities trading revenue beats expectations by $909 million",
+            "link": "https://www.cnbc.com/2026/10/14/morgan-stanley-ms-q3-2026-earnings.html",
+            "published": "Wed, 14 Oct 2026 20:22:09 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Bank of America shares drop after third-quarter revenue miss and regulatory penalty",
             "link": "https://www.cnbc.com/2026/10/14/bank-of-america-bac-q3-2026-earnings.html",
-            "published": "Wed, 14 Oct 2026 16:49:11 GMT",
+            "published": "Wed, 14 Oct 2026 20:20:46 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/13/visa-china-green-light-bank-card-business-.html",
             "published": "Tue, 13 Oct 2026 06:20:55 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "'Boring is not bad': CEO of Southeast Asia's largest bank pitches Singapore as a haven amid global turmoil",
-            "link": "https://www.cnbc.com/2026/10/13/singapore-war-geopolitics-dbs-bank-ceo.html",
-            "published": "Tue, 13 Oct 2026 01:26:41 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-14 17:53 UTC"
+    "last_updated": "2026-10-14 21:27 UTC"
 }
