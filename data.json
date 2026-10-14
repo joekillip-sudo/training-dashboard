@@ -1728,10 +1728,6 @@
             "group": "Growth & Prices",
             "history": [
                 {
-                    "date": "2021-08-01",
-                    "value": 5.15
-                },
-                {
                     "date": "2021-09-01",
                     "value": 5.35
                 },
@@ -1966,11 +1962,15 @@
                 {
                     "date": "2026-08-01",
                     "value": 3.35
+                },
+                {
+                    "date": "2026-09-01",
+                    "value": 3.72
                 }
             ],
-            "value": 3.35,
-            "change": 0.05,
-            "compared_date": "2026-07-01",
+            "value": 3.72,
+            "change": 0.37,
+            "compared_date": "2026-08-01",
             "trend": "up"
         },
         "us_unemployment": {
@@ -6822,15 +6822,15 @@
     },
     "news": [
         {
-            "title": "Morgan Stanley tops estimates as equities trading revenue exceeds expectations by $909 million",
+            "title": "Morgan Stanley tops estimates as equities trading revenue beats expectations by $909 million",
             "link": "https://www.cnbc.com/2026/10/14/morgan-stanley-ms-q3-2026-earnings.html",
-            "published": "Wed, 14 Oct 2026 11:58:05 GMT",
+            "published": "Wed, 14 Oct 2026 17:08:23 GMT",
             "source": "CNBC"
         },
         {
-            "title": "Bank of America shares drop 5% after third-quarter revenue miss and regulatory penalty",
+            "title": "Bank of America shares drop 8% after third-quarter revenue miss and regulatory penalty",
             "link": "https://www.cnbc.com/2026/10/14/bank-of-america-bac-q3-2026-earnings.html",
-            "published": "Wed, 14 Oct 2026 12:43:55 GMT",
+            "published": "Wed, 14 Oct 2026 16:49:11 GMT",
             "source": "CNBC"
         },
         {
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-14 12:46 UTC"
+    "last_updated": "2026-10-14 17:53 UTC"
 }
