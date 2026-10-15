@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-04-29",
-                    "value": 4.19
-                },
-                {
                     "date": "2025-04-30",
                     "value": 4.17
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-10-13",
                     "value": 5.21
+                },
+                {
+                    "date": "2026-10-14",
+                    "value": 5.19
                 }
             ],
-            "value": 5.21,
-            "change": -0.03,
-            "compared_date": "2026-10-09",
+            "value": 5.19,
+            "change": -0.02,
+            "compared_date": "2026-10-13",
             "trend": "down"
         },
         "fed_rate": {
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "People in China are spending nearly as much of their income as Americans on healthcare",
+            "link": "https://www.cnbc.com/2026/10/15/chinese-spending-nearly-as-much-of-income-as-americans-on-healthcare.html",
+            "published": "Thu, 15 Oct 2026 23:00:01 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Harvard\u2019s endowment jumps 27% in fiscal 2026, lifted by SpaceX as top holding",
             "link": "https://www.cnbc.com/2026/10/15/harvards-endowment-jumps-27percent-with-spacex-as-top-holding.html",
             "published": "Thu, 15 Oct 2026 19:53:49 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/14/goldman-says-investors-seek-profitable-chinese-business-growth-abroad.html",
             "published": "Tue, 13 Oct 2026 23:05:12 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Williams says Fed may not have to hike rates in 2027, at odds with traders",
-            "link": "https://www.cnbc.com/2026/10/13/john-williams-fed-rate-hikes-2027.html",
-            "published": "Tue, 13 Oct 2026 19:46:12 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-15 20:13 UTC"
+    "last_updated": "2026-10-15 23:36 UTC"
 }
