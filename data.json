@@ -6822,9 +6822,15 @@
     },
     "news": [
         {
-            "title": "Bending Spoons wants to revive software castoffs. Berkshire is backing the plan",
+            "title": "'Dead money\u2019 for a decade: Why this hedge fund approach may deliver an advantage over bonds",
+            "link": "https://www.cnbc.com/2026/10/17/dead-money-for-a-decade-hedge-fund-approach-that-may-trump-bonds.html",
+            "published": "Sat, 17 Oct 2026 15:00:01 GMT",
+            "source": "CNBC"
+        },
+        {
+            "title": "Software\u2019s new consolidator gets big vote of confidence from Berkshire",
             "link": "https://www.cnbc.com/2026/10/17/bending-spoons-wants-to-revive-software-castoffs-berkshire-investing.html",
-            "published": "Sat, 17 Oct 2026 12:00:01 GMT",
+            "published": "Sat, 17 Oct 2026 15:11:30 GMT",
             "source": "CNBC"
         },
         {
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/14/morgan-stanley-ms-q3-2026-earnings.html",
             "published": "Wed, 14 Oct 2026 20:22:09 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Bank of America shares drop after third-quarter revenue miss and regulatory penalty",
-            "link": "https://www.cnbc.com/2026/10/14/bank-of-america-bac-q3-2026-earnings.html",
-            "published": "Wed, 14 Oct 2026 20:20:46 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-17 12:49 UTC"
+    "last_updated": "2026-10-17 16:13 UTC"
 }
