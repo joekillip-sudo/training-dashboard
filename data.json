@@ -6,10 +6,6 @@
             "group": "Rates & Bonds",
             "history": [
                 {
-                    "date": "2025-05-01",
-                    "value": 4.25
-                },
-                {
                     "date": "2025-05-02",
                     "value": 4.33
                 },
@@ -1464,11 +1460,15 @@
                 {
                     "date": "2026-10-15",
                     "value": 5.1
+                },
+                {
+                    "date": "2026-10-16",
+                    "value": 5.09
                 }
             ],
-            "value": 5.1,
-            "change": -0.09,
-            "compared_date": "2026-10-14",
+            "value": 5.09,
+            "change": -0.01,
+            "compared_date": "2026-10-15",
             "trend": "down"
         },
         "fed_rate": {
@@ -3883,22 +3883,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-04-28",
-                    "value": 122.72
-                },
-                {
-                    "date": "2025-04-29",
-                    "value": 122.59
-                },
-                {
-                    "date": "2025-04-30",
-                    "value": 122.59
-                },
-                {
-                    "date": "2025-05-01",
-                    "value": 123.14
-                },
-                {
                     "date": "2025-05-02",
                     "value": 122.5
                 },
@@ -5341,12 +5325,28 @@
                 {
                     "date": "2026-10-09",
                     "value": 121.6
+                },
+                {
+                    "date": "2026-10-13",
+                    "value": 121.44
+                },
+                {
+                    "date": "2026-10-14",
+                    "value": 122.0
+                },
+                {
+                    "date": "2026-10-15",
+                    "value": 121.57
+                },
+                {
+                    "date": "2026-10-16",
+                    "value": 121.4
                 }
             ],
-            "value": 121.6,
-            "change": 0.15,
-            "compared_date": "2026-10-08",
-            "trend": "up"
+            "value": 121.4,
+            "change": -0.17,
+            "compared_date": "2026-10-15",
+            "trend": "down"
         },
         "oil_wti": {
             "label": "Crude Oil (WTI)",
@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "Anthropic is AI trade's last big hope for a major IPO this year",
+            "link": "https://www.cnbc.com/2026/10/19/anthropic-ipo-ai-trade.html",
+            "published": "Mon, 19 Oct 2026 16:42:14 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Robot factories and hypersonic missiles: JPMorgan Chase's first $5 billion of defense investments",
             "link": "https://www.cnbc.com/2026/10/19/jpmorgan-security-defense-investments.html",
             "published": "Mon, 19 Oct 2026 12:34:01 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/15/china-rare-earth-exports-europe.html",
             "published": "Thu, 15 Oct 2026 09:02:31 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "Bank of America hired 1,000 contractors to patch software flaws exposed by Anthropic's Mythos",
-            "link": "https://www.cnbc.com/2026/10/14/anthropic-mythos-bank-of-america-hiring-cost.html",
-            "published": "Wed, 14 Oct 2026 20:06:28 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-19 14:28 UTC"
+    "last_updated": "2026-10-19 20:27 UTC"
 }
