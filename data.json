@@ -6822,6 +6822,12 @@
     },
     "news": [
         {
+            "title": "The world\u2019s finance chiefs see new risks \u2014 and less China angst",
+            "link": "https://www.cnbc.com/2026/10/20/imf-debt-yields-russia-china-takeaway-.html",
+            "published": "Tue, 20 Oct 2026 05:27:53 GMT",
+            "source": "CNBC"
+        },
+        {
             "title": "Anthropic is AI trade's last big hope for a major IPO this year",
             "link": "https://www.cnbc.com/2026/10/19/anthropic-ipo-ai-trade.html",
             "published": "Mon, 19 Oct 2026 16:42:14 GMT",
@@ -6862,13 +6868,7 @@
             "link": "https://www.cnbc.com/2026/10/15/harvards-endowment-jumps-27percent-with-spacex-as-top-holding.html",
             "published": "Thu, 15 Oct 2026 19:53:49 GMT",
             "source": "CNBC"
-        },
-        {
-            "title": "China indicates rare earths will keep flowing to EU, regardless of U.S. trade deal expiration",
-            "link": "https://www.cnbc.com/2026/10/15/china-rare-earth-exports-europe.html",
-            "published": "Thu, 15 Oct 2026 09:02:31 GMT",
-            "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-20 00:10 UTC"
+    "last_updated": "2026-10-20 05:46 UTC"
 }
