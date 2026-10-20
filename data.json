@@ -2412,10 +2412,6 @@
             "group": "Markets",
             "history": [
                 {
-                    "date": "2025-05-06",
-                    "value": 5606.91
-                },
-                {
                     "date": "2025-05-07",
                     "value": 5631.28
                 },
@@ -3870,12 +3866,16 @@
                 {
                     "date": "2026-10-16",
                     "value": 7659.44
+                },
+                {
+                    "date": "2026-10-19",
+                    "value": 7690.73
                 }
             ],
-            "value": 7659.44,
-            "change": -84.62,
-            "compared_date": "2026-10-15",
-            "trend": "down"
+            "value": 7690.73,
+            "change": 31.29,
+            "compared_date": "2026-10-16",
+            "trend": "up"
         },
         "dollar_index": {
             "label": "US Dollar Index",
@@ -6870,5 +6870,5 @@
             "source": "CNBC"
         }
     ],
-    "last_updated": "2026-10-19 20:27 UTC"
+    "last_updated": "2026-10-20 00:10 UTC"
 }
