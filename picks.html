@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Football Picks</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #0a1930;
+      color: white;
+      font-family: -apple-system, Arial, sans-serif;
+      padding: 24px 20px 40px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 20px; color: #4fc3f7; margin-bottom: 2px; text-align: center; }
+    .subtitle { color: #6b7c93; font-size: 12.5px; margin-bottom: 24px; text-align: center; }
+    h2 {
+      font-size: 13px; color: #6b7c93; margin: 28px 0 12px;
+      text-transform: uppercase; letter-spacing: 0.6px;
+    }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat { background: #16273f; border-radius: 12px; padding: 14px 8px; text-align: center; }
+    .stat-val { font-size: 18px; font-weight: bold; }
+    .stat-label { font-size: 10.5px; color: #8fa3bf; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.4px; }
+    .pos { color: #66bb6a; }
+    .neg { color: #ef5350; }
+    .pick { background: #16273f; border-radius: 14px; padding: 16px; margin-bottom: 12px; }
+    .pick-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .pick-match { font-size: 15px; font-weight: bold; }
+    .pick-date { font-size: 11.5px; color: #8fa3bf; white-space: nowrap; }
+    .pick-bet { margin: 10px 0 12px; font-size: 13.5px; color: #cfe3ff; }
+    .pick-bet b { color: #4fc3f7; }
+    .row { display: flex; justify-content: space-between; font-size: 12.5px; color: #8fa3bf; margin-top: 6px; }
+    .row span:last-child { color: white; }
+    .bar { height: 6px; border-radius: 3px; background: #0a1930; margin-top: 10px; position: relative; }
+    .bar i { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+    .bar .market { background: #6b7c93; left: 0; }
+    .bar .model { background: #4fc3f7; opacity: 0.8; left: 0; height: 3px; top: 1.5px; }
+    .empty, .note { color: #8fa3bf; font-size: 13px; line-height: 1.5; text-align: center; padding: 20px 8px; }
+    .note { font-size: 11.5px; color: #6b7c93; padding: 8px; margin-top: 24px; }
+    a.back { color: #4fc3f7; font-size: 12.5px; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← Dashboards</a>
+  <h1 style="margin-top:12px">Football Picks</h1>
+  <div class="subtitle" id="updated">Loading…</div>
+
+  <h2>Backtest</h2>
+  <div class="stats" id="stats"></div>
+
+  <h2>Value picks</h2>
+  <div id="picks"></div>
+
+  <div class="note">
+    Picks are where the model's win probability beats the bookmaker's margin-free price.
+    Past backtest results don't guarantee future returns. Stake sizes are quarter-Kelly, capped at 5% of bankroll.
+    Only bet what you can afford to lose.
+  </div>
+
+<script>
+const outcomeName = (o, match) => {
+  const [home, away] = match.split(" v ");
+  return o === "H" ? home + " to win" : o === "A" ? away + " to win" : "Draw";
+};
+const pct = (x, d = 1) => (x * 100).toFixed(d) + "%";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function renderStats(b) {
+  const el = document.getElementById("stats");
+  if (!b || !b.bets) { el.innerHTML = '<div class="empty" style="grid-column:1/-1">No backtest yet.</div>'; return; }
+  const cls = v => (v >= 0 ? "pos" : "neg");
+  const cells = [
+    ["Bets", b.bets, ""],
+    ["ROI", pct(b.roi_on_staked), cls(b.roi_on_staked)],
+    ["Avg CLV", b.avg_clv == null ? "n/a" : pct(b.avg_clv), b.avg_clv == null ? "" : cls(b.avg_clv)],
+    ["Hit rate", pct(b.hit_rate, 0), ""],
+    ["Bankroll", b.final_bankroll.toFixed(2) + "x", cls(b.final_bankroll - 1)],
+    ["Max drawdown", pct(b.max_drawdown, 0), "neg"],
+  ];
+  el.innerHTML = cells.map(([l, v, c]) =>
+    `<div class="stat"><div class="stat-val ${c}">${v}</div><div class="stat-label">${l}</div></div>`).join("");
+}
+
+function renderPicks(picks) {
+  const el = document.getElementById("picks");
+  if (!picks.length) { el.innerHTML = '<div class="empty">No value found right now. The model only flags bets with a clear edge, so quiet days are normal.</div>'; return; }
+  el.innerHTML = picks.map(p => `
+    <div class="pick">
+      <div class="pick-top"><div class="pick-match">${esc(p.match)}</div><div class="pick-date">${esc(p.date)}</div></div>
+      <div class="pick-bet"><b>${esc(outcomeName(p.outcome, p.match))}</b> @ ${p.odds.toFixed(2)}</div>
+      <div class="row"><span>Model probability</span><span>${pct(p.model_p)}</span></div>
+      <div class="row"><span>Market (margin removed)</span><span>${pct(p.market_p)}</span></div>
+      <div class="row"><span>Edge / expected return</span><span class="pos">+${pct(p.edge)} / +${pct(p.ev)}</span></div>
+      <div class="row"><span>Suggested stake</span><span>${pct(p.stake, 1)} of bankroll</span></div>
+      <div class="bar"><i class="market" style="width:${p.market_p * 100}%"></i><i class="model" style="width:${p.model_p * 100}%"></i></div>
+    </div>`).join("");
+}
+
+fetch("picks.json", { cache: "no-store" })
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(d => {
+    const when = d.generated ? new Date(d.generated).toLocaleString("en-GB") : "unknown";
+    document.getElementById("updated").textContent = "Updated " + when;
+    renderStats(d.backtest);
+    renderPicks(d.picks || []);
+  })
+  .catch(() => {
+    document.getElementById("updated").textContent = "No data yet";
+    renderStats(null);
+    document.getElementById("picks").innerHTML =
+      '<div class="empty">picks.json not found. Run <code>python -m picks.cli picks --fixtures upcoming.csv</code> and commit the output.</div>';
+  });
+</script>
+</body>
+</html>

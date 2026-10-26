@@ -1,6 +1,7 @@
 """python -m picks.cli fetch|backtest|picks"""
 import argparse
 import json
+from datetime import datetime, timezone
 
 import pandas as pd
 
@@ -39,7 +40,10 @@ def main():
         odds = {"H": m.B365H, "D": m.B365D, "A": m.B365A}
         for p in find_picks(model.predict(m.HomeTeam, m.AwayTeam), odds):
             out.append({"date": str(m.Date.date()), "match": f"{m.HomeTeam} v {m.AwayTeam}", **p.__dict__})
-    json.dump(out, open(a.out, "w"), indent=2)
+    summary = backtest.summarise(backtest.run(df))
+    payload = {"generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+               "backtest": summary, "picks": out}
+    json.dump(payload, open(a.out, "w"), indent=2)
     print(f"{len(out)} picks -> {a.out}")
 
 
