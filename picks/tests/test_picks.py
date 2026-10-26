@@ -6,9 +6,11 @@ from datetime import date, timedelta
 from pathlib import Path
 from unittest import mock
 
+import numpy as np
 import pandas as pd
 
-from picks import backtest, cli, data
+from picks import backtest, cli, data, evaluate
+from picks.xg import shot_xg
 from picks.model import PoissonModel
 from picks.value import devig, find_picks, kelly_fraction
 
@@ -45,6 +47,45 @@ class PipelineTests(unittest.TestCase):
         for p in payload["picks"]:  # unknown league and odds-less fixtures are skipped
             self.assertEqual(p["league"], "SYN")
             self.assertEqual(p["match"], "T00 v T01")
+
+
+class XgTests(unittest.TestCase):
+    def test_no_shot_columns_means_no_proxy(self):
+        df = data.synthetic(n_teams=10, seasons=2, seed=1)
+        self.assertIsNone(shot_xg(df.drop(columns=["HS", "AS", "HST", "AST"])))
+
+    def test_coefficients_non_negative_and_on_target_worth_more(self):
+        df = data.synthetic(n_teams=12, seasons=3, seed=1)
+        _, _, coef = shot_xg(df)
+        self.assertTrue((coef >= 0).all())
+
+    def test_xg_weight_changes_ratings_but_still_normalised(self):
+        df = data.synthetic(n_teams=12, seasons=3, seed=1)
+        base = PoissonModel(xg_weight=0.0).fit(df)
+        blend = PoissonModel(xg_weight=0.7).fit(df)
+        self.assertNotEqual(base.attack["T00"], blend.attack["T00"])
+        pr = blend.predict("T00", "T01")
+        self.assertAlmostEqual(pr["H"] + pr["D"] + pr["A"], 1.0, places=6)
+
+    def test_missing_shots_fall_back_to_goals(self):
+        df = data.synthetic(n_teams=12, seasons=3, seed=1)
+        df.loc[df.index[:50], ["HS", "AS", "HST", "AST"]] = float("nan")
+        PoissonModel(xg_weight=1.0).fit(df)  # must not raise or produce NaN ratings
+        self.assertFalse(np.isnan(list(PoissonModel(xg_weight=1.0).fit(df).attack.values())).any())
+
+
+class EvaluateTests(unittest.TestCase):
+    def test_scoring_rules(self):
+        sure = {"H": 1.0, "D": 0.0, "A": 0.0}
+        self.assertEqual(evaluate.rps(sure, "H"), 0.0)
+        self.assertAlmostEqual(evaluate.rps(sure, "A"), 1.0)
+        self.assertAlmostEqual(evaluate.log_loss({"H": 0.5, "D": 0.3, "A": 0.2}, "H"), 0.6931, places=3)
+
+    def test_table_has_models_and_both_market_benchmarks(self):
+        df = data.synthetic(n_teams=10, seasons=3, seed=2)
+        table = evaluate.evaluate(df, xg_weights=(0.0, 0.5))
+        self.assertEqual(len(table), 4)
+        self.assertTrue((table["matches"] > 0).all())
 
 
 class ValueTests(unittest.TestCase):

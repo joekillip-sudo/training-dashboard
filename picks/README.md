@@ -17,6 +17,14 @@ Finds matches where a statistical model rates a team higher than the bookmaker's
 
 Models are fitted per league, since leagues score at different rates.
 
+## xG
+football-data has no true xG, so `xg.py` builds a proxy from shots and shots on target (goals ~ a*on_target + b*off_target, fitted on training data only). `--xg-weight` (0 to 1) blends it with real goals when fitting team strengths.
+
+    python -m picks.cli evaluate              # log loss / RPS for xg_weight 0, 0.5, 1 vs Bet365 and Pinnacle
+    python -m picks.cli backtest --xg-weight 0.5
+
+Default is 0 (goals only). Set `XG_WEIGHT` in `cli.py` only after `evaluate` on real data shows a lower log loss than 0, and ideally closer to Pinnacle's closing prices. Real xG (Understat/FBref) would be a further step but needs scraping.
+
 ## Automation
 `.github/workflows/update_picks.yml` runs daily at 08:17 UTC (and on demand via *Run workflow*): tests, fetch, picks, then commits `picks.json` if it changed. GitHub only runs scheduled workflows from the default branch, so merge to `main` for the schedule to start.
 

@@ -6,17 +6,18 @@ Fitted with weighted fixed-point MLE updates, so it needs only numpy.
 import math
 
 import numpy as np
-import pandas as pd
+from .xg import shot_xg
 
 MAX_GOALS = 10
 
 
 class PoissonModel:
-    def __init__(self, half_life_days=365, shrink=3.0, rho=-0.05, iters=200):
+    def __init__(self, half_life_days=365, shrink=3.0, rho=-0.05, iters=200, xg_weight=0.0):
         self.xi = math.log(2) / half_life_days
         self.shrink = shrink
         self.rho = rho
         self.iters = iters
+        self.xg_weight = xg_weight  # 0 = goals only, 1 = shots-based xG proxy only
         self.attack = {}
         self.defence = {}
         self.home_adv = 1.3
@@ -35,6 +36,13 @@ class PoissonModel:
         a = df["AwayTeam"].map(idx).to_numpy()
         hg = df["FTHG"].to_numpy(float)
         ag = df["FTAG"].to_numpy(float)
+        if self.xg_weight > 0:
+            xg = shot_xg(df)
+            if xg is not None:  # blend goals with the lower-noise xG proxy where shots exist
+                hx, ax, _ = xg
+                wt = self.xg_weight
+                hg = np.where(np.isnan(hx), hg, wt * hx + (1 - wt) * hg)
+                ag = np.where(np.isnan(ax), ag, wt * ax + (1 - wt) * ag)
         n = len(teams)
 
         att, dfn, g = np.ones(n), np.ones(n), 1.3

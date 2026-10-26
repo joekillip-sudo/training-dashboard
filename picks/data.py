@@ -9,6 +9,7 @@ BASE = "https://www.football-data.co.uk/mmz4281/{season}/{league}.csv"
 FIXTURES_URL = "https://www.football-data.co.uk/fixtures.csv"
 KEEP = ["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR"]
 # opening odds (Bet365) and sharp closing odds (Pinnacle) when present
+SHOT_COLS = ["HS", "AS", "HST", "AST"]
 ODDS_COLS = ["B365H", "B365D", "B365A", "PSCH", "PSCD", "PSCA"]
 
 
@@ -60,7 +61,7 @@ def load(data_dir="picks/data"):
         df = pd.read_csv(f).dropna(subset=["Date", "HomeTeam"])
         df["Date"] = pd.to_datetime(df["Date"], dayfirst=True, format="mixed")
         df["League"] = f.stem.split("_")[0]
-        cols = [c for c in KEEP + ODDS_COLS if c in df.columns]
+        cols = [c for c in KEEP + SHOT_COLS + ODDS_COLS if c in df.columns]
         frames.append(df[cols + ["League"]])
     return pd.concat(frames, ignore_index=True).dropna(subset=["FTHG"]).sort_values("Date").reset_index(drop=True)
 
@@ -92,13 +93,15 @@ def synthetic(n_teams=20, seasons=3, margin=0.05, noise=0.10, seed=0):
             q = p * np.exp(rng.normal(0, noise, 3))
             q /= q.sum()
             odds = 1 / (q * (1 + margin))
+            hs, as_ = rng.poisson(lh * 9), rng.poisson(la * 9)  # shots track true chance quality
             rows.append({
-                "Date": day + pd.Timedelta(days=i // 10), "HomeTeam": teams[h], "AwayTeam": teams[a],
+                "HS": hs, "AS": as_, "HST": rng.binomial(hs, 0.33), "AST": rng.binomial(as_, 0.33),
+                "Date": day + pd.Timedelta(days=i * 280 // len(fixtures)), "HomeTeam": teams[h], "AwayTeam": teams[a],
                 "FTHG": hg, "FTAG": ag, "FTR": "HDA"[int(np.argmax([hg > ag, hg == ag, hg < ag]))],
                 "B365H": odds[0], "B365D": odds[1], "B365A": odds[2],
                 # closing line: much closer to the truth
                 "PSCH": 1 / (p[0] * 1.02), "PSCD": 1 / (p[1] * 1.02), "PSCA": 1 / (p[2] * 1.02),
                 "League": "SYN",
             })
-        day += pd.Timedelta(days=i // 10 + 60)
+        day += pd.Timedelta(days=365)
     return pd.DataFrame(rows).sort_values("Date").reset_index(drop=True)
