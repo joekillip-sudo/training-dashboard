@@ -65,6 +65,8 @@ def main():
     today = datetime.now(timezone.utc).date()
     book = ledger.load(a.out)
     fx = data.load_fixtures(a.fixtures, leagues=list(models), from_date=today)
+    if "League" not in fx.columns:  # fixtures file has no division column
+        fx = data.infer_leagues(fx, models)
     added = ledger.add_live(book, fx, models, today)
     seeded = ledger.seed_backtest(book, df, xg_weight=a.xg_weight) if a.seed_backtest else 0
     settled = ledger.settle(book, df)

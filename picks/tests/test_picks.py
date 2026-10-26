@@ -65,6 +65,38 @@ class PipelineTests(unittest.TestCase):
                     self.assertEqual(b, frozen[b["id"]])
 
 
+class FixturesTests(unittest.TestCase):
+    def test_league_column_aliases_and_inference_without_one(self):
+        hist = data.synthetic(n_teams=12, seasons=3, noise=0.25, seed=4)
+        models = {"SYN": PoissonModel().fit(hist)}
+        soon = (date.today() + timedelta(days=1)).strftime("%d/%m/%Y")
+        rows = [{"Date": soon, "HomeTeam": "T00", "AwayTeam": "T01", "B365H": 9.0, "B365D": 5.0, "B365A": 1.3},
+                {"Date": soon, "HomeTeam": "Nobody", "AwayTeam": "T01", "B365H": 2.0, "B365D": 3.0, "B365A": 4.0}]
+        with tempfile.TemporaryDirectory() as tmp:
+            plain, named = Path(tmp, "a.csv"), Path(tmp, "b.csv")
+            pd.DataFrame(rows).to_csv(plain, index=False)
+            pd.DataFrame(rows).assign(division="SYN").to_csv(named, index=False)  # odd name and case
+            fx = data.load_fixtures(plain)
+            self.assertNotIn("League", fx.columns)
+            inferred = data.infer_leagues(fx, models)
+            self.assertEqual(list(inferred["HomeTeam"]), ["T00"])
+            self.assertEqual(list(inferred["League"]), ["SYN"])
+            self.assertEqual(list(data.load_fixtures(named)["League"]), ["SYN", "SYN"])
+            bad = Path(tmp, "c.csv")
+            pd.DataFrame({"x": [1]}).to_csv(bad, index=False)
+            with self.assertRaises(ValueError):
+                data.load_fixtures(bad)
+
+    def test_cli_runs_when_fixtures_have_no_league_column(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            PipelineTests()._setup(tmp)
+            fx = pd.read_csv(tmp / "fx.csv").drop(columns=["Div"])
+            fx.to_csv(tmp / "fx.csv", index=False)
+            book = PipelineTests()._run(tmp)
+        self.assertTrue(all(b["league"] == "SYN" for b in book["bets"]))
+
+
 class LedgerTests(unittest.TestCase):
     def test_settle_matches_result_and_records_closing_price(self):
         book = {"floor": ledger.FLOOR, "live_from": "2025-08-01", "bets": [

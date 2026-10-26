@@ -47,14 +47,37 @@ def fetch_fixtures(path="picks/fixtures.csv"):
 
 
 def load_fixtures(path="picks/fixtures.csv", leagues=None, from_date=None):
-    df = pd.read_csv(path).dropna(subset=["HomeTeam", "AwayTeam", "Date"])
+    """Upcoming fixtures. The league column is optional; see infer_leagues()."""
+    df = pd.read_csv(path)
+    df.columns = [str(c).strip() for c in df.columns]
+    missing = {"Date", "HomeTeam", "AwayTeam"} - set(df.columns)
+    if missing:
+        raise ValueError(f"fixtures file lacks {sorted(missing)}; columns are {list(df.columns)}")
+    df = df.dropna(subset=["HomeTeam", "AwayTeam", "Date"])
     df["Date"] = pd.to_datetime(df["Date"], dayfirst=True, format="mixed")
-    df = df.rename(columns={"Div": "League"})
-    if leagues is not None:
+    by_lower = {c.lower(): c for c in df.columns}
+    for alias in ("div", "league", "division"):
+        if alias in by_lower:
+            df = df.rename(columns={by_lower[alias]: "League"})
+            break
+    if leagues is not None and "League" in df.columns:
         df = df[df["League"].isin(leagues)]
     if from_date is not None:
         df = df[df["Date"] >= pd.Timestamp(from_date)]
     return df.reset_index(drop=True)
+
+
+def infer_leagues(fixtures, models):
+    """Add League to fixtures that lack it: the one league whose history has both teams.
+
+    Rows matching no league, or several (e.g. both teams moved division), are dropped.
+    """
+    def pick(row):
+        hits = [lg for lg, m in models.items() if m.knows(row["HomeTeam"]) and m.knows(row["AwayTeam"])]
+        return hits[0] if len(hits) == 1 else None
+    out = fixtures.copy()
+    out["League"] = out.apply(pick, axis=1)
+    return out.dropna(subset=["League"]).reset_index(drop=True)
 
 
 def load(data_dir="picks/data"):
@@ -62,9 +85,8 @@ def load(data_dir="picks/data"):
     for f in sorted(Path(data_dir).glob("*.csv")):
         df = pd.read_csv(f).dropna(subset=["Date", "HomeTeam"])
         df["Date"] = pd.to_datetime(df["Date"], dayfirst=True, format="mixed")
-        df["League"] = f.stem.split("_")[0]
         cols = [c for c in KEEP + SHOT_COLS + ODDS_COLS if c in df.columns]
-        frames.append(df[cols + ["League"]])
+        frames.append(df[cols].assign(League=f.stem.split("_")[0]))
     df = pd.concat(frames, ignore_index=True).dropna(subset=["FTHG"]).sort_values("Date").reset_index(drop=True)
     return attach_xg(df, Path(data_dir).parent / "xg_data")
 
