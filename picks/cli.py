@@ -64,6 +64,8 @@ def main():
     models = {lg: PoissonModel(xg_weight=a.xg_weight).fit(g) for lg, g in df.groupby("League")}
     today = datetime.now(timezone.utc).date()
     book = ledger.load(a.out)
+    raw = data.load_fixtures(a.fixtures)
+    print(f"fixtures file: {len(raw)} rows, {raw['Date'].min().date()} to {raw['Date'].max().date()}; leagues {sorted(raw['League'].unique()) if 'League' in raw else 'n/a'}")
     fx = data.load_fixtures(a.fixtures, leagues=list(models), from_date=today)
     if "League" not in fx.columns:  # fixtures file has no division column
         fx = data.infer_leagues(fx, models)

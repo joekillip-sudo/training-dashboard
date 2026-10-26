@@ -120,6 +120,35 @@ class LedgerTests(unittest.TestCase):
         self.assertEqual([b["id"] for b in back["bets"]], ["a", "b"])
 
 
+class ScaleTests(unittest.TestCase):
+    """Regression: league scale was applied twice to home goals, biasing every forecast toward home wins."""
+
+    def _check(self, mu_true, seed):
+        rng = np.random.default_rng(seed)
+        teams = [f"T{i}" for i in range(16)]
+        att = np.exp(rng.normal(0, 0.2, 16)); att /= att.mean()
+        dfn = np.exp(rng.normal(0, 0.2, 16)); dfn /= dfn.mean()
+        rows = []
+        for r in range(8):
+            for h in range(16):
+                for a in range(16):
+                    if h != a:
+                        rows.append({"Date": pd.Timestamp("2025-01-01") + pd.Timedelta(days=r), "HomeTeam": teams[h], "AwayTeam": teams[a],
+                                     "FTHG": rng.poisson(mu_true * 1.3 * att[h] * dfn[a]), "FTAG": rng.poisson(mu_true * att[a] * dfn[h])})
+        df = pd.DataFrame(rows)
+        m = PoissonModel(half_life_days=5000, shrink=1.0).fit(df)
+        lh = np.mean([m.expected_goals(h, a)[0] for h, a in zip(df.HomeTeam, df.AwayTeam)])
+        la = np.mean([m.expected_goals(h, a)[1] for h, a in zip(df.HomeTeam, df.AwayTeam)])
+        self.assertAlmostEqual(lh / df.FTHG.mean(), 1.0, delta=0.03)
+        self.assertAlmostEqual(la / df.FTAG.mean(), 1.0, delta=0.03)
+        self.assertAlmostEqual(m.home_adv, 1.3, delta=0.1)
+        self.assertAlmostEqual(m.league_avg, mu_true, delta=0.1)
+
+    def test_model_reproduces_training_goal_averages_for_low_and_high_scoring_leagues(self):
+        self._check(0.9, 1)   # scale below 1
+        self._check(1.4, 2)   # scale above 1: this case was ~20% too high at home before the fix
+
+
 class XgTests(unittest.TestCase):
     def test_no_shot_columns_means_no_proxy(self):
         df = data.synthetic(n_teams=10, seasons=2, seed=1)
@@ -236,6 +265,26 @@ class UnderstatTests(unittest.TestCase):
             out = understat.attach_xg(df, tmp, Path(tmp, "none.json"))
         self.assertAlmostEqual(out.loc[0, "HxG"], 1.5)
         self.assertTrue(np.isnan(out.loc[1, "HxG"]))  # the other fixture is months away
+
+    def test_fetch_prefers_json_endpoint_and_falls_back_to_page(self):
+        games = [_game("Arsenal", "Chelsea", 2.0, 1.0, "2025-08-20 19:00:00")]
+        seen = []
+        def opener(req):
+            seen.append(req.full_url)
+            body = json.dumps({"teams": {}, "players": [], "dates": games}) if "getLeagueData" in req.full_url else "<html></html>"
+            return mock.Mock(read=lambda: body.encode())
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(understat.fetch(["E0"], ["2526"], tmp, delay=0, opener=opener), 1)
+            self.assertEqual(len(seen), 1)  # JSON worked, page never requested
+            page = _page(games).encode()
+            only_page = lambda req: mock.Mock(read=lambda: b"{}" if "getLeagueData" in req.full_url else page)
+            self.assertEqual(understat.fetch(["SP1"], ["2526"], tmp, delay=0, opener=only_page), 1)
+
+    def test_failure_message_says_what_came_back(self):
+        opener = lambda req: mock.Mock(read=lambda: b"<html>Please enable JavaScript</html>")
+        with tempfile.TemporaryDirectory() as tmp, mock.patch("builtins.print") as pr:
+            self.assertEqual(understat.fetch(["E0"], ["2526"], tmp, delay=0, opener=opener), 0)
+        self.assertIn("Please enable JavaScript", pr.call_args[0][0])
 
     def test_fetch_writes_csv_and_survives_failures(self):
         page = _page([_game("Arsenal", "Chelsea", 2.0, 1.0, "2025-08-20 19:00:00")]).encode()
