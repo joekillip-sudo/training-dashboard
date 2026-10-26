@@ -1,1 +1,5 @@
 .env
+picks/data/
+__pycache__/
+picks/xg_data/
+picks/fixtures.csv

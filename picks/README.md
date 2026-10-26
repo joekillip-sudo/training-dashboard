@@ -1,0 +1,57 @@
+# Football value-picks engine
+
+Finds matches where a statistical model rates a team higher than the bookmaker's price implies.
+
+## How it works
+1. `model.py` fits a time-decayed Poisson model (attack/defence per team, home advantage, Dixon-Coles low-score fix) and outputs 1X2 and over/under 2.5 probabilities.
+2. `value.py` strips the bookmaker margin (`devig`), compares fair market probability to model probability, and keeps bets with edge and EV above thresholds. Stakes use capped fractional Kelly.
+3. `backtest.py` walks forward week by week (fit on the past only), bets at Bet365 odds, and reports ROI, drawdown and **closing line value** against Pinnacle closing odds.
+
+## Usage
+    pip install -r picks/requirements.txt
+    python -m picks.cli fetch                 # last 4 seasons of results+odds, plus upcoming fixtures
+    python -m picks.cli backtest              # walk-forward backtest on real data
+    python -m picks.cli picks --seed-backtest # updates ledger.json: new bets, settlements, one-off history
+    python -m picks.cli backtest --synthetic  # pipeline check without data
+    python -m unittest picks.tests.test_picks
+
+Models are fitted per league, since leagues score at different rates.
+
+## xG
+football-data has no true xG, so `xg.py` builds a proxy from shots and shots on target (goals ~ a*on_target + b*off_target, fitted on training data only). `--xg-weight` (0 to 1) blends it with real goals when fitting team strengths.
+
+    python -m picks.cli evaluate              # log loss / RPS for xg_weight 0, 0.5, 1 vs Bet365 and Pinnacle
+    python -m picks.cli backtest --xg-weight 0.5
+
+Default is 0 (goals only). Set `XG_WEIGHT` in `cli.py` only after `evaluate` on real data shows a lower log loss than 0, and ideally closer to Pinnacle's closing prices. Real xG (Understat/FBref) would be a further step but needs scraping.
+
+### Real xG (Understat)
+    python -m picks.cli fetch-xg              # EPL, La Liga, Bundesliga, Serie A, Ligue 1 -> picks/xg_data/
+
+`understat.py` scrapes the JSON Understat embeds in each league-season page (one request per page, 2s apart, cached). `data.load` then joins it onto the football-data results (`HxG`/`AxG` columns), matching on team names and a ±3-day kickoff window. Team names differ between the sources; common ones are aliased, the rest are fuzzy-matched, and ambiguous or unknown names are dropped with a warning. Fix those by adding `{"Understat name": "football-data name"}` pairs to `picks/team_aliases.json`.
+
+With real xG present, `xg_source="auto"` uses it where available, then the shots proxy, then goals. `evaluate` then adds `real+shots` variants beside the `shots proxy` ones so you can see which actually forecasts better. The Championship (E1) has no Understat coverage and keeps the proxy.
+
+Caveats: Understat has no official API, so the parser can break if the page layout changes (it raises rather than guessing, and the workflow step is `continue-on-error`). Check Understat's terms before relying on this, and keep request volume low.
+
+## Paper trading
+The model bets automatically, with pretend money, on match results only (home/draw/away).
+
+- `ledger.json` holds every candidate bet: odds on offer, model and market probability, and later the result and closing price. A bet is recorded once, when first seen within 2 days of kickoff, and never rewritten, so the live record has no hindsight. Settlement happens when the result appears in the next data fetch.
+- `--seed-backtest` adds historical walk-forward bets once (`source: "backtest"`) so the page has a track record on day one. Live and backtest are kept apart and the page can show either or both.
+- `picks.html` re-runs the simulation in the browser from those candidates, so staking method (% of bankroll, flat, Kelly), stake size, bankroll, edge/EV/odds limits, outcomes allowed and "trust model vs market" are all adjustable on the page and remembered in your browser. Settings can only be *tightened* relative to the floor stored in the ledger (EV 2%, edge 1 point, odds up to 15).
+
+## Calibration
+    python -m picks.cli calibrate             # add --xg-weight to test a variant
+
+Prints, walk-forward: (1) predicted vs observed frequency by probability band for the model and for Pinnacle's close, with the expected calibration error (ECE); (2) log loss of `(1-a)*model + a*market` for a = 0..1, where the lowest point is the best model/market mix; (3) the bets actually taken, by odds band, showing model win chance vs hit rate.
+
+How to read it: a positive `gap` means the model is overconfident in that band. If the best blend sits well above a=0, the model is adding noise relative to the market and bets should lean on the market price. If bets in the 3.0+ odds bands show large overconfidence and negative ROI, the "value" there is mostly model error.
+
+## Automation
+`.github/workflows/update_picks.yml` runs daily at 08:17 UTC (and on demand via *Run workflow*): tests, fetch, picks, then commits `ledger.json` if it changed. GitHub only runs scheduled workflows from the default branch, so merge to `main` for the schedule to start.
+
+Odds are a snapshot at run time and move before kick-off, so re-check the price before betting.
+
+## Reading the results
+Judge the model by average CLV first: if it does not consistently beat the closing price, ROI over a few hundred bets is mostly luck. Synthetic results only prove the plumbing.
