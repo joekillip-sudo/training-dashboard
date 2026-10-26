@@ -9,7 +9,7 @@ from unittest import mock
 import numpy as np
 import pandas as pd
 
-from picks import backtest, calibration, cli, data, evaluate, understat
+from picks import backtest, calibration, cli, data, evaluate, ledger, understat
 from picks.xg import shot_xg
 from picks.model import PoissonModel
 from picks.value import devig, find_picks, kelly_fraction
@@ -23,30 +23,69 @@ class DataTests(unittest.TestCase):
 
 
 class PipelineTests(unittest.TestCase):
-    def test_cli_picks_end_to_end_from_local_files(self):
+    def _run(self, tmp, extra=()):
+        argv = ["picks", "picks", "--data", str(tmp / "data"), "--fixtures", str(tmp / "fx.csv"),
+                "--out", str(tmp / "ledger.json"), *extra]
+        with mock.patch.object(sys, "argv", argv):
+            cli.main()
+        return json.loads((tmp / "ledger.json").read_text())
+
+    def _setup(self, tmp):
         hist = data.synthetic(n_teams=12, seasons=3, noise=0.25, seed=4)
+        (tmp / "data").mkdir()
+        out = hist.copy()
+        out["Date"] = out["Date"].dt.strftime("%d/%m/%Y")
+        out.to_csv(tmp / "data" / "SYN_2526.csv", index=False)
+        soon = (date.today() + timedelta(days=1)).strftime("%d/%m/%Y")
+        far = (date.today() + timedelta(days=20)).strftime("%d/%m/%Y")
+        pd.DataFrame([
+            {"Div": "SYN", "Date": soon, "HomeTeam": "T00", "AwayTeam": "T01", "B365H": 9.0, "B365D": 5.0, "B365A": 1.3},
+            {"Div": "SYN", "Date": soon, "HomeTeam": "T02", "AwayTeam": "T03", "B365H": None, "B365D": None, "B365A": None},
+            {"Div": "SYN", "Date": far, "HomeTeam": "T04", "AwayTeam": "T05", "B365H": 9.0, "B365D": 5.0, "B365A": 1.3},
+            {"Div": "XXX", "Date": soon, "HomeTeam": "A", "AwayTeam": "B", "B365H": 2.0, "B365D": 3.0, "B365A": 4.0},
+        ]).to_csv(tmp / "fx.csv", index=False)
+
+    def test_ledger_end_to_end_is_idempotent_and_hindsight_free(self):
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
-            (tmp / "data").mkdir()
-            out = hist.copy()
-            out["Date"] = out["Date"].dt.strftime("%d/%m/%Y")
-            out.to_csv(tmp / "data" / "SYN_2526.csv", index=False)
-            soon = (date.today() + timedelta(days=2)).strftime("%d/%m/%Y")
-            pd.DataFrame([
-                {"Div": "SYN", "Date": soon, "HomeTeam": "T00", "AwayTeam": "T01", "B365H": 9.0, "B365D": 5.0, "B365A": 1.3},
-                {"Div": "SYN", "Date": soon, "HomeTeam": "T02", "AwayTeam": "T03", "B365H": None, "B365D": None, "B365A": None},
-                {"Div": "XXX", "Date": soon, "HomeTeam": "A", "AwayTeam": "B", "B365H": 2.0, "B365D": 3.0, "B365A": 4.0},
-            ]).to_csv(tmp / "fx.csv", index=False)
-            dest = tmp / "picks.json"
-            argv = ["picks", "picks", "--data", str(tmp / "data"), "--fixtures", str(tmp / "fx.csv"), "--out", str(dest)]
-            with mock.patch.object(sys, "argv", argv):
-                cli.main()
-            payload = json.loads(dest.read_text())
-        self.assertIn("generated", payload)
-        self.assertIn("bets", payload["backtest"])
-        for p in payload["picks"]:  # unknown league and odds-less fixtures are skipped
-            self.assertEqual(p["league"], "SYN")
-            self.assertEqual(p["match"], "T00 v T01")
+            self._setup(tmp)
+            first = self._run(tmp, ["--seed-backtest"])
+            live = [b for b in first["bets"] if b["source"] == "live"]
+            back = [b for b in first["bets"] if b["source"] == "backtest"]
+            self.assertTrue(first["live_from"])
+            self.assertTrue(back and all(b["result"] in "HDA" for b in back))
+            for b in live:  # unknown league, odds-less and far-future fixtures are skipped
+                self.assertEqual((b["league"], b["home"], b["away"]), ("SYN", "T00", "T01"))
+                self.assertIsNone(b["result"])
+            frozen = {b["id"]: dict(b) for b in live}
+            second = self._run(tmp, ["--seed-backtest"])  # rerun changes nothing
+            self.assertEqual(len(second["bets"]), len(first["bets"]))
+            for b in second["bets"]:
+                if b["id"] in frozen:
+                    self.assertEqual(b, frozen[b["id"]])
+
+
+class LedgerTests(unittest.TestCase):
+    def test_settle_matches_result_and_records_closing_price(self):
+        book = {"floor": ledger.FLOOR, "live_from": "2025-08-01", "bets": [
+            {"id": "x", "league": "E0", "date": "2025-08-16", "home": "Arsenal", "away": "Chelsea", "outcome": "H",
+             "odds": 2.5, "model_p": 0.5, "market_p": 0.4, "source": "live", "result": None, "close_p": None},
+            {"id": "y", "league": "E0", "date": "2025-08-16", "home": "Spurs", "away": "Everton", "outcome": "A",
+             "odds": 3.0, "model_p": 0.4, "market_p": 0.3, "source": "live", "result": None, "close_p": None}]}
+        df = pd.DataFrame([{"League": "E0", "HomeTeam": "Arsenal", "AwayTeam": "Chelsea", "Date": pd.Timestamp("2025-08-17"),
+                            "FTR": "H", "PSCH": 2.0, "PSCD": 3.5, "PSCA": 4.0}])
+        self.assertEqual(ledger.settle(book, df), 1)
+        self.assertEqual(book["bets"][0]["result"], "H")
+        self.assertGreater(book["bets"][0]["close_p"], 0.4)
+        self.assertIsNone(book["bets"][1]["result"])  # no result yet stays open
+
+    def test_save_load_roundtrip(self):
+        book = {"floor": ledger.FLOOR, "live_from": None, "generated": None,
+                "bets": [{"id": "b", "date": "2025-01-02"}, {"id": "a", "date": "2025-01-01"}]}
+        with tempfile.TemporaryDirectory() as tmp:
+            ledger.save(book, Path(tmp, "l.json"))
+            back = ledger.load(Path(tmp, "l.json"))
+        self.assertEqual([b["id"] for b in back["bets"]], ["a", "b"])
 
 
 class XgTests(unittest.TestCase):

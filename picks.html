@@ -11,107 +11,256 @@
       color: white;
       font-family: -apple-system, Arial, sans-serif;
       padding: 24px 20px 40px;
-      max-width: 480px;
+      max-width: 520px;
       margin: 0 auto;
     }
-    h1 { font-size: 20px; color: #4fc3f7; margin-bottom: 2px; text-align: center; }
-    .subtitle { color: #6b7c93; font-size: 12.5px; margin-bottom: 24px; text-align: center; }
+    h1 { font-size: 20px; color: #4fc3f7; margin: 12px 0 2px; text-align: center; }
+    .subtitle { color: #6b7c93; font-size: 12.5px; margin-bottom: 20px; text-align: center; }
     h2 {
       font-size: 13px; color: #6b7c93; margin: 28px 0 12px;
       text-transform: uppercase; letter-spacing: 0.6px;
     }
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .stat { background: #16273f; border-radius: 12px; padding: 14px 8px; text-align: center; }
-    .stat-val { font-size: 18px; font-weight: bold; }
-    .stat-label { font-size: 10.5px; color: #8fa3bf; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.4px; }
+    a.back { color: #4fc3f7; font-size: 12.5px; text-decoration: none; }
+    .seg { display: flex; background: #16273f; border-radius: 10px; padding: 3px; gap: 3px; }
+    .seg button {
+      flex: 1; background: none; border: 0; color: #8fa3bf; font-size: 13px; padding: 8px 4px;
+      border-radius: 8px; cursor: pointer;
+    }
+    .seg button.on { background: #0d3a5c; color: white; font-weight: bold; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .stat { background: #16273f; border-radius: 12px; padding: 12px 4px; text-align: center; }
+    .stat-val { font-size: 15px; font-weight: bold; }
+    .stat-label { font-size: 9.5px; color: #8fa3bf; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.4px; }
     .pos { color: #66bb6a; }
     .neg { color: #ef5350; }
-    .pick { background: #16273f; border-radius: 14px; padding: 16px; margin-bottom: 12px; }
-    .pick-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-    .pick-match { font-size: 15px; font-weight: bold; }
-    .pick-date { font-size: 11.5px; color: #8fa3bf; white-space: nowrap; }
-    .pick-bet { margin: 10px 0 12px; font-size: 13.5px; color: #cfe3ff; }
-    .pick-bet b { color: #4fc3f7; }
-    .row { display: flex; justify-content: space-between; font-size: 12.5px; color: #8fa3bf; margin-top: 6px; }
-    .row span:last-child { color: white; }
-    .bar { height: 6px; border-radius: 3px; background: #0a1930; margin-top: 10px; position: relative; }
-    .bar i { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
-    .bar .market { background: #6b7c93; left: 0; }
-    .bar .model { background: #4fc3f7; opacity: 0.8; left: 0; height: 3px; top: 1.5px; }
-    .empty, .note { color: #8fa3bf; font-size: 13px; line-height: 1.5; text-align: center; padding: 20px 8px; }
+    .card { background: #16273f; border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; }
+    svg { width: 100%; height: auto; display: block; }
+    .chart-empty { color: #8fa3bf; font-size: 13px; text-align: center; padding: 30px 8px; }
+    details.card summary { cursor: pointer; font-size: 14px; font-weight: bold; list-style: none; }
+    details.card summary::after { content: "▾"; float: right; color: #6b7c93; }
+    .ctl { display: grid; grid-template-columns: 1fr 140px; gap: 8px; align-items: center; margin-top: 12px; font-size: 13px; color: #cfe3ff; }
+    .ctl small { display: block; color: #6b7c93; font-size: 11px; margin-top: 2px; }
+    .ctl input[type=number], .ctl select {
+      width: 100%; background: #0a1930; color: white; border: 1px solid #2a4060; border-radius: 8px;
+      padding: 7px 8px; font-size: 14px;
+    }
+    .ctl.range { grid-template-columns: 1fr; }
+    .ctl.range input { width: 100%; }
+    .checks { display: flex; gap: 16px; margin-top: 12px; font-size: 13px; color: #cfe3ff; }
+    .reset { margin-top: 14px; background: none; border: 1px solid #2a4060; color: #8fa3bf; border-radius: 8px; padding: 7px 12px; font-size: 12.5px; cursor: pointer; }
+    .bet { background: #16273f; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; }
+    .bet-top { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; font-weight: bold; }
+    .bet-sub { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: #8fa3bf; margin-top: 5px; }
+    .bet-sub b { color: #cfe3ff; font-weight: normal; }
+    .tag { font-size: 10.5px; padding: 2px 6px; border-radius: 6px; background: #0d3a5c; color: #4fc3f7; margin-left: 6px; font-weight: normal; }
+    .empty, .note { color: #8fa3bf; font-size: 13px; line-height: 1.5; text-align: center; padding: 18px 8px; }
     .note { font-size: 11.5px; color: #6b7c93; padding: 8px; margin-top: 24px; }
-    a.back { color: #4fc3f7; font-size: 12.5px; text-decoration: none; }
   </style>
 </head>
 <body>
   <a class="back" href="index.html">← Dashboards</a>
-  <h1 style="margin-top:12px">Football Picks</h1>
+  <h1>Football Picks</h1>
   <div class="subtitle" id="updated">Loading…</div>
 
-  <h2>Backtest</h2>
-  <div class="stats" id="stats"></div>
+  <div class="seg" id="view">
+    <button data-v="live">Live</button>
+    <button data-v="backtest">Backtest</button>
+    <button data-v="all">Both</button>
+  </div>
 
-  <h2>Value picks</h2>
-  <div id="picks"></div>
+  <h2>Performance</h2>
+  <div class="stats" id="stats"></div>
+  <div class="card" style="margin-top:12px" id="chart"></div>
+
+  <details class="card" id="settings" open>
+    <summary>Settings</summary>
+    <div id="controls"></div>
+    <button class="reset" id="reset">Reset to defaults</button>
+  </details>
+
+  <h2>Open bets</h2>
+  <div id="open"></div>
+
+  <h2>Settled bets</h2>
+  <div id="settled"></div>
 
   <div class="note">
-    Picks are where the model's win probability beats the bookmaker's margin-free price.
-    Past backtest results don't guarantee future returns. Stake sizes are quarter-Kelly, capped at 5% of bankroll.
-    Only bet what you can afford to lose.
+    Paper trading only: no real money is staked. Each bet is recorded at the odds on offer when the model first
+    spots it, then settled from the final result. Settings re-run the same recorded bets under your rules, so they
+    can only be tightened, never loosened past what the model recorded. Real bookmakers limit or ban winning
+    accounts and prices move, so real-world results would be worse than shown. Changing settings after seeing
+    results is a good way to fool yourself: judge the model on how it does over hundreds of bets.
   </div>
 
 <script>
-const outcomeName = (o, match) => {
-  const [home, away] = match.split(" v ");
-  return o === "H" ? home + " to win" : o === "A" ? away + " to win" : "Draw";
+const DEFAULTS = {
+  view: "live", bankroll: 1000, mode: "percent", flat: 10, pct: 1, kelly: 0.25, cap: 5,
+  minEdge: 3, minEv: 5, maxOdds: 8, trust: 100, H: true, D: true, A: true,
 };
-const pct = (x, d = 1) => (x * 100).toFixed(d) + "%";
+let P = { ...DEFAULTS };
+let BOOK = null;
+const KEY = "footballPicksSettings";
+try { Object.assign(P, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} };
+
+const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const money = (x, sign) => (sign && x > 0 ? "+" : x < 0 ? "-" : "") + "£" + Math.abs(x).toLocaleString("en-GB", { maximumFractionDigits: x > 9999 ? 0 : 2, minimumFractionDigits: x > 9999 ? 0 : 2 });
+const pct = (x, d = 1) => (x * 100).toFixed(d) + "%";
+const cls = v => (v > 0 ? "pos" : v < 0 ? "neg" : "");
+const label = (o, b) => o === "H" ? b.home + " to win" : o === "A" ? b.away + " to win" : "Draw";
 
-function renderStats(b) {
-  const el = document.getElementById("stats");
-  if (!b || !b.bets) { el.innerHTML = '<div class="empty" style="grid-column:1/-1">No backtest yet.</div>'; return; }
-  const cls = v => (v >= 0 ? "pos" : "neg");
+function stakeFor(r, bank) {
+  if (bank <= 0) return 0;
+  let s;
+  if (P.mode === "flat") s = Math.min(P.flat, bank);
+  else {
+    s = P.mode === "percent" ? bank * P.pct / 100 : bank * Math.max(0, (r.p * r.odds - 1) / (r.odds - 1)) * P.kelly;
+    s = Math.min(s, bank * P.cap / 100);
+  }
+  return Math.round(s * 100) / 100;
+}
+
+function simulate() {
+  const floor = BOOK.floor, trust = P.trust / 100;
+  const rows = [];
+  for (const b of BOOK.bets) {
+    if (P.view !== "all" && b.source !== P.view) continue;
+    if (!P[b.outcome]) continue;
+    const p = trust * b.model_p + (1 - trust) * b.market_p;
+    const ev = p * b.odds - 1, edge = p - b.market_p;
+    if (ev < Math.max(P.minEv / 100, floor.min_ev) || edge < Math.max(P.minEdge / 100, floor.min_edge)) continue;
+    if (b.odds > Math.min(P.maxOdds, floor.max_odds)) continue;
+    rows.push({ ...b, p, ev, edge });
+  }
+  rows.sort((x, y) => (x.date < y.date ? -1 : x.date > y.date ? 1 : x.id < y.id ? -1 : 1));
+  let bank = P.bankroll, peak = bank, maxDD = 0, staked = 0, profit = 0, wins = 0, clvSum = 0, clvN = 0;
+  const curve = [{ date: rows.length ? rows[0].date : "", bank }], settled = [], open = [];
+  for (let i = 0; i < rows.length;) {
+    let j = i, dayPnl = 0;
+    while (j < rows.length && rows[j].date === rows[i].date) j++;
+    for (let k = i; k < j; k++) {  // bets on one day are all sized from that morning's bankroll
+      const r = rows[k];
+      r.stake = stakeFor(r, bank);
+      if (r.stake <= 0) continue;
+      if (r.result == null) { open.push(r); continue; }
+      r.won = r.result === r.outcome;
+      r.profit = r.won ? r.stake * (r.odds - 1) : -r.stake;
+      dayPnl += r.profit; staked += r.stake; profit += r.profit; wins += r.won ? 1 : 0;
+      if (r.close_p != null) { clvSum += r.odds * r.close_p - 1; clvN++; }
+      settled.push(r);
+    }
+    if (dayPnl !== 0) {
+      bank += dayPnl;
+      curve.push({ date: rows[i].date, bank });
+      peak = Math.max(peak, bank);
+      maxDD = Math.min(maxDD, bank / peak - 1);
+    }
+    i = j;
+  }
+  return { bank, profit, staked, wins, n: settled.length, clv: clvN ? clvSum / clvN : null, maxDD, curve, settled, open };
+}
+
+function renderChart(res) {
+  const c = res.curve;
+  if (c.length < 3) { $("chart").innerHTML = '<div class="chart-empty">The bankroll curve appears once bets have settled.</div>'; return; }
+  const W = 440, H = 170, L = 8, R = 8, T = 12, B = 22;
+  const lo = Math.min(...c.map(p => p.bank), P.bankroll), hi = Math.max(...c.map(p => p.bank), P.bankroll);
+  const span = hi - lo || 1;
+  const x = i => L + (W - L - R) * i / (c.length - 1);
+  const y = v => T + (H - T - B) * (1 - (v - lo) / span);
+  const pts = c.map((p, i) => `${x(i).toFixed(1)},${y(p.bank).toFixed(1)}`).join(" ");
+  const up = res.bank >= P.bankroll, col = up ? "#66bb6a" : "#ef5350";
+  $("chart").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Bankroll over time">
+    <line x1="${L}" x2="${W - R}" y1="${y(P.bankroll)}" y2="${y(P.bankroll)}" stroke="#2a4060" stroke-dasharray="4 4"/>
+    <polygon points="${L},${H - B} ${pts} ${W - R},${H - B}" fill="${col}" opacity="0.12"/>
+    <polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>
+    <text x="${L}" y="${H - 6}" fill="#6b7c93" font-size="10">${esc(c[0].date)}</text>
+    <text x="${W - R}" y="${H - 6}" fill="#6b7c93" font-size="10" text-anchor="end">${esc(c[c.length - 1].date)}</text>
+    <text x="${W - R}" y="${T - 2}" fill="#6b7c93" font-size="10" text-anchor="end">${money(hi)}</text></svg>`;
+}
+
+function betCard(b, settled) {
+  const res = settled ? `<span class="${b.won ? "pos" : "neg"}">${b.won ? "Won" : "Lost"} ${money(b.profit, true)}</span>` : `Stake <b>${money(b.stake)}</b>`;
+  return `<div class="bet"><div class="bet-top"><span>${esc(b.home)} v ${esc(b.away)}${b.source === "backtest" ? '<span class="tag">backtest</span>' : ""}</span><span>${esc(b.date)}</span></div>
+    <div class="bet-sub"><span><b>${esc(label(b.outcome, b))}</b> @ ${b.odds.toFixed(2)}</span><span>${res}</span></div>
+    <div class="bet-sub"><span>Model ${pct(b.model_p, 0)} vs market ${pct(b.market_p, 0)}</span><span>Edge +${pct(b.edge)} · EV +${pct(b.ev, 0)}</span></div></div>`;
+}
+
+function render() {
+  const res = simulate();
+  const profitPct = res.profit / P.bankroll;
   const cells = [
-    ["Bets", b.bets, ""],
-    ["ROI", pct(b.roi_on_staked), cls(b.roi_on_staked)],
-    ["Avg CLV", b.avg_clv == null ? "n/a" : pct(b.avg_clv), b.avg_clv == null ? "" : cls(b.avg_clv)],
-    ["Hit rate", pct(b.hit_rate, 0), ""],
-    ["Bankroll", b.final_bankroll.toFixed(2) + "x", cls(b.final_bankroll - 1)],
-    ["Max drawdown", pct(b.max_drawdown, 0), "neg"],
+    ["Bankroll", money(res.bank), cls(res.bank - P.bankroll)],
+    ["Profit", money(res.profit, true), cls(res.profit)],
+    ["ROI", res.staked ? pct(res.profit / res.staked) : "–", res.staked ? cls(res.profit) : ""],
+    ["Bets", res.n + (res.open.length ? ` +${res.open.length}` : ""), ""],
+    ["Hit rate", res.n ? pct(res.wins / res.n, 0) : "–", ""],
+    ["Avg CLV", res.clv == null ? "–" : pct(res.clv), res.clv == null ? "" : cls(res.clv)],
+    ["Max drawdown", res.n ? pct(res.maxDD, 0) : "–", res.maxDD < -0.001 ? "neg" : ""],
+    ["Return", res.n ? pct(profitPct, 1) : "–", res.n ? cls(res.profit) : ""],
   ];
-  el.innerHTML = cells.map(([l, v, c]) =>
-    `<div class="stat"><div class="stat-val ${c}">${v}</div><div class="stat-label">${l}</div></div>`).join("");
+  $("stats").innerHTML = cells.map(([l, v, c]) => `<div class="stat"><div class="stat-val ${c}">${v}</div><div class="stat-label">${l}</div></div>`).join("");
+  renderChart(res);
+  $("open").innerHTML = res.open.length
+    ? res.open.slice().sort((a, b) => a.date < b.date ? -1 : 1).map(b => betCard(b, false)).join("")
+    : '<div class="empty">No open bets under these settings. The model only bets when it sees a clear edge, so quiet days are normal.</div>';
+  const recent = res.settled.slice(-20).reverse();
+  $("settled").innerHTML = recent.length ? recent.map(b => betCard(b, true)).join("") : '<div class="empty">Nothing settled yet.</div>';
+  document.querySelectorAll("#view button").forEach(b => b.classList.toggle("on", b.dataset.v === P.view));
 }
 
-function renderPicks(picks) {
-  const el = document.getElementById("picks");
-  if (!picks.length) { el.innerHTML = '<div class="empty">No value found right now. The model only flags bets with a clear edge, so quiet days are normal.</div>'; return; }
-  el.innerHTML = picks.map(p => `
-    <div class="pick">
-      <div class="pick-top"><div class="pick-match">${esc(p.match)}</div><div class="pick-date">${esc(p.date)}</div></div>
-      <div class="pick-bet"><b>${esc(outcomeName(p.outcome, p.match))}</b> @ ${p.odds.toFixed(2)}</div>
-      <div class="row"><span>Model probability</span><span>${pct(p.model_p)}</span></div>
-      <div class="row"><span>Market (margin removed)</span><span>${pct(p.market_p)}</span></div>
-      <div class="row"><span>Edge / expected return</span><span class="pos">+${pct(p.edge)} / +${pct(p.ev)}</span></div>
-      <div class="row"><span>Suggested stake</span><span>${pct(p.stake, 1)} of bankroll</span></div>
-      <div class="bar"><i class="market" style="width:${p.market_p * 100}%"></i><i class="model" style="width:${p.model_p * 100}%"></i></div>
-    </div>`).join("");
+const CONTROLS = [
+  { k: "bankroll", t: "Starting bankroll (£)", n: [10, 1e6, 10] },
+  { k: "mode", t: "Staking method", sel: [["percent", "% of bankroll"], ["flat", "Flat amount"], ["kelly", "Kelly (by edge)"]] },
+  { k: "pct", t: "Stake (% of bankroll)", n: [0.1, 100, 0.1], show: () => P.mode === "percent" },
+  { k: "flat", t: "Stake (£ per bet)", n: [1, 100000, 1], show: () => P.mode === "flat" },
+  { k: "kelly", t: "Kelly fraction", s: "0.25 = quarter Kelly, the safer choice", n: [0.05, 1, 0.05], show: () => P.mode === "kelly" },
+  { k: "cap", t: "Max stake (% of bankroll)", s: "Caps any single bet", n: [0.5, 100, 0.5], show: () => P.mode !== "flat" },
+  { k: "minEdge", t: "Min edge (points)", s: "Model chance minus market chance", n: [1, 30, 0.5] },
+  { k: "minEv", t: "Min expected return (%)", n: [2, 200, 1] },
+  { k: "maxOdds", t: "Max odds", s: "Skips long shots", n: [1.1, 15, 0.5] },
+  { k: "trust", t: "Trust model vs market (%)", s: "100 = pure model. Lower leans on the bookmaker price", range: [0, 100, 5] },
+];
+
+function buildControls() {
+  $("controls").innerHTML = CONTROLS.filter(c => !c.show || c.show()).map(c => {
+    const hint = c.s ? `<small>${c.s}</small>` : "";
+    if (c.sel) return `<div class="ctl"><label>${c.t}</label><select data-k="${c.k}">${c.sel.map(([v, l]) => `<option value="${v}"${P[c.k] === v ? " selected" : ""}>${l}</option>`).join("")}</select></div>`;
+    if (c.range) return `<div class="ctl range"><label>${c.t}: <b id="rv">${P[c.k]}</b>${hint}</label><input type="range" data-k="${c.k}" min="${c.range[0]}" max="${c.range[1]}" step="${c.range[2]}" value="${P[c.k]}"></div>`;
+    return `<div class="ctl"><label>${c.t}${hint}</label><input type="number" data-k="${c.k}" min="${c.n[0]}" max="${c.n[1]}" step="${c.n[2]}" value="${P[c.k]}"></div>`;
+  }).join("") + `<div class="checks">${["H", "D", "A"].map((o, i) => `<label><input type="checkbox" data-o="${o}"${P[o] ? " checked" : ""}> ${["Home", "Draw", "Away"][i]}</label>`).join("")}</div>`;
 }
 
-fetch("picks.json", { cache: "no-store" })
+$("controls").addEventListener("input", e => {
+  const t = e.target;
+  if (t.dataset.o) P[t.dataset.o] = t.checked;
+  else if (t.dataset.k) {
+    const v = t.tagName === "SELECT" ? t.value : parseFloat(t.value);
+    if (t.tagName !== "SELECT" && !(v >= parseFloat(t.min))) return;  // ignore empty/invalid typing
+    P[t.dataset.k] = t.tagName === "SELECT" ? v : Math.min(v, parseFloat(t.max));
+    if (t.type === "range") $("rv").textContent = P.trust;
+    if (t.dataset.k === "mode") buildControls();
+  }
+  save(); render();
+});
+$("view").addEventListener("click", e => { if (e.target.dataset.v) { P.view = e.target.dataset.v; save(); render(); } });
+$("reset").addEventListener("click", () => { P = { ...DEFAULTS, view: P.view }; save(); buildControls(); render(); });
+
+fetch("ledger.json", { cache: "no-store" })
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then(d => {
-    const when = d.generated ? new Date(d.generated).toLocaleString("en-GB") : "unknown";
-    document.getElementById("updated").textContent = "Updated " + when;
-    renderStats(d.backtest);
-    renderPicks(d.picks || []);
+    BOOK = d;
+    const live = d.bets.some(b => b.source === "live");
+    if (!live && P.view === "live") P.view = "backtest";
+    $("updated").textContent = (d.generated ? "Updated " + new Date(d.generated).toLocaleString("en-GB") : "") +
+      (d.live_from ? " · live since " + d.live_from : "");
+    buildControls(); render();
   })
   .catch(() => {
-    document.getElementById("updated").textContent = "No data yet";
-    renderStats(null);
-    document.getElementById("picks").innerHTML =
-      '<div class="empty">picks.json not found. Run <code>python -m picks.cli picks --fixtures upcoming.csv</code> and commit the output.</div>';
+    $("updated").textContent = "No data yet";
+    $("stats").innerHTML = ""; $("chart").innerHTML = ""; $("settings").style.display = "none";
+    $("open").innerHTML = '<div class="empty">ledger.json not found. It is created by the "Update football picks" GitHub Action, so run that once.</div>';
   });
 </script>
 </body>

@@ -11,7 +11,7 @@ Finds matches where a statistical model rates a team higher than the bookmaker's
     pip install -r picks/requirements.txt
     python -m picks.cli fetch                 # last 4 seasons of results+odds, plus upcoming fixtures
     python -m picks.cli backtest              # walk-forward backtest on real data
-    python -m picks.cli picks                 # writes picks.json from picks/fixtures.csv
+    python -m picks.cli picks --seed-backtest # updates ledger.json: new bets, settlements, one-off history
     python -m picks.cli backtest --synthetic  # pipeline check without data
     python -m unittest picks.tests.test_picks
 
@@ -34,6 +34,13 @@ With real xG present, `xg_source="auto"` uses it where available, then the shots
 
 Caveats: Understat has no official API, so the parser can break if the page layout changes (it raises rather than guessing, and the workflow step is `continue-on-error`). Check Understat's terms before relying on this, and keep request volume low.
 
+## Paper trading
+The model bets automatically, with pretend money, on match results only (home/draw/away).
+
+- `ledger.json` holds every candidate bet: odds on offer, model and market probability, and later the result and closing price. A bet is recorded once, when first seen within 2 days of kickoff, and never rewritten, so the live record has no hindsight. Settlement happens when the result appears in the next data fetch.
+- `--seed-backtest` adds historical walk-forward bets once (`source: "backtest"`) so the page has a track record on day one. Live and backtest are kept apart and the page can show either or both.
+- `picks.html` re-runs the simulation in the browser from those candidates, so staking method (% of bankroll, flat, Kelly), stake size, bankroll, edge/EV/odds limits, outcomes allowed and "trust model vs market" are all adjustable on the page and remembered in your browser. Settings can only be *tightened* relative to the floor stored in the ledger (EV 2%, edge 1 point, odds up to 15).
+
 ## Calibration
     python -m picks.cli calibrate             # add --xg-weight to test a variant
 
@@ -42,7 +49,7 @@ Prints, walk-forward: (1) predicted vs observed frequency by probability band fo
 How to read it: a positive `gap` means the model is overconfident in that band. If the best blend sits well above a=0, the model is adding noise relative to the market and bets should lean on the market price. If bets in the 3.0+ odds bands show large overconfidence and negative ROI, the "value" there is mostly model error.
 
 ## Automation
-`.github/workflows/update_picks.yml` runs daily at 08:17 UTC (and on demand via *Run workflow*): tests, fetch, picks, then commits `picks.json` if it changed. GitHub only runs scheduled workflows from the default branch, so merge to `main` for the schedule to start.
+`.github/workflows/update_picks.yml` runs daily at 08:17 UTC (and on demand via *Run workflow*): tests, fetch, picks, then commits `ledger.json` if it changed. GitHub only runs scheduled workflows from the default branch, so merge to `main` for the schedule to start.
 
 Odds are a snapshot at run time and move before kick-off, so re-check the price before betting.
 

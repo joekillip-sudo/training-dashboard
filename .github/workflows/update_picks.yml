@@ -15,7 +15,7 @@ concurrency:
 jobs:
   picks:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -38,16 +38,16 @@ jobs:
         run: python -m picks.cli fetch-xg
 
       - name: Generate picks
-        run: python -m picks.cli picks --out picks.json
+        run: python -m picks.cli picks --seed-backtest --out ledger.json
 
-      - name: Commit picks.json
+      - name: Commit ledger.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add picks.json
+          git add ledger.json
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Automated football picks update"
+            git commit -m "Automated paper-trading update"
             git push
           fi
