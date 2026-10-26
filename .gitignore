@@ -1,1 +1,2 @@
-.env
+.envpicks/data/
+__pycache__/
