@@ -25,6 +25,15 @@ football-data has no true xG, so `xg.py` builds a proxy from shots and shots on 
 
 Default is 0 (goals only). Set `XG_WEIGHT` in `cli.py` only after `evaluate` on real data shows a lower log loss than 0, and ideally closer to Pinnacle's closing prices. Real xG (Understat/FBref) would be a further step but needs scraping.
 
+### Real xG (Understat)
+    python -m picks.cli fetch-xg              # EPL, La Liga, Bundesliga, Serie A, Ligue 1 -> picks/xg_data/
+
+`understat.py` scrapes the JSON Understat embeds in each league-season page (one request per page, 2s apart, cached). `data.load` then joins it onto the football-data results (`HxG`/`AxG` columns), matching on team names and a ±3-day kickoff window. Team names differ between the sources; common ones are aliased, the rest are fuzzy-matched, and ambiguous or unknown names are dropped with a warning. Fix those by adding `{"Understat name": "football-data name"}` pairs to `picks/team_aliases.json`.
+
+With real xG present, `xg_source="auto"` uses it where available, then the shots proxy, then goals. `evaluate` then adds `real+shots` variants beside the `shots proxy` ones so you can see which actually forecasts better. The Championship (E1) has no Understat coverage and keeps the proxy.
+
+Caveats: Understat has no official API, so the parser can break if the page layout changes (it raises rather than guessing, and the workflow step is `continue-on-error`). Check Understat's terms before relying on this, and keep request volume low.
+
 ## Calibration
     python -m picks.cli calibrate             # add --xg-weight to test a variant
 

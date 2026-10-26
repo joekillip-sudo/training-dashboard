@@ -5,6 +5,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from .understat import attach_xg
+
 BASE = "https://www.football-data.co.uk/mmz4281/{season}/{league}.csv"
 FIXTURES_URL = "https://www.football-data.co.uk/fixtures.csv"
 KEEP = ["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR"]
@@ -63,7 +65,8 @@ def load(data_dir="picks/data"):
         df["League"] = f.stem.split("_")[0]
         cols = [c for c in KEEP + SHOT_COLS + ODDS_COLS if c in df.columns]
         frames.append(df[cols + ["League"]])
-    return pd.concat(frames, ignore_index=True).dropna(subset=["FTHG"]).sort_values("Date").reset_index(drop=True)
+    df = pd.concat(frames, ignore_index=True).dropna(subset=["FTHG"]).sort_values("Date").reset_index(drop=True)
+    return attach_xg(df, Path(data_dir).parent / "xg_data")
 
 
 def synthetic(n_teams=20, seasons=3, margin=0.05, noise=0.10, seed=0):

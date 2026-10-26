@@ -12,12 +12,13 @@ MAX_GOALS = 10
 
 
 class PoissonModel:
-    def __init__(self, half_life_days=365, shrink=3.0, rho=-0.05, iters=200, xg_weight=0.0):
+    def __init__(self, half_life_days=365, shrink=3.0, rho=-0.05, iters=200, xg_weight=0.0, xg_source="auto"):
         self.xi = math.log(2) / half_life_days
         self.shrink = shrink
         self.rho = rho
         self.iters = iters
-        self.xg_weight = xg_weight  # 0 = goals only, 1 = shots-based xG proxy only
+        self.xg_weight = xg_weight  # 0 = goals only, 1 = xG only
+        self.xg_source = xg_source  # "auto": real xG where present, else shots proxy; "shots": proxy only
         self.attack = {}
         self.defence = {}
         self.home_adv = 1.3
@@ -37,9 +38,8 @@ class PoissonModel:
         hg = df["FTHG"].to_numpy(float)
         ag = df["FTAG"].to_numpy(float)
         if self.xg_weight > 0:
-            xg = shot_xg(df)
-            if xg is not None:  # blend goals with the lower-noise xG proxy where shots exist
-                hx, ax, _ = xg
+            hx, ax = self._xg(df)
+            if hx is not None:  # blend goals with lower-noise xG where we have it
                 wt = self.xg_weight
                 hg = np.where(np.isnan(hx), hg, wt * hx + (1 - wt) * hg)
                 ag = np.where(np.isnan(ax), ag, wt * ax + (1 - wt) * ag)
@@ -65,6 +65,16 @@ class PoissonModel:
         self.home_adv = g
         self.league_avg = (w * ag).sum() / (w * att[a] * dfn[h]).sum()
         return self
+
+    def _xg(self, df):
+        """Per-match xG: real (Understat) where present, else shots proxy, else NaN."""
+        proxy = shot_xg(df)
+        hx, ax = (proxy[0], proxy[1]) if proxy is not None else (None, None)
+        if self.xg_source == "auto" and "HxG" in df and df["HxG"].notna().any():
+            rh, ra = df["HxG"].to_numpy(float), df["AxG"].to_numpy(float)
+            hx = rh if hx is None else np.where(np.isnan(rh), hx, rh)
+            ax = ra if ax is None else np.where(np.isnan(ra), ax, ra)
+        return hx, ax
 
     def knows(self, team):
         return team in self.attack

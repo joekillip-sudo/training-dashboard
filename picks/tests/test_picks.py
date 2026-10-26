@@ -9,7 +9,7 @@ from unittest import mock
 import numpy as np
 import pandas as pd
 
-from picks import backtest, calibration, cli, data, evaluate
+from picks import backtest, calibration, cli, data, evaluate, understat
 from picks.xg import shot_xg
 from picks.model import PoissonModel
 from picks.value import devig, find_picks, kelly_fraction
@@ -83,7 +83,7 @@ class EvaluateTests(unittest.TestCase):
 
     def test_table_has_models_and_both_market_benchmarks(self):
         df = data.synthetic(n_teams=10, seasons=3, seed=2)
-        table = evaluate.evaluate(df, xg_weights=(0.0, 0.5))
+        table = evaluate.evaluate(df, variants=[(0.0, "shots"), (0.5, "shots")])
         self.assertEqual(len(table), 4)
         self.assertTrue((table["matches"] > 0).all())
 
@@ -113,6 +113,85 @@ class CalibrationTests(unittest.TestCase):
         bets = backtest.run(self.df, min_ev=0.02, min_edge=0.01)
         t = calibration.pick_calibration(bets)
         self.assertEqual(int(t["bets"].sum()), len(bets))
+
+
+def _page(matches):
+    """Build HTML the way Understat embeds data: JSON in a JS string with \\xHH escapes."""
+    raw = json.dumps(matches)
+    esc = "".join(c if c.isalnum() else "\\x%02X" % ord(c) for c in raw)
+    return f"<html><script>var datesData = JSON.parse('{esc}');</script></html>"
+
+
+def _game(h, a, hx, ax, when, played=True):
+    return {"isResult": played, "datetime": when, "h": {"title": h}, "a": {"title": a}, "xG": {"h": str(hx), "a": str(ax)}}
+
+
+class UnderstatTests(unittest.TestCase):
+    def test_parse_matches_skips_unplayed_and_decodes_escapes(self):
+        html = _page([
+            _game("Manchester United", "Nott'm Forest", 1.8, 0.4, "2025-08-17 15:30:00"),
+            _game("Arsenal", "Chelsea", 0, 0, "2025-12-01 20:00:00", played=False),
+        ])
+        df = understat.parse_matches(html)
+        self.assertEqual(len(df), 1)
+        self.assertEqual(df.loc[0, "AwayTeam"], "Nott'm Forest")
+        self.assertAlmostEqual(df.loc[0, "HxG"], 1.8)
+
+    def test_parse_fails_loudly_when_layout_changes(self):
+        with self.assertRaises(ValueError):
+            understat.parse_matches("<html>nothing here</html>")
+
+    def test_map_teams_alias_exact_fuzzy_and_unmatched(self):
+        fd = {"Man United", "Arsenal", "Leverkusen", "Brentford"}
+        mapping, unmatched = understat.map_teams(
+            {"Manchester United", "Arsenal FC", "Bayer Leverkusen", "Totally Unknown"}, fd)
+        self.assertEqual(mapping["Manchester United"], "Man United")
+        self.assertEqual(mapping["Arsenal FC"], "Arsenal")
+        self.assertEqual(mapping["Bayer Leverkusen"], "Leverkusen")
+        self.assertEqual(unmatched, ["Totally Unknown"])
+
+    def test_map_teams_rejects_ambiguous_collisions(self):
+        mapping, unmatched = understat.map_teams({"Real Betis", "Betis"}, {"Betis"})
+        self.assertEqual(mapping, {})
+        self.assertEqual(unmatched, ["Betis", "Real Betis"])
+
+    def test_attach_xg_matches_within_date_tolerance_only(self):
+        df = pd.DataFrame({
+            "League": ["E0", "E0"], "HomeTeam": ["Man United", "Man United"], "AwayTeam": ["Arsenal", "Arsenal"],
+            "Date": pd.to_datetime(["2025-08-17", "2026-02-01"]), "FTHG": [1, 2], "FTAG": [0, 2]})
+        with tempfile.TemporaryDirectory() as tmp:
+            Path(tmp, "E0_2526.csv").write_text(
+                "Date,HomeTeam,AwayTeam,HxG,AxG\n2025-08-18,Manchester United,Arsenal,1.5,0.7\n")
+            out = understat.attach_xg(df, tmp, Path(tmp, "none.json"))
+        self.assertAlmostEqual(out.loc[0, "HxG"], 1.5)
+        self.assertTrue(np.isnan(out.loc[1, "HxG"]))  # the other fixture is months away
+
+    def test_fetch_writes_csv_and_survives_failures(self):
+        page = _page([_game("Arsenal", "Chelsea", 2.0, 1.0, "2025-08-20 19:00:00")]).encode()
+        opener = lambda req: mock.Mock(read=lambda: page)
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(understat.fetch(["E0"], ["2526"], tmp, delay=0, opener=opener), 1)
+            self.assertTrue(Path(tmp, "E0_2526.csv").exists())
+            def boom(req):
+                raise OSError("blocked")
+            self.assertEqual(understat.fetch(["E0"], ["2526"], tmp, delay=0, opener=boom), 0)
+
+    def test_load_attaches_sibling_xg_dir_and_model_uses_it(self):
+        hist = data.synthetic(n_teams=12, seasons=3, noise=0.25, seed=4)
+        with tempfile.TemporaryDirectory() as tmp:
+            Path(tmp, "data").mkdir()
+            Path(tmp, "xg_data").mkdir()
+            fd = hist.copy()
+            fd["Date"] = fd["Date"].dt.strftime("%d/%m/%Y")
+            fd.to_csv(Path(tmp, "data", "SYN_2526.csv"), index=False)
+            real = hist[["Date", "HomeTeam", "AwayTeam"]].assign(HxG=hist["FTHG"] * 0.5 + 0.4, AxG=hist["FTAG"] * 0.5 + 0.4)
+            real.to_csv(Path(tmp, "xg_data", "SYN_2526.csv"), index=False)
+            df = data.load(Path(tmp, "data"))
+        self.assertGreater(df["HxG"].notna().mean(), 0.95)
+        auto = PoissonModel(xg_weight=0.8, xg_source="auto").fit(df)
+        shots = PoissonModel(xg_weight=0.8, xg_source="shots").fit(df)
+        self.assertNotAlmostEqual(auto.attack["T00"], shots.attack["T00"], places=4)
+        self.assertEqual(PoissonModel(xg_weight=0.8, xg_source="shots").fit(df).attack["T00"], shots.attack["T00"])
 
 
 class ValueTests(unittest.TestCase):

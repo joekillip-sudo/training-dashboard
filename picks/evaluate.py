@@ -27,17 +27,26 @@ def _has_odds(m):
     return all(not pd.isna(m.get(c)) for c in [*OPEN.values(), *CLOSE.values()])
 
 
-def evaluate(df, xg_weights=(0.0, 0.5, 1.0), **kw):
+def default_variants(df):
+    """(xg_weight, xg_source) pairs; real xG variants only when the data has real xG."""
+    v = [(0.0, "shots")] + [(w, "shots") for w in (0.5, 1.0)]
+    if "HxG" in df and df["HxG"].notna().any():
+        v += [(w, "auto") for w in (0.5, 1.0)]
+    return v
+
+
+def evaluate(df, variants=None, **kw):
     """Walk-forward comparison of model variants and the market on the same matches."""
     forecasts, outcomes = {}, {}
-    for w in xg_weights:
+    for w, src in variants or default_variants(df):
         rows = {}
-        for m, model in walk_forward(df, xg_weight=w, **kw):
+        for m, model in walk_forward(df, xg_weight=w, xg_source=src, **kw):
             if _has_odds(m):
                 pr = model.predict(m.HomeTeam, m.AwayTeam)
                 rows[m.name] = {o: pr[o] for o in ORDER}
                 outcomes[m.name] = m.FTR
-        forecasts[f"model xg_weight={w}"] = rows
+        label = "goals only" if w == 0 else f"xg={w} {'real+shots' if src == 'auto' else 'shots proxy'}"
+        forecasts[f"model {label}"] = rows
     common = set.intersection(*(set(r) for r in forecasts.values())) if forecasts else set()
     forecasts["market open (Bet365)"] = {i: devig({o: df.at[i, c] for o, c in OPEN.items()}) for i in common}
     forecasts["market close (Pinnacle)"] = {i: devig({o: df.at[i, c] for o, c in CLOSE.items()}) for i in common}

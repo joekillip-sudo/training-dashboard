@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 import pandas as pd
 
-from . import backtest, calibration, data, evaluate
+from . import backtest, calibration, data, evaluate, understat
 from .model import PoissonModel
 from .value import find_picks
 
@@ -19,6 +19,9 @@ def main():
     f = sub.add_parser("fetch", help="download historical results+odds and upcoming fixtures")
     f.add_argument("--leagues", nargs="+", default=["E0", "E1", "D1", "SP1", "I1", "F1"])
     f.add_argument("--seasons", nargs="+", default=data.season_codes(4))
+    x = sub.add_parser("fetch-xg", help="scrape real xG from Understat (optional; picks/xg_data)")
+    x.add_argument("--leagues", nargs="+", default=list(understat.LEAGUES))
+    x.add_argument("--seasons", nargs="+", default=data.season_codes(4))
     sub.add_parser("evaluate", help="compare xG weights and the market on log loss / RPS")
     sub.add_parser("calibrate", help="reliability of model probabilities and of the bets taken")
     for name in ("backtest", "picks", "evaluate", "calibrate"):
@@ -33,6 +36,10 @@ def main():
                                       help="football-data fixtures.csv (Div,Date,HomeTeam,AwayTeam,B365H,B365D,B365A)")
     a = ap.parse_args()
 
+    if a.cmd == "fetch-xg":
+        if not understat.fetch(a.leagues, a.seasons):
+            raise SystemExit("no xG downloaded")
+        return
     if a.cmd == "fetch":
         data.fetch(a.leagues, a.seasons)
         return data.fetch_fixtures()

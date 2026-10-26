@@ -33,6 +33,10 @@ jobs:
       - name: Fetch results, odds and fixtures
         run: python -m picks.cli fetch
 
+      - name: Fetch real xG from Understat (optional)
+        continue-on-error: true   # scraper may break if the site changes; picks fall back to the shots proxy
+        run: python -m picks.cli fetch-xg
+
       - name: Generate picks
         run: python -m picks.cli picks --out picks.json
 
