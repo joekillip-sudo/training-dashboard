@@ -45,25 +45,27 @@ class PoissonModel:
                 ag = np.where(np.isnan(ax), ag, wt * ax + (1 - wt) * ag)
         n = len(teams)
 
-        att, dfn, g = np.ones(n), np.ones(n), 1.3
+        # home goals ~ mu * gamma * att[h] * dfn[a]; away goals ~ mu * att[a] * dfn[h].
+        # att and dfn are kept at mean 1, so mu is the base scoring rate and gamma the home advantage.
+        att, dfn, mu, gam = np.ones(n), np.ones(n), 1.3, 1.3
         k = self.shrink
+        pull = k * ((w * hg).sum() + (w * ag).sum()) / (2 * w.sum())  # pseudo-goals shrinking ratings toward 1
         for _ in range(self.iters):
-            # attack: goals scored / exposure
             num = np.bincount(h, w * hg, n) + np.bincount(a, w * ag, n)
-            den = np.bincount(h, w * dfn[a] * g, n) + np.bincount(a, w * dfn[h], n)
-            att = (num + k) / (den + k)
+            den = np.bincount(h, w * dfn[a] * mu * gam, n) + np.bincount(a, w * dfn[h] * mu, n)
+            att = (num + pull) / (den + pull)
             att /= att.mean()
-            # defence: goals conceded / exposure
             num = np.bincount(a, w * hg, n) + np.bincount(h, w * ag, n)
-            den = np.bincount(a, w * att[h] * g, n) + np.bincount(h, w * att[a], n)
-            dfn = (num + k) / (den + k)
+            den = np.bincount(a, w * att[h] * mu * gam, n) + np.bincount(h, w * att[a] * mu, n)
+            dfn = (num + pull) / (den + pull)
             dfn /= dfn.mean()
-            g = (w * hg).sum() / (w * att[h] * dfn[a]).sum()
+            mu = (w * (hg + ag)).sum() / (w * (gam * att[h] * dfn[a] + att[a] * dfn[h])).sum()
+            gam = (w * hg).sum() / (mu * (w * att[h] * dfn[a]).sum())
 
         self.attack = dict(zip(teams, att))
         self.defence = dict(zip(teams, dfn))
-        self.home_adv = g
-        self.league_avg = (w * ag).sum() / (w * att[a] * dfn[h]).sum()
+        self.home_adv = gam
+        self.league_avg = mu
         return self
 
     def _xg(self, df):

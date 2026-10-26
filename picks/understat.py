@@ -18,6 +18,7 @@ import pandas as pd
 
 LEAGUES = {"E0": "EPL", "SP1": "La_liga", "D1": "Bundesliga", "I1": "Serie_A", "F1": "Ligue_1"}
 URL = "https://understat.com/league/{league}/{year}"
+API_URL = "https://understat.com/getLeagueData/{league}/{year}"  # JSON the page itself loads by script
 USER_AGENT = "Mozilla/5.0 (compatible; football-picks-research/1.0)"
 FUZZY_CUTOFF = 0.85
 DATE_TOLERANCE = pd.Timedelta(days=3)  # kickoff timezone / postponement slack
@@ -40,14 +41,9 @@ ALIASES = {
 _DATES = re.compile(r"datesData\s*=\s*JSON\.parse\('(.*?)'\)", re.S)
 
 
-def parse_matches(html):
-    """Parse a league page into played matches with Understat team names and xG."""
-    found = _DATES.search(html)
-    if not found:
-        raise ValueError("datesData not found: Understat's page layout may have changed")
-    text = re.sub(r"\\x([0-9A-Fa-f]{2})", lambda m: chr(int(m.group(1), 16)), found.group(1))
+def _rows(games):
     rows = []
-    for g in json.loads(text):
+    for g in games:
         if not g.get("isResult"):
             continue
         rows.append({
@@ -56,6 +52,20 @@ def parse_matches(html):
             "HxG": float(g["xG"]["h"]), "AxG": float(g["xG"]["a"]),
         })
     return pd.DataFrame(rows, columns=["Date", "HomeTeam", "AwayTeam", "HxG", "AxG"])
+
+
+def parse_matches(html):
+    """Parse a league page into played matches with Understat team names and xG."""
+    found = _DATES.search(html)
+    if not found:
+        raise ValueError("datesData not found: Understat's page layout may have changed")
+    text = re.sub(r"\\x([0-9A-Fa-f]{2})", lambda m: chr(int(m.group(1), 16)), found.group(1))
+    return _rows(json.loads(text))
+
+
+def parse_league_json(text):
+    """Parse the getLeagueData JSON ({"teams":…, "players":…, "dates":[matches]})."""
+    return _rows(json.loads(text)["dates"])
 
 
 def fetch(leagues=tuple(LEAGUES), seasons=("2526",), out_dir="picks/xg_data", delay=2.0, opener=None):
@@ -68,12 +78,27 @@ def fetch(leagues=tuple(LEAGUES), seasons=("2526",), out_dir="picks/xg_data", de
         for lg in leagues:
             if lg not in LEAGUES:
                 continue
-            req = urllib.request.Request(URL.format(league=LEAGUES[lg], year=2000 + int(s[:2])),
-                                         headers={"User-Agent": USER_AGENT})
-            try:
-                df = parse_matches(opener(req).read().decode("utf-8"))
-            except Exception as e:  # xG is optional; never sink the whole refresh
-                print(f"WARN understat {lg} {s}: {e}")
+            year = 2000 + int(s[:2])
+            page = URL.format(league=LEAGUES[lg], year=year)
+            attempts = (
+                (API_URL.format(league=LEAGUES[lg], year=year), parse_league_json,
+                 {"X-Requested-With": "XMLHttpRequest", "Referer": page}),
+                (page, parse_matches, {}),
+            )
+            df, problems = None, []
+            for url, parse, extra in attempts:
+                try:
+                    body = opener(urllib.request.Request(url, headers={"User-Agent": USER_AGENT, **extra})).read().decode("utf-8", "replace")
+                except Exception as e:
+                    problems.append(f"{url.rsplit('/', 3)[-3]} request failed: {e}")
+                    continue
+                try:
+                    df = parse(body)
+                    break
+                except Exception as e:  # xG is optional; never sink the whole refresh
+                    problems.append(f"{url.rsplit('/', 3)[-3]} unparseable ({e}); {len(body)} bytes starting {body[:80]!r}")
+            if df is None:
+                print(f"WARN understat {lg} {s}: " + " | ".join(problems))
                 continue
             df.to_csv(out / f"{lg}_{s}.csv", index=False)
             ok += 1
