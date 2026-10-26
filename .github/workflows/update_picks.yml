@@ -1,0 +1,49 @@
+name: Update football picks
+
+on:
+  schedule:
+    - cron: "17 8 * * *"   # daily, 08:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-picks
+  cancel-in-progress: false
+
+jobs:
+  picks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: picks/requirements.txt
+
+      - run: pip install -r picks/requirements.txt
+
+      - name: Run tests
+        run: python -m unittest picks.tests.test_picks
+
+      - name: Fetch results, odds and fixtures
+        run: python -m picks.cli fetch
+
+      - name: Generate picks
+        run: python -m picks.cli picks --out picks.json
+
+      - name: Commit picks.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add picks.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Automated football picks update"
+            git push
+          fi

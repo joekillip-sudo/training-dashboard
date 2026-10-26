@@ -1,29 +1,63 @@
 """Load football-data.co.uk CSVs, and generate synthetic data for tests."""
+from datetime import date
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
 BASE = "https://www.football-data.co.uk/mmz4281/{season}/{league}.csv"
+FIXTURES_URL = "https://www.football-data.co.uk/fixtures.csv"
 KEEP = ["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR"]
 # opening odds (Bet365) and sharp closing odds (Pinnacle) when present
 ODDS_COLS = ["B365H", "B365D", "B365A", "PSCH", "PSCD", "PSCA"]
 
 
+def season_codes(n=4, today=None):
+    """Last n season codes ending with the current one, e.g. ['2223', '2324', '2425', '2526']."""
+    today = today or date.today()
+    start = today.year if today.month >= 7 else today.year - 1
+    return [f"{y % 100:02d}{(y + 1) % 100:02d}" for y in range(start - n + 1, start + 1)]
+
+
 def fetch(leagues, seasons, out_dir="picks/data"):
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
+    ok = 0
     for s in seasons:
         for lg in leagues:
-            df = pd.read_csv(BASE.format(season=s, league=lg), encoding="latin-1")
+            try:
+                df = pd.read_csv(BASE.format(season=s, league=lg), encoding="latin-1")
+            except Exception as e:  # a missing file shouldn't sink the whole refresh
+                print(f"WARN {lg} {s}: {e}")
+                continue
             df.to_csv(out / f"{lg}_{s}.csv", index=False)
+            ok += 1
             print(f"{lg} {s}: {len(df)} matches")
+    if not ok:
+        raise SystemExit("no data downloaded")
+
+
+def fetch_fixtures(path="picks/fixtures.csv"):
+    df = pd.read_csv(FIXTURES_URL, encoding="latin-1")
+    df.to_csv(path, index=False)
+    print(f"fixtures: {len(df)} rows -> {path}")
+
+
+def load_fixtures(path="picks/fixtures.csv", leagues=None, from_date=None):
+    df = pd.read_csv(path).dropna(subset=["HomeTeam", "AwayTeam", "Date"])
+    df["Date"] = pd.to_datetime(df["Date"], dayfirst=True, format="mixed")
+    df = df.rename(columns={"Div": "League"})
+    if leagues is not None:
+        df = df[df["League"].isin(leagues)]
+    if from_date is not None:
+        df = df[df["Date"] >= pd.Timestamp(from_date)]
+    return df.reset_index(drop=True)
 
 
 def load(data_dir="picks/data"):
     frames = []
     for f in sorted(Path(data_dir).glob("*.csv")):
-        df = pd.read_csv(f)
+        df = pd.read_csv(f).dropna(subset=["Date", "HomeTeam"])
         df["Date"] = pd.to_datetime(df["Date"], dayfirst=True, format="mixed")
         df["League"] = f.stem.split("_")[0]
         cols = [c for c in KEEP + ODDS_COLS if c in df.columns]

@@ -13,38 +13,42 @@ from .value import find_picks
 def main():
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
-    f = sub.add_parser("fetch")
+    f = sub.add_parser("fetch", help="download historical results+odds and upcoming fixtures")
     f.add_argument("--leagues", nargs="+", default=["E0", "E1", "D1", "SP1", "I1", "F1"])
-    f.add_argument("--seasons", nargs="+", default=["2223", "2324", "2425", "2526"])
+    f.add_argument("--seasons", nargs="+", default=data.season_codes(4))
     for name in ("backtest", "picks"):
         s = sub.add_parser(name)
         s.add_argument("--data", default="picks/data")
         s.add_argument("--synthetic", action="store_true", help="use generated data")
     sub.choices["picks"].add_argument("--out", default="picks.json")
-    sub.choices["picks"].add_argument("--fixtures", help="CSV: Date,HomeTeam,AwayTeam,B365H,B365D,B365A")
+    sub.choices["picks"].add_argument("--fixtures", default="picks/fixtures.csv",
+                                      help="football-data fixtures.csv (Div,Date,HomeTeam,AwayTeam,B365H,B365D,B365A)")
     a = ap.parse_args()
 
     if a.cmd == "fetch":
-        return data.fetch(a.leagues, a.seasons)
+        data.fetch(a.leagues, a.seasons)
+        return data.fetch_fixtures()
     df = data.synthetic() if a.synthetic else data.load(a.data)
     if a.cmd == "backtest":
-        bets = backtest.run(df)
-        print(json.dumps(backtest.summarise(bets), indent=2))
+        print(json.dumps(backtest.summarise(backtest.run(df)), indent=2))
         return
-    model = PoissonModel().fit(df)
-    fx = pd.read_csv(a.fixtures, parse_dates=["Date"]) if a.fixtures else df.tail(0)
+    models = {lg: PoissonModel().fit(g) for lg, g in df.groupby("League")}
+    today = datetime.now(timezone.utc).date()
+    fx = data.load_fixtures(a.fixtures, leagues=list(models), from_date=today)
     out = []
     for _, m in fx.iterrows():
-        if not (model.knows(m.HomeTeam) and model.knows(m.AwayTeam)):
+        model = models[m.League]
+        odds = {"H": m.get("B365H"), "D": m.get("B365D"), "A": m.get("B365A")}
+        if not (model.knows(m.HomeTeam) and model.knows(m.AwayTeam)) or any(pd.isna(v) for v in odds.values()):
             continue
-        odds = {"H": m.B365H, "D": m.B365D, "A": m.B365A}
         for p in find_picks(model.predict(m.HomeTeam, m.AwayTeam), odds):
-            out.append({"date": str(m.Date.date()), "match": f"{m.HomeTeam} v {m.AwayTeam}", **p.__dict__})
-    summary = backtest.summarise(backtest.run(df))
+            out.append({"date": str(m.Date.date()), "league": m.League, "match": f"{m.HomeTeam} v {m.AwayTeam}", **p.__dict__})
+    out.sort(key=lambda r: (r["date"], -r["ev"]))
     payload = {"generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-               "backtest": summary, "picks": out}
-    json.dump(payload, open(a.out, "w"), indent=2)
-    print(f"{len(out)} picks -> {a.out}")
+               "backtest": backtest.summarise(backtest.run(df)), "picks": out}
+    with open(a.out, "w") as fh:
+        json.dump(payload, fh, indent=2)
+    print(f"{len(fx)} upcoming fixtures checked, {len(out)} picks -> {a.out}")
 
 
 if __name__ == "__main__":
