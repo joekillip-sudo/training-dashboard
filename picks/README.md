@@ -25,6 +25,13 @@ football-data has no true xG, so `xg.py` builds a proxy from shots and shots on 
 
 Default is 0 (goals only). Set `XG_WEIGHT` in `cli.py` only after `evaluate` on real data shows a lower log loss than 0, and ideally closer to Pinnacle's closing prices. Real xG (Understat/FBref) would be a further step but needs scraping.
 
+## Calibration
+    python -m picks.cli calibrate             # add --xg-weight to test a variant
+
+Prints, walk-forward: (1) predicted vs observed frequency by probability band for the model and for Pinnacle's close, with the expected calibration error (ECE); (2) log loss of `(1-a)*model + a*market` for a = 0..1, where the lowest point is the best model/market mix; (3) the bets actually taken, by odds band, showing model win chance vs hit rate.
+
+How to read it: a positive `gap` means the model is overconfident in that band. If the best blend sits well above a=0, the model is adding noise relative to the market and bets should lean on the market price. If bets in the 3.0+ odds bands show large overconfidence and negative ROI, the "value" there is mostly model error.
+
 ## Automation
 `.github/workflows/update_picks.yml` runs daily at 08:17 UTC (and on demand via *Run workflow*): tests, fetch, picks, then commits `picks.json` if it changed. GitHub only runs scheduled workflows from the default branch, so merge to `main` for the schedule to start.
 

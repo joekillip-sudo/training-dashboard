@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 import pandas as pd
 
-from . import backtest, data, evaluate
+from . import backtest, calibration, data, evaluate
 from .model import PoissonModel
 from .value import find_picks
 
@@ -20,11 +20,12 @@ def main():
     f.add_argument("--leagues", nargs="+", default=["E0", "E1", "D1", "SP1", "I1", "F1"])
     f.add_argument("--seasons", nargs="+", default=data.season_codes(4))
     sub.add_parser("evaluate", help="compare xG weights and the market on log loss / RPS")
-    for name in ("backtest", "picks", "evaluate"):
-        s = sub.choices[name] if name == "evaluate" else sub.add_parser(name)
+    sub.add_parser("calibrate", help="reliability of model probabilities and of the bets taken")
+    for name in ("backtest", "picks", "evaluate", "calibrate"):
+        s = sub.choices[name] if name in ("evaluate", "calibrate") else sub.add_parser(name)
         s.add_argument("--data", default="picks/data")
         s.add_argument("--synthetic", action="store_true", help="use generated data")
-        if name != "evaluate":
+        if name != "evaluate":  # calibrate takes --xg-weight too
             s.add_argument("--xg-weight", type=float, default=XG_WEIGHT,
                            help="0 = goals only, 1 = shots-based xG proxy only")
     sub.choices["picks"].add_argument("--out", default="picks.json")
@@ -38,6 +39,15 @@ def main():
     df = data.synthetic() if a.synthetic else data.load(a.data)
     if a.cmd == "evaluate":
         print(evaluate.evaluate(df).to_string())
+        return
+    if a.cmd == "calibrate":
+        fc = calibration.collect(df, xg_weight=a.xg_weight)
+        for src, label in (("model", "MODEL"), ("close", "MARKET CLOSE (Pinnacle)")):
+            t = calibration.reliability(fc, src)
+            print(f"\n{label}: predicted vs observed, ECE={calibration.ece(t):.4f}\n{t.to_string()}")
+        for mkt in ("open", "close"):
+            print(f"\n{calibration.blend_log_loss(fc, mkt).to_string()}")
+        print("\nBETS TAKEN (by odds band)\n" + calibration.pick_calibration(backtest.run(df, xg_weight=a.xg_weight)).to_string())
         return
     if a.cmd == "backtest":
         print(json.dumps(backtest.summarise(backtest.run(df, xg_weight=a.xg_weight)), indent=2))

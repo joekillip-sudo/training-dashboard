@@ -9,7 +9,7 @@ from unittest import mock
 import numpy as np
 import pandas as pd
 
-from picks import backtest, cli, data, evaluate
+from picks import backtest, calibration, cli, data, evaluate
 from picks.xg import shot_xg
 from picks.model import PoissonModel
 from picks.value import devig, find_picks, kelly_fraction
@@ -86,6 +86,33 @@ class EvaluateTests(unittest.TestCase):
         table = evaluate.evaluate(df, xg_weights=(0.0, 0.5))
         self.assertEqual(len(table), 4)
         self.assertTrue((table["matches"] > 0).all())
+
+
+class CalibrationTests(unittest.TestCase):
+    def setUp(self):
+        self.df = data.synthetic(n_teams=12, seasons=3, noise=0.25, seed=6)
+        self.fc = calibration.collect(self.df)
+
+    def test_reliability_counts_every_forecast_once(self):
+        t = calibration.reliability(self.fc, "model")
+        self.assertEqual(int(t["n"].sum()), 3 * len(self.fc))
+        self.assertTrue(((t["observed"] >= 0) & (t["observed"] <= 1)).all())
+
+    def test_perfectly_calibrated_forecast_has_zero_gap(self):
+        fc = pd.DataFrame({"ftr": ["H"] * 5 + ["A"] * 5, **{f"model_{o}": [0.5 if o == "H" else 0.0 if o == "D" else 0.5] * 10 for o in "HDA"}})
+        t = calibration.reliability(fc, "model")
+        self.assertAlmostEqual(calibration.ece(t), 0.0)
+
+    def test_blend_endpoints_match_pure_sources(self):
+        s = calibration.blend_log_loss(self.fc, "close")
+        self.assertEqual(s.index[0], 0.0)
+        self.assertEqual(s.index[-1], 1.0)
+        self.assertGreater(s.iloc[0], 0)
+
+    def test_pick_calibration_bands(self):
+        bets = backtest.run(self.df, min_ev=0.02, min_edge=0.01)
+        t = calibration.pick_calibration(bets)
+        self.assertEqual(int(t["bets"].sum()), len(bets))
 
 
 class ValueTests(unittest.TestCase):
