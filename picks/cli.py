@@ -20,15 +20,18 @@ def main():
     f = sub.add_parser("fetch", help="download historical results+odds and upcoming fixtures")
     f.add_argument("--leagues", nargs="+", default=["E0", "E1", "D1", "SP1", "I1", "F1"])
     f.add_argument("--seasons", nargs="+", default=data.season_codes(4))
+    f.add_argument("--out", default="picks/data", help="where to save the CSVs")
+    f.add_argument("--no-fixtures", action="store_true", help="skip the upcoming-fixtures download")
     x = sub.add_parser("fetch-xg", help="scrape real xG from Understat (optional; picks/xg_data)")
     x.add_argument("--leagues", nargs="+", default=list(understat.LEAGUES))
     x.add_argument("--seasons", nargs="+", default=data.season_codes(4))
     sub.add_parser("evaluate", help="compare xG weights and the market on log loss / RPS")
     sub.add_parser("strategies", help="market-anchored model and best-price betting vs the old approach")
+    sub.add_parser("leagues", help="where is the market softer? model vs market, league by league")
     sub.add_parser("tune", help="grid-search decay/shrinkage/rho with a held-out check")
     sub.add_parser("calibrate", help="reliability of model probabilities and of the bets taken")
-    for name in ("backtest", "picks", "evaluate", "calibrate", "strategies", "tune"):
-        s = sub.choices[name] if name in ("evaluate", "calibrate", "strategies", "tune") else sub.add_parser(name)
+    for name in ("backtest", "picks", "evaluate", "calibrate", "strategies", "tune", "leagues"):
+        s = sub.choices[name] if name in ("evaluate", "calibrate", "strategies", "tune", "leagues") else sub.add_parser(name)
         s.add_argument("--data", default="picks/data")
         s.add_argument("--synthetic", action="store_true", help="use generated data")
         if name != "evaluate":  # calibrate takes --xg-weight too
@@ -46,11 +49,21 @@ def main():
             raise SystemExit("no xG downloaded")
         return
     if a.cmd == "fetch":
-        data.fetch(a.leagues, a.seasons)
-        return data.fetch_fixtures()
+        data.fetch(a.leagues, a.seasons, a.out)
+        return None if a.no_fixtures else data.fetch_fixtures()
     df = data.synthetic() if a.synthetic else data.load(a.data)
     if a.cmd == "evaluate":
         print(evaluate.evaluate(df).to_string())
+        return
+    if a.cmd == "leagues":
+        tbl = market.forecast_table(df, xg_weight=a.xg_weight)
+        fc, bt = market.league_report(tbl)
+        print(f"{len(tbl)} out-of-sample matches across {tbl['league'].nunique()} leagues (model fitted on earlier matches only)")
+        print("\nFORECAST QUALITY vs the average bookmaker price (log loss; gap < 0 means the model beats the market):")
+        print(fc.to_string(index=False))
+        print("\nBETTING (one unit on the best-EV outcome when EV >= 5%; clv vs closing price; early/late = halves of the period):")
+        print("  old = model vs Bet365 | best = model vs best price across bookmakers")
+        print(bt.to_string(index=False))
         return
     if a.cmd == "strategies":
         tbl = market.forecast_table(df, xg_weight=a.xg_weight)

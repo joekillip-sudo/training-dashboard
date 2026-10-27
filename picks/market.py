@@ -17,6 +17,7 @@ SOURCES = {
     "b365": ("B365H", "B365D", "B365A"),
     "max": ("MaxH", "MaxD", "MaxA"),      # best price on offer, pre-match
     "close": ("PSCH", "PSCD", "PSCA"),    # Pinnacle closing line: benchmark only, not known at bet time
+    "avgc": ("AvgCH", "AvgCD", "AvgCA"),  # average closing line: benchmark when Pinnacle's is missing
 }
 Y = {"H": 0, "D": 1, "A": 2}
 
@@ -36,6 +37,9 @@ def forecast_table(df, **model_kw):
             for o, v in zip(ORDER, vals):
                 r[f"{name}_odds_{o}"] = float(v) if ok else np.nan
                 r[f"{name}_p_{o}"] = fair.get(o, np.nan)
+        if np.isnan(r["close_p_H"]) and not np.isnan(r["avgc_p_H"]):  # Pinnacle's feed is gone from recent data
+            for o in ORDER:
+                r[f"close_odds_{o}"], r[f"close_p_{o}"] = r[f"avgc_odds_{o}"], r[f"avgc_p_{o}"]
         rows.append(r)
     return pd.DataFrame(rows)
 
@@ -171,5 +175,59 @@ def log_losses(t):
         if cols[0] not in t:
             continue
         p = t[cols].to_numpy(float)
-        out[name] = round(float(-np.log(np.clip(p[idx, y], 1e-12, 1)).mean()), 4)
+        out[name] = round(float(np.nanmean(-np.log(np.clip(p[idx, y], 1e-12, 1)))), 4)
     return out
+
+
+GROUPS = {
+    "top 5": ("E0", "SP1", "D1", "I1", "F1"),
+    "second tiers": ("E1", "D2", "SP2", "I2", "F2"),
+    "lower England": ("E2", "E3", "EC"),
+    "Scotland": ("SC0", "SC1", "SC2", "SC3"),
+    "other": ("N1", "B1", "P1", "T1", "G1"),
+}
+
+
+def _summary(t, thr):
+    """Forecast quality against the average pre-match price, plus two betting rules, for one slice of matches."""
+    have = t.dropna(subset=["avg_p_H", "b365_odds_H"])
+    if len(have) < 50:
+        return None
+    y = have["ftr"].map(Y).to_numpy()
+    idx = np.arange(len(y))
+    ll = lambda p: float(np.nanmean(-np.log(np.clip(p[idx, y], 1e-12, 1))))
+    model, avg = have[[f"model_{o}" for o in ORDER]].to_numpy(float), _cols(have, "avg")
+    close = _cols(have, "close")
+    out = {"matches": len(have), "ll_model": ll(model), "ll_market": ll(avg), "overround": float(np.nanmean((1 / _cols(have, "avg", "odds")).sum(1) - 1))}
+    out["gap"] = out["ll_model"] - out["ll_market"]
+    half = (have["date"] >= have["date"].median()).to_numpy()
+    for key, odds in (("old", _cols(have, "b365", "odds")), ("best", _cols(have, "max", "odds"))):
+        bet, profit, clv = settle(model, odds, y, close, thr)
+        n = int(bet.sum())
+        out[f"{key}_bets"] = n
+        out[f"{key}_roi"] = float(profit[bet].mean()) if n else np.nan
+        out[f"{key}_clv"] = float(np.nanmean(clv[bet])) if n and np.isfinite(clv[bet]).any() else np.nan
+        out[f"{key}_early"] = float(profit[bet & ~half].mean()) if (bet & ~half).any() else np.nan
+        out[f"{key}_late"] = float(profit[bet & half].mean()) if (bet & half).any() else np.nan
+    return out
+
+
+def league_report(tbl, thr=0.05):
+    """Per league and per group of leagues. Returns (forecast table, betting table)."""
+    rows = []
+    for lg, t in tbl.groupby("league"):
+        r = _summary(t, thr)
+        if r:
+            rows.append({"slice": lg, "kind": "league", **r})
+    for name, members in GROUPS.items():
+        r = _summary(tbl[tbl["league"].isin(members)], thr)
+        if r:
+            rows.append({"slice": name, "kind": "group", **r})
+    r = _summary(tbl, thr)
+    if r:
+        rows.append({"slice": "ALL", "kind": "group", **r})
+    fc_cols = ["slice", "kind", "matches", "overround", "ll_model", "ll_market", "gap"]
+    bt_cols = ["slice", "kind", "old_bets", "old_roi", "old_clv", "old_early", "old_late",
+               "best_bets", "best_roi", "best_clv", "best_early", "best_late"]
+    df = pd.DataFrame(rows, columns=["slice", "kind", *{c for c in fc_cols + bt_cols} - {"slice", "kind"}])  # empty-safe
+    return df[fc_cols].round(4), df[bt_cols].round(3)
