@@ -3,9 +3,10 @@ import argparse
 import json
 from datetime import datetime, timezone
 
+import numpy as np
 import pandas as pd
 
-from . import backtest, calibration, data, evaluate, ledger, understat
+from . import backtest, calibration, data, evaluate, ledger, market, tune, understat
 from .model import PoissonModel
 from .value import find_picks
 
@@ -23,9 +24,11 @@ def main():
     x.add_argument("--leagues", nargs="+", default=list(understat.LEAGUES))
     x.add_argument("--seasons", nargs="+", default=data.season_codes(4))
     sub.add_parser("evaluate", help="compare xG weights and the market on log loss / RPS")
+    sub.add_parser("strategies", help="market-anchored model and best-price betting vs the old approach")
+    sub.add_parser("tune", help="grid-search decay/shrinkage/rho with a held-out check")
     sub.add_parser("calibrate", help="reliability of model probabilities and of the bets taken")
-    for name in ("backtest", "picks", "evaluate", "calibrate"):
-        s = sub.choices[name] if name in ("evaluate", "calibrate") else sub.add_parser(name)
+    for name in ("backtest", "picks", "evaluate", "calibrate", "strategies", "tune"):
+        s = sub.choices[name] if name in ("evaluate", "calibrate", "strategies", "tune") else sub.add_parser(name)
         s.add_argument("--data", default="picks/data")
         s.add_argument("--synthetic", action="store_true", help="use generated data")
         if name != "evaluate":  # calibrate takes --xg-weight too
@@ -48,6 +51,24 @@ def main():
     df = data.synthetic() if a.synthetic else data.load(a.data)
     if a.cmd == "evaluate":
         print(evaluate.evaluate(df).to_string())
+        return
+    if a.cmd == "strategies":
+        tbl = market.forecast_table(df, xg_weight=a.xg_weight)
+        oos, theta = market.residual_oos(tbl, min_train=min(1000, len(tbl) // 3))
+        print(f"out-of-sample matches: {len(oos)} (of {len(tbl)}); residual theta [draw, away, model-vs-base, base tilt] = "
+              f"{None if theta is None else np.round(theta, 3).tolist()}")
+        if oos.empty:
+            print("not enough matches with Pinnacle pre-match prices to fit the residual model")
+            return
+        print("\nlog loss on these matches (lower is better):", market.log_losses(oos))
+        print("\nFlat one-unit bets on the best-EV outcome per match; early/late = first/second half of the period:")
+        print(market.compare(oos).to_string(index=False))
+        return
+    if a.cmd == "tune":
+        res, summary = tune.tune(df, {"xg_weight": a.xg_weight}, {"half_life_days": 365, "shrink": 3.0, "rho": -0.05})
+        print("top settings by early log loss (model forecasts vs actual results):")
+        print(res.head(8).to_string(index=False))
+        print(f"\nbest {summary['best']}: late {summary['best_late']:.4f} vs defaults late {summary['default_late']}")
         return
     if a.cmd == "calibrate":
         fc = calibration.collect(df, xg_weight=a.xg_weight)

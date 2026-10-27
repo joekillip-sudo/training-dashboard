@@ -10,7 +10,7 @@ from unittest import mock
 import numpy as np
 import pandas as pd
 
-from picks import backtest, calibration, cli, data, evaluate, ledger, understat
+from picks import backtest, calibration, cli, data, evaluate, ledger, market, tune, understat
 from picks.xg import shot_xg
 from picks.model import PoissonModel
 from picks.value import devig, find_picks, kelly_fraction
@@ -183,6 +183,62 @@ class ScaleTests(unittest.TestCase):
     def test_model_reproduces_training_goal_averages_for_low_and_high_scoring_leagues(self):
         self._check(0.9, 1)   # scale below 1
         self._check(1.4, 2)   # scale above 1: this case was ~20% too high at home before the fix
+
+
+class MarketTests(unittest.TestCase):
+    def _sample(self, n, tilt, seed=0):
+        rng = np.random.default_rng(seed)
+        base = rng.dirichlet([6, 3, 4], n)
+        true = base ** tilt
+        true /= true.sum(1, keepdims=True)
+        y = np.array([rng.choice(3, p=p) for p in true])
+        model = np.clip(base * np.exp(rng.normal(0, 0.1, base.shape)), 1e-3, None)
+        return model / model.sum(1, keepdims=True), base, y
+
+    def test_residual_stays_at_the_base_when_the_base_is_right(self):
+        mp, bp, y = self._sample(3000, tilt=1.0)
+        theta = market.fit_residual(mp, bp, y)
+        self.assertLess(np.abs(theta).max(), 0.15)
+        out = market.predict_residual(theta, mp, bp)
+        np.testing.assert_allclose(out.sum(1), 1.0)
+        self.assertLess(np.abs(out - bp).mean(), 0.02)
+
+    def test_residual_learns_a_known_bias_in_the_base(self):
+        mp, bp, y = self._sample(6000, tilt=1.25, seed=1)  # truth is more extreme than the base says
+        theta = market.fit_residual(mp, bp, y)
+        self.assertGreater(theta[3], 0.12)  # tilt term picks up roughly +0.25 (shrunk toward 0)
+
+    def test_settle_arithmetic(self):
+        p = np.array([[0.6, 0.2, 0.2], [0.2, 0.3, 0.5]])
+        odds = np.array([[2.0, 4.0, 5.0], [3.0, 3.5, 1.9]])
+        y = np.array([0, 1])
+        bet, profit, _ = market.settle(p, odds, y, thr=0.05)
+        self.assertEqual(bet.tolist(), [True, True])   # EV 0.2 on H; EV 0.05 on D in match 2, H 3.0 is -0.4, A -0.05
+        self.assertAlmostEqual(profit[0], 1.0)         # backed H at 2.0, won
+        self.assertAlmostEqual(profit[1], 2.5)         # best EV is D at 3.5 (0.05); it won, so +2.5
+
+    def test_forecast_table_and_oos_comparison_on_synthetic_data(self):
+        df = data.synthetic(n_teams=14, seasons=4, noise=0.25, seed=8)
+        tbl = market.forecast_table(df)
+        self.assertTrue({"model_H", "ps_p_H", "max_odds_A", "close_p_D", "date"} <= set(tbl.columns))
+        np.testing.assert_allclose(tbl[["ps_p_H", "ps_p_D", "ps_p_A"]].sum(1), 1.0)
+        oos, theta = market.residual_oos(tbl, min_train=len(tbl) // 3)
+        self.assertGreater(len(oos), 100)
+        self.assertEqual(len(theta), 4)
+        out = market.compare(oos, thresholds=(0.0, 0.05))
+        self.assertEqual(len(out), 6 * 2)
+        self.assertTrue((out["bets"] >= 0).all())
+        self.assertEqual(set(market.log_losses(oos)), {"model", "resid", "ps", "avg", "b365", "close"})
+
+
+class TuneTests(unittest.TestCase):
+    def test_small_grid_returns_sorted_table_and_default_comparison(self):
+        df = data.synthetic(n_teams=10, seasons=3, noise=0.25, seed=9)
+        grid = {"half_life_days": (200, 365), "shrink": (3.0,), "rho": (-0.05,)}
+        res, summary = tune.tune(df, {}, {"half_life_days": 365, "shrink": 3.0, "rho": -0.05}, grid=grid)
+        self.assertEqual(len(res), 2)
+        self.assertTrue(res["early"].is_monotonic_increasing)
+        self.assertIsNotNone(summary["default_late"])
 
 
 class XgTests(unittest.TestCase):

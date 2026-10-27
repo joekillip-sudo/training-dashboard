@@ -12,7 +12,8 @@ FIXTURES_URL = "https://www.football-data.co.uk/fixtures.csv"
 KEEP = ["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR"]
 # opening odds (Bet365) and sharp closing odds (Pinnacle) when present
 SHOT_COLS = ["HS", "AS", "HST", "AST"]
-ODDS_COLS = ["B365H", "B365D", "B365A", "PSCH", "PSCD", "PSCA"]
+ODDS_COLS = ["B365H", "B365D", "B365A", "PSCH", "PSCD", "PSCA",
+             "PSH", "PSD", "PSA", "MaxH", "MaxD", "MaxA", "AvgH", "AvgD", "AvgA"]  # pre-match: Pinnacle, best, average
 
 
 def season_codes(n=4, today=None):
@@ -91,6 +92,10 @@ def load(data_dir="picks/data"):
     return attach_xg(df, Path(data_dir).parent / "xg_data")
 
 
+def _norm3(v):
+    return v / v.sum()
+
+
 def synthetic(n_teams=20, seasons=3, margin=0.05, noise=0.10, seed=0):
     """Round-robin league with known true strengths and noisy bookmaker odds.
 
@@ -124,6 +129,10 @@ def synthetic(n_teams=20, seasons=3, margin=0.05, noise=0.10, seed=0):
                 "Date": day + pd.Timedelta(days=i * 280 // len(fixtures)), "HomeTeam": teams[h], "AwayTeam": teams[a],
                 "FTHG": hg, "FTAG": ag, "FTR": "HDA"[int(np.argmax([hg > ag, hg == ag, hg < ag]))],
                 "B365H": odds[0], "B365D": odds[1], "B365A": odds[2],
+                **{f"{k}{o}": v for k, vals in (("PS", 1 / (_norm3(p * np.exp(rng.normal(0, 0.03, 3))) * 1.02)),
+                                                 ("Avg", 1 / (_norm3(0.5 * q + 0.5 * p) * 1.04)),
+                                                 ("Max", odds * (1 + np.abs(rng.normal(0, 0.04, 3)))))
+                   for o, v in zip("HDA", vals)},
                 # closing line: much closer to the truth
                 "PSCH": 1 / (p[0] * 1.02), "PSCD": 1 / (p[1] * 1.02), "PSCA": 1 / (p[2] * 1.02),
                 "League": "SYN",
