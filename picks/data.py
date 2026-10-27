@@ -1,4 +1,5 @@
 """Load football-data.co.uk CSVs, and generate synthetic data for tests."""
+import urllib.request
 from datetime import date
 from pathlib import Path
 
@@ -44,16 +45,25 @@ def fetch(leagues, seasons, out_dir="picks/data"):
         raise SystemExit("no data downloaded")
 
 
+def _decode(raw):
+    """football-data's fixtures file is UTF-8 with a byte-order mark; older files are Latin-1."""
+    try:
+        return raw.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        return raw.decode("latin-1")
+
+
 def fetch_fixtures(path="picks/fixtures.csv"):
-    df = pd.read_csv(FIXTURES_URL, encoding="latin-1")
-    df.to_csv(path, index=False)
-    print(f"fixtures: {len(df)} rows -> {path}")
+    with urllib.request.urlopen(FIXTURES_URL, timeout=60) as resp:  # follows the site's redirect
+        text = _decode(resp.read())
+    Path(path).write_text(text, encoding="utf-8")
+    print(f"fixtures: {max(text.count(chr(10)) - 1, 0)} rows -> {path}")
 
 
 def load_fixtures(path="picks/fixtures.csv", leagues=None, from_date=None):
     """Upcoming fixtures. The league column is optional; see infer_leagues()."""
     df = pd.read_csv(path)
-    df.columns = [str(c).strip() for c in df.columns]
+    df.columns = [str(c).replace("\ufeff", "").replace("ï»¿", "").strip() for c in df.columns]  # stray byte-order mark
     missing = {"Date", "HomeTeam", "AwayTeam"} - set(df.columns)
     if missing:
         raise ValueError(f"fixtures file lacks {sorted(missing)}; columns are {list(df.columns)}")

@@ -238,6 +238,21 @@ class MarketTests(unittest.TestCase):
         self.assertEqual(set(market.log_losses(oos)), {"model", "resid", "ps", "avg", "b365", "close"})
 
 
+class FixturesFileTests(unittest.TestCase):
+    def test_byte_order_mark_does_not_hide_the_division_column(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            for name, raw in (("utf8bom.csv", "\ufeffDiv,Date,HomeTeam,AwayTeam\nE0,27/10/2026,A,B\n".encode("utf-8")),
+                              ("latin1view.csv", "ï»¿Div,Date,HomeTeam,AwayTeam\nE0,27/10/2026,A,B\n".encode("utf-8"))):
+                path = Path(tmp, name)
+                path.write_bytes(raw)
+                fx = data.load_fixtures(path)
+                self.assertEqual(list(fx["League"]), ["E0"], name)
+
+    def test_decoding_handles_utf8_with_bom_and_latin1(self):
+        self.assertEqual(data._decode("\ufeffDiv,Köln".encode("utf-8")), "Div,Köln")
+        self.assertEqual(data._decode("Div,Atlético".encode("latin-1")), "Div,Atlético")
+
+
 class MultiLeagueTests(unittest.TestCase):
     def _two_leagues(self):
         a = data.synthetic(n_teams=10, seasons=3, noise=0.25, seed=21)
