@@ -7,6 +7,8 @@ import pandas as pd
 
 from .understat import attach_xg
 
+ALL_LEAGUES = ["E0", "E1", "E2", "E3", "EC", "SC0", "SC1", "SC2", "SC3", "D1", "D2", "SP1", "SP2",
+              "I1", "I2", "F1", "F2", "N1", "B1", "P1", "T1", "G1"]
 BASE = "https://www.football-data.co.uk/mmz4281/{season}/{league}.csv"
 FIXTURES_URL = "https://www.football-data.co.uk/fixtures.csv"
 KEEP = ["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR"]
@@ -70,13 +72,19 @@ def load_fixtures(path="picks/fixtures.csv", leagues=None, from_date=None):
 
 
 def infer_leagues(fixtures, models):
-    """Add League to fixtures that lack it: the one league whose history has both teams.
+    """Add League to fixtures that lack it: the league whose history has both teams.
 
-    Rows matching no league, or several (e.g. both teams moved division), are dropped.
+    A team that changed division appears in two leagues' histories. When more than one league
+    knows both teams, the one where both were seen most recently wins; a dead heat is skipped.
     """
     def pick(row):
         hits = [lg for lg, m in models.items() if m.knows(row["HomeTeam"]) and m.knows(row["AwayTeam"])]
-        return hits[0] if len(hits) == 1 else None
+        if len(hits) <= 1:
+            return hits[0] if hits else None
+        seen = {lg: min(models[lg].last_seen[row["HomeTeam"]], models[lg].last_seen[row["AwayTeam"]]) for lg in hits}
+        top = max(seen.values())
+        best = [lg for lg, d in seen.items() if d == top]
+        return best[0] if len(best) == 1 else None
     out = fixtures.copy()
     out["League"] = out.apply(pick, axis=1)
     return out.dropna(subset=["League"]).reset_index(drop=True)

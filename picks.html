@@ -53,6 +53,12 @@
     .bet-sub { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: #8fa3bf; margin-top: 5px; }
     .bet-sub b { color: #cfe3ff; font-weight: normal; }
     .tag { font-size: 10.5px; padding: 2px 6px; border-radius: 6px; background: #0d3a5c; color: #4fc3f7; margin-left: 6px; font-weight: normal; }
+    .lg { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .lg th { text-align: right; color: #6b7c93; font-weight: normal; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.4px; padding: 0 0 6px 8px; }
+    .lg th:first-child, .lg td:first-child { text-align: left; padding-left: 0; }
+    .lg td { text-align: right; padding: 7px 0 7px 8px; border-top: 1px solid #1f3350; font-variant-numeric: tabular-nums; }
+    .lg-wrap { background: #16273f; border-radius: 14px; padding: 12px 16px; overflow-x: auto; }
+    .bet-meta { font-weight: normal; font-size: 12px; color: #8fa3bf; text-align: right; }
     .empty, .note { color: #8fa3bf; font-size: 13px; line-height: 1.5; text-align: center; padding: 18px 8px; }
     .note { font-size: 11.5px; color: #6b7c93; padding: 8px; margin-top: 24px; }
   </style>
@@ -78,6 +84,8 @@
     <button class="reset" id="reset">Reset to defaults</button>
   </details>
 
+  <div id="leagues"></div>
+
   <h2>Open bets</h2>
   <div id="open"></div>
 
@@ -94,7 +102,7 @@
 
 <script>
 const DEFAULTS = {
-  view: "live", bankroll: 1000, mode: "percent", flat: 10, pct: 1, kelly: 0.25, cap: 5,
+  view: "live", league: "all", bankroll: 1000, mode: "percent", flat: 10, pct: 1, kelly: 0.25, cap: 5,
   minEdge: 3, minEv: 5, maxOdds: 8, trust: 100, H: true, D: true, A: true,
 };
 let P = { ...DEFAULTS };
@@ -103,6 +111,13 @@ const KEY = "footballPicksSettings";
 try { Object.assign(P, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} };
 
+const LEAGUES = {
+  E0: "Premier League", E1: "Championship", E2: "League One", E3: "League Two", EC: "National League",
+  SC0: "Scottish Premiership", SC1: "Scottish Championship", SC2: "Scottish League One", SC3: "Scottish League Two",
+  D1: "Bundesliga", D2: "2. Bundesliga", SP1: "La Liga", SP2: "La Liga 2", I1: "Serie A", I2: "Serie B",
+  F1: "Ligue 1", F2: "Ligue 2", N1: "Eredivisie", B1: "Belgian Pro League", P1: "Primeira Liga", T1: "Süper Lig", G1: "Greek Super League",
+};
+const lname = c => LEAGUES[c] || c;
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const money = (x, sign) => (sign && x > 0 ? "+" : x < 0 ? "-" : "") + "£" + Math.abs(x).toLocaleString("en-GB", { maximumFractionDigits: x > 9999 ? 0 : 2, minimumFractionDigits: x > 9999 ? 0 : 2 });
@@ -127,6 +142,7 @@ function simulate() {
   for (const b of BOOK.bets) {
     if (P.view !== "all" && b.source !== P.view) continue;
     if (!P[b.outcome]) continue;
+    if (P.league !== "all" && b.league !== P.league) continue;
     const p = trust * b.model_p + (1 - trust) * b.market_p;
     const ev = p * b.odds - 1, edge = p - b.market_p;
     if (ev < Math.max(P.minEv / 100, floor.min_ev) || edge < Math.max(P.minEdge / 100, floor.min_edge)) continue;
@@ -182,9 +198,22 @@ function renderChart(res) {
 
 function betCard(b, settled) {
   const res = settled ? `<span class="${b.won ? "pos" : "neg"}">${b.won ? "Won" : "Lost"} ${money(b.profit, true)}</span>` : `Stake <b>${money(b.stake)}</b>`;
-  return `<div class="bet"><div class="bet-top"><span>${esc(b.home)} v ${esc(b.away)}${b.source === "backtest" ? '<span class="tag">backtest</span>' : ""}</span><span>${esc(b.date)}</span></div>
+  return `<div class="bet"><div class="bet-top"><span>${esc(b.home)} v ${esc(b.away)}${b.source === "backtest" ? '<span class="tag">backtest</span>' : ""}</span><span class="bet-meta">${esc(lname(b.league))}<br>${esc(b.date)}</span></div>
     <div class="bet-sub"><span><b>${esc(label(b.outcome, b))}</b> @ ${b.odds.toFixed(2)}</span><span>${res}</span></div>
     <div class="bet-sub"><span>Model ${pct(b.model_p, 0)} vs market ${pct(b.market_p, 0)}</span><span>Edge +${pct(b.edge)} · EV +${pct(b.ev, 0)}</span></div></div>`;
+}
+
+function renderLeagues(res) {
+  const by = {};
+  for (const r of res.settled) {
+    const x = by[r.league] || (by[r.league] = { n: 0, staked: 0, profit: 0, open: 0 });
+    x.n++; x.staked += r.stake; x.profit += r.profit;
+  }
+  for (const r of res.open) (by[r.league] || (by[r.league] = { n: 0, staked: 0, profit: 0, open: 0 })).open++;
+  const rows = Object.entries(by).sort((a, b) => b[1].profit - a[1].profit);
+  $("leagues").innerHTML = rows.length < 2 ? "" : `<h2>By league</h2><div class="lg-wrap"><table class="lg"><thead><tr><th>League</th><th>Bets</th><th>Profit</th><th>ROI</th></tr></thead><tbody>` +
+    rows.map(([c, x]) => `<tr><td>${esc(lname(c))}</td><td>${x.n}${x.open ? ` +${x.open}` : ""}</td><td class="${cls(x.profit)}">${money(x.profit, true)}</td><td class="${cls(x.profit)}">${x.staked ? pct(x.profit / x.staked) : "–"}</td></tr>`).join("") +
+    "</tbody></table></div>";
 }
 
 function render() {
@@ -202,6 +231,7 @@ function render() {
   ];
   $("stats").innerHTML = cells.map(([l, v, c]) => `<div class="stat"><div class="stat-val ${c}">${v}</div><div class="stat-label">${l}</div></div>`).join("");
   renderChart(res);
+  renderLeagues(res);
   $("open").innerHTML = res.open.length
     ? res.open.slice().sort((a, b) => a.date < b.date ? -1 : 1).map(b => betCard(b, false)).join("")
     : '<div class="empty">No open bets under these settings. The model only bets when it sees a clear edge, so quiet days are normal.</div>';
@@ -224,7 +254,10 @@ const CONTROLS = [
 ];
 
 function buildControls() {
-  $("controls").innerHTML = CONTROLS.filter(c => !c.show || c.show()).map(c => {
+  const codes = [...new Set(BOOK.bets.map(b => b.league))].sort((a, b) => lname(a).localeCompare(lname(b)));
+  if (P.league !== "all" && !codes.includes(P.league)) P.league = "all";
+  const leagueCtl = `<div class="ctl"><label>League</label><select data-k="league"><option value="all"${P.league === "all" ? " selected" : ""}>All leagues (${codes.length})</option>${codes.map(c => `<option value="${c}"${P.league === c ? " selected" : ""}>${esc(lname(c))}</option>`).join("")}</select></div>`;
+  $("controls").innerHTML = leagueCtl + CONTROLS.filter(c => !c.show || c.show()).map(c => {
     const hint = c.s ? `<small>${c.s}</small>` : "";
     if (c.sel) return `<div class="ctl"><label>${c.t}</label><select data-k="${c.k}">${c.sel.map(([v, l]) => `<option value="${v}"${P[c.k] === v ? " selected" : ""}>${l}</option>`).join("")}</select></div>`;
     if (c.range) return `<div class="ctl range"><label>${c.t}: <b id="rv">${P[c.k]}</b>${hint}</label><input type="range" data-k="${c.k}" min="${c.range[0]}" max="${c.range[1]}" step="${c.range[2]}" value="${P[c.k]}"></div>`;

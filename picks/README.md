@@ -41,7 +41,11 @@ Caveats: Understat has no official API, so the parser can break if the page layo
 `strategies` compares, on the same out-of-sample matches: the old model vs Bet365, Pinnacle's fair price vs Bet365 and vs the best price across bookmakers, and a residual model (Pinnacle base plus a regularised correction fitted only on earlier matches) at each. It prints log loss and, per minimum-EV threshold, bets, hit rate, ROI, closing line value and ROI in each half of the period. The best price assumes you can get it, which in practice means several accounts and stakes that are not limited. `tune` picks settings on the early 65% of matches and shows how they do on the rest. Both run in the workflow and land in `report.txt`.
 
 ## Paper trading
-The model bets automatically, with pretend money, on match results only (home/draw/away).
+The model bets automatically, with pretend money, on match results only (home/draw/away), across all 22 leagues in one ledger. `MultiLeagueModel` is the single model: it holds one fitted model per league behind one `fit`/`predict`, because teams in different leagues never meet and each league needs its own scoring rate and home advantage.
+
+**Opening it on a phone:** the page is `picks.html` on your GitHub Pages site (typically `https://<your-github-username>.github.io/<repo-name>/picks.html`; the exact address is under the repo's Settings, Pages). Add it to your home screen from the browser's share menu. The workflow runs three times a day (07:17, 13:17 and 19:17 UTC) and republishes the site after each commit.
+
+**When bets appear:** football-data's fixtures file only lists the current round and is updated at irregular times, so live paper bets arrive in bursts, only on matches more than 30 minutes from kickoff. The page's league filter and By league table show how each league is doing under your settings.
 
 - `ledger.json` holds every candidate bet: odds on offer, model and market probability, and later the result and closing price. A bet is recorded once, when first seen within 2 days of kickoff, and never rewritten, so the live record has no hindsight. Settlement happens when the result appears in the next data fetch.
 - `--seed-backtest` adds historical walk-forward bets once (`source: "backtest"`) so the page has a track record on day one. Live and backtest are kept apart and the page can show either or both.

@@ -2,7 +2,11 @@ name: Update football picks
 
 on:
   schedule:
-    - cron: "17 8 * * *"   # daily, 08:17 UTC
+    # Three times a day so new fixtures are picked up within hours (football-data updates its
+    # fixtures file at irregular times). Only the first run also does the slow model report.
+    - cron: "17 7 * * *"
+    - cron: "17 13 * * *"
+    - cron: "17 19 * * *"
   workflow_dispatch:
 
 permissions:
@@ -41,6 +45,7 @@ jobs:
         run: python -m picks.cli picks --seed-backtest --out ledger.json
 
       - name: Model report (evaluate and calibrate on real data)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 7 * * *'
         continue-on-error: true
         run: |
           {
@@ -65,5 +70,6 @@ jobs:
             echo "No changes"
           else
             git commit -m "Automated paper-trading update"
+            git pull --rebase origin main
             git push
           fi

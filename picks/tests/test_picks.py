@@ -11,6 +11,7 @@ import numpy as np
 import pandas as pd
 
 from picks import backtest, calibration, cli, data, evaluate, ledger, market, tune, understat
+from picks.model import MultiLeagueModel
 from picks.xg import shot_xg
 from picks.model import PoissonModel
 from picks.value import devig, find_picks, kelly_fraction
@@ -147,6 +148,12 @@ class LedgerTests(unittest.TestCase):
         self.assertGreater(book["bets"][0]["close_p"], 0.4)
         self.assertIsNone(book["bets"][1]["result"])  # no result yet stays open
 
+    def test_closing_price_falls_back_to_the_average_when_pinnacle_is_missing(self):
+        row = pd.Series({"PSCH": float("nan"), "PSCD": float("nan"), "PSCA": float("nan"),
+                         "AvgCH": 2.0, "AvgCD": 3.5, "AvgCA": 4.0})
+        self.assertGreater(ledger._close_p(row, "H"), 0.4)
+        self.assertIsNone(ledger._close_p(pd.Series({"PSCH": float("nan")}), "H"))
+
     def test_save_load_roundtrip(self):
         book = {"floor": ledger.FLOOR, "live_from": None, "generated": None,
                 "bets": [{"id": "b", "date": "2025-01-02"}, {"id": "a", "date": "2025-01-01"}]}
@@ -229,6 +236,38 @@ class MarketTests(unittest.TestCase):
         self.assertEqual(len(out), 6 * 2)
         self.assertTrue((out["bets"] >= 0).all())
         self.assertEqual(set(market.log_losses(oos)), {"model", "resid", "ps", "avg", "b365", "close"})
+
+
+class MultiLeagueTests(unittest.TestCase):
+    def _two_leagues(self):
+        a = data.synthetic(n_teams=10, seasons=3, noise=0.25, seed=21)
+        b = data.synthetic(n_teams=10, seasons=3, noise=0.25, seed=22)
+        a["League"], b["League"] = "E0", "E1"
+        b["HomeTeam"] = b["HomeTeam"].str.replace("T", "U")
+        b["AwayTeam"] = b["AwayTeam"].str.replace("T", "U")
+        return pd.concat([a, b], ignore_index=True)
+
+    def test_one_model_serves_every_league_and_acts_like_a_dict(self):
+        m = MultiLeagueModel().fit(self._two_leagues())
+        self.assertEqual(sorted(m), ["E0", "E1"])
+        self.assertIn("E0", m)
+        self.assertTrue(m.knows("E1", "U01") and not m.knows("E0", "U01") and not m.knows("ZZ", "T01"))
+        pr = m.predict("E0", "T00", "T01")
+        self.assertAlmostEqual(pr["H"] + pr["D"] + pr["A"], 1.0, places=6)
+        self.assertIs(m.get("E0"), m["E0"])
+        self.assertIsNone(m.get("nope"))
+
+    def test_league_inference_prefers_the_league_both_teams_were_seen_in_most_recently(self):
+        df = self._two_leagues()
+        # T00 and T01 were relegated: old E0 seasons, plus recent E1 matches between them
+        late = df["Date"].max() + pd.Timedelta(days=30)
+        extra = pd.DataFrame([{"Date": late, "HomeTeam": "T00", "AwayTeam": "T01", "FTHG": 1, "FTAG": 0, "FTR": "H", "League": "E1"}] * 40)
+        m = MultiLeagueModel().fit(pd.concat([df, extra], ignore_index=True))
+        self.assertTrue(m["E0"].knows("T00") and m["E1"].knows("T00"))  # known in both leagues
+        fx = pd.DataFrame([{"Date": late, "HomeTeam": "T00", "AwayTeam": "T01"},
+                           {"Date": late, "HomeTeam": "T02", "AwayTeam": "T03"}])
+        out = data.infer_leagues(fx, m)
+        self.assertEqual(dict(zip(out["HomeTeam"], out["League"])), {"T00": "E1", "T02": "E0"})
 
 
 class SofterMarketTests(unittest.TestCase):
