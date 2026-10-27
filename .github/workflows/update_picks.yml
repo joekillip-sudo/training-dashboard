@@ -52,9 +52,6 @@ jobs:
             echo
             echo '## Strategies: market-anchored model and best-price betting (flat one-unit stakes, out of sample)'
             python -m picks.cli strategies
-            echo
-            echo '## Tune: model settings, picked on early matches and checked on late ones'
-            python -m picks.cli tune
           } > report.txt 2>&1 || true
           cat report.txt
           { echo '```'; cat report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

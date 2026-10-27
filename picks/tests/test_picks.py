@@ -231,6 +231,42 @@ class MarketTests(unittest.TestCase):
         self.assertEqual(set(market.log_losses(oos)), {"model", "resid", "ps", "avg", "b365", "close"})
 
 
+class SofterMarketTests(unittest.TestCase):
+    def test_average_closing_price_replaces_missing_pinnacle_close(self):
+        df = data.synthetic(n_teams=12, seasons=3, noise=0.25, seed=11)
+        for o in "HDA":
+            df[f"AvgC{o}"] = df[f"PSC{o}"]
+            df[f"PSC{o}"] = float("nan")  # Pinnacle's feed gone, as in recent data
+        tbl = market.forecast_table(df)
+        self.assertFalse(tbl["close_p_H"].isna().any())
+        np.testing.assert_allclose(tbl[["close_p_H", "close_p_D", "close_p_A"]].sum(1), 1.0)
+        self.assertNotIn("nan", str(market.log_losses(tbl.assign(resid_p_H=0.4, resid_p_D=0.3, resid_p_A=0.3))["close"]))
+
+    def test_league_report_slices_leagues_and_groups(self):
+        a = data.synthetic(n_teams=12, seasons=3, noise=0.25, seed=12)
+        b = data.synthetic(n_teams=12, seasons=3, noise=0.25, seed=13)
+        a["League"], b["League"] = "E0", "E2"
+        tbl = market.forecast_table(pd.concat([a, b], ignore_index=True))
+        fc, bt = market.league_report(tbl)
+        self.assertEqual(set(fc["slice"]), {"E0", "E2", "top 5", "lower England", "ALL"})
+        row = fc[fc["slice"] == "ALL"].iloc[0]
+        self.assertAlmostEqual(row["gap"], row["ll_model"] - row["ll_market"], places=3)
+        self.assertTrue(0.01 < row["overround"] < 0.10)  # synthetic average prices carry a 4% margin
+        self.assertTrue((bt["old_bets"] >= 0).all())
+
+    def test_small_slices_are_left_out_rather_than_over_read(self):
+        df = data.synthetic(n_teams=8, seasons=2, noise=0.25, seed=14)
+        tbl = market.forecast_table(df).head(20)
+        fc, _ = market.league_report(tbl)
+        self.assertTrue(fc.empty)
+
+    def test_cli_leagues_runs(self):
+        with mock.patch.object(sys, "argv", ["picks", "leagues", "--synthetic"]), mock.patch("builtins.print") as pr:
+            cli.main()
+        text = " ".join(str(c.args[0]) for c in pr.call_args_list if c.args)
+        self.assertIn("FORECAST QUALITY", text)
+
+
 class TuneTests(unittest.TestCase):
     def test_small_grid_returns_sorted_table_and_default_comparison(self):
         df = data.synthetic(n_teams=10, seasons=3, noise=0.25, seed=9)

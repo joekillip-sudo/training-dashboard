@@ -13,7 +13,8 @@ KEEP = ["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR"]
 # opening odds (Bet365) and sharp closing odds (Pinnacle) when present
 SHOT_COLS = ["HS", "AS", "HST", "AST"]
 ODDS_COLS = ["B365H", "B365D", "B365A", "PSCH", "PSCD", "PSCA",
-             "PSH", "PSD", "PSA", "MaxH", "MaxD", "MaxA", "AvgH", "AvgD", "AvgA"]  # pre-match: Pinnacle, best, average
+             "PSH", "PSD", "PSA", "MaxH", "MaxD", "MaxA", "AvgH", "AvgD", "AvgA",
+             "AvgCH", "AvgCD", "AvgCA"]  # pre-match: Pinnacle, best, average
 
 
 def season_codes(n=4, today=None):
