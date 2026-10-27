@@ -14,6 +14,7 @@ from .backtest import CLOSE, OPEN, walk_forward
 from .value import devig, find_picks
 
 FLOOR = {"min_ev": 0.02, "min_edge": 0.01, "max_odds": 15.0}
+KICKOFF_BUFFER = pd.Timedelta(minutes=30)  # a bet must be placed at least this long before kickoff
 HORIZON_DAYS = 2  # only bet fixtures kicking off within this many days (odds are closer to final)
 DATE_TOLERANCE = pd.Timedelta(days=3)
 
@@ -57,15 +58,32 @@ def _entries(match_row, home, away, date, model_probs, odds, source, result=None
     return out
 
 
-def add_live(book, fixtures, models, today, horizon=HORIZON_DAYS):
-    """Record value bets on upcoming fixtures. Existing entries are never touched."""
+def _bettable(m, now):
+    """True if the match has not started. Uses the fixture's UK kickoff time when given; without a
+    time only matches on a later day qualify, since the match could already be over."""
+    time = m.get("Time")
+    if isinstance(time, str) and time.strip():
+        try:
+            kickoff = pd.Timestamp(f"{m['Date'].date()} {time.strip()}", tz="Europe/London").tz_convert("UTC")
+            return kickoff > pd.Timestamp(now) + KICKOFF_BUFFER
+        except (ValueError, TypeError):
+            pass
+    return m["Date"].date() > now.date()
+
+
+def add_live(book, fixtures, models, now, horizon=HORIZON_DAYS):
+    """Record value bets on upcoming fixtures. Existing entries are never touched.
+
+    `now` is a timezone-aware UTC datetime: matches already started (or whose start can't be
+    ruled out) are skipped so the live record contains only bets that could really be placed.
+    """
     if book.get("live_from") is None:
-        book["live_from"] = today.isoformat()
+        book["live_from"] = now.date().isoformat()
     have = {b["id"] for b in book["bets"]}
-    last = pd.Timestamp(today) + pd.Timedelta(days=horizon)
+    last = pd.Timestamp(now.date()) + pd.Timedelta(days=horizon)
     added = 0
     for _, m in fixtures.iterrows():
-        if not (pd.Timestamp(today) <= m["Date"] <= last):
+        if m["Date"] > last or not _bettable(m, now):
             continue
         model = models.get(m["League"])
         odds = {"H": m.get("B365H"), "D": m.get("B365D"), "A": m.get("B365A")}
