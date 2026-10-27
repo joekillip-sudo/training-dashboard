@@ -170,7 +170,6 @@
       gap: 4px 14px;
     }
     .note { font-size: 12px; color: var(--muted); padding: 0 16px 14px; }
-    details.day-card.unreliable { opacity: 0.75; }
 
     .legend {
       display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
@@ -190,7 +189,7 @@
 </head>
 <body>
   <h1>Rain Outlook</h1>
-  <div class="subtitle">Twickenham — 15-day precipitation forecast</div>
+  <div class="subtitle" id="subtitle">Twickenham — 15-day precipitation forecast</div>
 
   <h2>Rain Status</h2>
   <div class="next-card" id="next-card">
@@ -317,7 +316,24 @@
       detail.textContent = "None forecast in the next 7 days";
     }
 
+    // Drop trailing days the API hasn't filled in yet (no daily figure or less than half the hours)
+    function reliableDays(hourly, daily) {
+      let known = {};
+      for (let i = 0; i < hourly.time.length; i++) {
+        if (hourly.precipitation_probability[i] !== null) known[dateOf(hourly.time[i])] = (known[dateOf(hourly.time[i])] || 0) + 1;
+      }
+      let out = { time: [], precipitation_probability_max: [], precipitation_sum: [] };
+      for (let i = 0; i < daily.time.length; i++) {
+        if (daily.precipitation_probability_max[i] === null || (known[daily.time[i]] || 0) < 12) continue;
+        out.time.push(daily.time[i]);
+        out.precipitation_probability_max.push(daily.precipitation_probability_max[i]);
+        out.precipitation_sum.push(daily.precipitation_sum[i]);
+      }
+      return out;
+    }
+
     function renderStrip(daily, todayKey) {
+      document.getElementById("strip").style.gridTemplateColumns = `repeat(${daily.time.length}, 1fr)`;
       let html = "";
       for (let i = 0; i < daily.time.length; i++) {
         let chance = daily.precipitation_probability_max[i];
@@ -350,8 +366,7 @@
         let total = daily.precipitation_sum[i];
         let hours = hourlyByDate[dateKey] || {};
         let known = Object.values(hours).filter(h => h.p !== null);
-        let reliable = chance !== null && known.length >= 12;
-        let style = rainStyle(reliable ? chance : null);
+        let style = rainStyle(chance);
 
         // Hourly bars, one per hour; hours with no data are hatched rather than shown as "null%"
         let bars = "";
@@ -378,13 +393,11 @@
           facts += `<span>Peak ${hours[peakH].p}% at ${hh(peakH)}</span>`;
         }
 
-        let sub = !reliable ? "Limited data" : (wetHours.length ? `Wet ${hh(wetHours[0])}–${hh(wetHours[wetHours.length - 1] + 1)}` : "Dry");
-        let numbers = reliable
-          ? `<span class="pct">${chance}%</span> · ${total === null ? "--" : total.toFixed(1)} mm`
-          : `<span class="pct">--</span>`;
+        let sub = (wetHours.length ? `Wet ${hh(wetHours[0])}–${hh(wetHours[wetHours.length - 1] + 1)}` : "Dry");
+        let numbers = `<span class="pct">${chance}%</span> · ${total === null ? "--" : total.toFixed(1)} mm`;
         let open = dateKey === todayKey ? " open" : "";
 
-        output += `<details class="day-card${reliable ? "" : " unreliable"}"${open}>
+        output += `<details class="day-card"${open}>
           <summary>
             <div>
               <div class="day-name">${style.icon} ${titleFor(dateKey, todayKey)}</div>
@@ -397,7 +410,6 @@
             <div class="hour-axis">${axis}</div>
             ${facts ? `<div class="hour-facts">${facts}</div>` : ""}
           </div>
-          ${reliable ? "" : `<div class="note">The forecast isn't settled for this day yet, so figures are partial.</div>`}
         </details>`;
       }
       document.getElementById("daily-overview").innerHTML = output;
@@ -413,8 +425,10 @@
           let nowKey = londonNowKey();
           let todayKey = dateOf(nowKey);
           renderHero(data.hourly, nowKey);
-          renderStrip(data.daily, todayKey);
-          renderDays(data.hourly, data.daily, todayKey);
+          let daily = reliableDays(data.hourly, data.daily);
+          document.getElementById("subtitle").textContent = `Twickenham — ${daily.time.length}-day precipitation forecast`;
+          renderStrip(daily, todayKey);
+          renderDays(data.hourly, daily, todayKey);
           let updatedTime = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' });
           document.getElementById("last-updated").textContent = "Last checked: " + updatedTime;
         })
