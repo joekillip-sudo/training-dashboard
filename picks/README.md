@@ -34,6 +34,12 @@ With real xG present, `xg_source="auto"` uses it where available, then the shots
 
 Caveats: Understat has no official API, so the parser can break if the page layout changes (it raises rather than guessing, and the workflow step is `continue-on-error`). Check Understat's terms before relying on this, and keep request volume low.
 
+## Market-anchored model, best-price betting and tuning
+    python -m picks.cli strategies            # Pinnacle pre-match line as base + learned correction, best-price betting
+    python -m picks.cli tune                  # grid search of decay / shrinkage / rho, checked on later matches
+
+`strategies` compares, on the same out-of-sample matches: the old model vs Bet365, Pinnacle's fair price vs Bet365 and vs the best price across bookmakers, and a residual model (Pinnacle base plus a regularised correction fitted only on earlier matches) at each. It prints log loss and, per minimum-EV threshold, bets, hit rate, ROI, closing line value and ROI in each half of the period. The best price assumes you can get it, which in practice means several accounts and stakes that are not limited. `tune` picks settings on the early 65% of matches and shows how they do on the rest. Both run in the workflow and land in `report.txt`.
+
 ## Paper trading
 The model bets automatically, with pretend money, on match results only (home/draw/away).
 
