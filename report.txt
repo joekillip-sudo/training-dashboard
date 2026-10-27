@@ -1,120 +1,106 @@
 ## Evaluate: model variants vs bookmaker prices (lower is better)
                           matches  log_loss     rps
-model goals only           3445.0    1.0016  0.2048
-model xg=0.5 shots proxy   3445.0    0.9986  0.2038
-model xg=1.0 shots proxy   3445.0    1.0043  0.2056
-model xg=0.5 real+shots    3445.0    0.9956  0.2027
-model xg=1.0 real+shots    3445.0    0.9959  0.2027
-market open (Bet365)       3445.0    0.9819  0.1985
-market close (Pinnacle)    3445.0    0.9794  0.1979
+model goals only          10556.0    1.0243  0.2107
+model xg=0.5 shots proxy  10556.0    1.0192  0.2091
+model xg=1.0 shots proxy  10556.0    1.0224  0.2100
+model xg=0.5 real+shots   10556.0    1.0183  0.2087
+model xg=1.0 real+shots   10556.0    1.0198  0.2091
+market open (Bet365)      10556.0    1.0026  0.2038
+market close (Pinnacle)   10556.0    0.9990  0.2028
 
 ## Calibrate: stated vs actual win rates
 
-MODEL: predicted vs observed, ECE=0.0096
-                  n  predicted  observed    gap
-bin                                            
-(-0.001, 0.1]   147      0.077     0.068  0.009
-(0.1, 0.2]     1139      0.161     0.125  0.037
-(0.2, 0.3]     4365      0.253     0.258 -0.004
-(0.3, 0.4]     1796      0.345     0.347 -0.002
-(0.4, 0.5]     1393      0.447     0.442  0.004
-(0.5, 0.6]      851      0.545     0.543  0.002
-(0.6, 0.7]      434      0.645     0.687 -0.042
-(0.7, 1.0]      210      0.762     0.805 -0.043
+MODEL: predicted vs observed, ECE=0.0073
+                   n  predicted  observed    gap
+bin                                             
+(-0.001, 0.1]    373      0.076     0.064  0.012
+(0.1, 0.2]      2653      0.162     0.144  0.019
+(0.2, 0.3]     13728      0.256     0.261 -0.004
+(0.3, 0.4]      6447      0.346     0.341  0.004
+(0.4, 0.5]      4679      0.446     0.438  0.008
+(0.5, 0.6]      2323      0.543     0.550 -0.007
+(0.6, 0.7]       963      0.644     0.672 -0.028
+(0.7, 1.0]       502      0.763     0.795 -0.032
 
-MARKET CLOSE (Pinnacle): predicted vs observed, ECE=0.0083
-                  n  predicted  observed    gap
-bin                                            
-(-0.001, 0.1]   288      0.076     0.056  0.020
-(0.1, 0.2]     1428      0.159     0.149  0.010
-(0.2, 0.3]     3826      0.258     0.254  0.004
-(0.3, 0.4]     1997      0.339     0.342 -0.003
-(0.4, 0.5]     1163      0.446     0.459 -0.013
-(0.5, 0.6]      837      0.546     0.542  0.004
-(0.6, 0.7]      431      0.645     0.636  0.009
-(0.7, 1.0]      365      0.765     0.825 -0.060
+MARKET CLOSE (Pinnacle): predicted vs observed, ECE=0.0039
+                   n  predicted  observed    gap
+bin                                             
+(-0.001, 0.1]    703      0.074     0.057  0.017
+(0.1, 0.2]      3613      0.160     0.156  0.004
+(0.2, 0.3]     12300      0.259     0.256  0.003
+(0.3, 0.4]      6718      0.340     0.341 -0.001
+(0.4, 0.5]      3885      0.446     0.449 -0.003
+(0.5, 0.6]      2475      0.544     0.543  0.001
+(0.6, 0.7]      1139      0.644     0.656 -0.012
+(0.7, 1.0]       835      0.772     0.804 -0.032
 
-0.0    0.9956
-0.1    0.9933
-0.2    0.9913
-0.3    0.9894
-0.4    0.9877
-0.5    0.9862
-0.6    0.9850
-0.7    0.9839
-0.8    0.9830
-0.9    0.9824
-1.0    0.9819
+0.0    1.0183
+0.1    1.0157
+0.2    1.0133
+0.3    1.0112
+0.4    1.0093
+0.5    1.0076
+0.6    1.0062
+0.7    1.0049
+0.8    1.0039
+0.9    1.0031
+1.0    1.0026
 
-0.0    0.9956
-0.1    0.9929
-0.2    0.9903
-0.3    0.9881
-0.4    0.9861
-0.5    0.9843
-0.6    0.9828
-0.7    0.9816
-0.8    0.9806
-0.9    0.9798
-1.0    0.9794
+0.0    1.0183
+0.1    1.0151
+0.2    1.0122
+0.3    1.0096
+0.4    1.0073
+0.5    1.0052
+0.6    1.0034
+0.7    1.0019
+0.8    1.0007
+0.9    0.9997
+1.0    0.9990
 
 BETS TAKEN (by odds band)
               bets  model_p  hit_rate    roi  overconfidence
 odds                                                        
-(0.999, 1.5]    10    0.773     0.700 -0.031           0.073
-(1.5, 2.0]     139    0.607     0.511 -0.164           0.097
-(2.0, 3.0]     751    0.450     0.366 -0.066           0.084
-(3.0, 5.0]    1349    0.307     0.223 -0.162           0.084
-(5.0, 100.0]   600    0.213     0.157 -0.101           0.056
+(0.999, 1.5]    30    0.770     0.733  0.174           0.037
+(1.5, 2.0]     349    0.609     0.524 -0.112           0.085
+(2.0, 3.0]    2446    0.448     0.346 -0.091           0.102
+(3.0, 5.0]    4955    0.307     0.221 -0.245           0.086
+(5.0, 100.0]  1724    0.216     0.152 -0.320           0.064
 
 ## Strategies: market-anchored model and best-price betting (flat one-unit stakes, out of sample)
-out-of-sample matches: 2453 (of 5104); residual theta [draw, away, model-vs-base, base tilt] = [0.092, 0.042, -0.031, 0.119]
+out-of-sample matches: 9539 (of 17179); residual theta [draw, away, model-vs-base, base tilt] = [0.06, 0.018, -0.101, 0.075]
 
-log loss on these matches (lower is better): {'model': 0.9958, 'resid': 0.9832, 'ps': 0.9826, 'avg': 0.9827, 'b365': 0.9835, 'close': nan}
+log loss on these matches (lower is better): {'model': 1.018, 'resid': 1.0027, 'ps': 1.0027, 'avg': 1.0031, 'b365': 1.0036, 'close': 0.9998}
 
 Flat one-unit bets on the best-EV outcome per match; early/late = first/second half of the period:
                           strategy  min_ev  bets   hit     roi     clv  roi_early  roi_late
-model vs Bet365 (the old approach)    0.00  2013 0.278 -0.0913 -0.0664     0.0020   -0.1825
-model vs Bet365 (the old approach)    0.01  1893 0.272 -0.0958 -0.0661     0.0018   -0.1908
-model vs Bet365 (the old approach)    0.02  1776 0.264 -0.1009 -0.0658    -0.0122   -0.1852
-model vs Bet365 (the old approach)    0.03  1665 0.254 -0.1146 -0.0659    -0.0190   -0.2038
-model vs Bet365 (the old approach)    0.05  1481 0.255 -0.0954 -0.0665     0.0054   -0.1870
-     Pinnacle fair price vs Bet365    0.00   215 0.247  0.0298 -0.0090     0.1106   -0.0667
-     Pinnacle fair price vs Bet365    0.01   128 0.227 -0.0102 -0.0089     0.2345   -0.2964
-     Pinnacle fair price vs Bet365    0.02    84 0.190 -0.1451 -0.0061     0.1223   -0.4393
-     Pinnacle fair price vs Bet365    0.03    49 0.184 -0.1229 -0.0012     0.2383   -0.4423
-     Pinnacle fair price vs Bet365    0.05    27 0.148 -0.1759 -0.0149    -0.2955   -0.0938
- Pinnacle fair price vs best price    0.00  1286 0.243 -0.0705  0.0148    -0.0223   -0.1366
- Pinnacle fair price vs best price    0.01   883 0.229 -0.0727  0.0216    -0.0351   -0.1239
- Pinnacle fair price vs best price    0.02   589 0.217 -0.0805  0.0266    -0.0470   -0.1244
- Pinnacle fair price vs best price    0.03   392 0.202 -0.1104  0.0353    -0.0548   -0.1702
- Pinnacle fair price vs best price    0.05   171 0.123 -0.3501  0.0366    -0.4069   -0.2965
-  average fair price vs best price    0.00  1269 0.199 -0.0867  0.0094    -0.0269   -0.1907
-  average fair price vs best price    0.01   894 0.176 -0.1447  0.0141    -0.1191   -0.1922
-  average fair price vs best price    0.02   553 0.156 -0.1947  0.0212    -0.1875   -0.2076
-  average fair price vs best price    0.03   359 0.123 -0.3089  0.0240    -0.2986   -0.3259
-  average fair price vs best price    0.05   131 0.084 -0.4363  0.0507    -0.4540   -0.4104
-          residual model vs Bet365    0.00   847 0.326 -0.0701 -0.0236    -0.0430   -0.1250
-          residual model vs Bet365    0.01   591 0.298 -0.0884 -0.0203    -0.0886   -0.0878
-          residual model vs Bet365    0.02   417 0.271 -0.1077 -0.0158    -0.0745   -0.2941
-          residual model vs Bet365    0.03   305 0.289 -0.0450 -0.0090    -0.0114   -0.2964
-          residual model vs Bet365    0.05   147 0.286 -0.0539 -0.0024    -0.0435   -0.3500
-      residual model vs best price    0.00  2037 0.347 -0.0590  0.0038    -0.0659   -0.0501
-      residual model vs best price    0.01  1701 0.329 -0.0568  0.0081    -0.0563   -0.0576
-      residual model vs best price    0.02  1323 0.299 -0.0931  0.0121    -0.0778   -0.1279
-      residual model vs best price    0.03  1022 0.275 -0.0999  0.0163    -0.0776   -0.1708
-      residual model vs best price    0.05   595 0.281 -0.0301  0.0255    -0.0374    0.0253
-
-## Tune: model settings, picked on early matches and checked on late ones
-top settings by early log loss (model forecasts vs actual results):
- half_life_days  shrink   rho  early   late    n
-            365     3.0 -0.10 0.9952 1.0121 5089
-            550     3.0 -0.10 0.9953 1.0130 5089
-            900     3.0 -0.10 0.9955 1.0139 5089
-            200     3.0 -0.10 0.9955 1.0114 5089
-            365     3.0 -0.05 0.9956 1.0126 5089
-            200     1.0 -0.10 0.9956 1.0120 5089
-            365     1.0 -0.10 0.9956 1.0133 5089
-            550     3.0 -0.05 0.9957 1.0135 5089
-
-best {'half_life_days': 365.0, 'shrink': 3.0, 'rho': -0.1}: late 1.0121 vs defaults late 1.0126
+model vs Bet365 (the old approach)    0.00  7417 0.271 -0.1171 -0.0699    -0.1061   -0.1280
+model vs Bet365 (the old approach)    0.01  6964 0.266 -0.1201 -0.0701    -0.1095   -0.1305
+model vs Bet365 (the old approach)    0.02  6548 0.260 -0.1235 -0.0702    -0.1188   -0.1280
+model vs Bet365 (the old approach)    0.03  6142 0.255 -0.1241 -0.0708    -0.1230   -0.1252
+model vs Bet365 (the old approach)    0.05  5411 0.253 -0.1113 -0.0710    -0.1143   -0.1085
+     Pinnacle fair price vs Bet365    0.00  1033 0.229 -0.0381 -0.0028     0.0111   -0.0959
+     Pinnacle fair price vs Bet365    0.01   699 0.236  0.0176 -0.0015     0.1102   -0.0933
+     Pinnacle fair price vs Bet365    0.02   466 0.227  0.0308 -0.0011     0.1320   -0.0927
+     Pinnacle fair price vs Bet365    0.03   327 0.232  0.1094  0.0001     0.2612   -0.0743
+     Pinnacle fair price vs Bet365    0.05   165 0.206  0.1270 -0.0003     0.4229   -0.1514
+ Pinnacle fair price vs best price    0.00  4361 0.255 -0.0303  0.0115    -0.0147   -0.0479
+ Pinnacle fair price vs best price    0.01  3041 0.241 -0.0418  0.0178    -0.0060   -0.0819
+ Pinnacle fair price vs best price    0.02  2078 0.229 -0.0450  0.0218    -0.0569   -0.0317
+ Pinnacle fair price vs best price    0.03  1437 0.219 -0.0417  0.0286    -0.0179   -0.0668
+ Pinnacle fair price vs best price    0.05   684 0.196 -0.0507  0.0333     0.0415   -0.1368
+  average fair price vs best price    0.00  4002 0.205 -0.0549 -0.0011    -0.0411   -0.0730
+  average fair price vs best price    0.01  2756 0.190 -0.0690  0.0041    -0.0514   -0.0927
+  average fair price vs best price    0.02  1806 0.166 -0.1271  0.0070    -0.1051   -0.1574
+  average fair price vs best price    0.03  1220 0.158 -0.1317  0.0117    -0.0797   -0.2020
+  average fair price vs best price    0.05   516 0.151 -0.1272  0.0288    -0.1162   -0.1413
+          residual model vs Bet365    0.00  2806 0.335 -0.0200 -0.0198    -0.0254   -0.0042
+          residual model vs Bet365    0.01  2009 0.304 -0.0532 -0.0147    -0.0611   -0.0268
+          residual model vs Bet365    0.02  1438 0.289 -0.0527 -0.0087    -0.0611   -0.0213
+          residual model vs Bet365    0.03  1072 0.280 -0.0561 -0.0050    -0.0688   -0.0016
+          residual model vs Bet365    0.05   554 0.251 -0.1411  0.0046    -0.1619   -0.0535
+      residual model vs best price    0.00  6959 0.361 -0.0048  0.0005    -0.0010   -0.0105
+      residual model vs best price    0.01  5671 0.353  0.0079  0.0041     0.0055    0.0126
+      residual model vs best price    0.02  4416 0.332 -0.0069  0.0092    -0.0084   -0.0034
+      residual model vs best price    0.03  3379 0.318 -0.0036  0.0135    -0.0119    0.0203
+      residual model vs best price    0.05  1906 0.300  0.0065  0.0236    -0.0062    0.0548
