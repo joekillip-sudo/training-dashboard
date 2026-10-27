@@ -15,9 +15,9 @@ jobs:
     steps:
       - name: Download and describe fixtures.csv
         run: |
-          curl -sS -D headers.txt -o fixtures.csv https://www.football-data.co.uk/fixtures.csv
+          curl -sSL -D headers.txt -o fixtures.csv https://www.football-data.co.uk/fixtures.csv
           echo "=== HTTP headers (Last-Modified is when football-data last changed the file) ==="
-          grep -iE '^(HTTP|date|last-modified|etag|content-length)' headers.txt
+          grep -iE '^(HTTP|date|location|last-modified|etag|content-length)' headers.txt
           python3 - <<'PY'
           import csv, collections
           from datetime import datetime
