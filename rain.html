@@ -118,9 +118,12 @@
     .ov-label { text-align: center; line-height: 1.25; }
     .ov-label .d { font-size: 10px; color: var(--soft); }
     .ov-label .n { font-size: 11px; font-weight: bold; color: white; }
-    .ov-label .mm { font-size: 9.5px; color: var(--accent); margin-top: 3px; min-height: 12px; }
+    .ov-label .mm { font-size: 9.5px; color: var(--muted); margin-top: 3px; }
     .ov-label.today .d { color: var(--accent); }
     .ov-label.weekend .d, .ov-label.weekend .n { opacity: 0.55; }
+    .ov-scale { font-size: 10px; color: var(--muted); text-align: right; margin-bottom: -14px; position: relative; z-index: 1; padding-right: 2px; }
+    .ov-legend { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; font-size: 11px; color: var(--muted); margin-top: 12px; }
+    .ov-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
     .ov-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 10px; }
 
     /* Day cards */
@@ -217,9 +220,16 @@
 
   <h2>Overview</h2>
   <div class="overview">
+    <div class="ov-scale" id="ov-scale"></div>
     <div class="ov-plot" id="ov-plot"></div>
     <div class="ov-labels" id="ov-labels"></div>
-    <div class="ov-note">Chance of rain per day, with rainfall (mm) underneath. Tap a day for the hourly detail.</div>
+    <div class="ov-legend">
+      <span><i style="background:#1976d2"></i>Likely 70%+</span>
+      <span><i style="background:#4fc3f7"></i>Possible 40%+</span>
+      <span><i style="background:#6b7c93"></i>Slight 15%+</span>
+      <span><i style="background:#3a4a63"></i>Dry</span>
+    </div>
+    <div class="ov-note">Bar height is expected rainfall (mm); colour and the % underneath show the chance of rain. Tap a day for hourly detail.</div>
   </div>
 
   <h2>Daily Breakdown</h2>
@@ -352,6 +362,9 @@
       let labels = document.getElementById("ov-labels");
       plot.style.gridTemplateColumns = labels.style.gridTemplateColumns = `repeat(${n}, minmax(0, 1fr))`;
       let cols = "", labs = "";
+      // Bar height = rainfall; colour = chance. Scale never drops below 5 mm so a drizzly day doesn't look like a downpour.
+      let maxMm = Math.max(5, Math.ceil(Math.max(...daily.precipitation_sum)));
+      document.getElementById("ov-scale").textContent = maxMm + " mm";
       for (let i = 0; i < n; i++) {
         let key = daily.time[i];
         let chance = daily.precipitation_probability_max[i];
@@ -359,15 +372,16 @@
         let d = new Date(key + 'T12:00:00Z');
         let dow = d.getUTCDay();
         let isToday = key === todayKey;
-        let mmText = total >= 0.1 ? total.toFixed(1) : "";
-        cols += `<div class="ov-col${isToday ? " today" : ""}${chance >= RAIN_CHANCE ? " wet" : ""}" data-date="${key}" title="${fullDate(key)}: ${chance}%${total >= 0.1 ? ", " + total.toFixed(1) + " mm" : ""}">
-          <div class="ov-val">${chance}</div>
-          <div class="ov-bar" style="height:${chance}%;background:${rainStyle(chance).color}"></div>
+        let mm = total === null ? 0 : total;
+        let valText = mm >= 0.1 ? mm.toFixed(1) : (mm > 0 ? "<0.1" : "0");
+        cols += `<div class="ov-col${isToday ? " today" : ""}${mm >= RAIN_MM ? " wet" : ""}" data-date="${key}" title="${fullDate(key)}: ${mm.toFixed(1)} mm, ${chance}% chance">
+          <div class="ov-val">${valText}</div>
+          <div class="ov-bar" style="height:${Math.min(mm / maxMm, 1) * 100}%;background:${rainStyle(chance).color}"></div>
         </div>`;
         labs += `<div class="ov-label${isToday ? " today" : ""}${dow === 0 || dow === 6 ? " weekend" : ""}">
           <div class="d">${d.toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'UTC' }).slice(0, 2)}</div>
           <div class="n">${d.getUTCDate()}</div>
-          <div class="mm">${mmText}</div>
+          <div class="mm">${chance}%</div>
         </div>`;
       }
       plot.innerHTML = cols;
