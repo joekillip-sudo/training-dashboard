@@ -1,4 +1,4 @@
-{"floor":{"min_ev":0.02,"min_edge":0.01,"max_odds":15.0},"live_from":"2026-10-27","generated":"2026-10-27T09:11:11+00:00","bets":[
+{"floor":{"min_ev":0.02,"min_edge":0.01,"max_odds":15.0},"live_from":"2026-10-27","generated":"2026-10-27T09:19:48+00:00","bets":[
 {"id":"I1|2024-06-02|Atalanta|Fiorentina|A","league":"I1","date":"2024-06-02","home":"Atalanta","away":"Fiorentina","outcome":"A","odds":6.0,"model_p":0.2206,"market_p":0.1583,"source":"backtest","result":"A","close_p":0.1782},
 {"id":"I1|2024-06-02|Atalanta|Fiorentina|D","league":"I1","date":"2024-06-02","home":"Atalanta","away":"Fiorentina","outcome":"D","odds":4.75,"model_p":0.2243,"market_p":0.2,"source":"backtest","result":"A","close_p":0.2121},
 {"id":"E1|2024-08-10|Hull|Bristol City|H","league":"E1","date":"2024-08-10","home":"Hull","away":"Bristol City","outcome":"H","odds":2.63,"model_p":0.4834,"market_p":0.356,"source":"backtest","result":"D","close_p":0.341},

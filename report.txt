@@ -66,3 +66,55 @@ odds
 (2.0, 3.0]     751    0.450     0.366 -0.066           0.084
 (3.0, 5.0]    1349    0.307     0.223 -0.162           0.084
 (5.0, 100.0]   600    0.213     0.157 -0.101           0.056
+
+## Strategies: market-anchored model and best-price betting (flat one-unit stakes, out of sample)
+out-of-sample matches: 2453 (of 5104); residual theta [draw, away, model-vs-base, base tilt] = [0.092, 0.042, -0.031, 0.119]
+
+log loss on these matches (lower is better): {'model': 0.9958, 'resid': 0.9832, 'ps': 0.9826, 'avg': 0.9827, 'b365': 0.9835, 'close': nan}
+
+Flat one-unit bets on the best-EV outcome per match; early/late = first/second half of the period:
+                          strategy  min_ev  bets   hit     roi     clv  roi_early  roi_late
+model vs Bet365 (the old approach)    0.00  2013 0.278 -0.0913 -0.0664     0.0020   -0.1825
+model vs Bet365 (the old approach)    0.01  1893 0.272 -0.0958 -0.0661     0.0018   -0.1908
+model vs Bet365 (the old approach)    0.02  1776 0.264 -0.1009 -0.0658    -0.0122   -0.1852
+model vs Bet365 (the old approach)    0.03  1665 0.254 -0.1146 -0.0659    -0.0190   -0.2038
+model vs Bet365 (the old approach)    0.05  1481 0.255 -0.0954 -0.0665     0.0054   -0.1870
+     Pinnacle fair price vs Bet365    0.00   215 0.247  0.0298 -0.0090     0.1106   -0.0667
+     Pinnacle fair price vs Bet365    0.01   128 0.227 -0.0102 -0.0089     0.2345   -0.2964
+     Pinnacle fair price vs Bet365    0.02    84 0.190 -0.1451 -0.0061     0.1223   -0.4393
+     Pinnacle fair price vs Bet365    0.03    49 0.184 -0.1229 -0.0012     0.2383   -0.4423
+     Pinnacle fair price vs Bet365    0.05    27 0.148 -0.1759 -0.0149    -0.2955   -0.0938
+ Pinnacle fair price vs best price    0.00  1286 0.243 -0.0705  0.0148    -0.0223   -0.1366
+ Pinnacle fair price vs best price    0.01   883 0.229 -0.0727  0.0216    -0.0351   -0.1239
+ Pinnacle fair price vs best price    0.02   589 0.217 -0.0805  0.0266    -0.0470   -0.1244
+ Pinnacle fair price vs best price    0.03   392 0.202 -0.1104  0.0353    -0.0548   -0.1702
+ Pinnacle fair price vs best price    0.05   171 0.123 -0.3501  0.0366    -0.4069   -0.2965
+  average fair price vs best price    0.00  1269 0.199 -0.0867  0.0094    -0.0269   -0.1907
+  average fair price vs best price    0.01   894 0.176 -0.1447  0.0141    -0.1191   -0.1922
+  average fair price vs best price    0.02   553 0.156 -0.1947  0.0212    -0.1875   -0.2076
+  average fair price vs best price    0.03   359 0.123 -0.3089  0.0240    -0.2986   -0.3259
+  average fair price vs best price    0.05   131 0.084 -0.4363  0.0507    -0.4540   -0.4104
+          residual model vs Bet365    0.00   847 0.326 -0.0701 -0.0236    -0.0430   -0.1250
+          residual model vs Bet365    0.01   591 0.298 -0.0884 -0.0203    -0.0886   -0.0878
+          residual model vs Bet365    0.02   417 0.271 -0.1077 -0.0158    -0.0745   -0.2941
+          residual model vs Bet365    0.03   305 0.289 -0.0450 -0.0090    -0.0114   -0.2964
+          residual model vs Bet365    0.05   147 0.286 -0.0539 -0.0024    -0.0435   -0.3500
+      residual model vs best price    0.00  2037 0.347 -0.0590  0.0038    -0.0659   -0.0501
+      residual model vs best price    0.01  1701 0.329 -0.0568  0.0081    -0.0563   -0.0576
+      residual model vs best price    0.02  1323 0.299 -0.0931  0.0121    -0.0778   -0.1279
+      residual model vs best price    0.03  1022 0.275 -0.0999  0.0163    -0.0776   -0.1708
+      residual model vs best price    0.05   595 0.281 -0.0301  0.0255    -0.0374    0.0253
+
+## Tune: model settings, picked on early matches and checked on late ones
+top settings by early log loss (model forecasts vs actual results):
+ half_life_days  shrink   rho  early   late    n
+            365     3.0 -0.10 0.9952 1.0121 5089
+            550     3.0 -0.10 0.9953 1.0130 5089
+            900     3.0 -0.10 0.9955 1.0139 5089
+            200     3.0 -0.10 0.9955 1.0114 5089
+            365     3.0 -0.05 0.9956 1.0126 5089
+            200     1.0 -0.10 0.9956 1.0120 5089
+            365     1.0 -0.10 0.9956 1.0133 5089
+            550     3.0 -0.05 0.9957 1.0135 5089
+
+best {'half_life_days': 365.0, 'shrink': 3.0, 'rho': -0.1}: late 1.0121 vs defaults late 1.0126
