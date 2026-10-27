@@ -1,32 +1,26 @@
 ## Evaluate: model variants vs bookmaker prices (lower is better)
-WARN D1: no football-data match for ['Hamburger SV']; add them to picks/team_aliases.json
-WARN F1: no football-data match for ['Clermont Foot']; add them to picks/team_aliases.json
-WARN SP1: no football-data match for ['Deportivo La Coruna', 'Racing Santander', 'Real Oviedo', 'Real Valladolid']; add them to picks/team_aliases.json
                           matches  log_loss     rps
 model goals only           3445.0    1.0016  0.2048
 model xg=0.5 shots proxy   3445.0    0.9986  0.2038
 model xg=1.0 shots proxy   3445.0    1.0043  0.2056
-model xg=0.5 real+shots    3445.0    0.9958  0.2028
-model xg=1.0 real+shots    3445.0    0.9963  0.2028
+model xg=0.5 real+shots    3445.0    0.9956  0.2027
+model xg=1.0 real+shots    3445.0    0.9959  0.2027
 market open (Bet365)       3445.0    0.9819  0.1985
 market close (Pinnacle)    3445.0    0.9794  0.1979
 
 ## Calibrate: stated vs actual win rates
-WARN D1: no football-data match for ['Hamburger SV']; add them to picks/team_aliases.json
-WARN F1: no football-data match for ['Clermont Foot']; add them to picks/team_aliases.json
-WARN SP1: no football-data match for ['Deportivo La Coruna', 'Racing Santander', 'Real Oviedo', 'Real Valladolid']; add them to picks/team_aliases.json
 
-MODEL: predicted vs observed, ECE=0.0058
+MODEL: predicted vs observed, ECE=0.0096
                   n  predicted  observed    gap
 bin                                            
-(-0.001, 0.1]   199      0.075     0.050  0.024
-(0.1, 0.2]     1245      0.160     0.155  0.005
-(0.2, 0.3]     4085      0.253     0.258 -0.005
-(0.3, 0.4]     1966      0.342     0.343 -0.001
-(0.4, 0.5]     1279      0.447     0.444  0.003
-(0.5, 0.6]      852      0.546     0.531  0.016
-(0.6, 0.7]      465      0.644     0.641  0.003
-(0.7, 1.0]      244      0.764     0.795 -0.031
+(-0.001, 0.1]   147      0.077     0.068  0.009
+(0.1, 0.2]     1139      0.161     0.125  0.037
+(0.2, 0.3]     4365      0.253     0.258 -0.004
+(0.3, 0.4]     1796      0.345     0.347 -0.002
+(0.4, 0.5]     1393      0.447     0.442  0.004
+(0.5, 0.6]      851      0.545     0.543  0.002
+(0.6, 0.7]      434      0.645     0.687 -0.042
+(0.7, 1.0]      210      0.762     0.805 -0.043
 
 MARKET CLOSE (Pinnacle): predicted vs observed, ECE=0.0083
                   n  predicted  observed    gap
@@ -40,35 +34,35 @@ bin
 (0.6, 0.7]      431      0.645     0.636  0.009
 (0.7, 1.0]      365      0.765     0.825 -0.060
 
-0.0    1.0016
-0.1    0.9982
-0.2    0.9953
-0.3    0.9926
-0.4    0.9902
-0.5    0.9881
-0.6    0.9863
-0.7    0.9848
-0.8    0.9835
-0.9    0.9826
+0.0    0.9956
+0.1    0.9933
+0.2    0.9913
+0.3    0.9894
+0.4    0.9877
+0.5    0.9862
+0.6    0.9850
+0.7    0.9839
+0.8    0.9830
+0.9    0.9824
 1.0    0.9819
 
-0.0    1.0016
-0.1    0.9978
-0.2    0.9943
-0.3    0.9913
-0.4    0.9885
-0.5    0.9862
-0.6    0.9841
-0.7    0.9824
-0.8    0.9811
-0.9    0.9800
+0.0    0.9956
+0.1    0.9929
+0.2    0.9903
+0.3    0.9881
+0.4    0.9861
+0.5    0.9843
+0.6    0.9828
+0.7    0.9816
+0.8    0.9806
+0.9    0.9798
 1.0    0.9794
 
 BETS TAKEN (by odds band)
               bets  model_p  hit_rate    roi  overconfidence
 odds                                                        
-(0.999, 1.5]    29    0.772     0.793 -0.032          -0.021
-(1.5, 2.0]     222    0.621     0.450 -0.278           0.170
-(2.0, 3.0]     824    0.466     0.358 -0.020           0.108
-(3.0, 5.0]    1544    0.311     0.231 -0.200           0.080
-(5.0, 100.0]   563    0.216     0.165 -0.329           0.051
+(0.999, 1.5]    10    0.773     0.700 -0.031           0.073
+(1.5, 2.0]     139    0.607     0.511 -0.164           0.097
+(2.0, 3.0]     751    0.450     0.366 -0.066           0.084
+(3.0, 5.0]    1349    0.307     0.223 -0.162           0.084
+(5.0, 100.0]   600    0.213     0.157 -0.101           0.056
