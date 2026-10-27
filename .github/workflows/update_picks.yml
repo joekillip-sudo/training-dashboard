@@ -7,6 +7,7 @@ on:
     - cron: "17 7 * * *"
     - cron: "17 13 * * *"
     - cron: "17 19 * * *"
+    - cron: "17 15 * * 5"   # Fridays: football-data posts the weekend round around 13:45 UTC
   workflow_dispatch:
 
 permissions:
