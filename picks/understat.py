@@ -7,6 +7,7 @@ most likely to break if the site changes, so the parser raises rather than guess
 Scrape politely: one page per league-season, a pause between requests, cached to CSV.
 """
 import difflib
+import gzip
 import json
 import re
 import time
@@ -88,7 +89,10 @@ def fetch(leagues=tuple(LEAGUES), seasons=("2526",), out_dir="picks/xg_data", de
             df, problems = None, []
             for url, parse, extra in attempts:
                 try:
-                    body = opener(urllib.request.Request(url, headers={"User-Agent": USER_AGENT, **extra})).read().decode("utf-8", "replace")
+                    raw = opener(urllib.request.Request(url, headers={"User-Agent": USER_AGENT, **extra})).read()
+                    if raw[:2] == b"\x1f\x8b":  # Understat gzips its responses regardless of Accept-Encoding
+                        raw = gzip.decompress(raw)
+                    body = raw.decode("utf-8", "replace")
                 except Exception as e:
                     problems.append(f"{url.rsplit('/', 3)[-3]} request failed: {e}")
                     continue

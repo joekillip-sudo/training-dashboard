@@ -40,11 +40,24 @@ jobs:
       - name: Generate picks
         run: python -m picks.cli picks --seed-backtest --out ledger.json
 
+      - name: Model report (evaluate and calibrate on real data)
+        continue-on-error: true
+        run: |
+          {
+            echo '## Evaluate: model variants vs bookmaker prices (lower is better)'
+            python -m picks.cli evaluate
+            echo
+            echo '## Calibrate: stated vs actual win rates'
+            python -m picks.cli calibrate
+          } > report.txt 2>&1 || true
+          cat report.txt
+          { echo '```'; cat report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Commit ledger.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ledger.json
+          git add ledger.json report.txt 2>/dev/null || git add ledger.json
           if git diff --cached --quiet; then
             echo "No changes"
           else

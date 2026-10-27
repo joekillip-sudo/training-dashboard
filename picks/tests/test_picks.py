@@ -1,3 +1,4 @@
+import gzip
 import json
 import sys
 import tempfile
@@ -95,6 +96,41 @@ class FixturesTests(unittest.TestCase):
             fx.to_csv(tmp / "fx.csv", index=False)
             book = PipelineTests()._run(tmp)
         self.assertTrue(all(b["league"] == "SYN" for b in book["bets"]))
+
+
+class KickoffTests(unittest.TestCase):
+    """Live bets must be placeable: nothing on a match that has already started."""
+
+    def _book_for(self, rows, now):
+        hist = data.synthetic(n_teams=12, seasons=3, noise=0.25, seed=4)
+        models = {"SYN": PoissonModel().fit(hist)}
+        fx = pd.DataFrame(rows)
+        fx["Date"] = pd.to_datetime(fx["Date"])
+        book = {"floor": ledger.FLOOR, "live_from": None, "bets": []}
+        ledger.add_live(book, fx, models, now)
+        return {(b["home"], b["away"]) for b in book["bets"]}
+
+    def test_started_and_unknown_time_matches_are_skipped(self):
+        now = pd.Timestamp("2026-10-26 22:46", tz="UTC").to_pydatetime()
+        odds = {"League": "SYN", "B365H": 9.0, "B365D": 5.0, "B365A": 1.3}
+        rows = [
+            {**odds, "Date": "2026-10-26", "Time": "20:00", "HomeTeam": "T00", "AwayTeam": "T01"},  # over by now
+            {**odds, "Date": "2026-10-26", "HomeTeam": "T02", "AwayTeam": "T03"},                   # today, no time: could be over
+            {**odds, "Date": "2026-10-27", "HomeTeam": "T04", "AwayTeam": "T05"},                   # tomorrow, no time
+            {**odds, "Date": "2026-10-27", "Time": "19:45", "HomeTeam": "T06", "AwayTeam": "T07"},  # tomorrow evening
+        ]
+        got = self._book_for(rows, now)
+        self.assertFalse(got & {("T00", "T01"), ("T02", "T03")})
+
+    def test_later_today_is_allowed_when_kickoff_time_is_known(self):
+        now = pd.Timestamp("2026-10-26 08:17", tz="UTC").to_pydatetime()
+        odds = {"League": "SYN", "B365H": 9.0, "B365D": 5.0, "B365A": 1.3}
+        early = {**odds, "Date": "2026-10-26", "Time": "08:30", "HomeTeam": "T00", "AwayTeam": "T01"}  # inside the buffer
+        later = {**odds, "Date": "2026-10-26", "Time": "15:00", "HomeTeam": "T02", "AwayTeam": "T03"}
+        got = self._book_for([early, later], now)
+        self.assertNotIn(("T00", "T01"), got)
+        self.assertTrue(ledger._bettable(pd.Series({**later, "Date": pd.Timestamp("2026-10-26")}), now))
+        self.assertFalse(ledger._bettable(pd.Series({**early, "Date": pd.Timestamp("2026-10-26")}), now))
 
 
 class LedgerTests(unittest.TestCase):
@@ -279,6 +315,13 @@ class UnderstatTests(unittest.TestCase):
             page = _page(games).encode()
             only_page = lambda req: mock.Mock(read=lambda: b"{}" if "getLeagueData" in req.full_url else page)
             self.assertEqual(understat.fetch(["SP1"], ["2526"], tmp, delay=0, opener=only_page), 1)
+
+    def test_gzipped_json_response_is_decompressed(self):
+        games = [_game("Arsenal", "Chelsea", 2.0, 1.0, "2025-08-20 19:00:00")]
+        body = gzip.compress(json.dumps({"dates": games}).encode())
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(understat.fetch(["E0"], ["2526"], tmp, delay=0, opener=lambda r: mock.Mock(read=lambda: body)), 1)
+            self.assertEqual(len(pd.read_csv(Path(tmp, "E0_2526.csv"))), 1)
 
     def test_failure_message_says_what_came_back(self):
         opener = lambda req: mock.Mock(read=lambda: b"<html>Please enable JavaScript</html>")

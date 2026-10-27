@@ -62,14 +62,15 @@ def main():
         print(json.dumps(backtest.summarise(backtest.run(df, xg_weight=a.xg_weight)), indent=2))
         return
     models = {lg: PoissonModel(xg_weight=a.xg_weight).fit(g) for lg, g in df.groupby("League")}
-    today = datetime.now(timezone.utc).date()
+    now = datetime.now(timezone.utc)
+    today = now.date()
     book = ledger.load(a.out)
     raw = data.load_fixtures(a.fixtures)
     print(f"fixtures file: {len(raw)} rows, {raw['Date'].min().date()} to {raw['Date'].max().date()}; leagues {sorted(raw['League'].unique()) if 'League' in raw else 'n/a'}")
     fx = data.load_fixtures(a.fixtures, leagues=list(models), from_date=today)
     if "League" not in fx.columns:  # fixtures file has no division column
         fx = data.infer_leagues(fx, models)
-    added = ledger.add_live(book, fx, models, today)
+    added = ledger.add_live(book, fx, models, now)
     seeded = ledger.seed_backtest(book, df, xg_weight=a.xg_weight) if a.seed_backtest else 0
     settled = ledger.settle(book, df)
     book["generated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
