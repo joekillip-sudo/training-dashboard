@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 from . import backtest, calibration, data, evaluate, ledger, market, tune, understat
-from .model import PoissonModel
+from .model import MultiLeagueModel, PoissonModel
 from .value import find_picks
 
 
@@ -18,7 +18,7 @@ def main():
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
     f = sub.add_parser("fetch", help="download historical results+odds and upcoming fixtures")
-    f.add_argument("--leagues", nargs="+", default=["E0", "E1", "D1", "SP1", "I1", "F1"])
+    f.add_argument("--leagues", nargs="+", default=data.ALL_LEAGUES)
     f.add_argument("--seasons", nargs="+", default=data.season_codes(4))
     f.add_argument("--out", default="picks/data", help="where to save the CSVs")
     f.add_argument("--no-fixtures", action="store_true", help="skip the upcoming-fixtures download")
@@ -95,7 +95,7 @@ def main():
     if a.cmd == "backtest":
         print(json.dumps(backtest.summarise(backtest.run(df, xg_weight=a.xg_weight)), indent=2))
         return
-    models = {lg: PoissonModel(xg_weight=a.xg_weight).fit(g) for lg, g in df.groupby("League")}
+    models = MultiLeagueModel(xg_weight=a.xg_weight).fit(df)
     now = datetime.now(timezone.utc)
     today = now.date()
     book = ledger.load(a.out)

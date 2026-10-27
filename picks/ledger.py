@@ -38,9 +38,13 @@ def save(book, path):
     Path(path).write_text(f'{head},"bets":[\n{body}\n]}}\n')
 
 
+AVG_CLOSE = {"H": "AvgCH", "D": "AvgCD", "A": "AvgCA"}  # stands in when Pinnacle's close is missing
+
+
 def _close_p(row, outcome):
-    if all(c in row and not pd.isna(row[c]) for c in CLOSE.values()):
-        return round(devig({o: row[c] for o, c in CLOSE.items()})[outcome], 4)
+    for cols in (CLOSE, AVG_CLOSE):
+        if all(c in row and not pd.isna(row[c]) and row[c] > 1 for c in cols.values()):
+            return round(devig({o: row[c] for o, c in cols.items()})[outcome], 4)
     return None
 
 

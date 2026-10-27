@@ -6,6 +6,7 @@ Fitted with weighted fixed-point MLE updates, so it needs only numpy.
 import math
 
 import numpy as np
+import pandas as pd
 from .xg import shot_xg
 
 MAX_GOALS = 10
@@ -23,6 +24,7 @@ class PoissonModel:
         self.defence = {}
         self.home_adv = 1.3
         self.league_avg = 1.3
+        self.last_seen = {}
 
     def fit(self, matches, as_of=None):
         """matches: DataFrame with Date, HomeTeam, AwayTeam, FTHG, FTAG."""
@@ -66,6 +68,9 @@ class PoissonModel:
         self.defence = dict(zip(teams, dfn))
         self.home_adv = gam
         self.league_avg = mu
+        seen = pd.concat([df[["HomeTeam", "Date"]].set_axis(["team", "date"], axis=1),
+                          df[["AwayTeam", "Date"]].set_axis(["team", "date"], axis=1)])
+        self.last_seen = seen.groupby("team")["date"].max().to_dict()
         return self
 
     def _xg(self, df):
@@ -110,3 +115,48 @@ class PoissonModel:
             "O25": float(m[tot > 2].sum()),
             "U25": float(m[tot <= 2].sum()),
         }
+
+
+class MultiLeagueModel:
+    """One model for every league.
+
+    Teams in different leagues never play each other, so there is no cross-league strength to
+    learn; what each league does need is its own scoring rate and home advantage. This holds one
+    fitted PoissonModel per league behind a single fit/predict interface. It also behaves like
+    a read-only dict of league -> model, which is how the ledger code looks models up.
+    """
+
+    def __init__(self, **model_kw):
+        self.model_kw = model_kw
+        self.models = {}
+
+    def fit(self, matches, as_of=None):
+        self.models = {lg: PoissonModel(**self.model_kw).fit(g, as_of=as_of) for lg, g in matches.groupby("League")}
+        return self
+
+    def knows(self, league, team):
+        return league in self.models and self.models[league].knows(team)
+
+    def predict(self, league, home, away):
+        return self.models[league].predict(home, away)
+
+    def get(self, league, default=None):
+        return self.models.get(league, default)
+
+    def items(self):
+        return self.models.items()
+
+    def keys(self):
+        return self.models.keys()
+
+    def __getitem__(self, league):
+        return self.models[league]
+
+    def __contains__(self, league):
+        return league in self.models
+
+    def __iter__(self):
+        return iter(self.models)
+
+    def __len__(self):
+        return len(self.models)
