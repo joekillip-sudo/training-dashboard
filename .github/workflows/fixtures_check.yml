@@ -1,0 +1,41 @@
+name: Fixtures check
+
+# Manual, read-only, about 10 seconds. Shows what football-data's fixtures file lists right now and
+# when it was last modified. Commits nothing.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Download and describe fixtures.csv
+        run: |
+          curl -sS -D headers.txt -o fixtures.csv https://www.football-data.co.uk/fixtures.csv
+          echo "=== HTTP headers (Last-Modified is when football-data last changed the file) ==="
+          grep -iE '^(HTTP|date|last-modified|etag|content-length)' headers.txt
+          python3 - <<'PY'
+          import csv, collections
+          from datetime import datetime
+          rows = list(csv.DictReader(open("fixtures.csv", encoding="utf-8-sig", errors="replace")))
+          print(f"\n=== {len(rows)} rows ===")
+          print("columns:", list(rows[0].keys()) if rows else None)
+          def parse(d):
+              for f in ("%d/%m/%Y", "%d/%m/%y"):
+                  try: return datetime.strptime(d, f)
+                  except (ValueError, TypeError): pass
+          by_date = collections.Counter(parse(r.get("Date")) for r in rows)
+          print("\nmatches per date:")
+          for d in sorted(by_date, key=lambda x: (x is None, x)):
+              print(" ", d.strftime("%a %Y-%m-%d") if d else "unparsed", by_date[d])
+          div = next((k for k in (rows[0] if rows else {}) if k.lower() in ("div", "league", "division")), None)
+          if div:
+              print(f"\nmatches per {div}:", dict(collections.Counter(r[div] for r in rows)))
+          print("\nfirst and last rows:")
+          for r in rows[:2] + rows[-2:]:
+              print(" ", {k: r[k] for k in list(r)[:8]})
+          PY
