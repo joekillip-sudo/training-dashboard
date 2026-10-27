@@ -22,6 +22,7 @@ URL = "https://understat.com/league/{league}/{year}"
 API_URL = "https://understat.com/getLeagueData/{league}/{year}"  # JSON the page itself loads by script
 USER_AGENT = "Mozilla/5.0 (compatible; football-picks-research/1.0)"
 FUZZY_CUTOFF = 0.85
+MIN_CONTAINED = 5  # shortest name that may match by being contained in the other (avoids "Roma" style slips)
 DATE_TOLERANCE = pd.Timedelta(days=3)  # kickoff timezone / postponement slack
 
 # Understat name -> football-data name. Anything missing falls back to fuzzy matching, and
@@ -36,6 +37,8 @@ ALIASES = {
     "RasenBallsport Leipzig": "RB Leipzig", "Eintracht Frankfurt": "Ein Frankfurt", "FC Cologne": "FC Koln",
     "Fortuna Duesseldorf": "Fortuna Dusseldorf", "Mainz 05": "Mainz", "VfB Stuttgart": "Stuttgart",
     "AC Milan": "Milan", "Parma Calcio 1913": "Parma", "Paris Saint Germain": "Paris SG",
+    "Hamburger SV": "Hamburg", "Clermont Foot": "Clermont", "Deportivo La Coruna": "La Coruna",
+    "Racing Santander": "Santander", "Real Oviedo": "Oviedo", "Real Valladolid": "Valladolid",
     "Saint-Etienne": "St Etienne", "Olympique Marseille": "Marseille", "Olympique Lyonnais": "Lyon",
 }
 
@@ -136,6 +139,11 @@ def map_teams(us_names, fd_names, aliases=None):
             close = difflib.get_close_matches(_norm(name), list(fd), n=1, cutoff=FUZZY_CUTOFF)
             if close:
                 mapping[name] = fd[close[0]]
+            else:  # "Real Oviedo" vs "Oviedo": one name inside the other, and only one candidate
+                n = _norm(name)
+                inside = [k for k in fd if len(k) >= MIN_CONTAINED and (k in n or (len(n) >= MIN_CONTAINED and n in k))]
+                if len(inside) == 1:
+                    mapping[name] = fd[inside[0]]
     counts = pd.Series(list(mapping.values())).value_counts()
     for name in [n for n, t in mapping.items() if counts[t] > 1]:
         del mapping[name]

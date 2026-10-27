@@ -286,6 +286,20 @@ class UnderstatTests(unittest.TestCase):
         self.assertEqual(mapping["Bayer Leverkusen"], "Leverkusen")
         self.assertEqual(unmatched, ["Totally Unknown"])
 
+    def test_map_teams_handles_prefixed_and_suffixed_names(self):
+        fd = {"Hamburg", "Clermont", "La Coruna", "Santander", "Oviedo", "Valladolid", "Roma", "Lazio"}
+        names = {"Hamburger SV", "Clermont Foot", "Deportivo La Coruna", "Racing Santander", "Real Oviedo", "Real Valladolid"}
+        mapping, unmatched = understat.map_teams(names, fd)
+        self.assertEqual(unmatched, [])
+        self.assertEqual(mapping["Real Oviedo"], "Oviedo")
+        self.assertEqual(mapping["Deportivo La Coruna"], "La Coruna")
+        # a wrong alias target (not in the data) falls back to containment instead of leaving the team out
+        mapping, _ = understat.map_teams({"Real Oviedo"}, {"Oviedo", "Lazio"}, aliases={"Real Oviedo": "Nonexistent FC"})
+        self.assertEqual(mapping, {"Real Oviedo": "Oviedo"})
+        # short or ambiguous containment must not match
+        mapping, _ = understat.map_teams({"AS Roma Calcio Plus"}, {"Roma", "Lazio"})
+        self.assertEqual(mapping, {})
+
     def test_map_teams_rejects_ambiguous_collisions(self):
         mapping, unmatched = understat.map_teams({"Real Betis", "Betis"}, {"Betis"})
         self.assertEqual(mapping, {})

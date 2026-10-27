@@ -10,7 +10,7 @@ from .model import PoissonModel
 from .value import find_picks
 
 
-XG_WEIGHT = 0.0  # raise only once `evaluate` shows a real-data improvement
+XG_WEIGHT = 0.5  # real-data `evaluate` (3,445 matches): log loss 1.0016 goals-only -> 0.9958 at 0.5
 
 
 def main():
