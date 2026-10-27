@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,118 +10,178 @@
       padding: 0;
       box-sizing: border-box;
     }
+    :root {
+      --bg: #0a1930;
+      --card: #16273f;
+      --muted: #6b7c93;
+      --soft: #8fa3bf;
+      --accent: #4fc3f7;
+      --heavy: #1976d2;
+      --dry: #3a4a63;
+    }
     body {
-      background-color: #0a1930;
+      background-color: var(--bg);
       color: white;
       font-family: -apple-system, Arial, sans-serif;
-      padding: 24px 20px 40px;
-      max-width: 480px;
+      padding: 24px 16px 40px;
+      max-width: 560px;
       margin: 0 auto;
     }
     h1 {
       font-size: 20px;
-      color: #4fc3f7;
+      color: var(--accent);
       margin-bottom: 2px;
       text-align: center;
     }
     .subtitle {
-      color: #6b7c93;
+      color: var(--muted);
       font-size: 12.5px;
       margin-bottom: 24px;
       text-align: center;
     }
     h2 {
       font-size: 13px;
-      color: #6b7c93;
+      color: var(--muted);
       margin: 28px 0 12px;
       text-transform: uppercase;
       letter-spacing: 0.6px;
     }
 
+    /* Next rain hero */
     .next-card {
       background: linear-gradient(135deg, #16273f 0%, #0d3a5c 100%);
       border-radius: 16px;
       padding: 24px 20px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
+    }
+    .next-card.raining {
+      background: linear-gradient(135deg, #0d3a5c 0%, #1976d2 100%);
     }
     .next-label {
       font-size: 11px;
-      color: #8fa3bf;
+      color: var(--soft);
       text-transform: uppercase;
       letter-spacing: 0.6px;
     }
-    .next-icon {
-      font-size: 40px;
-      margin: 10px 0;
-    }
-    .next-time {
-      font-size: 22px;
-      font-weight: bold;
-      color: #4fc3f7;
-    }
-    .next-detail {
-      font-size: 13px;
-      color: #8fa3bf;
-      margin-top: 6px;
-    }
+    .next-card.raining .next-label { color: #cfe6fa; }
+    .next-icon { font-size: 40px; margin: 10px 0; }
+    .next-time { font-size: 22px; font-weight: bold; color: var(--accent); }
+    .next-card.raining .next-time { color: white; }
+    .next-detail { font-size: 13px; color: var(--soft); margin-top: 6px; }
+    .next-card.raining .next-detail { color: #cfe6fa; }
 
-.day-card {
-  background-color: #16273f;
-  border-radius: 14px;
-  padding: 16px 18px;
-  margin-bottom: 10px;
-}
-.day-top-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 12px;
-}
-.day-name {
-  font-size: 14px;
-  font-weight: bold;
-}
-.day-numbers {
-  font-size: 12px;
-  color: #8fa3bf;
-}
-.day-numbers .pct {
-  font-weight: bold;
-  color: white;
-}
-.hour-chip-row {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 4px;
-}
-.hour-chip {
-  background-color: #0a1930;
-  border-radius: 6px;
-  padding: 6px 2px;
-  text-align: center;
-}
-.hour-chip-time {
-  font-size: 10px;
-  color: #6b7c93;
-}
-.hour-chip-icon {
-  font-size: 18px;
-  margin: 4px 0;
-}
-.hour-chip-pct {
-  font-size: 11px;
-  font-weight: bold;
-  color: #4fc3f7;
-}
-.day-window {
-  font-size: 12px;
-  color: #6b7c93;
-}
+    /* 15-day overview strip */
+    .strip {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px 12px 10px;
+      display: grid;
+      grid-template-columns: repeat(15, 1fr);
+      gap: 3px;
+      align-items: end;
+    }
+    .strip-col { text-align: center; }
+    .strip-bar-wrap {
+      height: 56px;
+      display: flex;
+      align-items: flex-end;
+    }
+    .strip-bar {
+      width: 100%;
+      min-height: 2px;
+      border-radius: 3px 3px 0 0;
+    }
+    .strip-bar.unknown {
+      background: repeating-linear-gradient(45deg, var(--dry), var(--dry) 2px, transparent 2px, transparent 4px);
+      height: 100%;
+      opacity: 0.6;
+    }
+    .strip-day { font-size: 9px; color: var(--muted); margin-top: 4px; }
+    .strip-col.today .strip-day { color: var(--accent); font-weight: bold; }
 
+    /* Day cards */
+    details.day-card {
+      background-color: var(--card);
+      border-radius: 14px;
+      margin-bottom: 10px;
+    }
+    details.day-card > summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    details.day-card > summary::-webkit-details-marker { display: none; }
+    .day-name { font-size: 14px; font-weight: bold; }
+    .day-sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+    .day-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .day-numbers { font-size: 12px; color: var(--soft); text-align: right; }
+    .day-numbers .pct { font-weight: bold; color: white; font-size: 14px; }
+    .chev {
+      width: 8px; height: 8px;
+      border-right: 2px solid var(--muted);
+      border-bottom: 2px solid var(--muted);
+      transform: rotate(45deg);
+      transition: transform 0.15s;
+    }
+    details[open] .chev { transform: rotate(225deg); }
+    .day-body { padding: 0 16px 16px; }
+
+    /* Hourly bar chart */
+    .hour-chart {
+      display: grid;
+      grid-template-columns: repeat(24, 1fr);
+      gap: 2px;
+      height: 80px;
+      align-items: end;
+      border-bottom: 1px solid #243a57;
+    }
+    .hour-col {
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hour-bar {
+      width: 100%;
+      min-height: 2px;
+      border-radius: 2px 2px 0 0;
+    }
+    .hour-bar.unknown {
+      background: repeating-linear-gradient(45deg, var(--dry), var(--dry) 2px, transparent 2px, transparent 4px);
+      height: 100%;
+      opacity: 0.5;
+    }
+    .hour-axis {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .hour-facts {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--soft);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 14px;
+    }
+    .note { font-size: 12px; color: var(--muted); padding: 0 16px 14px; }
+    details.day-card.unreliable { opacity: 0.75; }
+
+    .legend {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      font-size: 11px; color: var(--muted); margin-top: 10px;
+    }
+    .legend i {
+      display: inline-block; width: 9px; height: 9px; border-radius: 2px;
+      margin-right: 4px; vertical-align: -1px;
+    }
     .updated {
-      color: #6b7c93;
+      color: var(--muted);
       font-size: 11px;
       text-align: center;
       margin-top: 24px;
@@ -132,12 +192,21 @@
   <h1>Rain Outlook</h1>
   <div class="subtitle">Twickenham — 15-day precipitation forecast</div>
 
-  <h2>Next Rain</h2>
-  <div class="next-card">
-    <div class="next-label">Expected</div>
+  <h2>Rain Status</h2>
+  <div class="next-card" id="next-card">
+    <div class="next-label" id="next-label">Next rain</div>
     <div class="next-icon" id="next-rain-icon">🌦️</div>
     <div class="next-time" id="next-rain-time">--</div>
     <div class="next-detail" id="next-rain-detail">Loading...</div>
+  </div>
+
+  <h2>15-Day Overview</h2>
+  <div class="strip" id="strip"></div>
+  <div class="legend">
+    <span><i style="background:#1976d2"></i>Likely 70%+</span>
+    <span><i style="background:#4fc3f7"></i>Possible 40%+</span>
+    <span><i style="background:#6b7c93"></i>Slight 15%+</span>
+    <span><i style="background:#3a4a63"></i>Dry</span>
   </div>
 
   <h2>Daily Breakdown</h2>
@@ -146,116 +215,212 @@
   <div class="updated" id="last-updated"></div>
 
   <script>
-    let lat = 51.4463;
-    let lon = -0.3237;
-    let weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=precipitation_probability,precipitation&daily=precipitation_probability_max,precipitation_sum&timezone=Europe%2FLondon&forecast_days=15`;
+    const lat = 51.4463;
+    const lon = -0.3237;
+    const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=precipitation_probability,precipitation&daily=precipitation_probability_max,precipitation_sum&timezone=Europe%2FLondon&forecast_days=15`;
 
-    // Returns a colour + icon based on rain probability, used for both the gauge and the icon
+    // A wet hour needs both a decent chance and a measurable amount, so "52% chance, 0 mm" doesn't count as rain
+    const RAIN_CHANCE = 40;
+    const RAIN_MM = 0.1;
+    const RELIABLE_HOURS = 7 * 24;
+
     function rainStyle(chance) {
-      if (chance === null) return { color: "#3a4a63", icon: "❔" };
+      if (chance === null || chance === undefined) return { color: "#3a4a63", icon: "❔" };
       if (chance >= 70) return { color: "#1976d2", icon: "🌧️" };
       if (chance >= 40) return { color: "#4fc3f7", icon: "🌦️" };
       if (chance >= 15) return { color: "#6b7c93", icon: "⛅" };
       return { color: "#3a4a63", icon: "☀️" };
     }
 
-    function describeRainWindow(hours) {
-      let rainyHours = hours.filter(h => h.probability >= 40).map(h => h.hour);
-      if (rainyHours.length === 0) return null;
-      let startHour = rainyHours[0].toString().padStart(2, '0');
-      let endHour = rainyHours[rainyHours.length - 1].toString().padStart(2, '0');
-      return `Rain likely ${startHour}:00–${endHour}:00`;
+    // Open-Meteo returns London-local timestamps ("2026-10-27T10:00"). Work with those strings directly
+    // so the page behaves the same whatever timezone the viewing device is in.
+    function londonNowKey() {
+      return new Date().toLocaleString('sv-SE', { timeZone: 'Europe/London' }).replace(' ', 'T').slice(0, 16);
+    }
+    function dateOf(key) { return key.slice(0, 10); }
+    function hourOf(key) { return parseInt(key.slice(11, 13), 10); }
+    function dayName(dateKey, todayKey) {
+      let d = new Date(dateKey + 'T12:00:00Z');
+      let diff = Math.round((d - new Date(todayKey + 'T12:00:00Z')) / 86400000);
+      if (diff === 0) return 'Today';
+      if (diff === 1) return 'Tomorrow';
+      return d.toLocaleDateString('en-GB', { weekday: 'long', timeZone: 'UTC' });
+    }
+    function fullDate(dateKey) {
+      return new Date(dateKey + 'T12:00:00Z').toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short', timeZone: 'UTC' });
+    }
+    function titleFor(dateKey, todayKey) {
+      let name = dayName(dateKey, todayKey);
+      return (name === 'Today' || name === 'Tomorrow') ? `${name} · ${fullDate(dateKey)}` : fullDate(dateKey);
+    }
+    function shortDay(dateKey) {
+      return new Date(dateKey + 'T12:00:00Z').toLocaleDateString('en-GB', { weekday: 'narrow', timeZone: 'UTC' });
+    }
+    function hh(h) { return String(h).padStart(2, '0') + ':00'; }
+
+    function isWet(hourly, i) {
+      let p = hourly.precipitation_probability[i];
+      let mm = hourly.precipitation[i];
+      return p !== null && p >= RAIN_CHANCE && mm !== null && mm >= RAIN_MM;
+    }
+
+    function renderHero(hourly, nowKey) {
+      let card = document.getElementById("next-card");
+      let label = document.getElementById("next-label");
+      let icon = document.getElementById("next-rain-icon");
+      let time = document.getElementById("next-rain-time");
+      let detail = document.getElementById("next-rain-detail");
+      let todayKey = dateOf(nowKey);
+
+      // Index of the hour we're currently in
+      let cur = -1;
+      for (let i = 0; i < hourly.time.length; i++) {
+        if (hourly.time[i] <= nowKey) cur = i; else break;
+      }
+      if (cur === -1) cur = 0;
+      let end = Math.min(cur + RELIABLE_HOURS, hourly.time.length);
+
+      card.classList.remove("raining");
+
+      if (isWet(hourly, cur)) {
+        // Already raining: say when it eases instead of pretending the next rain is minutes away
+        let stop = cur + 1;
+        while (stop < end && isWet(hourly, stop)) stop++;
+        card.classList.add("raining");
+        label.textContent = "Right now";
+        icon.textContent = "🌧️";
+        time.textContent = "Raining now";
+        if (stop >= end) {
+          detail.textContent = "No dry spell in the reliable 7-day window";
+        } else {
+          let stopKey = hourly.time[stop];
+          let when = dateOf(stopKey) === todayKey ? "" : dayName(dateOf(stopKey), todayKey) + " ";
+          detail.textContent = `Expected to ease around ${when}${hh(hourOf(stopKey))}`;
+        }
+        return;
+      }
+
+      label.textContent = "Next rain";
+      for (let i = cur + 1; i < end; i++) {
+        if (isWet(hourly, i)) {
+          let key = hourly.time[i];
+          let chance = hourly.precipitation_probability[i];
+          let amount = hourly.precipitation[i];
+          icon.textContent = rainStyle(chance).icon;
+          time.textContent = `${dayName(dateOf(key), todayKey)} ${hh(hourOf(key))}`;
+          detail.textContent = `${chance}% chance · ${amount.toFixed(1)} mm`;
+          return;
+        }
+      }
+      icon.textContent = "☀️";
+      time.textContent = "No rain expected soon";
+      detail.textContent = "None forecast in the next 7 days";
+    }
+
+    function renderStrip(daily, todayKey) {
+      let html = "";
+      for (let i = 0; i < daily.time.length; i++) {
+        let chance = daily.precipitation_probability_max[i];
+        let bar = chance === null
+          ? `<div class="strip-bar unknown"></div>`
+          : `<div class="strip-bar" style="height:${Math.max(chance, 3)}%;background:${rainStyle(chance).color}"></div>`;
+        html += `<div class="strip-col${daily.time[i] === todayKey ? " today" : ""}" title="${fullDate(daily.time[i])}: ${chance === null ? "no data yet" : chance + "%"}">
+          <div class="strip-bar-wrap">${bar}</div>
+          <div class="strip-day">${shortDay(daily.time[i])}</div>
+        </div>`;
+      }
+      document.getElementById("strip").innerHTML = html;
+    }
+
+    function renderDays(hourly, daily, todayKey) {
+      let hourlyByDate = {};
+      for (let i = 0; i < hourly.time.length; i++) {
+        let key = dateOf(hourly.time[i]);
+        if (!hourlyByDate[key]) hourlyByDate[key] = {};
+        hourlyByDate[key][hourOf(hourly.time[i])] = {
+          p: hourly.precipitation_probability[i],
+          mm: hourly.precipitation[i]
+        };
+      }
+
+      let output = "";
+      for (let i = 0; i < daily.time.length; i++) {
+        let dateKey = daily.time[i];
+        let chance = daily.precipitation_probability_max[i];
+        let total = daily.precipitation_sum[i];
+        let hours = hourlyByDate[dateKey] || {};
+        let known = Object.values(hours).filter(h => h.p !== null);
+        let reliable = chance !== null && known.length >= 12;
+        let style = rainStyle(reliable ? chance : null);
+
+        // Hourly bars, one per hour; hours with no data are hatched rather than shown as "null%"
+        let bars = "";
+        for (let h = 0; h < 24; h++) {
+          let d = hours[h];
+          if (!d || d.p === null) {
+            bars += `<div class="hour-col"><div class="hour-bar unknown"></div></div>`;
+          } else {
+            let mmText = d.mm !== null && d.mm > 0 ? ` · ${d.mm.toFixed(1)} mm` : "";
+            bars += `<div class="hour-col" title="${hh(h)}: ${d.p}%${mmText}"><div class="hour-bar" style="height:${Math.max(d.p, 3)}%;background:${rainStyle(d.p).color}"></div></div>`;
+          }
+        }
+        let axis = "";
+        for (let h = 0; h < 24; h += 3) axis += `<span>${hh(h)}</span>`;
+
+        // Summary facts: wet window and peak hour
+        let wetHours = Object.keys(hours).map(Number).filter(h => hours[h].p >= RAIN_CHANCE && hours[h].mm >= RAIN_MM).sort((a, b) => a - b);
+        let facts = "";
+        if (known.length) {
+          let peakH = Object.keys(hours).map(Number).filter(h => hours[h].p !== null).sort((a, b) => hours[b].p - hours[a].p || a - b)[0];
+          facts += wetHours.length
+            ? `<span>Wet ${hh(wetHours[0])}–${hh(wetHours[wetHours.length - 1] + 1)}</span>`
+            : `<span>Dry all day</span>`;
+          facts += `<span>Peak ${hours[peakH].p}% at ${hh(peakH)}</span>`;
+        }
+
+        let sub = !reliable ? "Limited data" : (wetHours.length ? `Wet ${hh(wetHours[0])}–${hh(wetHours[wetHours.length - 1] + 1)}` : "Dry");
+        let numbers = reliable
+          ? `<span class="pct">${chance}%</span> · ${total === null ? "--" : total.toFixed(1)} mm`
+          : `<span class="pct">--</span>`;
+        let open = dateKey === todayKey ? " open" : "";
+
+        output += `<details class="day-card${reliable ? "" : " unreliable"}"${open}>
+          <summary>
+            <div>
+              <div class="day-name">${style.icon} ${titleFor(dateKey, todayKey)}</div>
+              <div class="day-sub">${sub}</div>
+            </div>
+            <div class="day-right"><div class="day-numbers">${numbers}</div><div class="chev"></div></div>
+          </summary>
+          <div class="day-body">
+            <div class="hour-chart">${bars}</div>
+            <div class="hour-axis">${axis}</div>
+            ${facts ? `<div class="hour-facts">${facts}</div>` : ""}
+          </div>
+          ${reliable ? "" : `<div class="note">The forecast isn't settled for this day yet, so figures are partial.</div>`}
+        </details>`;
+      }
+      document.getElementById("daily-overview").innerHTML = output;
     }
 
     function loadRainData() {
       fetch(weatherUrl, { cache: 'no-store' })
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          return response.json();
+        })
         .then(data => {
-          let hourly = data.hourly;
-          let daily = data.daily;
-          let now = new Date();
-
-// Next Rain hero - only check the next 7 days (forecast reliability drops off after that)
-          let reliableHours = 7 * 24;
-          let startIndex = hourly.time.findIndex(t => new Date(t) > now);
-          let searchEndIndex = Math.min(startIndex + reliableHours, hourly.time.length);
-          let nextRainIndex = -1;
-          for (let i = startIndex; i < searchEndIndex; i++) {
-            if (hourly.precipitation_probability[i] >= 40) {
-              nextRainIndex = i;
-              break;
-            }
-          }
-
-          if (nextRainIndex !== -1) {
-            let time = new Date(hourly.time[nextRainIndex]);
-            let timeLabel = time.toLocaleString('en-GB', { weekday: 'long', hour: '2-digit', minute: '2-digit' });
-            let chance = hourly.precipitation_probability[nextRainIndex];
-            let amount = hourly.precipitation[nextRainIndex];
-            document.getElementById("next-rain-icon").textContent = rainStyle(chance).icon;
-            document.getElementById("next-rain-time").textContent = timeLabel;
-            document.getElementById("next-rain-detail").textContent =
-              chance + "% chance, " + amount + " mm expected";
-          } else {
-            document.getElementById("next-rain-icon").textContent = "☀️";
-            document.getElementById("next-rain-time").textContent = "No rain expected soon";
-document.getElementById("next-rain-detail").textContent = "None forecast in the next 7 days";
-          }
-
-          // Group hourly data by date
-          let hourlyByDate = {};
-          for (let i = 0; i < hourly.time.length; i++) {
-            let time = new Date(hourly.time[i]);
-            let dateKey = time.toISOString().slice(0, 10);
-            if (!hourlyByDate[dateKey]) hourlyByDate[dateKey] = [];
-            hourlyByDate[dateKey].push({ hour: time.getHours(), probability: hourly.precipitation_probability[i] });
-          }
-
-let output = "";
-for (let i = 0; i < daily.time.length; i++) {
-  let date = new Date(daily.time[i]);
-  let dateKey = daily.time[i];
-  let dayLabel = date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short' });
-  let chance = daily.precipitation_probability_max[i];
-  let total = daily.precipitation_sum[i];
-  let style = rainStyle(chance);
-
-  let chanceText = (chance === null) ? "--" : chance + "%";
-  let totalText = (total === null) ? "--" : total.toFixed(1) + "mm";
-
-  // Build hour-by-hour chips, every 3 hours, only where hourly data exists
-  let hourChips = "";
-  if (hourlyByDate[dateKey]) {
-    let hoursForDay = hourlyByDate[dateKey];
-    for (let h = 0; h < 24; h += 3) {
-      let hourData = hoursForDay.find(entry => entry.hour === h);
-      if (!hourData) continue;
-      let hourLabel = h.toString().padStart(2, '0') + ":00";
-      let hourStyle = rainStyle(hourData.probability);
-      hourChips += `<div class="hour-chip">
-        <div class="hour-chip-time">${hourLabel}</div>
-        <div class="hour-chip-icon">${hourStyle.icon}</div>
-        <div class="hour-chip-pct">${hourData.probability}%</div>
-      </div>`;
-    }
-  }
-
-  output += `<div class="day-card">
-    <div class="day-top-row">
-      <div class="day-name">${style.icon} ${dayLabel}</div>
-      <div class="day-numbers"><span class="pct">${chanceText}</span> · ${totalText}</div>
-    </div>
-    ${hourChips ? `<div class="hour-chip-row">${hourChips}</div>` : `<div class="day-window">No hourly detail available yet</div>`}
-  </div>`;
-}
-
-          document.getElementById("daily-overview").innerHTML = output;
-
-          let updatedTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          let nowKey = londonNowKey();
+          let todayKey = dateOf(nowKey);
+          renderHero(data.hourly, nowKey);
+          renderStrip(data.daily, todayKey);
+          renderDays(data.hourly, data.daily, todayKey);
+          let updatedTime = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' });
           document.getElementById("last-updated").textContent = "Last checked: " + updatedTime;
         })
         .catch(error => {
-          document.getElementById("next-rain-detail").textContent = "Failed to load data.";
+          document.getElementById("next-rain-time").textContent = "--";
+          document.getElementById("next-rain-detail").textContent = "Failed to load data. Will retry shortly.";
           console.error(error);
         });
     }
