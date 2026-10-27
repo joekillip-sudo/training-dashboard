@@ -70,34 +70,58 @@
     .next-detail { font-size: 13px; color: var(--soft); margin-top: 6px; }
     .next-card.raining .next-detail { color: #cfe6fa; }
 
-    /* 15-day overview strip */
-    .strip {
+    /* Overview chart */
+    .overview {
       background: var(--card);
       border-radius: 14px;
-      padding: 14px 12px 10px;
+      padding: 16px 12px 12px;
+    }
+    .ov-plot {
+      position: relative;
       display: grid;
-      grid-template-columns: repeat(15, 1fr);
-      gap: 3px;
-      align-items: end;
+      gap: 2px;
+      height: 130px;
+      padding-top: 14px;
     }
-    .strip-col { text-align: center; }
-    .strip-bar-wrap {
-      height: 56px;
+    .ov-plot::before, .ov-plot::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0;
+      border-top: 1px dashed #243a57;
+      pointer-events: none;
+    }
+    .ov-plot::before { top: 14px; }
+    .ov-plot::after { top: calc(14px + (100% - 14px) / 2); }
+    .ov-col {
+      position: relative;
       display: flex;
-      align-items: flex-end;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 6px;
     }
-    .strip-bar {
-      width: 100%;
-      min-height: 2px;
-      border-radius: 3px 3px 0 0;
+    .ov-col:hover { background: rgba(79, 195, 247, 0.08); }
+    .ov-col.today { background: rgba(79, 195, 247, 0.12); }
+    .ov-val { font-size: 10px; font-weight: bold; color: var(--soft); margin-bottom: 3px; }
+    .ov-col.wet .ov-val { color: white; }
+    .ov-bar {
+      width: 70%;
+      min-height: 3px;
+      border-radius: 4px 4px 0 0;
     }
-    .strip-bar.unknown {
-      background: repeating-linear-gradient(45deg, var(--dry), var(--dry) 2px, transparent 2px, transparent 4px);
-      height: 100%;
-      opacity: 0.6;
+    .ov-labels {
+      display: grid;
+      gap: 2px;
+      margin-top: 6px;
     }
-    .strip-day { font-size: 9px; color: var(--muted); margin-top: 4px; }
-    .strip-col.today .strip-day { color: var(--accent); font-weight: bold; }
+    .ov-label { text-align: center; line-height: 1.25; }
+    .ov-label .d { font-size: 10px; color: var(--soft); }
+    .ov-label .n { font-size: 11px; font-weight: bold; color: white; }
+    .ov-label .mm { font-size: 9.5px; color: var(--accent); margin-top: 3px; min-height: 12px; }
+    .ov-label.today .d { color: var(--accent); }
+    .ov-label.weekend .d, .ov-label.weekend .n { opacity: 0.55; }
+    .ov-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 10px; }
 
     /* Day cards */
     details.day-card {
@@ -171,14 +195,6 @@
     }
     .note { font-size: 12px; color: var(--muted); padding: 0 16px 14px; }
 
-    .legend {
-      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-      font-size: 11px; color: var(--muted); margin-top: 10px;
-    }
-    .legend i {
-      display: inline-block; width: 9px; height: 9px; border-radius: 2px;
-      margin-right: 4px; vertical-align: -1px;
-    }
     .updated {
       color: var(--muted);
       font-size: 11px;
@@ -199,13 +215,11 @@
     <div class="next-detail" id="next-rain-detail">Loading...</div>
   </div>
 
-  <h2>15-Day Overview</h2>
-  <div class="strip" id="strip"></div>
-  <div class="legend">
-    <span><i style="background:#1976d2"></i>Likely 70%+</span>
-    <span><i style="background:#4fc3f7"></i>Possible 40%+</span>
-    <span><i style="background:#6b7c93"></i>Slight 15%+</span>
-    <span><i style="background:#3a4a63"></i>Dry</span>
+  <h2>Overview</h2>
+  <div class="overview">
+    <div class="ov-plot" id="ov-plot"></div>
+    <div class="ov-labels" id="ov-labels"></div>
+    <div class="ov-note">Chance of rain per day, with rainfall (mm) underneath. Tap a day for the hourly detail.</div>
   </div>
 
   <h2>Daily Breakdown</h2>
@@ -333,19 +347,39 @@
     }
 
     function renderStrip(daily, todayKey) {
-      document.getElementById("strip").style.gridTemplateColumns = `repeat(${daily.time.length}, 1fr)`;
-      let html = "";
-      for (let i = 0; i < daily.time.length; i++) {
+      let n = daily.time.length;
+      let plot = document.getElementById("ov-plot");
+      let labels = document.getElementById("ov-labels");
+      plot.style.gridTemplateColumns = labels.style.gridTemplateColumns = `repeat(${n}, minmax(0, 1fr))`;
+      let cols = "", labs = "";
+      for (let i = 0; i < n; i++) {
+        let key = daily.time[i];
         let chance = daily.precipitation_probability_max[i];
-        let bar = chance === null
-          ? `<div class="strip-bar unknown"></div>`
-          : `<div class="strip-bar" style="height:${Math.max(chance, 3)}%;background:${rainStyle(chance).color}"></div>`;
-        html += `<div class="strip-col${daily.time[i] === todayKey ? " today" : ""}" title="${fullDate(daily.time[i])}: ${chance === null ? "no data yet" : chance + "%"}">
-          <div class="strip-bar-wrap">${bar}</div>
-          <div class="strip-day">${shortDay(daily.time[i])}</div>
+        let total = daily.precipitation_sum[i];
+        let d = new Date(key + 'T12:00:00Z');
+        let dow = d.getUTCDay();
+        let isToday = key === todayKey;
+        let mmText = total >= 0.1 ? total.toFixed(1) : "";
+        cols += `<div class="ov-col${isToday ? " today" : ""}${chance >= RAIN_CHANCE ? " wet" : ""}" data-date="${key}" title="${fullDate(key)}: ${chance}%${total >= 0.1 ? ", " + total.toFixed(1) + " mm" : ""}">
+          <div class="ov-val">${chance}</div>
+          <div class="ov-bar" style="height:${chance}%;background:${rainStyle(chance).color}"></div>
+        </div>`;
+        labs += `<div class="ov-label${isToday ? " today" : ""}${dow === 0 || dow === 6 ? " weekend" : ""}">
+          <div class="d">${d.toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'UTC' }).slice(0, 2)}</div>
+          <div class="n">${d.getUTCDate()}</div>
+          <div class="mm">${mmText}</div>
         </div>`;
       }
-      document.getElementById("strip").innerHTML = html;
+      plot.innerHTML = cols;
+      labels.innerHTML = labs;
+      plot.onclick = e => {
+        let col = e.target.closest(".ov-col");
+        if (!col) return;
+        let card = document.getElementById("day-" + col.dataset.date);
+        if (!card) return;
+        card.open = true;
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
     }
 
     function renderDays(hourly, daily, todayKey) {
@@ -397,7 +431,7 @@
         let numbers = `<span class="pct">${chance}%</span> · ${total === null ? "--" : total.toFixed(1)} mm`;
         let open = dateKey === todayKey ? " open" : "";
 
-        output += `<details class="day-card"${open}>
+        output += `<details class="day-card" id="day-${dateKey}"${open}>
           <summary>
             <div>
               <div class="day-name">${style.icon} ${titleFor(dateKey, todayKey)}</div>
