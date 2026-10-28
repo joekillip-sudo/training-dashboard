@@ -1,0 +1,43 @@
+name: Results check
+
+# Manual, read-only. Why are live paper bets not settling? For each league with a live bet, shows when
+# football-data last modified its results file, its newest match, and whether each bet's match is in it.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare ledger bets with football-data results
+        run: |
+          python3 - <<'PY'
+          import csv, io, json, urllib.request, collections
+          from datetime import datetime, date
+          def parse(d):
+              for f in ("%d/%m/%Y", "%d/%m/%y"):
+                  try: return datetime.strptime(d, f).date()
+                  except (ValueError, TypeError): pass
+          live = [b for b in json.load(open("ledger.json"))["bets"] if b["source"] == "live"]
+          print(f"{len(live)} live bets; now {datetime.utcnow():%a %Y-%m-%d %H:%M} UTC\n")
+          for lg in sorted({b["league"] for b in live}):
+              url = f"https://www.football-data.co.uk/mmz4281/2627/{lg}.csv"
+              with urllib.request.urlopen(url, timeout=60) as r:
+                  modified = r.headers.get("Last-Modified")
+                  raw = r.read()
+              try: text = raw.decode("utf-8-sig")
+              except UnicodeDecodeError: text = raw.decode("latin-1")
+              rows = [x for x in csv.DictReader(io.StringIO(text)) if x.get("HomeTeam")]
+              dates = [parse(x["Date"]) for x in rows if parse(x["Date"])]
+              print(f"== {lg}: {len(rows)} matches, newest {max(dates)}, file last modified {modified}")
+              played = {(x["HomeTeam"], x["AwayTeam"]): x for x in rows}
+              for b in sorted((b for b in live if b["league"] == lg), key=lambda b: b["date"]):
+                  hit = played.get((b["home"], b["away"]))
+                  state = f"IN FILE: {hit['Date']} {hit.get('FTHG')}-{hit.get('FTAG')} FTR={hit.get('FTR')}" if hit else "not in file yet"
+                  print(f"   bet {b['date']} {b['home']} v {b['away']} ({b['outcome']}): {state} | ledger result={b['result']}")
+          PY
