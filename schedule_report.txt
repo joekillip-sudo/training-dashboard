@@ -1,0 +1,20 @@
+17179 out-of-sample matches in the forecast table.
+
+WHO DOES BETTER THAN THE MODEL EXPECTS? (actual win rate minus model probability; positive = outperformed)
+                          matches  home_win_vs_model  away_win_vs_model
+bin                                                                    
+away rested 3+ days more      786              0.046             -0.017
+away 1-2 more                3129             -0.003             -0.003
+equal                        9376              0.000             -0.007
+home 1-2 more                3144             -0.004             -0.017
+home 3+ more                  744              0.008              0.005
+
+OUR MODEL + rest/congestion, out of sample over 15706 matches:
+  log loss 1.0172 -> 1.0173  (gain -0.00007, 95% interval -0.00046 to +0.00032)
+  last fitted weights: rest advantage -0.016, congestion (matches in 14d) +0.018, short rest (<=3d) -0.090
+  verdict: no detectable effect
+
+THE MARKET (average bookmaker price) + rest/congestion, out of sample over 15695 matches:
+  log loss 1.0015 -> 1.0015  (gain -0.00004, 95% interval -0.00044 to +0.00036)
+  last fitted weights: rest advantage -0.023, congestion (matches in 14d) +0.023, short rest (<=3d) -0.095
+  verdict: no detectable effect
