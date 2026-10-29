@@ -102,12 +102,12 @@
 
 <script>
 const DEFAULTS = {
-  view: "live", league: "all", bankroll: 1000, mode: "percent", flat: 10, pct: 1, kelly: 0.25, cap: 5,
+  view: "live", league: "all", bankroll: 1000, mode: "percent", flat: 10, pct: 0.25, kelly: 0.25, cap: 2,
   minEdge: 3, minEv: 5, maxOdds: 8, trust: 100, H: true, D: true, A: true,
 };
 let P = { ...DEFAULTS };
 let BOOK = null;
-const KEY = "footballPicksSettings";
+const KEY = "footballPicksSettings2";  // bumped when the safer staking defaults were introduced
 try { Object.assign(P, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} };
 
@@ -243,9 +243,9 @@ function render() {
 const CONTROLS = [
   { k: "bankroll", t: "Starting bankroll (£)", n: [10, 1e6, 10] },
   { k: "mode", t: "Staking method", sel: [["percent", "% of bankroll"], ["flat", "Flat amount"], ["kelly", "Kelly (by edge)"]] },
-  { k: "pct", t: "Stake (% of bankroll)", n: [0.1, 100, 0.1], show: () => P.mode === "percent" },
+  { k: "pct", t: "Stake (% of bankroll)", s: "Small on purpose: backtest bankrolls were wiped out at 1%", n: [0.05, 100, 0.05], show: () => P.mode === "percent" },
   { k: "flat", t: "Stake (£ per bet)", n: [1, 100000, 1], show: () => P.mode === "flat" },
-  { k: "kelly", t: "Kelly fraction", s: "0.25 = quarter Kelly, the safer choice", n: [0.05, 1, 0.05], show: () => P.mode === "kelly" },
+  { k: "kelly", t: "Kelly fraction", s: "Not recommended: it wiped out the backtest at every size", n: [0.05, 1, 0.05], show: () => P.mode === "kelly" },
   { k: "cap", t: "Max stake (% of bankroll)", s: "Caps any single bet", n: [0.5, 100, 0.5], show: () => P.mode !== "flat" },
   { k: "minEdge", t: "Min edge (points)", s: "Model chance minus market chance", n: [1, 30, 0.5] },
   { k: "minEv", t: "Min expected return (%)", n: [2, 200, 1] },
