@@ -28,6 +28,9 @@ def forecast_table(df, **model_kw):
     for m, model in walk_forward(df, **model_kw):
         pr = model.predict(m.HomeTeam, m.AwayTeam)
         r = {"date": m.Date, "league": m.League, "ftr": m.FTR}
+        for c in ("rest_h", "rest_a", "games14_h", "games14_a"):  # schedule features, when present
+            if c in m.index:
+                r[c] = m[c]
         for o in ORDER:
             r[f"model_{o}"] = pr[o]
         for name, cols in SOURCES.items():

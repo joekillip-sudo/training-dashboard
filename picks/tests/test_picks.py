@@ -10,7 +10,7 @@ from unittest import mock
 import numpy as np
 import pandas as pd
 
-from picks import backtest, calibration, cli, data, evaluate, ledger, market, tune, understat
+from picks import backtest, calibration, cli, data, evaluate, ledger, market, schedule, tune, understat
 from picks.model import MultiLeagueModel
 from picks.xg import shot_xg
 from picks.model import PoissonModel
@@ -236,6 +236,55 @@ class MarketTests(unittest.TestCase):
         self.assertEqual(len(out), 6 * 2)
         self.assertTrue((out["bets"] >= 0).all())
         self.assertEqual(set(market.log_losses(oos)), {"model", "resid", "ps", "avg", "b365", "close"})
+
+
+class ScheduleTests(unittest.TestCase):
+    def test_rest_days_and_congestion_by_hand(self):
+        d = lambda x: pd.Timestamp(x)
+        df = pd.DataFrame([
+            {"Date": d("2026-01-01"), "HomeTeam": "A", "AwayTeam": "B", "League": "L", "FTHG": 1, "FTAG": 0, "FTR": "H"},
+            {"Date": d("2026-01-04"), "HomeTeam": "A", "AwayTeam": "C", "League": "L", "FTHG": 0, "FTAG": 0, "FTR": "D"},
+            {"Date": d("2026-01-06"), "HomeTeam": "B", "AwayTeam": "A", "League": "L", "FTHG": 2, "FTAG": 2, "FTR": "D"},
+            {"Date": d("2026-02-01"), "HomeTeam": "C", "AwayTeam": "A", "League": "L", "FTHG": 1, "FTAG": 3, "FTR": "A"},
+        ])
+        out = schedule.add_schedule_features(df.sample(frac=1, random_state=1))  # order must not matter
+        self.assertTrue(out["Date"].is_monotonic_increasing)
+        self.assertTrue(np.isnan(out.loc[0, "rest_h"]) and np.isnan(out.loc[0, "rest_a"]))  # first matches: unknown
+        self.assertEqual(out.loc[1, "rest_h"], 3.0)                                         # A: 3 days since 1 Jan
+        self.assertTrue(np.isnan(out.loc[1, "rest_a"]))                                     # C: first match
+        self.assertEqual((out.loc[2, "rest_h"], out.loc[2, "rest_a"]), (5.0, 2.0))         # B: 5 days since 1 Jan; A: 2 days since 4 Jan
+        self.assertEqual(out.loc[2, "games14_a"], 2.0)                                      # A played 1 Jan and 4 Jan in the prior 14 days
+        self.assertEqual(out.loc[3, "games14_a"], 0.0)                                      # a month later: nothing in the last 14 days
+        self.assertEqual(out.loc[3, "rest_a"], 26.0)
+
+    def test_fit_finds_a_planted_rest_effect_and_ignores_none(self):
+        rng = np.random.default_rng(5)
+        n = 6000
+        t = pd.DataFrame({"rest_h": rng.integers(2, 9, n).astype(float), "rest_a": rng.integers(2, 9, n).astype(float),
+                          "games14_h": rng.integers(0, 4, n).astype(float), "games14_a": rng.integers(0, 4, n).astype(float)})
+        base = rng.dirichlet([6, 3, 4], n)
+        F = schedule.feature_tensor(t)
+        for true_w, label in ((np.array([0.5, 0.0, 0.0]), "planted"), (np.zeros(3), "none")):
+            p = schedule.predict(true_w, F, base)
+            y = np.array([rng.choice(3, p=q) for q in p])
+            theta = schedule.fit(F, base, y)
+            if label == "planted":
+                self.assertGreater(theta[0], 0.3)   # better-rested home side does better
+            else:
+                self.assertLess(np.abs(theta).max(), 0.12)
+
+    def test_feature_signs(self):
+        t = pd.DataFrame({"rest_h": [7.0], "rest_a": [3.0], "games14_h": [1.0], "games14_a": [4.0]})
+        F = schedule.feature_tensor(t)[0]
+        self.assertGreater(F[0, 0], 0)   # home rested more: advantage for home
+        self.assertGreater(F[0, 1], 0)   # home played fewer recent games
+        self.assertGreater(F[0, 2], 0)   # away on short rest: good for home
+        self.assertTrue(np.allclose(F[2], -F[0]) and np.allclose(F[1], 0))  # away mirrors, draw neutral
+
+    def test_cli_schedule_runs(self):
+        with mock.patch.object(sys, "argv", ["picks", "schedule", "--synthetic"]), mock.patch("builtins.print") as pr:
+            cli.main()
+        self.assertIn("WHO DOES BETTER", " ".join(str(c.args[0]) for c in pr.call_args_list if c.args))
 
 
 class FixturesFileTests(unittest.TestCase):

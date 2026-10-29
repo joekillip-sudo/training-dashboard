@@ -1,0 +1,54 @@
+name: Rest and congestion experiment
+
+# Manual only. Does rest / fixture congestion add anything to our model or to the market? Uses its own
+# data folder and never touches ledger.json or the daily picks.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: schedule-test
+  cancel-in-progress: false
+
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: picks/requirements.txt
+
+      - run: pip install -r picks/requirements.txt
+
+      - name: Fetch 22 leagues
+        run: python -m picks.cli fetch --no-fixtures --out picks/data_ext
+
+      - name: Fetch real xG for the top 5 (optional)
+        continue-on-error: true
+        run: python -m picks.cli fetch-xg
+
+      - name: Rest and congestion report
+        run: |
+          python -m picks.cli schedule --data picks/data_ext > schedule_report.txt 2>&1 || { cat schedule_report.txt; exit 1; }
+          cat schedule_report.txt
+          { echo '```'; cat schedule_report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit schedule_report.txt
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add schedule_report.txt
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Rest and congestion report"
+            git pull --rebase origin main
+            git push
+          fi

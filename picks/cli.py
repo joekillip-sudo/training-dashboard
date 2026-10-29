@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 import numpy as np
 import pandas as pd
 
-from . import backtest, calibration, data, evaluate, ledger, market, tune, understat
+from . import backtest, calibration, data, evaluate, ledger, market, schedule, tune, understat
 from .model import MultiLeagueModel, PoissonModel
 from .value import find_picks
 
@@ -27,11 +27,12 @@ def main():
     x.add_argument("--seasons", nargs="+", default=data.season_codes(4))
     sub.add_parser("evaluate", help="compare xG weights and the market on log loss / RPS")
     sub.add_parser("strategies", help="market-anchored model and best-price betting vs the old approach")
+    sub.add_parser("schedule", help="does rest / fixture congestion add anything to the model or the market?")
     sub.add_parser("leagues", help="where is the market softer? model vs market, league by league")
     sub.add_parser("tune", help="grid-search decay/shrinkage/rho with a held-out check")
     sub.add_parser("calibrate", help="reliability of model probabilities and of the bets taken")
-    for name in ("backtest", "picks", "evaluate", "calibrate", "strategies", "tune", "leagues"):
-        s = sub.choices[name] if name in ("evaluate", "calibrate", "strategies", "tune", "leagues") else sub.add_parser(name)
+    for name in ("backtest", "picks", "evaluate", "calibrate", "strategies", "tune", "leagues", "schedule"):
+        s = sub.choices[name] if name in ("evaluate", "calibrate", "strategies", "tune", "leagues", "schedule") else sub.add_parser(name)
         s.add_argument("--data", default="picks/data")
         s.add_argument("--synthetic", action="store_true", help="use generated data")
         if name != "evaluate":  # calibrate takes --xg-weight too
@@ -54,6 +55,11 @@ def main():
     df = data.synthetic() if a.synthetic else data.load(a.data)
     if a.cmd == "evaluate":
         print(evaluate.evaluate(df).to_string())
+        return
+    if a.cmd == "schedule":
+        df = schedule.add_schedule_features(df)
+        tbl = market.forecast_table(df, xg_weight=a.xg_weight)
+        print(schedule.report(tbl, min_train=min(1500, len(tbl) // 3)))
         return
     if a.cmd == "leagues":
         tbl = market.forecast_table(df, xg_weight=a.xg_weight)
