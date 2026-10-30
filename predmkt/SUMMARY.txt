@@ -1,0 +1,63 @@
+PLAIN-ENGLISH SUMMARY  (paper analysis only - nothing here is trading advice)
+==============================================================================
+VERDICT: NO USABLE EDGE. A model built on free public forecasts does NOT beat Kalshi's daily-high temperature prices,
+and it loses money after fees and spread in every configuration tested.
+
+WHAT DATA EXISTED (Step 0 - feasibility passed for Kalshi; details in predmkt_probe_report.txt / predmkt_probe2_report.txt)
+ * Kalshi (public market-data API, no login needed to read): daily-high markets for NYC and Chicago from Aug 2021,
+   Miami and Austin from May 2023, LA / Denver / Philadelphia from late 2024-Jan 2025, several more cities from 2026.
+   Hourly bid/ask history exists for settled markets. I analysed 7 cities, every 2nd day: ~3,600 market-days
+   (each with ~6 brackets); ~2,000-2,700 of them usable at a given decision time (every bracket needed a real quote).
+ * Settlement truth: Kalshi pays on the NWS climate-report high (via The Weather Company). Its own recorded settlement
+   value matched the NWS report on 229 of 229 NYC days I compared, and the official NWS high lay inside the bracket
+   Kalshi actually paid on 99.9% of 2,807 events. So the truth data is clean and free (Iowa Environmental Mesonet).
+ * Archived forecasts as issued: Open-Meteo "previous runs" API (what the model said 1 and 2 days earlier).
+   GFS from 2021; ECMWF, ICON and GEM only from mid-2024. The "historical forecast" API is a stitched
+   mostly-short-lead product, so I did not use it. No historical ensemble spread exists, so "multi" = the mean of 4 models.
+ * Polymarket: similar daily-high markets exist, but I could not get price history for resolved markets and only found
+   events from ~April 2026. Too thin to test; NOT analysed. Not verified: whether either platform is legal for you in
+   the UK - you must check that yourself before anything else.
+
+DOES THE MODEL BEAT THE MARKET'S FORECAST?  No, clearly.
+ * Log score (higher is better), model minus market, paired by event: -0.56 +/-0.04 (GFS-only, morning of),
+   -0.36 +/-0.04 (4-model mean, morning of), -0.51 +/-0.03 and -0.27 +/-0.03 (day before). All 95% intervals are
+   far below zero; Brier score agrees; every city and every season is negative.
+ * Using more models helped (as expected) but not nearly enough. The market already knows today's observations,
+   the latest model runs and the official forecasts; a one-day-old public model run cannot compete.
+ * Where the model disagrees strongly with the market, the market is usually right: bets the model "likes" most
+   (tail brackets) won ~30% of the time against a model claim of ~70%.
+
+DOES ANY EDGE SURVIVE COSTS?  No.
+ * Primary rule (set in advance): buy when the model's expected profit after the Kalshi fee is at least 5 cents per
+   contract, spread at most 10 cents, taker at the quoted price. ROI: -8.3% (n=5,698, 95% CI -10.6% to -5.9%) GFS morning of;
+   -6.0% (n=4,877) 4-model morning of; -7.5% (n=7,400) and -5.2% (n=5,781) day before. First and second halves agree
+   (both negative, e.g. -8.5% / -7.9%). Every one of 72 sensitivity cells (edge threshold, spread cap, fee rounding) is negative.
+ * Because 72 cells and many city/season slices were examined, a lone positive slice would have meant nothing; there were
+   essentially none (a few city cells have intervals touching zero, e.g. Philadelphia/Miami morning-of, still negative on average).
+
+HOW BIG COULD THE OPPORTUNITY BE?  Small even if there were an edge.
+ * A typical bracket trades ~8,000-17,000 contracts in its whole life (~$4k-8k of turnover) and each city-day has ~6 brackets.
+   Book depth is not archived, so my capacity figure assumes you could take 5% of a bracket's volume: that is ~$2M/yr of
+   capital turned over across 7 cities and an implied profit that is negative or noise (-$129k to +$28k/yr, noise from a few
+   large lucky/unlucky brackets; the one "pass" on criterion (d) is not evidence of an edge because the ROI is negative).
+
+WHY I TRUST THE RESULT (and what could still be wrong)
+ * 15 unit tests, including ones that corrupt every price/forecast/actual after the decision time and prove the model's
+   probabilities do not change. A self-check (PIT / z-scores) shows the model is calibrated against its own history
+   (z sd 1.00 in-sample, 1.03-1.09 out-of-sample): no football-style scale bug. I also found and fixed one flaw in my own
+   comparison (brackets with no real quote gave junk market probabilities); fixing it made the market's baseline cleaner
+   and the model's deficit slightly larger, not smaller.
+ * Unverified / simplifications: (1) Kalshi fee coefficient 0.07 is from memory of their published schedule, not read from
+   the API (the API only confirmed 'quadratic'). (2) Open-Meteo's exact definition of "previous day N" is assumed; I used a
+   generous 9-hour processing delay and only hours 06-21 local to stay safe. (3) Fills assume you get the last hourly quote
+   for a 1-lot; real depth/queueing is unknown, so costs are if anything understated. (4) Bias/spread are fitted on a trailing
+   120-day window, not per-season (too little history per season in the first year); its lag in summer/winter transitions
+   hurts the model, and a better-tuned model might narrow the gap - but I was asked not to tune until something looks good,
+   and the gap is so large (about 0.3-0.5 log-score) that tuning is very unlikely to close it. (5) Every 2nd day only.
+ * Decision times are 12:00 local standard time the day before and 06:00 on the day; very late-day intraday trading (when
+   observed temperatures are known) is where a market is sharpest and was not modelled.
+
+NEXT STEP (one suggestion, not built): scheduled economic releases (e.g. monthly CPI/jobs-number markets). Same feasibility-first
+approach: first check public historical prices exist at several points before each release, that the consensus forecasts
+are archived as-issued (not revised), and the number of releases (only ~12 per year per series -> several years needed for
+a few hundred observations; this may be too thin, which is itself a finding).

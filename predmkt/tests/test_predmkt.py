@@ -186,3 +186,11 @@ class PipelineTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class QuoteTests(unittest.TestCase):
+    def test_real_quote_rejects_empty_books(self):
+        self.assertFalse(bt.real_quote(pd.Series({"bid": 0.0, "ask": 0.99})))
+        self.assertFalse(bt.real_quote(pd.Series({"bid": 0.0, "ask": 1.0})))
+        self.assertTrue(bt.real_quote(pd.Series({"bid": 0.0, "ask": 0.07})))
+        self.assertTrue(bt.real_quote(pd.Series({"bid": 0.42, "ask": 0.46})))

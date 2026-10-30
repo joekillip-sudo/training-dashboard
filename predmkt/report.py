@@ -78,6 +78,7 @@ def main():
     pe = df.drop_duplicates(["event", "lead", "modelset"])
     P("\nscoreable events (a quote on every bracket at the decision time AND enough training days):")
     P(pe.groupby(["lead", "modelset"]).agg(events=("event", "nunique"), first=("date", "min"), last=("date", "max")).to_string())
+    P(f"events dropped because some bracket had no genuine quote (ask>=0.995 or spread>{bt.MAX_QUOTE_SPREAD}): see counts above vs {n_ok} clean events")
     P("\nquote sanity: median sum of bracket mids (should be ~1; the excess is the market's overround)")
     P(pe.groupby("lead")["sum_mid"].describe()[["count", "25%", "50%", "75%"]].round(3).to_string())
 
@@ -127,7 +128,7 @@ def main():
                     ins_z.append((y - mu) / s)
                     ins_u.append(pit(y, mu, s, rng.random()))
             g = pe[(pe.modelset == ms) & (pe.lead == lead)]
-            for r in g.itertuples():                 # out-of-sample: the walk-forward predictions actually used
+            for r in g[g.y.notna()].itertuples():    # out-of-sample: the walk-forward predictions actually used
                 oos_z.append((r.y - r.mu) / r.sigma)
                 oos_u.append(pit(r.y, r.mu, r.sigma, rng.random()))
             if not ins_z or not oos_z:
@@ -202,7 +203,9 @@ def main():
         P(f"  {lead:10s} {ms:5s} (a){'PASS' if c[0] else 'fail'} (b){'PASS' if c[1] else 'fail'} (c){'PASS' if c[2] else 'fail'} (d){'PASS' if c[3] else 'fail'}")
     P("\n  OVERALL: " + ("at least one configuration meets every criterion - treat with suspicion and test forward in time."
                          if any_pass else "NO USABLE EDGE: no configuration meets all four criteria."))
-    open(a.out, "w").write("\n".join(L) + "\n")
+    import os
+    head = open("predmkt/SUMMARY.txt").read() + "\n\n" if os.path.exists("predmkt/SUMMARY.txt") else ""
+    open(a.out, "w").write(head + "\n".join(L) + "\n")
     print("\n".join(L))
 
 

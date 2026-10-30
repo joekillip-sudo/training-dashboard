@@ -55,6 +55,15 @@ def quote_asof(q, ts):
     return None if q.empty else q.sort_values("ts").iloc[-1]
 
 
+MAX_QUOTE_SPREAD = 0.15
+
+
+def real_quote(q):
+    """A usable two-sided quote: someone is offering (ask < 1) and the spread is not absurd. A (bid 0, ask 0.99) book is
+    'no market', and its mid-price of ~0.5 would be junk."""
+    return q["ask"] < 0.995 and q["bid"] >= 0 and (q["ask"] - q["bid"]) <= MAX_QUOTE_SPREAD + 1e-9
+
+
 # ---------------------------------------------------------------- loading
 def _read(pattern, **kw):
     fs = sorted(glob.glob(pattern))
@@ -67,6 +76,11 @@ def load(d):
     fc = _read(f"{d}/*_forecasts.csv.gz")
     ac = _read(f"{d}/*_actuals.csv")
     mk["date"] = mk["event"].map(event_date)
+    ac["high"] = pd.to_numeric(ac["high"], errors="coerce")   # the NWS feed writes 'M' for missing
+    ac = ac.dropna(subset=["high"]).drop_duplicates(["city", "date"], keep="last")
+    for c in ("bid", "ask", "last", "vol", "oi"):
+        qt[c] = pd.to_numeric(qt[c], errors="coerce")
+    qt = qt.dropna(subset=["bid", "ask"])
     fc["date"] = pd.to_datetime(fc["date"]).dt.date
     ac["date"] = pd.to_datetime(ac["date"]).dt.date
     return mk, qt, fc, ac
@@ -141,10 +155,10 @@ def build(mk, qt, fc, ac, modelsets=("gfs", "multi")):
             for r in g.itertuples():
                 if r.ticker in qgroups:
                     q = quote_asof(qgroups[r.ticker], ts)
-                    if q is not None and q["ts"] > 0:
+                    if q is not None and q["ts"] > 0 and real_quote(q):
                         quotes[r.ticker] = q
             if len(quotes) < len(g):
-                continue  # need a quote on every bracket to form the market's distribution
+                continue  # need a genuine quote on every bracket to form the market's distribution
             for ms in modelsets:
                 key = (city, lead, ms)
                 if key not in tables:
