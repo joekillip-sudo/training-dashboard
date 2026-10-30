@@ -25,12 +25,12 @@ jobs:
         with:
           python-version: "3.12"
       - name: Probe
-        run: python -m predmkt.probe 2>&1 | tee predmkt_probe_report.txt
+        run: python -m predmkt.probe2 2>&1 | tee predmkt_probe2_report.txt
       - name: Commit report
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add predmkt_probe_report.txt
-          git commit -m "predmkt feasibility probe report" || exit 0
+          git add predmkt_probe2_report.txt
+          git commit -m "predmkt feasibility probe 2 report" || exit 0
           git pull --rebase origin "$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"
