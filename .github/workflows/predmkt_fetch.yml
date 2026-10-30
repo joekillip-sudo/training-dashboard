@@ -1,0 +1,55 @@
+name: Prediction-market data fetch
+
+# Manual / branch-marker only. Downloads Kalshi daily-high markets + hourly quotes, archived Open-Meteo
+# forecasts and NWS truth, one parallel job per city, then commits small compressed files.
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/weather-prediction-market-edge-i61672]
+    paths: [predmkt/RUN_FETCH]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: predmkt-fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        city: [NYC, CHI, MIA, AUS, LAX, DEN, PHL]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m predmkt.fetch ${{ matrix.city }} --out raw
+      - uses: actions/upload-artifact@v4
+        with:
+          name: raw-${{ matrix.city }}
+          path: raw
+  commit:
+    needs: fetch
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: raw-*
+          path: predmkt/data
+          merge-multiple: true
+      - name: Commit data
+        run: |
+          du -sh predmkt/data; ls -la predmkt/data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add predmkt/data
+          git commit -m "predmkt: fetched market/forecast/truth data" || exit 0
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"

@@ -1,0 +1,116 @@
+
+======== KALSHI historical tier: depth by series ========
+KXHIGHNY: 9466 markets, 1846 events, 2021-08-07 .. 2026-08-30, pages 10; volume_fp median 2343 p90 44439 max 1873207; with expiration_value 4400
+   by month: {'2021-08': 24, '2021-09': 30, '2021-10': 35, '2021-11': 58, '2021-12': 50, '2022-01': 49, '2022-02': 54, '2022-03': 60, '2022-04': 67, '2022-05': 124, '2022-06': 120, '2022-07': 124, '2022-08': 124, '2022-09': 120, '2022-10': 124, '2022-11': 120, '2022-12': 164, '2023-01': 186, '2023-02': 168, '2023-03': 186, '2023-04': 180, '2023-05': 186, '2023-06': 180, '2023-07': 186, '2023-08': 186, '2023-09': 180, '2023-10': 186, '2023-11': 180, '2023-12': 177, '2024-01': 186, '2024-02': 174, '2024-03': 186, '2024-04': 180, '2024-05': 186, '2024-06': 180, '2024-07': 186, '2024-08': 186, '2024-09': 180, '2024-10': 186, '2024-11': 180, '2024-12': 186, '2025-01': 186, '2025-02': 168, '2025-03': 186, '2025-04': 180, '2025-05': 186, '2025-06': 180, '2025-07': 186, '2025-08': 186, '2025-09': 180, '2025-10': 186, '2025-11': 180, '2025-12': 186, '2026-01': 186, '2026-02': 168, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+HIGHNY -> 0 historical markets
+KXHIGHCHI: 9463 markets, 1834 events, 2021-08-20 .. 2026-08-30, pages 10; volume_fp median 2295 p90 29294 max 1171789; with expiration_value 4415
+   by month: {'2021-08': 12, '2021-09': 29, '2021-10': 35, '2021-11': 57, '2021-12': 52, '2022-01': 53, '2022-02': 50, '2022-03': 61, '2022-04': 67, '2022-05': 124, '2022-06': 120, '2022-07': 124, '2022-08': 124, '2022-09': 120, '2022-10': 124, '2022-11': 120, '2022-12': 164, '2023-01': 186, '2023-02': 168, '2023-03': 186, '2023-04': 182, '2023-05': 186, '2023-06': 180, '2023-07': 186, '2023-08': 186, '2023-09': 180, '2023-10': 186, '2023-11': 180, '2023-12': 177, '2024-01': 186, '2024-02': 180, '2024-03': 186, '2024-04': 180, '2024-05': 186, '2024-06': 180, '2024-07': 186, '2024-08': 186, '2024-09': 180, '2024-10': 186, '2024-11': 180, '2024-12': 186, '2025-01': 186, '2025-02': 168, '2025-03': 186, '2025-04': 180, '2025-05': 186, '2025-06': 180, '2025-07': 186, '2025-08': 186, '2025-09': 180, '2025-10': 186, '2025-11': 180, '2025-12': 186, '2026-01': 186, '2026-02': 168, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+HIGHCHI -> 0 historical markets
+KXHIGHMIA: 7234 markets, 1206 events, 2023-05-12 .. 2026-08-30, pages 8; volume_fp median 2127 p90 37838 max 983377; with expiration_value 3576
+   by month: {'2023-05': 120, '2023-06': 180, '2023-07': 186, '2023-08': 186, '2023-09': 180, '2023-10': 186, '2023-11': 180, '2023-12': 178, '2024-01': 186, '2024-02': 174, '2024-03': 186, '2024-04': 180, '2024-05': 186, '2024-06': 180, '2024-07': 186, '2024-08': 186, '2024-09': 180, '2024-10': 186, '2024-11': 180, '2024-12': 186, '2025-01': 186, '2025-02': 168, '2025-03': 186, '2025-04': 180, '2025-05': 186, '2025-06': 180, '2025-07': 186, '2025-08': 186, '2025-09': 180, '2025-10': 186, '2025-11': 180, '2025-12': 186, '2026-01': 186, '2026-02': 168, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+KXHIGHAUS: 7215 markets, 1203 events, 2023-05-12 .. 2026-08-30, pages 8; volume_fp median 2732 p90 27047 max 606573; with expiration_value 3605
+   by month: {'2023-05': 120, '2023-06': 180, '2023-07': 186, '2023-08': 180, '2023-09': 180, '2023-10': 186, '2023-11': 174, '2023-12': 177, '2024-01': 180, '2024-02': 174, '2024-03': 186, '2024-04': 180, '2024-05': 186, '2024-06': 180, '2024-07': 186, '2024-08': 186, '2024-09': 180, '2024-10': 186, '2024-11': 180, '2024-12': 186, '2025-01': 186, '2025-02': 168, '2025-03': 186, '2025-04': 180, '2025-05': 186, '2025-06': 180, '2025-07': 186, '2025-08': 186, '2025-09': 180, '2025-10': 186, '2025-11': 180, '2025-12': 186, '2026-01': 186, '2026-02': 168, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+KXHIGHLAX: 3612 markets, 602 events, 2025-01-06 .. 2026-08-30, pages 4; volume_fp median 19335 p90 107004 max 903045; with expiration_value 3040
+   by month: {'2025-01': 156, '2025-02': 168, '2025-03': 186, '2025-04': 180, '2025-05': 186, '2025-06': 180, '2025-07': 186, '2025-08': 186, '2025-09': 180, '2025-10': 186, '2025-11': 180, '2025-12': 186, '2026-01': 186, '2026-02': 168, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+KXHIGHDEN: 3888 markets, 648 events, 2024-11-21 .. 2026-08-30, pages 4; volume_fp median 8719 p90 26718 max 549450; with expiration_value 3086
+   by month: {'2024-11': 60, '2024-12': 186, '2025-01': 186, '2025-02': 168, '2025-03': 186, '2025-04': 180, '2025-05': 186, '2025-06': 180, '2025-07': 186, '2025-08': 186, '2025-09': 180, '2025-10': 186, '2025-11': 180, '2025-12': 186, '2026-01': 186, '2026-02': 168, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+KXHIGHPHIL: 3888 markets, 648 events, 2024-11-21 .. 2026-08-30, pages 4; volume_fp median 5920 p90 20293 max 785028; with expiration_value 3080
+   by month: {'2024-11': 60, '2024-12': 186, '2025-01': 186, '2025-02': 168, '2025-03': 186, '2025-04': 180, '2025-05': 186, '2025-06': 180, '2025-07': 186, '2025-08': 186, '2025-09': 180, '2025-10': 186, '2025-11': 180, '2025-12': 186, '2026-01': 186, '2026-02': 168, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+KXHIGHTSEA: 1368 markets, 228 events, 2026-01-15 .. 2026-08-30, pages 2; volume_fp median 8707 p90 23327 max 282727; with expiration_value 1363
+   by month: {'2026-01': 102, '2026-02': 168, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+KXHIGHTATL: 1242 markets, 207 events, 2026-02-05 .. 2026-08-30, pages 2; volume_fp median 9200 p90 22951 max 259143; with expiration_value 1242
+   by month: {'2026-02': 144, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+KXHIGHTDAL: 1200 markets, 200 events, 2026-02-12 .. 2026-08-30, pages 2; volume_fp median 7535 p90 20656 max 131933; with expiration_value 1200
+   by month: {'2026-02': 102, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+KXHIGHTBOS: 1236 markets, 206 events, 2026-02-06 .. 2026-08-30, pages 2; volume_fp median 7399 p90 20157 max 499045; with expiration_value 1236
+   by month: {'2026-02': 138, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+KXHIGHTHOU: 1200 markets, 200 events, 2026-02-12 .. 2026-08-30, pages 2; volume_fp median 5337 p90 16116 max 211921; with expiration_value 1200
+   by month: {'2026-02': 102, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+KXHIGHTSFO: 1368 markets, 228 events, 2026-01-15 .. 2026-08-30, pages 2; volume_fp median 9553 p90 23396 max 168449; with expiration_value 1368
+   by month: {'2026-01': 102, '2026-02': 168, '2026-03': 186, '2026-04': 180, '2026-05': 186, '2026-06': 180, '2026-07': 186, '2026-08': 180}
+
+strike types in KXHIGHNY: Counter({'between': 5360, None: 1418, 'less': 1346, 'greater': 1342})
+example old market: {"ticker": "HIGHNY-23OCT11-B63.5", "title": "Will the **high temp in NYC** be 63-64\u00b0 on Oct 11, 2023?", "yes_sub_title": "63\u00b0 to 64\u00b0", "open_time": "2023-10-10T14:00:00Z", "close_time": "2023-10-12T03:59:00Z", "expiration_value": "", "result": "no", "floor_strike": 63, "cap_strike": 64, "strike_type": "between", "volume_fp": "0.00", "open_interest_fp": "0.00"}
+
+======== KALSHI historical price/trade endpoints for HIGHNY-23OCT11-B63.5 ========
+/historical/markets/HIGHNY-23OCT11-B63.5/candlesticks status 200 {'candlesticks': 10} 
+   first: {"end_period_ts": 1696950000, "open_interest": "0.00", "price": {"close": null, "high": null, "low": null, "mean": null, "open": null, "previous": null}, "volume": "0.00", "yes_ask": {"close": "0.1500", "high": "1.0000", "low": "0.1500", "open": "1.0000"}, "yes_bid": {"close": "0.0300", "high": "0.0300", "low": "0.0300", "open": "0.0300"}} 
+   last: {"end_period_ts": 1697040000, "open_interest": "0.00", "price": {"close": null, "high": null, "low": null, "mean": null, "open": null, "previous": null}, "volume": "0.00", "yes_ask": {"close": "0.0100", "high": "0.1500", "low": "0.0100", "open": "0.1400"}, "yes_bid": {"close": "0.0000", "high": "0.0000", "low": "0.0000", "open": "0.0000"}}
+/series/HIGHNY/markets/HIGHNY-23OCT11-B63.5/candlesticks status 404 {} {"error": {"code": "not_found", "message": "not found"}}
+/historical/trades status 200 {'trades': 0} 
+/markets/trades status 200 {'trades': 0} 
+
+======== KALSHI: fee schedule ========
+/series/fee_changes 200 {"series_fee_change_arr": []}
+/exchange/announcements 404 404 page not found
+
+======== SETTLEMENT: Kalshi expiration_value (The Weather Company) vs NWS CLI (IEM) for NYC ========
+days compared: 229 distribution of (WeatherCo - CLI): {0.0: 229}
+
+======== POLYMARKET: how far back do daily temperature events go? (NYC, Chicago, Miami, London) ========
+nyc [('2026-04-15', 11, 242803.237629), ('2026-07-15', 11, 163040.45714599988), ('2026-10-15', 11, 71618.407911)]
+chicago [('2026-04-15', 11, 226685.72003400003), ('2026-07-15', 11, 108550.45709999999), ('2026-10-15', 11, 55828.691120999996)]
+miami [('2026-04-15', 11, 97214.43458099998), ('2026-07-15', 11, 52681.69979499999), ('2026-10-15', 11, 36021.175634)]
+london [('2026-04-15', 11, 429295.1373170001), ('2026-07-15', 11, 176102.26501300003), ('2026-10-15', 11, 46820.517631999996)]
+dallas [('2026-04-15', 11, 101821.34310100005), ('2026-07-15', 11, 112373.26194799987), ('2026-10-15', 11, 38287.589434)]
+seattle [('2026-04-15', 11, 131296.23421000005), ('2026-07-15', 11, 49650.287564000006), ('2026-10-15', 11, 52032.817754)]
+atlanta [('2026-04-15', 11, 147957.77181499996), ('2026-07-15', 11, 53168.699731000015), ('2026-10-15', 11, 42238.563027000004)]
+
+example event: highest-temperature-in-nyc-on-april-15-2026 vol 242803.237629 liq None
+   {"question": "Will the highest temperature in New York City be 79\u00b0F or below on April 15?", "volume": "22204.402134000033", "liquidity": null, "outcomePrices": "[\"0\", \"1\"]", "bestBid": null, "bestAsk": 0.001, "spread": 0.001, "resolutionSource": "https://www.wunderground.com/history/daily/us/ny/new-york-city/KLGA", "feesEnabled": true, "feeType": "weather_fees", "umaResolutionStatus": "resolved"}
+   {"question": "Will the highest temperature in New York City be between 80-81\u00b0F on April 15?", "volume": "18712.58736399998", "liquidity": null, "outcomePrices": "[\"0\", \"1\"]", "bestBid": null, "bestAsk": 0.001, "spread": 0.001, "resolutionSource": "https://www.wunderground.com/history/daily/us/ny/new-york-city/KLGA", "feesEnabled": true, "feeType": "weather_fees", "umaResolutionStatus": "resolved"}
+   {"question": "Will the highest temperature in New York City be between 82-83\u00b0F on April 15?", "volume": "14175.25685700001", "liquidity": null, "outcomePrices": "[\"0\", \"1\"]", "bestBid": null, "bestAsk": 0.001, "spread": 0.001, "resolutionSource": "https://www.wunderground.com/history/daily/us/ny/new-york-city/KLGA", "feesEnabled": true, "feeType": "weather_fees", "umaResolutionStatus": "resolved"}
+  description: This market will resolve to the temperature range that contains the highest temperature recorded at the LaGuardia Airport Station in degrees Fahrenheit on 15 Apr '26.
+
+The resolution source for this market will be information from Wunderground, specifically the highest temperature recorded for all times on this day by the Forecast for the LaGuardia Airport Station once information is finalized, available here: https://www.wunderground.com/history/daily/us/ny/new-york-city/KLGA.
+
+To toggle between Fahrenheit and Celsius, click the gear icon next to the search bar and switch the Temperature setting between °F and °C.
+
+This market can not resolve to "Yes" until all data for this date has been finalized.
+
+The resolution source for this market measures temperatures to whole degrees Fahrenheit (eg, 21°F). Thus, this is the level of precision that will be used when resolving the market.
+
+Any revisions to temperatures recorded after data is finalized for this market's timeframe will not be considered for this market's resolution.
+  prices-history fidelity=60: 200 0 [] []
+  book (closed market): 404 {"error": "No orderbook exists for the requested token id"}
+  data-api trades: 200 [{"proxyWallet": "0x42fbc943936670037f78ef81142b0c866d11351a", "side": "SELL", "asset": "41907782466206804579858298886441096577075251522827661855871170570473622447319", "conditionId": "0xa78b7a3926dc7a6eb78240fed855cd691952b4ba6f0cfa426e94b27c859cc6a4", "size": 9.7, "price": 0.999, "timestamp": 1776290678, "title": "Will the highest temperature in New York City be between 84-85\u00b0F on April 15?...
+
+======== OPEN-METEO previous-runs: hourly previous_dayN availability by start year (NYC) ========
+gfs_seamless 2021-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+gfs_seamless 2022-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+gfs_seamless 2023-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+gfs_seamless 2024-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+gfs_seamless 2025-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+ecmwf_ifs025 2021-06-01 non-null of 192 {'temperature_2m': 0, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+ecmwf_ifs025 2022-06-01 non-null of 192 {'temperature_2m': 0, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+ecmwf_ifs025 2023-06-01 non-null of 192 {'temperature_2m': 0, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+ecmwf_ifs025 2024-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+ecmwf_ifs025 2025-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+icon_seamless 2021-06-01 non-null of 192 {'temperature_2m': 0, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+icon_seamless 2022-06-01 non-null of 192 {'temperature_2m': 0, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+icon_seamless 2023-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+icon_seamless 2024-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+icon_seamless 2025-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+ecmwf_ifs 2021-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+ecmwf_ifs 2022-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+ecmwf_ifs 2023-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+ecmwf_ifs 2024-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+ecmwf_ifs 2025-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+gem_seamless 2021-06-01 non-null of 192 {'temperature_2m': 0, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+gem_seamless 2022-06-01 non-null of 192 {'temperature_2m': 0, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+gem_seamless 2023-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 0, 'temperature_2m_previous_day2': 0}
+gem_seamless 2024-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+gem_seamless 2025-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+gfs_global 2021-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+gfs_global 2022-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+gfs_global 2023-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+gfs_global 2024-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+gfs_global 2025-06-01 non-null of 192 {'temperature_2m': 192, 'temperature_2m_previous_day1': 192, 'temperature_2m_previous_day2': 192}
+daily previous_day1: 400 {"reason": "Invalid value: Cannot initialize ForecastVariableDaily from invalid String value temperature_2m_max_previous_day1", "error": true}
+
+======== OPEN-METEO historical-forecast: model start dates (non-null count Jan 2022 / Jan 2023 / Jan 2024) ========
+ecmwf_ifs025 [('2022', 200, 0), ('2023', 200, 0), ('2024', 200, 0), ('2025', 200, 28)]
+gfs_seamless [('2022', 200, 28), ('2023', 200, 28), ('2024', 200, 28), ('2025', 200, 28)]
+icon_seamless [('2022', 200, 0), ('2023', 200, 28), ('2024', 200, 28), ('2025', 200, 28)]
+gem_seamless [('2022', 200, 0), ('2023', 200, 28), ('2024', 200, 28), ('2025', 200, 28)]
+best_match [('2022', 200, 28), ('2023', 200, 28), ('2024', 200, 28), ('2025', 200, 28)]
