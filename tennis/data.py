@@ -48,7 +48,7 @@ def http_get(url, retries=2, timeout=20):
     last = None
     for i in range(retries):
         try:
-            with urlopen(url, timeout=timeout)  # plain request with Python's own identity, same as picks/data.py as r:
+            with urlopen(url, timeout=timeout) as r:  # plain request, Python's own identity, same as picks/data.py
                 b = r.read()
                 STATS["ok"] += 1
                 print(f"  GET {url} -> {r.status}, {len(b)} bytes (final {r.geturl()})", flush=True)
