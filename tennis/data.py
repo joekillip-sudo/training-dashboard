@@ -16,7 +16,7 @@ from datetime import date
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin
-from urllib.request import Request, urlopen
+from urllib.request import urlopen
 
 import numpy as np
 import pandas as pd
@@ -24,7 +24,6 @@ import pandas as pd
 BASE = "http://www.tennis-data.co.uk/"
 INDEX_PAGES = ("alldata.php", "data.php")
 FIRST_YEAR = {"atp": 2000, "wta": 2007}
-UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
 
 # price source -> (winner column, loser column). Optional "psc" is only used if the file has closing prices.
 ODDS = {
@@ -49,7 +48,7 @@ def http_get(url, retries=2, timeout=20):
     last = None
     for i in range(retries):
         try:
-            with urlopen(Request(url, headers={"User-Agent": UA}), timeout=timeout) as r:
+            with urlopen(url, timeout=timeout)  # plain request with Python's own identity, same as picks/data.py as r:
                 b = r.read()
                 STATS["ok"] += 1
                 print(f"  GET {url} -> {r.status}, {len(b)} bytes (final {r.geturl()})", flush=True)
