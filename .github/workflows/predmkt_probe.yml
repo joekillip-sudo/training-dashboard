@@ -3,6 +3,10 @@ name: Prediction-market feasibility probe
 # Manual only. Read-only look at Kalshi / Polymarket / Open-Meteo / NOAA. Never touches picks or ledger.json.
 on:
   workflow_dispatch:
+  # Dev-branch runs: dispatch needs the file on main, so a push touching this marker file also starts it.
+  push:
+    branches: [claude/weather-prediction-market-edge-i61672]
+    paths: [predmkt/RUN_PROBE]
 
 permissions:
   contents: write
