@@ -13,7 +13,7 @@ permissions:
 
 concurrency:
   group: tennis
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   backtest:
@@ -34,6 +34,7 @@ jobs:
         run: python -m unittest tennis.tests.test_tennis
 
       - name: Fetch ATP and WTA yearly files
+        timeout-minutes: 12
         run: python -m tennis.cli fetch --out tennis/data_raw
 
       - name: Backtest report

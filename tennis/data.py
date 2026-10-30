@@ -41,21 +41,30 @@ SURFACES = ("hard", "clay", "grass")
 
 # ---------------------------------------------------------------- download
 
-def http_get(url, retries=3, timeout=60):
-    """Bytes of the URL (redirects are followed by urllib), or None if it is missing / unreachable."""
+STATS = {"ok": 0, "missing": 0, "unreachable": 0}
+
+
+def http_get(url, retries=2, timeout=20):
+    """Bytes of the URL (redirects are followed by urllib), or None if it is missing / unreachable. Logs what happened."""
     last = None
     for i in range(retries):
         try:
             with urlopen(Request(url, headers={"User-Agent": UA}), timeout=timeout) as r:
-                return r.read()
+                b = r.read()
+                STATS["ok"] += 1
+                print(f"  GET {url} -> {r.status}, {len(b)} bytes (final {r.geturl()})", flush=True)
+                return b
         except HTTPError as e:
             if e.code in (404, 410):
+                STATS["missing"] += 1
+                print(f"  GET {url} -> {e.code}", flush=True)
                 return None
             last = e
         except (URLError, OSError) as e:
             last = e
-        time.sleep(2 ** i)
-    print(f"  giving up on {url}: {last}", file=sys.stderr)
+        time.sleep(1 + i)
+    STATS["unreachable"] += 1
+    print(f"  GET {url} -> FAILED: {last}", flush=True)
     return None
 
 
@@ -102,6 +111,8 @@ def fetch_all(out_dir, last_year=None, log=print):
                 discovered.setdefault(k, [])
                 discovered[k] += [u for u in v if u not in discovered[k]]
     log(f"index pages listed {len(discovered)} yearly files")
+    if STATS["ok"] == 0:
+        raise SystemExit("tennis-data.co.uk is unreachable from here (no index page, no notes): " + str(STATS))
     notes = http_get(BASE + "notes.txt")
     if notes:
         (out / "notes.txt").write_bytes(notes)
@@ -114,6 +125,8 @@ def fetch_all(out_dir, last_year=None, log=print):
                 continue
             urls = discovered.get((tour, year), []) + [u for u in guess_urls(tour, year) if u not in discovered.get((tour, year), [])]
             for url in urls:
+                if STATS["unreachable"] >= 6 and STATS["ok"] < 3:
+                    raise SystemExit("too many unreachable downloads: " + str(STATS))
                 b = http_get(url)
                 if looks_like_workbook(b):
                     name = f"{tour}_{year}{Path(url).suffix.lower()}"
