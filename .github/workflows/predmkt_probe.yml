@@ -1,0 +1,32 @@
+name: Prediction-market feasibility probe
+
+# Manual only. Read-only look at Kalshi / Polymarket / Open-Meteo / NOAA. Never touches picks or ledger.json.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: predmkt-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe
+        run: python -m predmkt.probe 2>&1 | tee predmkt_probe_report.txt
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add predmkt_probe_report.txt
+          git commit -m "predmkt feasibility probe report" || exit 0
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
