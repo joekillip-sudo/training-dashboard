@@ -4,9 +4,6 @@ name: Tennis backtest
 # runs a walk-forward backtest, and commits tennis_report.txt. Never touches ledger.json or the daily picks.
 on:
   workflow_dispatch:
-  push:
-    branches: [ccr-310de746-511ys8]   # TEMPORARY while developing on this branch; removed before the PR
-    paths: ["tennis/**", ".github/workflows/tennis.yml"]
 
 permissions:
   contents: write
