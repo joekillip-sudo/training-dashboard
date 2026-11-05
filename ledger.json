@@ -1,4 +1,4 @@
-{"floor":{"min_ev":0.02,"min_edge":0.01,"max_odds":15.0},"live_from":"2026-10-27","generated":"2026-11-04T20:29:18+00:00","bets":[
+{"floor":{"min_ev":0.02,"min_edge":0.01,"max_odds":15.0},"live_from":"2026-10-27","generated":"2026-11-05T00:25:53+00:00","bets":[
 {"id":"I1|2024-05-23|Cagliari|Fiorentina|H","league":"I1","date":"2024-05-23","home":"Cagliari","away":"Fiorentina","outcome":"H","odds":4.2,"model_p":0.283,"market_p":0.2246,"source":"backtest","result":"A","close_p":0.1914},
 {"id":"I1|2024-05-24|Genoa|Bologna|D","league":"I1","date":"2024-05-24","home":"Genoa","away":"Bologna","outcome":"D","odds":3.4,"model_p":0.3082,"market_p":0.2792,"source":"backtest","result":"H","close_p":0.2979},
 {"id":"SP1|2024-05-24|Girona|Granada|A","league":"SP1","date":"2024-05-24","home":"Girona","away":"Granada","outcome":"A","odds":12.0,"model_p":0.0918,"market_p":0.0789,"source":"backtest","result":"H","close_p":0.082},
@@ -13644,15 +13644,15 @@
 {"id":"SP2|2026-11-02|Oviedo|Las Palmas|D","league":"SP2","date":"2026-11-02","home":"Oviedo","away":"Las Palmas","outcome":"D","odds":3.8,"model_p":0.2714,"market_p":0.2445,"source":"live","result":"A","close_p":0.2483},
 {"id":"SP2|2026-11-02|Valladolid|Leganes|A","league":"SP2","date":"2026-11-02","home":"Valladolid","away":"Leganes","outcome":"A","odds":4.75,"model_p":0.2504,"market_p":0.1962,"source":"live","result":"H","close_p":0.2266},
 {"id":"SP2|2026-11-02|Valladolid|Leganes|D","league":"SP2","date":"2026-11-02","home":"Valladolid","away":"Leganes","outcome":"D","odds":3.6,"model_p":0.286,"market_p":0.2589,"source":"live","result":"H","close_p":0.2691},
-{"id":"E1|2026-11-03|Birmingham|Millwall|A","league":"E1","date":"2026-11-03","home":"Birmingham","away":"Millwall","outcome":"A","odds":3.7,"model_p":0.2913,"market_p":0.2489,"source":"live","result":null,"close_p":null},
-{"id":"E1|2026-11-03|Blackburn|Stoke|H","league":"E1","date":"2026-11-03","home":"Blackburn","away":"Stoke","outcome":"H","odds":2.57,"model_p":0.4104,"market_p":0.3583,"source":"live","result":null,"close_p":null},
-{"id":"E1|2026-11-03|Charlton|Bolton|A","league":"E1","date":"2026-11-03","home":"Charlton","away":"Bolton","outcome":"A","odds":3.1,"model_p":0.3412,"market_p":0.3011,"source":"live","result":null,"close_p":null},
-{"id":"E1|2026-11-03|Derby|Norwich|H","league":"E1","date":"2026-11-03","home":"Derby","away":"Norwich","outcome":"H","odds":3.5,"model_p":0.355,"market_p":0.2642,"source":"live","result":null,"close_p":null},
-{"id":"E1|2026-11-03|QPR|Burnley|A","league":"E1","date":"2026-11-03","home":"QPR","away":"Burnley","outcome":"A","odds":3.7,"model_p":0.3529,"market_p":0.2522,"source":"live","result":null,"close_p":null},
-{"id":"E1|2026-11-03|Watford|Lincoln|H","league":"E1","date":"2026-11-03","home":"Watford","away":"Lincoln","outcome":"H","odds":2.45,"model_p":0.5011,"market_p":0.3758,"source":"live","result":null,"close_p":null},
-{"id":"E1|2026-11-03|West Brom|Southampton|A","league":"E1","date":"2026-11-03","home":"West Brom","away":"Southampton","outcome":"A","odds":2.7,"model_p":0.3832,"market_p":0.3424,"source":"live","result":null,"close_p":null},
-{"id":"E2|2026-11-03|Wigan|Mansfield|H","league":"E2","date":"2026-11-03","home":"Wigan","away":"Mansfield","outcome":"H","odds":3.2,"model_p":0.3375,"market_p":0.2886,"source":"live","result":null,"close_p":null},
-{"id":"E3|2026-11-03|Northampton|Oldham|D","league":"E3","date":"2026-11-03","home":"Northampton","away":"Oldham","outcome":"D","odds":3.25,"model_p":0.3243,"market_p":0.2835,"source":"live","result":null,"close_p":null},
-{"id":"E1|2026-11-04|Bristol City|Wolves|H","league":"E1","date":"2026-11-04","home":"Bristol City","away":"Wolves","outcome":"H","odds":3.4,"model_p":0.3774,"market_p":0.273,"source":"live","result":null,"close_p":null},
-{"id":"E1|2026-11-04|Wrexham|Middlesbrough|H","league":"E1","date":"2026-11-04","home":"Wrexham","away":"Middlesbrough","outcome":"H","odds":4.2,"model_p":0.3077,"market_p":0.2206,"source":"live","result":null,"close_p":null}
+{"id":"E1|2026-11-03|Birmingham|Millwall|A","league":"E1","date":"2026-11-03","home":"Birmingham","away":"Millwall","outcome":"A","odds":3.7,"model_p":0.2913,"market_p":0.2489,"source":"live","result":"H","close_p":0.253},
+{"id":"E1|2026-11-03|Blackburn|Stoke|H","league":"E1","date":"2026-11-03","home":"Blackburn","away":"Stoke","outcome":"H","odds":2.57,"model_p":0.4104,"market_p":0.3583,"source":"live","result":"A","close_p":0.3419},
+{"id":"E1|2026-11-03|Charlton|Bolton|A","league":"E1","date":"2026-11-03","home":"Charlton","away":"Bolton","outcome":"A","odds":3.1,"model_p":0.3412,"market_p":0.3011,"source":"live","result":"A","close_p":0.2914},
+{"id":"E1|2026-11-03|Derby|Norwich|H","league":"E1","date":"2026-11-03","home":"Derby","away":"Norwich","outcome":"H","odds":3.5,"model_p":0.355,"market_p":0.2642,"source":"live","result":"A","close_p":0.2537},
+{"id":"E1|2026-11-03|QPR|Burnley|A","league":"E1","date":"2026-11-03","home":"QPR","away":"Burnley","outcome":"A","odds":3.7,"model_p":0.3529,"market_p":0.2522,"source":"live","result":"D","close_p":0.2529},
+{"id":"E1|2026-11-03|Watford|Lincoln|H","league":"E1","date":"2026-11-03","home":"Watford","away":"Lincoln","outcome":"H","odds":2.45,"model_p":0.5011,"market_p":0.3758,"source":"live","result":"H","close_p":0.375},
+{"id":"E1|2026-11-03|West Brom|Southampton|A","league":"E1","date":"2026-11-03","home":"West Brom","away":"Southampton","outcome":"A","odds":2.7,"model_p":0.3832,"market_p":0.3424,"source":"live","result":"D","close_p":0.3066},
+{"id":"E2|2026-11-03|Wigan|Mansfield|H","league":"E2","date":"2026-11-03","home":"Wigan","away":"Mansfield","outcome":"H","odds":3.2,"model_p":0.3375,"market_p":0.2886,"source":"live","result":"D","close_p":0.3375},
+{"id":"E3|2026-11-03|Northampton|Oldham|D","league":"E3","date":"2026-11-03","home":"Northampton","away":"Oldham","outcome":"D","odds":3.25,"model_p":0.3243,"market_p":0.2835,"source":"live","result":"A","close_p":0.3038},
+{"id":"E1|2026-11-04|Bristol City|Wolves|H","league":"E1","date":"2026-11-04","home":"Bristol City","away":"Wolves","outcome":"H","odds":3.4,"model_p":0.3774,"market_p":0.273,"source":"live","result":"A","close_p":0.2635},
+{"id":"E1|2026-11-04|Wrexham|Middlesbrough|H","league":"E1","date":"2026-11-04","home":"Wrexham","away":"Middlesbrough","outcome":"H","odds":4.2,"model_p":0.3077,"market_p":0.2206,"source":"live","result":"H","close_p":0.2169}
 ]}
