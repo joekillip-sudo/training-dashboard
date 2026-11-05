@@ -1,0 +1,238 @@
+
+======== KALSHI: series list (weather) ========
+status 200 ratelimit-ish headers {}
+series returned: 500
+  KXHIGHTDAL | Dallas Maximum Temperature | daily
+  KXLOWTYSSY | Daily low temp Sydney | daily
+  KXYEARLOWATL | Atlanta annual low hourly temp | annual
+  KXHIGHTVABB | Daily high temp Mumbai | daily
+  KXHIGHTNOLA | New Orleans Max temp Daily | daily
+  KXHIGHTWSSS | Daily high temp Singapore | daily
+  KXLOWLAX | Lowest temperature in Los Angeles | daily
+  KXMICHTEMP | Lake Michigan surface water temperature | monthly
+  KXHIGHNY | Highest temperature in NYC | daily
+  KXTEMPLAHS | Hourly Directional Coastal LA Temperature | hourly
+  KXHIGHTLV | Las Vegas Max Daily Temperature | daily
+  KXTEMPNYCH | Hourly Directional NYC Temperature | hourly
+  KXLOWNYC | Lowest temperature in New York | daily
+  KXLOWTSEA | Low Temperature Seattle | daily
+  KXDVHIGH | Death Valley temperature | daily
+  KXYEARLOWOKC | Oklahoma City annual low hourly temp | annual
+  KXHIGHTRKSI | Daily high temp Seoul | daily
+  KXHIGHTSFO | San Francisco High Temperature Daily | daily
+  KXHIGHTSEA | Seattle Maximum Temperature Daily | daily
+  KXLOWTLSSG | Daily low temp Geneva | daily
+  KXHIGHTHOU | Daily High Temperature Houston | daily
+  KXDENHIGH | Highest temperature in Denver | daily
+  KXLOWTZSPD | Daily low temp Shanghai | daily
+  KXLOWTNOLA | NOLA Low Temperature | daily
+  KXLOWTBOS | Low Temperature Boston | daily
+  KXHIGHTCYYZ | Daily high temp Toronto | daily
+  KXLOWTEBBR | Daily low temp Brussels | daily
+  KXHIGHTSDF | HIGHEST Temperature SATX | daily
+  HIGHNY | Highest temperature in NYC | daily
+  KXYEARLOWPHL | Philadelphia annual low hourly temp | annual
+  KXYEARLOWBOS | Boston annual low hourly temp | annual
+  HIGHCHI | Highest temperature in Chicago | daily
+  KXHOBBYTEMP | Maximum temperature at Houston Hobby Airport | one_off
+  KXTEMPLAXHS | Hourly Directional Coastal LA Temperature | hourly
+  KXLOWTMIA | Lowest temperature in Miami | daily
+  KXWEEKHTLAX | Weekly high temperature Los Angeles | weekly
+  KXWEEKHTMIA | Weekly high temperature Miami | weekly
+  KXTEMPBOSH | Hourly Directional Boston Temperature | hourly
+  KXLOWTLTFM | Daily low temp Istanbul | daily
+  KXLOWTSBGR | Daily low temp Sao Paulo  | daily
+  KXLOWTSFO | Lowest Temperature San Francisco | daily
+  KXLOWTSDF | Lowest Temperature SDX | daily
+  KXYEARLOWDC | Washington DC annual low hourly temp | annual
+  KXPHILHIGH | Highest temperature in Philadelphia | custom
+  KXLOWDEN | Lowest temperature in Denver | daily
+  KXLOWTEWR | Newark, NJ (EWR) Daily Low Temp | daily
+  KXLOWTVHHH | Daily low temp Hong Kong | daily
+  KXHIGHTEWR | Newark, NJ (EWR) Daily Max Temp | daily
+  KXLOWTSATX | Lowest Temperature SATX | daily
+  KXYEARLOWMSP | Minneapolis annual low hourly temp | annual
+  KXHIGHTLSGG | Daily high temp Geneva | daily
+  KXHIGHHOU | Highest temperature in Houston | daily
+  KXTEMPCHIH | Hourly Directional Chicago Temperature | hourly
+  TEMP | Average annual temperature deviation | annual
+  KXWEEKHTPHX | Weekly high temperature Phoenix | weekly
+  KXTEMPNYCHS | Hourly Directional NYC Temperature | hourly
+  KXLOWTLV | Las Vegas Daily Low Temperature | daily
+  KXHOLIDAYTMAX | Max temperature holiday by city | custom
+  KXLOWTVABB | Daily low temp Mumbai | daily
+  KXTXURI | Will the average temperature in Texas (DFW & IAH) fall below 20°F for at least 2 days within a 4-day span? | one_off
+
+======== KALSHI: settled markets for KXHIGHNY ========
+settled markets: 408 pages: 1
+by month: {'2026-08': 48, '2026-09': 180, '2026-10': 180}
+events: 68
+example market keys: ['can_close_early', 'close_time', 'created_time', 'custom_strike', 'early_close_condition', 'event_ticker', 'exchange_index', 'expected_expiration_time', 'expiration_time', 'expiration_value', 'floor_strike', 'last_price_dollars', 'latest_expiration_time', 'market_type', 'no_ask_dollars', 'no_bid_dollars', 'no_sub_title', 'notional_value_dollars', 'occurrence_datetime', 'open_interest_fp', 'open_time', 'previous_price_dollars', 'previous_yes_ask_dollars', 'previous_yes_bid_dollars', 'price_level_structure', 'price_ranges', 'result', 'rules_primary', 'rules_secondary', 'settlement_bounds_type', 'settlement_timer_seconds', 'settlement_ts', 'settlement_value_dollars', 'status', 'strike_type', 'ticker', 'title', 'updated_time', 'volume_24h_fp', 'volume_fp', 'yes_ask_dollars', 'yes_ask_size_fp', 'yes_bid_dollars', 'yes_bid_size_fp', 'yes_sub_title']
+example: {"ticker": "KXHIGHNY-26OCT29-T74", "event_ticker": "KXHIGHNY-26OCT29", "title": "Will the maximum temperature be >74\u00b0 on Oct 29, 2026?", "subtitle": null, "yes_sub_title": "75\u00b0 or above", "status": "finalized", "result": "no", "open_time": "2026-10-28T14:00:00Z", "close_time": "2026-10-30T05:00:00Z", "expiration_time": "2026-11-05T14:00:00Z", "floor_strike": 74, "cap_strike": null, "strike_type": "greater", "volume": null, "open_interest": null, "liquidity": null, "last_price": null, "previous_price": null, "yes_bid": null, "yes_ask": null, "settlement_value": null, "rules_primary": "If the maximum temperature recorded at New York City (CLINYC) for Oct 29, 2026, is greater than 74\u00b0 fahrenheit according to The Weather Company, then the market resolves to Yes.", "rules_secondary": "Not all weather data is the same. While checking a source like AccuWeather or Google Weather may help guide your decision, the official and final value used to determine this market is the maximum/minimum temperature as reported by the Weather Company.\n\nReading weather data\nPreliminary Weather Company data may be subject to rounding and conversion differences from the final reported value.\nUse caution when interpreting preliminary Weather Company readings.\n\nIf it is determined in the sole discretion of the Exchange that there is a material error in the initial non-preliminary publication, Expiration may be held until the publication of a non-materially-erroneous data revision or until the Expiration Date, whichever comes first. If no data is available at the end of this period, all markets will resolve to the last fair price determined by Kalshi. Please note, a status of \"Final\" on weather.com/kalshi is provided for convenience only, and does not guarantee data to be erro...
+volume per market: median 0 p90 0 max 0
+
+======== KALSHI: settled markets for KXHIGHCHI ========
+settled markets: 408 pages: 1
+by month: {'2026-08': 48, '2026-09': 180, '2026-10': 180}
+events: 68
+example market keys: ['can_close_early', 'close_time', 'created_time', 'custom_strike', 'early_close_condition', 'event_ticker', 'exchange_index', 'expected_expiration_time', 'expiration_time', 'expiration_value', 'floor_strike', 'last_price_dollars', 'latest_expiration_time', 'market_type', 'no_ask_dollars', 'no_bid_dollars', 'no_sub_title', 'notional_value_dollars', 'occurrence_datetime', 'open_interest_fp', 'open_time', 'previous_price_dollars', 'previous_yes_ask_dollars', 'previous_yes_bid_dollars', 'price_level_structure', 'price_ranges', 'result', 'rules_primary', 'rules_secondary', 'settlement_bounds_type', 'settlement_timer_seconds', 'settlement_ts', 'settlement_value_dollars', 'status', 'strike_type', 'ticker', 'title', 'updated_time', 'volume_24h_fp', 'volume_fp', 'yes_ask_dollars', 'yes_ask_size_fp', 'yes_bid_dollars', 'yes_bid_size_fp', 'yes_sub_title']
+example: {"ticker": "KXHIGHCHI-26OCT29-T75", "event_ticker": "KXHIGHCHI-26OCT29", "title": "Will the maximum temperature be >75\u00b0 on Oct 29, 2026?", "subtitle": null, "yes_sub_title": "76\u00b0 or above", "status": "finalized", "result": "no", "open_time": "2026-10-28T14:00:00Z", "close_time": "2026-10-30T06:00:00Z", "expiration_time": "2026-11-05T14:00:00Z", "floor_strike": 75, "cap_strike": null, "strike_type": "greater", "volume": null, "open_interest": null, "liquidity": null, "last_price": null, "previous_price": null, "yes_bid": null, "yes_ask": null, "settlement_value": null, "rules_primary": "If the maximum temperature recorded at Chicago (CLIMDW) for Oct 29, 2026, is greater than 75\u00b0 fahrenheit according to The Weather Company, then the market resolves to Yes.", "rules_secondary": "Not all weather data is the same. While checking a source like AccuWeather or Google Weather may help guide your decision, the official and final value used to determine this market is the maximum/minimum temperature as reported by the Weather Company.\n\nReading weather data\nPreliminary Weather Company data may be subject to rounding and conversion differences from the final reported value.\nUse caution when interpreting preliminary Weather Company readings.\n\nIf it is determined in the sole discretion of the Exchange that there is a material error in the initial non-preliminary publication, Expiration may be held until the publication of a non-materially-erroneous data revision or until the Expiration Date, whichever comes first. If no data is available at the end of this period, all markets will resolve to the last fair price determined by Kalshi. Please note, a status of \"Final\" on weather.com/kalshi is provided for convenience only, and does not guarantee data to be error-fr...
+volume per market: median 0 p90 0 max 0
+
+======== KALSHI: settled markets for KXHIGHMIA ========
+settled markets: 408 pages: 1
+by month: {'2026-08': 48, '2026-09': 180, '2026-10': 180}
+events: 68
+example market keys: ['can_close_early', 'close_time', 'created_time', 'custom_strike', 'early_close_condition', 'event_ticker', 'exchange_index', 'expected_expiration_time', 'expiration_time', 'expiration_value', 'floor_strike', 'last_price_dollars', 'latest_expiration_time', 'market_type', 'no_ask_dollars', 'no_bid_dollars', 'no_sub_title', 'notional_value_dollars', 'occurrence_datetime', 'open_interest_fp', 'open_time', 'previous_price_dollars', 'previous_yes_ask_dollars', 'previous_yes_bid_dollars', 'price_level_structure', 'price_ranges', 'result', 'rules_primary', 'rules_secondary', 'settlement_bounds_type', 'settlement_timer_seconds', 'settlement_ts', 'settlement_value_dollars', 'status', 'strike_type', 'ticker', 'title', 'updated_time', 'volume_24h_fp', 'volume_fp', 'yes_ask_dollars', 'yes_ask_size_fp', 'yes_bid_dollars', 'yes_bid_size_fp', 'yes_sub_title']
+example: {"ticker": "KXHIGHMIA-26OCT29-T90", "event_ticker": "KXHIGHMIA-26OCT29", "title": "Will the maximum temperature be >90\u00b0 on Oct 29, 2026?", "subtitle": null, "yes_sub_title": "91\u00b0 or above", "status": "finalized", "result": "no", "open_time": "2026-10-28T14:00:00Z", "close_time": "2026-10-30T05:00:00Z", "expiration_time": "2026-11-05T14:00:00Z", "floor_strike": 90, "cap_strike": null, "strike_type": "greater", "volume": null, "open_interest": null, "liquidity": null, "last_price": null, "previous_price": null, "yes_bid": null, "yes_ask": null, "settlement_value": null, "rules_primary": "If the maximum temperature recorded at Miami (CLIMIA) for Oct 29, 2026, is greater than 90\u00b0 fahrenheit according to The Weather Company, then the market resolves to Yes.", "rules_secondary": "Not all weather data is the same. While checking a source like AccuWeather or Google Weather may help guide your decision, the official and final value used to determine this market is the maximum/minimum temperature as reported by the Weather Company.\n\nReading weather data\nPreliminary Weather Company data may be subject to rounding and conversion differences from the final reported value.\nUse caution when interpreting preliminary Weather Company readings.\n\nIf it is determined in the sole discretion of the Exchange that there is a material error in the initial non-preliminary publication, Expiration may be held until the publication of a non-materially-erroneous data revision or until the Expiration Date, whichever comes first. If no data is available at the end of this period, all markets will resolve to the last fair price determined by Kalshi. Please note, a status of \"Final\" on weather.com/kalshi is provided for convenience only, and does not guarantee data to be error-free...
+volume per market: median 0 p90 0 max 0
+
+======== KALSHI: settled markets for KXHIGHAUS ========
+settled markets: 408 pages: 1
+by month: {'2026-08': 48, '2026-09': 180, '2026-10': 180}
+events: 68
+example market keys: ['can_close_early', 'close_time', 'created_time', 'custom_strike', 'early_close_condition', 'event_ticker', 'exchange_index', 'expected_expiration_time', 'expiration_time', 'expiration_value', 'floor_strike', 'last_price_dollars', 'latest_expiration_time', 'market_type', 'no_ask_dollars', 'no_bid_dollars', 'no_sub_title', 'notional_value_dollars', 'occurrence_datetime', 'open_interest_fp', 'open_time', 'previous_price_dollars', 'previous_yes_ask_dollars', 'previous_yes_bid_dollars', 'price_level_structure', 'price_ranges', 'result', 'rules_primary', 'rules_secondary', 'settlement_bounds_type', 'settlement_timer_seconds', 'settlement_ts', 'settlement_value_dollars', 'status', 'strike_type', 'ticker', 'title', 'updated_time', 'volume_24h_fp', 'volume_fp', 'yes_ask_dollars', 'yes_ask_size_fp', 'yes_bid_dollars', 'yes_bid_size_fp', 'yes_sub_title']
+example: {"ticker": "KXHIGHAUS-26OCT29-T84", "event_ticker": "KXHIGHAUS-26OCT29", "title": "Will the maximum temperature be >84\u00b0 on Oct 29, 2026?", "subtitle": null, "yes_sub_title": "85\u00b0 or above", "status": "finalized", "result": "no", "open_time": "2026-10-28T14:00:00Z", "close_time": "2026-10-30T06:00:00Z", "expiration_time": "2026-11-05T14:00:00Z", "floor_strike": 84, "cap_strike": null, "strike_type": "greater", "volume": null, "open_interest": null, "liquidity": null, "last_price": null, "previous_price": null, "yes_bid": null, "yes_ask": null, "settlement_value": null, "rules_primary": "If the maximum temperature recorded at Austin (CLIAUS) for Oct 29, 2026, is greater than 84\u00b0 fahrenheit according to The Weather Company, then the market resolves to Yes.", "rules_secondary": "Not all weather data is the same. While checking a source like AccuWeather or Google Weather may help guide your decision, the official and final value used to determine this market is the maximum/minimum temperature as reported by the Weather Company.\n\nReading weather data\nPreliminary Weather Company data may be subject to rounding and conversion differences from the final reported value.\nUse caution when interpreting preliminary Weather Company readings.\n\nIf it is determined in the sole discretion of the Exchange that there is a material error in the initial non-preliminary publication, Expiration may be held until the publication of a non-materially-erroneous data revision or until the Expiration Date, whichever comes first. If no data is available at the end of this period, all markets will resolve to the last fair price determined by Kalshi. Please note, a status of \"Final\" on weather.com/kalshi is provided for convenience only, and does not guarantee data to be error-fre...
+volume per market: median 0 p90 0 max 0
+
+======== KALSHI: settled markets for KXHIGHLAX ========
+settled markets: 408 pages: 1
+by month: {'2026-08': 48, '2026-09': 180, '2026-10': 180}
+events: 68
+example market keys: ['can_close_early', 'close_time', 'created_time', 'custom_strike', 'early_close_condition', 'event_ticker', 'exchange_index', 'expected_expiration_time', 'expiration_time', 'expiration_value', 'floor_strike', 'last_price_dollars', 'latest_expiration_time', 'market_type', 'no_ask_dollars', 'no_bid_dollars', 'no_sub_title', 'notional_value_dollars', 'occurrence_datetime', 'open_interest_fp', 'open_time', 'previous_price_dollars', 'previous_yes_ask_dollars', 'previous_yes_bid_dollars', 'price_level_structure', 'price_ranges', 'result', 'rules_primary', 'rules_secondary', 'settlement_bounds_type', 'settlement_timer_seconds', 'settlement_ts', 'settlement_value_dollars', 'status', 'strike_type', 'ticker', 'title', 'updated_time', 'volume_24h_fp', 'volume_fp', 'yes_ask_dollars', 'yes_ask_size_fp', 'yes_bid_dollars', 'yes_bid_size_fp', 'yes_sub_title']
+example: {"ticker": "KXHIGHLAX-26OCT29-T75", "event_ticker": "KXHIGHLAX-26OCT29", "title": "Will the maximum temperature be >75\u00b0 on Oct 29, 2026?", "subtitle": null, "yes_sub_title": "76\u00b0 or above", "status": "finalized", "result": "no", "open_time": "2026-10-28T14:00:00Z", "close_time": "2026-10-30T08:00:00Z", "expiration_time": "2026-11-05T14:00:00Z", "floor_strike": 75, "cap_strike": null, "strike_type": "greater", "volume": null, "open_interest": null, "liquidity": null, "last_price": null, "previous_price": null, "yes_bid": null, "yes_ask": null, "settlement_value": null, "rules_primary": "If the maximum temperature recorded at Los Angeles (CLILAX) for Oct 29, 2026, is greater than 75\u00b0 fahrenheit according to The Weather Company, then the market resolves to Yes.", "rules_secondary": "Not all weather data is the same. While checking a source like AccuWeather or Google Weather may help guide your decision, the official and final value used to determine this market is the maximum/minimum temperature as reported by the Weather Company.\n\nReading weather data\nPreliminary Weather Company data may be subject to rounding and conversion differences from the final reported value.\nUse caution when interpreting preliminary Weather Company readings.\n\nIf it is determined in the sole discretion of the Exchange that there is a material error in the initial non-preliminary publication, Expiration may be held until the publication of a non-materially-erroneous data revision or until the Expiration Date, whichever comes first. If no data is available at the end of this period, all markets will resolve to the last fair price determined by Kalshi. Please note, a status of \"Final\" on weather.com/kalshi is provided for convenience only, and does not guarantee data to be erro...
+volume per market: median 0 p90 0 max 0
+
+======== KALSHI: settled markets for KXHIGHDEN ========
+settled markets: 408 pages: 1
+by month: {'2026-08': 48, '2026-09': 180, '2026-10': 180}
+events: 68
+example market keys: ['can_close_early', 'close_time', 'created_time', 'custom_strike', 'early_close_condition', 'event_ticker', 'exchange_index', 'expected_expiration_time', 'expiration_time', 'expiration_value', 'floor_strike', 'last_price_dollars', 'latest_expiration_time', 'market_type', 'no_ask_dollars', 'no_bid_dollars', 'no_sub_title', 'notional_value_dollars', 'occurrence_datetime', 'open_interest_fp', 'open_time', 'previous_price_dollars', 'previous_yes_ask_dollars', 'previous_yes_bid_dollars', 'price_level_structure', 'price_ranges', 'result', 'rules_primary', 'rules_secondary', 'settlement_bounds_type', 'settlement_timer_seconds', 'settlement_ts', 'settlement_value_dollars', 'status', 'strike_type', 'ticker', 'title', 'updated_time', 'volume_24h_fp', 'volume_fp', 'yes_ask_dollars', 'yes_ask_size_fp', 'yes_bid_dollars', 'yes_bid_size_fp', 'yes_sub_title']
+example: {"ticker": "KXHIGHDEN-26OCT29-T70", "event_ticker": "KXHIGHDEN-26OCT29", "title": "Will the maximum temperature be >70\u00b0 on Oct 29, 2026?", "subtitle": null, "yes_sub_title": "71\u00b0 or above", "status": "finalized", "result": "no", "open_time": "2026-10-28T14:00:00Z", "close_time": "2026-10-30T07:00:00Z", "expiration_time": "2026-11-05T14:00:00Z", "floor_strike": 70, "cap_strike": null, "strike_type": "greater", "volume": null, "open_interest": null, "liquidity": null, "last_price": null, "previous_price": null, "yes_bid": null, "yes_ask": null, "settlement_value": null, "rules_primary": "If the maximum temperature recorded at Denver (CLIDEN) for Oct 29, 2026, is greater than 70\u00b0 fahrenheit according to The Weather Company, then the market resolves to Yes.", "rules_secondary": "Not all weather data is the same. While checking a source like AccuWeather or Google Weather may help guide your decision, the official and final value used to determine this market is the maximum/minimum temperature as reported by the Weather Company.\n\nReading weather data\nPreliminary Weather Company data may be subject to rounding and conversion differences from the final reported value.\nUse caution when interpreting preliminary Weather Company readings.\n\nIf it is determined in the sole discretion of the Exchange that there is a material error in the initial non-preliminary publication, Expiration may be held until the publication of a non-materially-erroneous data revision or until the Expiration Date, whichever comes first. If no data is available at the end of this period, all markets will resolve to the last fair price determined by Kalshi. Please note, a status of \"Final\" on weather.com/kalshi is provided for convenience only, and does not guarantee data to be error-fre...
+volume per market: median 0 p90 0 max 0
+
+======== KALSHI: settled markets for KXHIGHPHIL ========
+settled markets: 408 pages: 1
+by month: {'2026-08': 48, '2026-09': 180, '2026-10': 180}
+events: 68
+example market keys: ['can_close_early', 'close_time', 'created_time', 'custom_strike', 'early_close_condition', 'event_ticker', 'exchange_index', 'expected_expiration_time', 'expiration_time', 'expiration_value', 'floor_strike', 'last_price_dollars', 'latest_expiration_time', 'market_type', 'no_ask_dollars', 'no_bid_dollars', 'no_sub_title', 'notional_value_dollars', 'occurrence_datetime', 'open_interest_fp', 'open_time', 'previous_price_dollars', 'previous_yes_ask_dollars', 'previous_yes_bid_dollars', 'price_level_structure', 'price_ranges', 'result', 'rules_primary', 'rules_secondary', 'settlement_bounds_type', 'settlement_timer_seconds', 'settlement_ts', 'settlement_value_dollars', 'status', 'strike_type', 'ticker', 'title', 'updated_time', 'volume_24h_fp', 'volume_fp', 'yes_ask_dollars', 'yes_ask_size_fp', 'yes_bid_dollars', 'yes_bid_size_fp', 'yes_sub_title']
+example: {"ticker": "KXHIGHPHIL-26OCT29-T76", "event_ticker": "KXHIGHPHIL-26OCT29", "title": "Will the maximum temperature be >76\u00b0 on Oct 29, 2026?", "subtitle": null, "yes_sub_title": "77\u00b0 or above", "status": "finalized", "result": "no", "open_time": "2026-10-28T14:00:00Z", "close_time": "2026-10-30T05:00:00Z", "expiration_time": "2026-11-05T14:00:00Z", "floor_strike": 76, "cap_strike": null, "strike_type": "greater", "volume": null, "open_interest": null, "liquidity": null, "last_price": null, "previous_price": null, "yes_bid": null, "yes_ask": null, "settlement_value": null, "rules_primary": "If the maximum temperature recorded at Philadelphia (CLIPHL) for Oct 29, 2026, is greater than 76\u00b0 fahrenheit according to The Weather Company, then the market resolves to Yes.", "rules_secondary": "Not all weather data is the same. While checking a source like AccuWeather or Google Weather may help guide your decision, the official and final value used to determine this market is the maximum/minimum temperature as reported by the Weather Company.\n\nReading weather data\nPreliminary Weather Company data may be subject to rounding and conversion differences from the final reported value.\nUse caution when interpreting preliminary Weather Company readings.\n\nIf it is determined in the sole discretion of the Exchange that there is a material error in the initial non-preliminary publication, Expiration may be held until the publication of a non-materially-erroneous data revision or until the Expiration Date, whichever comes first. If no data is available at the end of this period, all markets will resolve to the last fair price determined by Kalshi. Please note, a status of \"Final\" on weather.com/kalshi is provided for convenience only, and does not guarantee data to be e...
+volume per market: median 0 p90 0 max 0
+
+======== KALSHI: settled markets for HIGHNY ========
+settled markets: 0 pages: 1
+
+======== KALSHI: settled markets for HIGHCHI ========
+settled markets: 0 pages: 1
+
+======== KALSHI: price history & trades for KXHIGHNY-26SEP26-T69 ========
+open 2026-09-25T14:00:00Z close 2026-09-27T05:00:00Z
+candlesticks period=60min status 200 n=38
+  first: {"end_period_ts": 1790348400, "open_interest_fp": "1053.00", "price": {"close_dollars": "0.0100", "high_dollars": "0.0200", "low_dollars": "0.0100", "mean_dollars": "0.0101", "open_dollars": "0.0200"}, "volume_fp": "1053.00", "yes_ask": {"close_dollars": "0.0100", "high_dollars": "1.0000", "low_dollars": "0.0100", "open_dollars": "1.0000"}, "yes_bid": {"close_dollars": "0.0000", "high_dollars": "0.0200", "low_dollars": "0.0000", "open_dollars": "0.0100"}}
+  last: {"end_period_ts": 1790485200, "open_interest_fp": "3278.75", "price": {"previous_dollars": "0.0100"}, "volume_fp": "0.00", "yes_ask": {"close_dollars": "0.0100", "high_dollars": "0.0100", "low_dollars": "0.0100", "open_dollars": "0.0100"}, "yes_bid": {"close_dollars": "0.0000", "high_dollars": "0.0000", "low_dollars": "0.0000", "open_dollars": "0.0000"}}
+candlesticks period=1440min status 200 n=2
+  first: {"end_period_ts": 1790395200, "open_interest_fp": "1608.00", "price": {"close_dollars": "0.0100", "high_dollars": "0.0200", "low_dollars": "0.0100", "mean_dollars": "0.0101", "open_dollars": "0.0200"}, "volume_fp": "1608.00", "yes_ask": {"close_dollars": "0.0100", "high_dollars": "1.0000", "low_dollars": "0.0100", "open_dollars": "1.0000"}, "yes_bid": {"close_dollars": "0.0000", "high_dollars": "0.0200", "low_dollars": "0.0000", "open_dollars": "0.0100"}}
+  last: {"end_period_ts": 1790481600, "open_interest_fp": "3278.75", "price": {"close_dollars": "0.0100", "high_dollars": "0.0100", "low_dollars": "0.0100", "mean_dollars": "0.0100", "open_dollars": "0.0100", "previous_dollars": "0.0100"}, "volume_fp": "1670.75", "yes_ask": {"close_dollars": "0.0100", "high_dollars": "0.0100", "low_dollars": "0.0100", "open_dollars": "0.0100"}, "yes_bid": {"close_dollars": "0.0000", "high_dollars": "0.0000", "low_dollars": "0.0000", "open_dollars": "0.0000"}}
+trades status 200 n 36 cursor 
+  first: {"count_fp": "93.51", "created_time": "2026-09-27T03:39:04.917044Z", "is_block_trade": false, "no_price_dollars": "0.9900", "taker_book_side": "bid", "taker_outcome_side": "yes", "taker_side": "yes", "ticker": "KXHIGHNY-26SEP26-T69", "trade_id": "07235b20-ec31-870c-ef44-13b63000236b", "yes_price_dollars": "0.0100"} 
+  last: {"count_fp": "15.00", "created_time": "2026-09-25T14:00:05.425079Z", "is_block_trade": false, "no_price_dollars": "0.9800", "taker_book_side": "ask", "taker_outcome_side": "no", "taker_side": "no", "ticker": "KXHIGHNY-26SEP26-T69", "trade_id": "0723bbab-40c9-a6dd-6b30-1dbdfe7d8070", "yes_price_dollars": "0.0200"}
+orderbook (live only, settled market) status 200 {"orderbook_fp": {"no_dollars": [], "yes_dollars": []}}
+
+======== KALSHI: historical cutoff / archive endpoints ========
+/historical/cutoff 200 {"market_positions_last_updated_ts": "2026-08-31T00:00:00Z", "market_settled_ts": "2026-08-31T00:00:00Z", "orders_updated_ts": "2026-10-16T00:00:00Z", "trades_created_ts": "2026-08-31T00:00:00Z"}
+/historical/markets 200 {"cursor": "CgwIzavF1AYQsJOZzwISFktYSElHSE5ZLTI2QVVHMjktQjgxLjU", "markets": [{"can_close_early": true, "close_time": "2026-08-30T05:00:00Z", "created_time": "2026-08-28T09:33:01.702958Z", "early_close_condition": "The Last Trading Time will be 11:59 PM local time on August 29, 2026 regardless of any data releases or events occurring. Expiration will occur on the sooner of the first 7:00 or 8:00\nAM ET following the release of the data for August 29, 2026, or one week after August 29, 2026.", "event_ticker": "KXHIGHNY-26AUG29", "exchange_index": 0, "expected_expiration_time": "2026-08-30T19:00:00Z", "expiration_time": "2026-09-05T14:00:00Z", "expiration_value": "76.00", "floor_strike": 86, "last_price_dollars": "0.0100", "latest_expiration_time": "2026-09-05T14:00:00Z", "market_type": "binary", "no_ask_dollars": "1.0000", "no_bid_dollars": "0.0000", "no_sub_title": "87\u00b0 or above", "...
+
+======== KALSHI: exchange fee info ========
+series KXHIGHNY: {"ticker": "KXHIGHNY", "title": "Highest temperature in NYC", "fee_type": "quadratic", "fee_multiplier": 1, "frequency": "daily", "settlement_sources": [{"name": "The Weather Company", "url": "https://weather.com/kalshi"}], "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/GLOBALTEMPERATURE.pdf", "contract_terms_url": "https://assets.kalshi.com/contract_terms/GLOBALTEMPERATURE.pdf", "tags": ["Daily temperature"], "category": "Climate and Weather"}
+
+======== POLYMARKET: find temperature markets ========
+search 'highest temperature' status 200 hdr {}
+ events: 20
+   highest-temperature-in-london-on-october-30-2026 | Highest temperature in London on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-seoul-on-october-31-2026 | Highest temperature in Seoul (Incheon) on October 31? | 2026-10-31T12:00:00Z | markets 11
+   highest-temperature-in-hong-kong-on-october-30-2026 | Highest temperature in Hong Kong on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-tokyo-on-october-30-2026 | Highest temperature in Tokyo on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-toronto-on-october-30-2026 | Highest temperature in Toronto on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-sao-paulo-on-october-30-2026 | Highest temperature in Sao Paulo on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-wellington-on-october-30-2026 | Highest temperature in Wellington on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-nyc-on-october-30-2026 | Highest temperature in NYC on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-buenos-aires-on-october-30-2026 | Highest temperature in Buenos Aires on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-beijing-on-october-30-2026 | Highest temperature in Beijing on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-seoul-on-october-30-2026 | Highest temperature in Seoul (Incheon) on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-chengdu-on-october-30-2026 | Highest temperature in Chengdu on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-houston-on-october-30-2026 | Highest temperature in Houston on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-warsaw-on-october-30-2026 | Highest temperature in Warsaw on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-shanghai-on-october-30-2026 | Highest temperature in Shanghai on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-munich-on-october-30-2026 | Highest temperature in Munich on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-wellington-on-october-31-2026 | Highest temperature in Wellington on October 31? | 2026-10-31T12:00:00Z | markets 11
+   highest-temperature-in-paris-on-october-30-2026 | Highest temperature in Paris on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-singapore-on-october-30-2026 | Highest temperature in Singapore on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-cape-town-on-october-30-2026 | Highest temperature in Cape Town on October 30? | 2026-10-30T12:00:00Z | markets 11
+search 'temperature in' status 200 hdr {}
+ events: 20
+   highest-temperature-in-london-on-october-30-2026 | Highest temperature in London on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-seoul-on-october-31-2026 | Highest temperature in Seoul (Incheon) on October 31? | 2026-10-31T12:00:00Z | markets 11
+   highest-temperature-in-hong-kong-on-october-30-2026 | Highest temperature in Hong Kong on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-tokyo-on-october-30-2026 | Highest temperature in Tokyo on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-toronto-on-october-30-2026 | Highest temperature in Toronto on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-sao-paulo-on-october-30-2026 | Highest temperature in Sao Paulo on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-wellington-on-october-30-2026 | Highest temperature in Wellington on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-nyc-on-october-30-2026 | Highest temperature in NYC on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-buenos-aires-on-october-30-2026 | Highest temperature in Buenos Aires on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-beijing-on-october-30-2026 | Highest temperature in Beijing on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-seoul-on-october-30-2026 | Highest temperature in Seoul (Incheon) on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-chengdu-on-october-30-2026 | Highest temperature in Chengdu on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-houston-on-october-30-2026 | Highest temperature in Houston on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-warsaw-on-october-30-2026 | Highest temperature in Warsaw on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-shanghai-on-october-30-2026 | Highest temperature in Shanghai on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-munich-on-october-30-2026 | Highest temperature in Munich on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-wellington-on-october-31-2026 | Highest temperature in Wellington on October 31? | 2026-10-31T12:00:00Z | markets 11
+   highest-temperature-in-paris-on-october-30-2026 | Highest temperature in Paris on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-singapore-on-october-30-2026 | Highest temperature in Singapore on October 30? | 2026-10-30T12:00:00Z | markets 11
+   highest-temperature-in-cape-town-on-october-30-2026 | Highest temperature in Cape Town on October 30? | 2026-10-30T12:00:00Z | markets 11
+events by tag weather (closed): 200 100
+   will-any-month-of-2026-be-the-hottest-on-record | Will any month of 2026 be the hottest on record? | 2027-01-10T00:00:00Z | vol 154744.65794900001
+   will-summer-2026-be-frances-hottest-summer-on-record-1786459847288 | Will summer 2026 be France's hottest summer on record? | 2027-01-01T04:59:00Z | vol 1790.2095570000001
+   what-caused-the-blue-origin-new-glenn-explosion | What caused the Blue Origin New Glenn Explosion? | 2026-12-31T17:50:00Z | vol 26987.625915
+   precipitation-in-nyc-in-september | Precipitation in NYC in September? | 2026-12-08T04:59:00Z | vol 87518.341347
+   precipitation-in-seattle-in-september | Precipitation in Seattle in September? | 2026-12-08T04:59:00Z | vol 64101.459103999994
+   precipitation-in-hong-kong-in-september | Precipitation in Hong Kong in September? | 2026-12-08T04:59:00Z | vol 27282.321571
+   precipitation-in-london-in-september | Precipitation in London in September? | 2026-12-08T04:59:00Z | vol 40553.014509
+   precipitation-in-seoul-in-september | Precipitation in Seoul in September? | 2026-12-08T04:59:00Z | vol 36760.537076
+   what-will-be-the-name-of-the-first-hurricane-in-the-atlantic-for-the-2026-hurricane-season-20260723184627863 | What will be the name of the first hurricane in the Atlantic for the 2026 Hurricane Season? | 2026-11-30T16:59:00Z | vol 83222.44602
+   what-intensity-will-arnab-reach | How strong will Arnab be? | 2026-11-10T04:59:00Z | vol 8619.373722
+   will-it-rain-during-the-united-states-grand-prix | Rain during the United States Grand Prix? | 2026-11-02T04:59:00Z | vol 3741.401143
+   september-2026-temperature-increase-c | September 2026 Temperature Increase (ºC) | 2026-11-02T04:59:00Z | vol 11127.859859
+   when-will-the-rhine-river-return-to-normal-levels-1786402709329 | When will the Rhine River return to normal levels? | 2026-11-01T23:59:00Z | vol 114889.654677
+   how-long-will-downtown-la-100f-streak-last-1791299884129 | How long will downtown LA's 100°F streak last? | 2026-11-01T06:59:00Z | vol 15269.494456
+   when-will-the-first-hurricane-form-in-the-atlantic-in-2026-20260930143512296 | When will the first hurricane form in the Atlantic in 2026? | 2026-11-01T03:59:00Z | vol 15507.401753999999
+
+example market: {"question": "Will the highest temperature in London be 10\u00b0C or below on October 30?", "conditionId": "0x7c9077e66bd56f987f719e0f252336fd317ab8395206456072e709c88e90b45a", "startDate": "2026-10-28T06:56:00Z", "endDate": "2026-10-30T12:00:00Z", "volume": "273", "liquidity": "5413.37451", "outcomes": "[\"Yes\", \"No\"]", "outcomePrices": "[\"0.0005\", \"0.9995\"]", "resolutionSource": "https://aviationweather.gov/api/data/metar?ids=EGLC&format=raw&date=2026-10-31T03:00:00Z&hours=30", "description": "This market will resolve to the temperature range that contains the highest temperature reported at London City Airport (EGLC) on 30 Oct '26.\n\nThe qualifying value is the highest temperature reported in the hourly temperature remark of any routine (METAR) observation for London City Airport (EGLC) on that date, in tenths of a degree Celsius as reported. A report whose line begins with SPECI is a special observation and does not count. Every other report is routine, including one issued off the nominal hour and one that carries no METAR or SPECI label.\n\nFor How to Read the METAR Report, see: https://polymarket-upload.s3.us-east-2.amazonaws.com/market_products/Weather/How+to+Read+the+METAR+Report.pdf\n\nThe hourly temperature remark is the group beginning with the letter T followed by exactly eight digits. After the T, one digit for sign (0 positive, 1 negative) and three for tenths of a degree Celsius give the temperature; the following four are the dew point and are not used. T01390133 is 13.9\u00b0C; T10171022 is \u22121.7\u00b0C.\n\nIf a routine observation does not carry the hourly temperature remark, the temperature group in the body of that observation governs for that observation, in whole degrees Celsius as reported. It appears as temperature and dew point sepa...
+prices-history fidelity=60 status 200 n=54 hdr {}
+  first {'t': 1793174425, 'p': 0.004} last {'t': 1793397626, 'p': 0.0005}
+prices-history fidelity=1440 status 200 n=3 hdr {}
+  first {'t': 1793232000, 'p': 0.0005} last {'t': 1793400496, 'p': 0.0005}
+
+======== OPEN-METEO: archived forecasts ========
+historical-forecast 2022-01 status 200 hdr {}
+   {"latitude": 40.78858, "longitude": -73.9661, "generationtime_ms": 0.9520053863525391, "utc_offset_seconds": -14400, "timezone": "America/New_York", "timezone_abbreviation": "GMT-4", "elevation": 44.0, "daily_units": {"time": "iso8601", "temperature_2m_max": "\u00b0F"}, "daily": {"time": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06", "2022-01-07", "2022-01-08", "2022-01-09", "2022-01-10"], "temperature_2m_max": [54.3, 56.8, 36.5, 34.0, 44.9, 38.8, 33.4, 29.6...
+historical-forecast 2024-06 status 200 hdr {}
+   {"latitude": 40.78858, "longitude": -73.9661, "generationtime_ms": 0.30112266540527344, "utc_offset_seconds": -14400, "timezone": "America/New_York", "timezone_abbreviation": "GMT-4", "elevation": 44.0, "daily_units": {"time": "iso8601", "temperature_2m_max": "\u00b0F"}, "daily": {"time": ["2024-06-01", "2024-06-02", "2024-06-03", "2024-06-04", "2024-06-05", "2024-06-06", "2024-06-07", "2024-06-08", "2024-06-09", "2024-06-10"], "temperature_2m_max": [86.7, 84.0, 88.2, 81.6, 80.5, 79.3, 82.5, 78....
+historical-forecast models ecmwf_ifs025,gfs_seamless,icon_seamless status 200 hdr {}
+   {"latitude": 40.75, "longitude": -74.0, "generationtime_ms": 0.2855062484741211, "utc_offset_seconds": -14400, "timezone": "America/New_York", "timezone_abbreviation": "GMT-4", "elevation": 44.0, "daily_units": {"time": "iso8601", "temperature_2m_max_ecmwf_ifs025": "\u00b0F", "temperature_2m_max_gfs_seamless": "\u00b0F", "temperature_2m_max_icon_seamless": "\u00b0F"}, "daily": {"time": ["2025-06-01", "2025-06-02", "2025-06-03", "2025-06-04", "2025-06-05"], "temperature_2m_max_ecmwf_ifs025": [66....
+previous-runs day0..3 gfs status 400
+   {"error": true, "reason": "Invalid value: Cannot initialize ForecastVariableDaily from invalid String value temperature_2m_max,temperature_2m_max_previous_day1,temperature_2m_max_previous_day2"}
+previous-runs early 2024 status 400
+   {"reason": "Invalid value: Cannot initialize ForecastVariableDaily from invalid String value temperature_2m_max,temperature_2m_max_previous_day1", "error": true}
+previous-runs early 2023 status 400
+   {"error": true, "reason": "Invalid value: Cannot initialize ForecastVariableDaily from invalid String value temperature_2m_max,temperature_2m_max_previous_day1"}
+ensemble-api (live) status 400 {"error": true, "reason": "Parameter 'start_date' is out of allowed range from 2026-07-29 to 2026-12-04"}
+historical ensemble try 400 {"reason": "Invalid value: Cannot initialize MultiDomains from invalid String value gfs025_ensemble", "error": true}
+
+======== SETTLEMENT DATA: NCEI / NWS CLI / IEM ========
+NCEI daily-summaries NYC Central Park 200 [{"DATE": "2025-06-01", "STATION": "USW00094728", "TMAX": "66", "TMIN": "50"}, {"DATE": "2025-06-02", "STATION": "USW00094728", "TMAX": "71", "TMIN": "53"}, {"DATE": "2025-06-03", "STATION": "USW00094728", "TMAX": "79", "TMIN": "56"}, {"DATE": "2025-06-04", "STATION": "USW00094728", "TMAX": "83", "TMIN": "62"}, {"DATE": "2025-06-05", "STATION": "USW00094728", "TMAX": "87", "TMIN": "70"}]
+IEM CLI json KNYC 2025 200 {"results": [{"station": "KNYC", "valid": "2025-01-01", "state": "NY", "wfo": "OKX", "link": "/api/1/nwstext/202501020709-KOKX-CDUS41-CLINYC", "product": "202501020709-KOKX-CDUS41-CLINYC", "name": "NEW YORK CITY", "high": 51, "high_record": 62, "high_record_years": [1966], "high_normal": 41, "high_depart": 10, "high_time": "1110 AM", "low": 39, "low_record": -4, "low_record_years": [1918], "low_normal": 30, "low_depart": 9, "low_time": "1159 PM", "precip": "T", "precip_normal": 0.12, "precip_mon...
+  rows: 363
+NWS products CLI/NYC 200 {"@context": {"@version": "1.1", "@vocab": "https://api.weather.gov/ontology#"}, "@graph": [{"@id": "https://api.weather.gov/products/e9dd6eb0-1b1d-4f42-87ba-6d4f135044f3", "id": "e9dd6eb0-1b1d-4f42-87ba-6d4f135044f3", "wmoCollectiveId": "CDUS41", "issuingOffice": "KOKX", "issuanceTime": "2026-10-30...
+
+done in 13s
