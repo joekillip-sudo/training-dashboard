@@ -1,4 +1,4 @@
-{"floor":{"min_ev":0.02,"min_edge":0.01,"max_odds":15.0},"live_from":"2026-10-27","generated":"2026-11-10T02:10:32+00:00","bets":[
+{"floor":{"min_ev":0.02,"min_edge":0.01,"max_odds":15.0},"live_from":"2026-10-27","generated":"2026-11-10T15:39:19+00:00","bets":[
 {"id":"I1|2024-05-23|Cagliari|Fiorentina|H","league":"I1","date":"2024-05-23","home":"Cagliari","away":"Fiorentina","outcome":"H","odds":4.2,"model_p":0.283,"market_p":0.2246,"source":"backtest","result":"A","close_p":0.1914},
 {"id":"I1|2024-05-24|Genoa|Bologna|D","league":"I1","date":"2024-05-24","home":"Genoa","away":"Bologna","outcome":"D","odds":3.4,"model_p":0.3082,"market_p":0.2792,"source":"backtest","result":"H","close_p":0.2979},
 {"id":"SP1|2024-05-24|Girona|Granada|A","league":"SP1","date":"2024-05-24","home":"Girona","away":"Granada","outcome":"A","odds":12.0,"model_p":0.0918,"market_p":0.0789,"source":"backtest","result":"H","close_p":0.082},
@@ -13783,7 +13783,7 @@
 {"id":"SP1|2026-11-08|Sociedad|Vallecano|D","league":"SP1","date":"2026-11-08","home":"Sociedad","away":"Vallecano","outcome":"D","odds":4.1,"model_p":0.2545,"market_p":0.2316,"source":"live","result":"H","close_p":0.2442},
 {"id":"SP1|2026-11-08|Villarreal|Getafe|A","league":"SP1","date":"2026-11-08","home":"Villarreal","away":"Getafe","outcome":"A","odds":8.0,"model_p":0.1704,"market_p":0.1189,"source":"live","result":"H","close_p":0.1614},
 {"id":"SP1|2026-11-08|Villarreal|Getafe|D","league":"SP1","date":"2026-11-08","home":"Villarreal","away":"Getafe","outcome":"D","odds":4.5,"model_p":0.2521,"market_p":0.2113,"source":"live","result":"H","close_p":0.2224},
-{"id":"SP2|2026-11-08|Las Palmas|Eldense|H","league":"SP2","date":"2026-11-08","home":"Las Palmas","away":"Eldense","outcome":"H","odds":2.2,"model_p":0.5142,"market_p":0.4243,"source":"live","result":null,"close_p":null},
+{"id":"SP2|2026-11-08|Las Palmas|Eldense|H","league":"SP2","date":"2026-11-08","home":"Las Palmas","away":"Eldense","outcome":"H","odds":2.2,"model_p":0.5142,"market_p":0.4243,"source":"live","result":"H","close_p":0.4552},
 {"id":"SP2|2026-11-08|Sp Gijon|Valladolid|H","league":"SP2","date":"2026-11-08","home":"Sp Gijon","away":"Valladolid","outcome":"H","odds":2.35,"model_p":0.4714,"market_p":0.3972,"source":"live","result":"A","close_p":0.398},
 {"id":"T1|2026-11-08|Alanyaspor|Trabzonspor|H","league":"T1","date":"2026-11-08","home":"Alanyaspor","away":"Trabzonspor","outcome":"H","odds":4.75,"model_p":0.3147,"market_p":0.1896,"source":"live","result":"A","close_p":0.1778},
 {"id":"T1|2026-11-08|Besiktas|Genclerbirligi|A","league":"T1","date":"2026-11-08","home":"Besiktas","away":"Genclerbirligi","outcome":"A","odds":11.0,"model_p":0.1434,"market_p":0.0833,"source":"live","result":"H","close_p":0.0678},

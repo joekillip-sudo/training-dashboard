@@ -59,14 +59,14 @@ bin
 BETS TAKEN (by odds band)
               bets  model_p  hit_rate    roi  overconfidence
 odds                                                        
-(0.999, 1.5]    24    0.770     0.750  0.255           0.020
-(1.5, 2.0]     305    0.610     0.541 -0.049           0.069
-(2.0, 3.0]    2457    0.446     0.339 -0.084           0.107
-(3.0, 5.0]    5303    0.306     0.221 -0.224           0.085
-(5.0, 100.0]  1953    0.216     0.149 -0.300           0.067
+(0.999, 1.5]    24    0.770     0.750  0.239           0.020
+(1.5, 2.0]     305    0.610     0.541 -0.048           0.069
+(2.0, 3.0]    2458    0.446     0.340 -0.085           0.107
+(3.0, 5.0]    5303    0.306     0.221 -0.232           0.085
+(5.0, 100.0]  1953    0.216     0.149 -0.281           0.067
 
 ## Strategies: market-anchored model and best-price betting (flat one-unit stakes, out of sample)
-out-of-sample matches: 9539 (of 17595); residual theta [draw, away, model-vs-base, base tilt] = [0.058, 0.017, -0.114, 0.07]
+out-of-sample matches: 9539 (of 17597); residual theta [draw, away, model-vs-base, base tilt] = [0.058, 0.017, -0.114, 0.07]
 
 log loss on these matches (lower is better): {'model': 1.019, 'resid': 1.0026, 'ps': 1.0027, 'avg': 1.0031, 'b365': 1.0036, 'close': 0.9998}
 
