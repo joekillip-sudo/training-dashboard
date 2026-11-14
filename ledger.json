@@ -1,4 +1,4 @@
-{"floor":{"min_ev":0.02,"min_edge":0.01,"max_odds":15.0},"live_from":"2026-10-27","generated":"2026-11-13T21:27:59+00:00","bets":[
+{"floor":{"min_ev":0.02,"min_edge":0.01,"max_odds":15.0},"live_from":"2026-10-27","generated":"2026-11-14T00:22:46+00:00","bets":[
 {"id":"I1|2024-05-23|Cagliari|Fiorentina|H","league":"I1","date":"2024-05-23","home":"Cagliari","away":"Fiorentina","outcome":"H","odds":4.2,"model_p":0.283,"market_p":0.2246,"source":"backtest","result":"A","close_p":0.1914},
 {"id":"I1|2024-05-24|Genoa|Bologna|D","league":"I1","date":"2024-05-24","home":"Genoa","away":"Bologna","outcome":"D","odds":3.4,"model_p":0.3082,"market_p":0.2792,"source":"backtest","result":"H","close_p":0.2979},
 {"id":"SP1|2024-05-24|Girona|Granada|A","league":"SP1","date":"2024-05-24","home":"Girona","away":"Granada","outcome":"A","odds":12.0,"model_p":0.0918,"market_p":0.0789,"source":"backtest","result":"H","close_p":0.082},
@@ -13822,5 +13822,6 @@
 {"id":"SP2|2026-11-14|Valladolid|Castellon|H","league":"SP2","date":"2026-11-14","home":"Valladolid","away":"Castellon","outcome":"H","odds":3.0,"model_p":0.345,"market_p":0.3105,"source":"live","result":null,"close_p":null},
 {"id":"SP2|2026-11-15|Eibar|Cadiz|A","league":"SP2","date":"2026-11-15","home":"Eibar","away":"Cadiz","outcome":"A","odds":5.5,"model_p":0.1895,"market_p":0.1675,"source":"live","result":null,"close_p":null},
 {"id":"SP2|2026-11-15|Eldense|Sabadell|A","league":"SP2","date":"2026-11-15","home":"Eldense","away":"Sabadell","outcome":"A","odds":3.1,"model_p":0.3614,"market_p":0.2968,"source":"live","result":null,"close_p":null},
-{"id":"SP2|2026-11-15|Granada|Las Palmas|A","league":"SP2","date":"2026-11-15","home":"Granada","away":"Las Palmas","outcome":"A","odds":4.5,"model_p":0.311,"market_p":0.2065,"source":"live","result":null,"close_p":null}
+{"id":"SP2|2026-11-15|Granada|Las Palmas|A","league":"SP2","date":"2026-11-15","home":"Granada","away":"Las Palmas","outcome":"A","odds":4.5,"model_p":0.311,"market_p":0.2065,"source":"live","result":null,"close_p":null},
+{"id":"SP2|2026-11-16|Albacete|Celta B|A","league":"SP2","date":"2026-11-16","home":"Albacete","away":"Celta B","outcome":"A","odds":5.0,"model_p":0.2764,"market_p":0.1818,"source":"live","result":null,"close_p":null}
 ]}
