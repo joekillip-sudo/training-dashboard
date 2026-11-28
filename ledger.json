@@ -1,4 +1,4 @@
-{"floor":{"min_ev":0.02,"min_edge":0.01,"max_odds":15.0},"live_from":"2026-10-27","generated":"2026-11-27T23:30:29+00:00","bets":[
+{"floor":{"min_ev":0.02,"min_edge":0.01,"max_odds":15.0},"live_from":"2026-10-27","generated":"2026-11-28T02:01:59+00:00","bets":[
 {"id":"I1|2024-05-23|Cagliari|Fiorentina|H","league":"I1","date":"2024-05-23","home":"Cagliari","away":"Fiorentina","outcome":"H","odds":4.2,"model_p":0.283,"market_p":0.2246,"source":"backtest","result":"A","close_p":0.1914},
 {"id":"I1|2024-05-24|Genoa|Bologna|D","league":"I1","date":"2024-05-24","home":"Genoa","away":"Bologna","outcome":"D","odds":3.4,"model_p":0.3082,"market_p":0.2792,"source":"backtest","result":"H","close_p":0.2979},
 {"id":"SP1|2024-05-24|Girona|Granada|A","league":"SP1","date":"2024-05-24","home":"Girona","away":"Granada","outcome":"A","odds":12.0,"model_p":0.0918,"market_p":0.0789,"source":"backtest","result":"H","close_p":0.082},
@@ -14153,5 +14153,13 @@
 {"id":"SP2|2026-11-29|Granada|Ceuta|A","league":"SP2","date":"2026-11-29","home":"Granada","away":"Ceuta","outcome":"A","odds":5.5,"model_p":0.1977,"market_p":0.1685,"source":"live","result":null,"close_p":null},
 {"id":"T1|2026-11-29|Corum|Kocaelispor|A","league":"T1","date":"2026-11-29","home":"Corum","away":"Kocaelispor","outcome":"A","odds":3.9,"model_p":0.2759,"market_p":0.2306,"source":"live","result":null,"close_p":null},
 {"id":"T1|2026-11-29|Eyupspor|Buyuksehyr|D","league":"T1","date":"2026-11-29","home":"Eyupspor","away":"Buyuksehyr","outcome":"D","odds":4.33,"model_p":0.2538,"market_p":0.2099,"source":"live","result":null,"close_p":null},
-{"id":"T1|2026-11-29|Eyupspor|Buyuksehyr|H","league":"T1","date":"2026-11-29","home":"Eyupspor","away":"Buyuksehyr","outcome":"H","odds":6.25,"model_p":0.259,"market_p":0.1454,"source":"live","result":null,"close_p":null}
+{"id":"T1|2026-11-29|Eyupspor|Buyuksehyr|H","league":"T1","date":"2026-11-29","home":"Eyupspor","away":"Buyuksehyr","outcome":"H","odds":6.25,"model_p":0.259,"market_p":0.1454,"source":"live","result":null,"close_p":null},
+{"id":"I1|2026-11-30|Cagliari|Milan|H","league":"I1","date":"2026-11-30","home":"Cagliari","away":"Milan","outcome":"H","odds":5.0,"model_p":0.2438,"market_p":0.1896,"source":"live","result":null,"close_p":null},
+{"id":"I2|2026-11-30|Catanzaro|Avellino|H","league":"I2","date":"2026-11-30","home":"Catanzaro","away":"Avellino","outcome":"H","odds":2.5,"model_p":0.4462,"market_p":0.367,"source":"live","result":null,"close_p":null},
+{"id":"P1|2026-11-30|Benfica|Famalicao|A","league":"P1","date":"2026-11-30","home":"Benfica","away":"Famalicao","outcome":"A","odds":13.0,"model_p":0.1504,"market_p":0.0706,"source":"live","result":null,"close_p":null},
+{"id":"P1|2026-11-30|Benfica|Famalicao|D","league":"P1","date":"2026-11-30","home":"Benfica","away":"Famalicao","outcome":"D","odds":7.0,"model_p":0.2157,"market_p":0.1311,"source":"live","result":null,"close_p":null},
+{"id":"P1|2026-11-30|Casa Pia|Sp Braga|H","league":"P1","date":"2026-11-30","home":"Casa Pia","away":"Sp Braga","outcome":"H","odds":7.0,"model_p":0.1874,"market_p":0.132,"source":"live","result":null,"close_p":null},
+{"id":"SP2|2026-11-30|Oviedo|Celta B|A","league":"SP2","date":"2026-11-30","home":"Oviedo","away":"Celta B","outcome":"A","odds":7.0,"model_p":0.2098,"market_p":0.1319,"source":"live","result":null,"close_p":null},
+{"id":"T1|2026-11-30|Besiktas|Galatasaray|A","league":"T1","date":"2026-11-30","home":"Besiktas","away":"Galatasaray","outcome":"A","odds":2.87,"model_p":0.3955,"market_p":0.3172,"source":"live","result":null,"close_p":null},
+{"id":"T1|2026-11-30|Goztep|Trabzonspor|H","league":"T1","date":"2026-11-30","home":"Goztep","away":"Trabzonspor","outcome":"H","odds":3.1,"model_p":0.4061,"market_p":0.2932,"source":"live","result":null,"close_p":null}
 ]}
